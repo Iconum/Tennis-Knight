@@ -33,6 +33,10 @@ ipch/
 Ankh.NoLoad
 [Gg]en*/
 
+#Unity
+/Library
+/Temp
+
 #MonoDevelop
 *.pidb
 *.userprefs
