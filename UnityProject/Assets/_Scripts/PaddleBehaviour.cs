@@ -42,4 +42,12 @@ public class PaddleBehaviour : MonoBehaviour {
 		player.GetComponent<PlayerBehaviour>().paddleActive = false;
 		gameObject.SetActive (false);
 	}
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Deflectable"))
+		{
+			collision.gameObject.tag = "Deflected";
+		}
+	}
 }

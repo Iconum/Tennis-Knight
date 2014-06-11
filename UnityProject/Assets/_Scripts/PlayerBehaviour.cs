@@ -67,7 +67,7 @@ public class PlayerBehaviour : MonoBehaviour
 			transform.position += new Vector3 (tempf, 0.0f);
 		}
 //#endif
-		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -3.0f, 3.0f), -2.5f);
+		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.8f, 2.8f), -2.5f);
 
 
 		//Debug näppäimet
