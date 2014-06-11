@@ -4,4 +4,4 @@ KNIGHTTI 128x128
 
 
 
-bottom line: Bossit oikeasti ehkä 256x192
+bottom line: Bossit oikeasti ehkä 192x256
