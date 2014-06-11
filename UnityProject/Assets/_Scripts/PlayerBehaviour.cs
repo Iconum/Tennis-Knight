@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
 	private List<GameObject> _collisionList = new List<GameObject> ();
 	private float currentSpeed;
 	private float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
+	private ControlType usedControls = ControlType.keyboard;
 
 	// Use this for initialization
 	void Start ()
@@ -18,6 +19,8 @@ public class PlayerBehaviour : MonoBehaviour
 		sixty = (60.0f / 640.0f) * Screen.height;
 		eighty = (80.0f / 400.0f) * Screen.width;
 		onefourty = (140.0f / 640.0f) * Screen.height;
+
+		usedControls = Statics.selectedControlMethod;
 	}
 	
 	// Update is called once per frame
@@ -29,29 +32,40 @@ public class PlayerBehaviour : MonoBehaviour
 			currentSpeed *= 3;
 		} else if (stunned)
 		{
-			currentSpeed *= 0.2f;
+			//currentSpeed *= 0.2f;
 		}
 
-		if (Input.GetKey (KeyCode.RightArrow))
+		if (Input.GetKeyDown (KeyCode.Escape))
 		{
-			transform.position += new Vector3 (currentSpeed, 0.0f);
+			Application.LoadLevel(0);
 		}
-		if (Input.GetKey (KeyCode.LeftArrow))
+
+		if (usedControls == ControlType.keyboard)
 		{
-			transform.position -= new Vector3 (currentSpeed, 0.0f);
-		}
-		if (Input.GetKeyDown (KeyCode.Z))
-		{
-			PaddleActivate (leftPaddle);
-		}
-		if (Input.GetKeyDown (KeyCode.X))
-		{
-			PaddleActivate (rightPaddle);
+			if (Input.GetKey (KeyCode.RightArrow))
+			{
+				transform.position += new Vector3 (currentSpeed, 0.0f);
+			}
+			if (Input.GetKey (KeyCode.LeftArrow))
+			{
+				transform.position -= new Vector3 (currentSpeed, 0.0f);
+			}
+			if (Input.GetKeyDown (KeyCode.Z))
+			{
+				PaddleActivate (leftPaddle);
+			}
+			if (Input.GetKeyDown (KeyCode.X))
+			{
+				PaddleActivate (rightPaddle);
+			}
 		}
 //#if UNITY_ANDROID
-		float tempf = 0.0f;
-		tempf = Mathf.Clamp(Input.acceleration.x / 5.0f, -currentSpeed, currentSpeed);
-		transform.position += new Vector3(tempf, 0.0f);
+		if (usedControls == ControlType.tilting)
+		{
+			float tempf = 0.0f;
+			tempf = Mathf.Clamp (Input.acceleration.x / 5.0f, -currentSpeed, currentSpeed);
+			transform.position += new Vector3 (tempf, 0.0f);
+		}
 //#endif
 		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -3.0f, 3.0f), -2.5f);
 
@@ -81,22 +95,42 @@ public class PlayerBehaviour : MonoBehaviour
 
 	void OnGUI()
 	{
-		if (GUI.RepeatButton (new Rect (0, Screen.height-sixty, eighty, sixty), "<----"))
+		if (usedControls != ControlType.keyboard)
 		{
-			transform.position -= new Vector3 (currentSpeed, 0.0f);
-		}
-		if (GUI.RepeatButton (new Rect (Screen.width-eighty, Screen.height-sixty, eighty, sixty), "---->"))
-		{
-			transform.position += new Vector3 (currentSpeed, 0.0f);
-		}
+			if (usedControls == ControlType.touchpad || usedControls == ControlType.invertedtouchpad)
+			{
+				if (GUI.RepeatButton (new Rect (0, Screen.height - sixty, eighty, sixty), "<----"))
+				{
+					transform.position -= new Vector3 (currentSpeed, 0.0f);
+				}
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - sixty, eighty, sixty), "---->"))
+				{
+					transform.position += new Vector3 (currentSpeed, 0.0f);
+				}
+			}
 
-		if (GUI.Button (new Rect (0, Screen.height-onefourty, eighty, sixty), "Vasen"))
-		{
-			PaddleActivate(leftPaddle);
-		}
-		if (GUI.Button (new Rect (Screen.width-eighty, Screen.height-onefourty, eighty, sixty), "Oikea"))
-		{
-			PaddleActivate(rightPaddle);
+			if (usedControls == ControlType.touchpad || usedControls == ControlType.tilting)
+			{
+				if (GUI.Button (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen"))
+				{
+					PaddleActivate (leftPaddle);
+				}
+				if (GUI.Button (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Oikea"))
+				{
+					PaddleActivate (rightPaddle);
+				}
+			}
+			if (usedControls == ControlType.invertedtouchpad)
+			{
+				if (GUI.Button (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Vasen"))
+				{
+					PaddleActivate (leftPaddle);
+				}
+				if (GUI.Button (new Rect (0, Screen.height - onefourty, eighty, sixty), "Oikea"))
+				{
+					PaddleActivate (rightPaddle);
+				}
+			}
 		}
 	}
 
