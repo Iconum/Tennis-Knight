@@ -34,8 +34,8 @@ Ankh.NoLoad
 [Gg]en*/
 
 #Unity
-/Library
-/Temp
+Library/
+Temp/
 
 #MonoDevelop
 *.pidb
