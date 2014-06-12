@@ -11,6 +11,7 @@ public class BallBehaviour : MonoBehaviour
 	void Start ()
 	{
 		rigidbody2D.velocity = constantSpeed * startVelocity.normalized;
+		audio.clip = paddleHit;
 	}
 	
 	// Update is called once per frame
@@ -29,7 +30,10 @@ public class BallBehaviour : MonoBehaviour
 		{
 			if (!audio.isPlaying)
 			{
-				audio.clip = paddleHit;
+				if (audio.clip != paddleHit)
+				{
+					audio.clip = paddleHit;
+				}
 				audio.Play();
 			}
 		}

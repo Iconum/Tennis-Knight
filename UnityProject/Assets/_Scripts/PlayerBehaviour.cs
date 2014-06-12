@@ -116,22 +116,22 @@ public class PlayerBehaviour : MonoBehaviour
 
 			if (usedControls == ControlType.touchpad || usedControls == ControlType.tilting)
 			{
-				if (GUI.Button (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen"))
+				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen"))
 				{
 					PaddleActivate (leftPaddle);
 				}
-				if (GUI.Button (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Oikea"))
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Oikea"))
 				{
 					PaddleActivate (rightPaddle);
 				}
 			}
 			if (usedControls == ControlType.invertedtouchpad)
 			{
-				if (GUI.Button (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Vasen"))
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Vasen"))
 				{
 					PaddleActivate (leftPaddle);
 				}
-				if (GUI.Button (new Rect (0, Screen.height - onefourty, eighty, sixty), "Oikea"))
+				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Oikea"))
 				{
 					PaddleActivate (rightPaddle);
 				}
