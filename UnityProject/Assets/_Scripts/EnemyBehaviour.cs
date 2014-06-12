@@ -6,16 +6,16 @@ public class EnemyBehaviour : MonoBehaviour {
 	public float flickerTimerLimit = 4.0f;
 	public int health = 10;
 	
-	private float _flickerTimer = 0.0f;
-	private bool _flickerActive = false;
+	protected float _flickerTimer = 0.0f;
+	protected bool _flickerActive = false;
 
 	// Use this for initialization
-	protected void Start () {
+	protected virtual void Start () {
 
 	}
 	
 	// Update is called once per frame
-	protected void Update () {
+	protected virtual void Update () {
 
 		if (_flickerActive)
 		{
@@ -37,7 +37,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 	}
 
-	protected void OnCollisionEnter2D(Collision2D collision)
+	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{
