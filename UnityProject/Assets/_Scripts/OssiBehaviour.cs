@@ -26,8 +26,21 @@ public class OssiBehaviour : EnemyBehaviour {
 		}
 	}
 
-	void OnDestroy()
+	protected override void OnCollisionEnter2D(Collision2D collision)
 	{
-		level.GetComponent<LevelTester> ().OssiKuoli ();
+		if (collision.gameObject.CompareTag ("Deflected"))
+		{
+			Destroy(collision.gameObject);
+			if (!_flickerActive)
+			{
+				--health;
+				_flickerActive = true;
+				if (health <= 0)
+				{
+					level.GetComponent<LevelTester> ().OssiKuoli ();
+					Destroy(gameObject);
+				}
+			}
+		}
 	}
 }
