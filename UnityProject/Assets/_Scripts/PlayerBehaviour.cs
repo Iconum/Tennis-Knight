@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-	public GameObject leftPaddle = null, rightPaddle = null, ballPrefab;
+	public GameObject leftPaddle = null, rightPaddle = null;
 	public bool paddleActive = false, stunned = false;
 	public float strafeSpeed = 0.1f;
 
@@ -26,10 +26,10 @@ public class PlayerBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		currentSpeed = strafeSpeed;
+		currentSpeed = strafeSpeed * Time.deltaTime;
 		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && !stunned)
 		{
-			currentSpeed *= 3;
+			currentSpeed *= 2;
 		} else if (stunned)
 		{
 			//currentSpeed *= 0.2f;
@@ -59,21 +59,26 @@ public class PlayerBehaviour : MonoBehaviour
 				PaddleActivate (rightPaddle);
 			}
 		}
-//#if UNITY_ANDROID
+#if UNITY_ANDROID
 		if (usedControls == ControlType.tilting)
 		{
 			float tempf = 0.0f;
 			tempf = Mathf.Clamp (Input.acceleration.x / 5.0f, -currentSpeed, currentSpeed);
 			transform.position += new Vector3 (tempf, 0.0f);
 		}
-//#endif
+#endif
 		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.8f, 2.8f), -2.5f);
 
 
 		//Debug näppäimet
-		if (Input.GetKeyDown (KeyCode.Space))
+		if (Input.GetKeyDown (KeyCode.KeypadPlus))
 		{
-			GameObject.Instantiate(ballPrefab, transform.position + new Vector3(0.0f, 10.0f), transform.rotation);
+			Time.timeScale += 0.1f;
+		}
+		if (Input.GetKeyDown (KeyCode.KeypadMinus))
+		{
+			if (Time.timeScale > 0.1f)
+				Time.timeScale -= 0.1f;
 		}
 	}
 
