@@ -2,26 +2,53 @@
 using System.Collections;
 
 public class EnemyBehaviour : MonoBehaviour {
-	public GameObject projectilePrefab = null, player = null;
-	public float shootTimerLimit = 1.0f;
-
-	private float _shootTimer = 0.0f;
+	public GameObject projectilePrefab = null;
+	public float flickerTimerLimit = 4.0f;
+	public int health = 10;
+	
+	protected float _flickerTimer = 0.0f;
+	protected bool _flickerActive = false;
 
 	// Use this for initialization
-	void Start () {
-		GameObject.Instantiate (projectilePrefab, transform.position, transform.rotation);
+	protected virtual void Start () {
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		transform.position = new Vector3(-player.transform.position.x, transform.position.y);
+	protected virtual void Update () {
 
-		_shootTimer += Time.deltaTime;
-		if (_shootTimer > shootTimerLimit)
+		if (_flickerActive)
 		{
-			_shootTimer = 0.0f;// shootTimerLimit;
-			GameObject.Instantiate (projectilePrefab, transform.position, transform.rotation);
+			_flickerTimer += Time.deltaTime;
+			if (_flickerTimer % 0.4f < 0.2f)
+			{
+				renderer.enabled = false;
+			}
+			else
+			{
+				renderer.enabled = true;
+			}
+			if (_flickerTimer > flickerTimerLimit)
+			{
+				_flickerActive = false;
+				renderer.enabled = true;
+				_flickerTimer = 0.0f;
+			}
 		}
 	}
 
+	protected virtual void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag ("Deflected"))
+		{
+			Destroy(collision.gameObject);
+			if (!_flickerActive)
+			{
+				--health;
+				_flickerActive = true;
+				if (health <= 0)
+					Destroy(gameObject);
+			}
+		}
+	}
 }

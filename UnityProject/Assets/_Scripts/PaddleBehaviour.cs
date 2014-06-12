@@ -18,12 +18,13 @@ public class PaddleBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		hitTime += Time.deltaTime * 5;
-		transform.localPosition = Vector3.Lerp (startPosition, startPosition + new Vector3 (0.0f, 0.25f), hitTime);
 		if (isLeft)
 		{
+			transform.localPosition = Vector3.Lerp (startPosition, startPosition + new Vector3 (0.6f, 0.8f), hitTime);
 			transform.localRotation = Quaternion.Lerp(startRotation, Quaternion.Euler(0.0f, 0.0f, -35.0f), hitTime);
 		} else
 		{
+			transform.localPosition = Vector3.Lerp (startPosition, startPosition + new Vector3 (-0.6f, 0.8f), hitTime);
 			transform.localRotation = Quaternion.Lerp(startRotation, Quaternion.Euler(0.0f, 0.0f, 35.0f), hitTime);
 		}
 	}
@@ -41,5 +42,13 @@ public class PaddleBehaviour : MonoBehaviour {
 		hitTime = 0.0f;
 		player.GetComponent<PlayerBehaviour>().paddleActive = false;
 		gameObject.SetActive (false);
+	}
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Deflectable"))
+		{
+			collision.gameObject.tag = "Deflected";
+		}
 	}
 }

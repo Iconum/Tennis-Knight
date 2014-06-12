@@ -14,4 +14,12 @@ public class BallBehaviour : MonoBehaviour {
 	void Update () {
 		rigidbody2D.velocity = constantSpeed * rigidbody2D.velocity.normalized;
 	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag ("Removal"))
+		{
+			Destroy(gameObject);
+		}
+	}
 }
