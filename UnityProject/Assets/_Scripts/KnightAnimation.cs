@@ -16,8 +16,14 @@ public class KnightAnimation : MonoBehaviour {
 	{
 		if (Input.GetKeyDown (KeyCode.Space))
 		{
-			anim.SetBool("RightSwing",true);
+			anim.SetTrigger("RightSwing");
+			//if(this.anim.GetCurrentAnimatorStateInfo(0).IsName("RightSwing"))
+			//{
+
+			//	anim.SetBool("RightSwing",false);
+			//}
 		}
-	
+
+
 	}
 }
