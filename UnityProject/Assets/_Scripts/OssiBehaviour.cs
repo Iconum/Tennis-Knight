@@ -22,7 +22,8 @@ public class OssiBehaviour : EnemyBehaviour {
 		if (_shootTimer > shootTimerLimit)
 		{
 			_shootTimer = 0.0f;
-			GameObject.Instantiate (projectilePrefab, transform.position, transform.rotation);
+			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
 		}
 	}
 

@@ -46,7 +46,7 @@ public class PaddleBehaviour : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("Deflectable"))
+		if (collision.gameObject.CompareTag ("Deflectable"))
 		{
 			collision.gameObject.tag = "Deflected";
 		}
