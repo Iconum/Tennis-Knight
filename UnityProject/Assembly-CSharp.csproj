@@ -49,6 +49,7 @@
      <Compile Include="Assets\_Scripts\BackgroundLoop.cs" />
      <Compile Include="Assets\_Scripts\BallBehaviour.cs" />
      <Compile Include="Assets\_Scripts\EnemyBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\KnightAnimation.cs" />
      <Compile Include="Assets\_Scripts\LevelTester.cs" />
      <Compile Include="Assets\_Scripts\MenuFunctionality.cs" />
      <Compile Include="Assets\_Scripts\OssiBehaviour.cs" />
