@@ -20,6 +20,9 @@ public class PlayerBehaviour : MonoBehaviour
 		eighty = (80.0f / 400.0f) * Screen.width;
 		onefourty = (140.0f / 640.0f) * Screen.height;
 
+		leftPaddle.SetActive (false);
+		rightPaddle.SetActive (false);
+
 		usedControls = Statics.selectedControlMethod;
 	}
 	

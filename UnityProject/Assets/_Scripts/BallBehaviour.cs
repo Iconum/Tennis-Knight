@@ -6,25 +6,20 @@ public class BallBehaviour : MonoBehaviour
 	public Vector2 startVelocity = new Vector2 (0.1f, -1.0f);
 	public float constantSpeed = 2.0f;
 	public AudioClip paddleHit;
+	
 
-	// Use this for initialization
-	void Start ()
+	protected virtual void Start ()
 	{
 		rigidbody2D.velocity = constantSpeed * startVelocity.normalized;
 		audio.clip = paddleHit;
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
 
-	}
-	void FixedUpdate ()
+	protected virtual void FixedUpdate ()
 	{
 		rigidbody2D.velocity = constantSpeed * rigidbody2D.velocity.normalized;
 	}
 
-	void OnCollisionEnter2D (Collision2D collision)
+	protected virtual void OnCollisionEnter2D (Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Paddle"))
 		{
@@ -39,7 +34,7 @@ public class BallBehaviour : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter2D (Collider2D other)
+	protected virtual void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.CompareTag ("Removal"))
 		{
