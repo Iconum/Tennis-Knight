@@ -14,7 +14,7 @@ public class PaddleBehaviour : MonoBehaviour {
 	void Start () {
 		_startPosition = transform.localPosition;
 		_startRotation = transform.localRotation;
-		_deflectedLayer = LayerMask.NameToLayer ("Deflected");
+		_deflectedLayer = LayerMask.NameToLayer ("OwnProjectiles");
 	}
 	
 	// Update is called once per frame
@@ -51,7 +51,7 @@ public class PaddleBehaviour : MonoBehaviour {
 		if (collision.gameObject.CompareTag ("Deflectable"))
 		{
 			collision.gameObject.tag = "Deflected";
-			collision.gameObject.layer = 0 << _deflectedLayer;
+			collision.gameObject.layer = (LayerMask)_deflectedLayer;
 		}
 	}
 }
