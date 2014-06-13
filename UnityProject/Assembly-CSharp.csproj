@@ -46,10 +46,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\_Scripts\BackgroundLoop.cs" />
      <Compile Include="Assets\_Scripts\BallBehaviour.cs" />
      <Compile Include="Assets\_Scripts\EnemyBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\LevelTester.cs" />
+     <Compile Include="Assets\_Scripts\MenuFunctionality.cs" />
+     <Compile Include="Assets\_Scripts\OssiBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PaddleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PlayerBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\Statics.cs" />
+     <Compile Include="Assets\_Scripts\VillagerBehaviour.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
   </ItemGroup>
   <ItemGroup>
