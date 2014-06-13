@@ -27,7 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
 	void Update ()
 	{
 		currentSpeed = strafeSpeed * Time.deltaTime;
-		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && !stunned)
+		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) || usedControls == ControlType.tilting) && !stunned)
 		{
 			currentSpeed *= 2;
 		} else if (stunned)
@@ -59,15 +59,13 @@ public class PlayerBehaviour : MonoBehaviour
 				PaddleActivate (rightPaddle);
 			}
 		}
-#if UNITY_ANDROID
-		if (usedControls == ControlType.tilting)
+		else if (usedControls == ControlType.tilting)
 		{
 			float tempf = 0.0f;
-			tempf = Mathf.Clamp (Input.acceleration.x / 5.0f, -currentSpeed, currentSpeed);
+			tempf = Mathf.Clamp (Input.acceleration.x / 4.2f, -currentSpeed, currentSpeed);
 			transform.position += new Vector3 (tempf, 0.0f);
 		}
-#endif
-		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.8f, 2.8f), -2.5f);
+		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 
 
 		//Debug näppäimet
@@ -104,11 +102,11 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			if (usedControls == ControlType.touchpad || usedControls == ControlType.invertedtouchpad)
 			{
-				if (GUI.RepeatButton (new Rect (0, Screen.height - sixty, eighty, sixty), "<----"))
+				if (GUI.RepeatButton (new Rect (0, Screen.height - sixty, eighty, sixty), "<----", Statics.menuStyle))
 				{
 					transform.position -= new Vector3 (currentSpeed, 0.0f);
 				}
-				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - sixty, eighty, sixty), "---->"))
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - sixty, eighty, sixty), "---->", Statics.menuStyle))
 				{
 					transform.position += new Vector3 (currentSpeed, 0.0f);
 				}
@@ -116,22 +114,22 @@ public class PlayerBehaviour : MonoBehaviour
 
 			if (usedControls == ControlType.touchpad || usedControls == ControlType.tilting)
 			{
-				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen"))
+				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuStyle))
 				{
 					PaddleActivate (leftPaddle);
 				}
-				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Oikea"))
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Oikea", Statics.menuStyle))
 				{
 					PaddleActivate (rightPaddle);
 				}
 			}
 			if (usedControls == ControlType.invertedtouchpad)
 			{
-				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Vasen"))
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuStyle))
 				{
 					PaddleActivate (leftPaddle);
 				}
-				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Oikea"))
+				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Oikea", Statics.menuStyle))
 				{
 					PaddleActivate (rightPaddle);
 				}
