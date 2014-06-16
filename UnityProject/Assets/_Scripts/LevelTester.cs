@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LevelTester : MonoBehaviour {
-	public GameObject vihu = null;
+	public List<GameObject> enemySpawnPrefabs = new List<GameObject> ();
 	public Vector3 vihuPaikka;
 
 	// Use this for initialization
@@ -22,9 +23,8 @@ public class LevelTester : MonoBehaviour {
 
 	public void VihunLuonti()
 	{
-		GameObject pahis = (GameObject)Instantiate(vihu, vihuPaikka, Quaternion.Euler(Vector3.zero));
+		GameObject pahis = (GameObject)Instantiate(enemySpawnPrefabs[Random.Range(0, enemySpawnPrefabs.Count)], vihuPaikka, Quaternion.Euler(Vector3.zero));
 		pahis.GetComponent<OssiBehaviour> ().level = gameObject;
-		pahis.GetComponent<OssiBehaviour> ().player = GameObject.Find ("Knight");
 	}
 	IEnumerator DelayedCreation()
 	{

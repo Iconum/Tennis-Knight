@@ -3,7 +3,7 @@ using System.Collections;
 
 public class OssiBehaviour : EnemyBehaviour {
 	public float shootTimerLimit = 1.0f;
-	public GameObject player = null, level = null;
+	public GameObject level = null;
 
 	private float _shootTimer = 0.0f, _levelStartTime = 0.0f;
 
