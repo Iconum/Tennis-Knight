@@ -4,7 +4,7 @@ using System.Collections;
 public class VillagerBehaviour : MonoBehaviour {
 
 	public VillagerHandler handler;
-
+	//Death variables
 	public float flyingHeight = 2.0f;
 	public float deathTime = 2.0f;
 	public float rotationSpeed = 5.0f;
@@ -13,22 +13,39 @@ public class VillagerBehaviour : MonoBehaviour {
 	protected float height = 0.0f;
 	protected bool isDead = false;
 	protected bool isGoingup = true;
+	//Spawn variables
+	protected bool isSpawning = true;
+	protected Vector3 spawnEndPos;
+	protected Vector3 spawnStartPos;
+	protected float startTime;
+	protected float spawnLength;
+	protected float spawnTime = 0.0f;
 	// Use this for initialization
 	void Start () {
-		handler = GameObject.Find ("VillagerManager").GetComponent<VillagerHandler> ();
+		handler = GameObject.Find ("VillagerManager").GetComponent<VillagerHandler> (); //get component from handler
+		spawnEndPos = new Vector3 (gameObject.transform.position.x, -4.6f); // set spawning start position
+		spawnStartPos = new Vector3 (gameObject.transform.position.x, -6.0f); // set spawning end position
+		gameObject.transform.position = spawnStartPos; // set villager to spawning start position
+		spawnLength = Vector3.Distance (spawnStartPos, spawnEndPos); // check how long is the distance of spawning positions
+		startTime = Time.time; //check when spawn started
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		//update for spawning movement
+		if (isSpawning){ 
+			spawning();
+		}
+		//update for death movement
 		if (isDead) {
 			death ();
 		}
 	}
-
+	//When hit by "Deflectable", villager dies
 	protected virtual void OnCollisionEnter2D(Collision2D collision) {
 
-		if (collision.gameObject.CompareTag ("Deflectable") && isDead == false) {
+		if (collision.gameObject.CompareTag ("Deflectable") && isDead == false ||
+		    collision.gameObject.CompareTag ("Deflected") && isDead == false) {
 			handler.spawnPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
 			handler.spawnPositions.Add(handler.spawnPos);
 			isDead = true;
@@ -36,23 +53,18 @@ public class VillagerBehaviour : MonoBehaviour {
 		
 		Destroy(collision.gameObject);
 	}
-
-	protected virtual void death()
-	{
+	//Death "animation"
+	protected virtual void death(){
 		if (deathTime > 0)
 		{
-			if(gameObject.transform.position.y < flyingHeight && isGoingup == true){
+			if(gameObject.transform.position.y < flyingHeight && isGoingup == true)
 				height = flyingSpeed/100;
-			}
-			else {
+			else 
 				isGoingup = false;
-			}
-			if (isGoingup == false){
+
+			if (isGoingup == false)
 				height = -flyingSpeed/50;
-			}
 
-
-			//gameObject.transform.rotation = new Quaternion(0,0,1,rotation);
 			gameObject.transform.Rotate( new Vector3(0.0f,0.0f,rotation));
 			gameObject.transform.position += new Vector3 (flyingSpeed/500, height);
 			deathTime -= Time.deltaTime;
@@ -63,5 +75,19 @@ public class VillagerBehaviour : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
+	}
+	//Spawn movement using with lerp function
+	protected virtual void spawning()
+	{
+		if (spawnEndPos.y > gameObject.transform.position.y)
+		{
+			spawnTime += Time.deltaTime;
+			gameObject.transform.position = Vector3.Lerp(spawnStartPos, spawnEndPos, Mathf.SmoothStep(0.0f, 1.0f, spawnTime));
+		} else
+		{
+			isSpawning = false;
+			spawnTime = 0.0f;
+		}
+			//gameObject.transform.position.y = targetPos.y;
 	}
 }
