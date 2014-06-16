@@ -8,11 +8,6 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false;
-
-	// Use this for initialization
-	protected virtual void Start () {
-
-	}
 	
 	// Update is called once per frame
 	protected virtual void Update () {
