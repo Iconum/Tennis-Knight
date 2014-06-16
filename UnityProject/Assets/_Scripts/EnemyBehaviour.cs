@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyBehaviour : MonoBehaviour {
 	public GameObject projectilePrefab = null;
+	public GameObject levelManager = null;
 	public float flickerTimerLimit = 4.0f;
 	public int health = 10;
 	
@@ -30,6 +31,12 @@ public class EnemyBehaviour : MonoBehaviour {
 				_flickerTimer = 0.0f;
 			}
 		}
+	}
+
+	protected void ListDeflectable(GameObject deflectable)
+	{
+		levelManager.GetComponent<LevelBehaviour> ().AddToDeflectable (deflectable);
+		deflectable.GetComponent<BallBehaviour> ().levelManager = levelManager;
 	}
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)

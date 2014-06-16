@@ -63,6 +63,10 @@ public class MenuFunctionality : MonoBehaviour {
 			{
 				Statics.selectedControlMethod = ControlType.tilting;
 			}
+			if (GUILayout.Button("Dragging Controls", Statics.menuStyle))
+			{
+				Statics.selectedControlMethod = ControlType.dragging;
+			}
 		}
 		GUILayout.EndArea ();
 	}

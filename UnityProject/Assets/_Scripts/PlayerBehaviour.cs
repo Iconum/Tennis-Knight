@@ -7,11 +7,12 @@ public class PlayerBehaviour : MonoBehaviour
 	public GameObject leftPaddle = null, rightPaddle = null;
 	public bool paddleActive = false, stunned = false;
 	public float strafeSpeed = 0.1f;
+	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
 
 	private List<GameObject> _collisionList = new List<GameObject> ();
-	private float currentSpeed;
-	private float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
-	private ControlType usedControls = ControlType.keyboard;
+	private float _currentSpeed;
+	private float _touchPosition = 0.0f, _touchTimer = 0.0f;
+	private ControlType _usedControls = ControlType.keyboard;
 
 	// Use this for initialization
 	void Start ()
@@ -23,19 +24,19 @@ public class PlayerBehaviour : MonoBehaviour
 		leftPaddle.SetActive (false);
 		rightPaddle.SetActive (false);
 
-		usedControls = Statics.selectedControlMethod;
+		_usedControls = Statics.selectedControlMethod;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		currentSpeed = strafeSpeed * Time.deltaTime;
-		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) || usedControls == ControlType.tilting) && !stunned)
+		_currentSpeed = strafeSpeed * Time.deltaTime;
+		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) || _usedControls == ControlType.tilting || _usedControls == ControlType.dragging) && !stunned)
 		{
-			currentSpeed *= 2;
+			_currentSpeed *= 2;
 		} else if (stunned)
 		{
-			//currentSpeed *= 0.2f;
+			//_currentSpeed *= 0.2f;
 		}
 
 		if (Input.GetKeyDown (KeyCode.Escape))
@@ -43,15 +44,15 @@ public class PlayerBehaviour : MonoBehaviour
 			Application.LoadLevel(0);
 		}
 
-		if (usedControls == ControlType.keyboard)
+		if (_usedControls == ControlType.keyboard)
 		{
 			if (Input.GetKey (KeyCode.RightArrow))
 			{
-				transform.position += new Vector3 (currentSpeed, 0.0f);
+				transform.position += new Vector3 (_currentSpeed, 0.0f);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow))
 			{
-				transform.position -= new Vector3 (currentSpeed, 0.0f);
+				transform.position -= new Vector3 (_currentSpeed, 0.0f);
 			}
 			if (Input.GetKeyDown (KeyCode.Z))
 			{
@@ -61,15 +62,34 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				PaddleActivate (rightPaddle);
 			}
-		} else if (usedControls == ControlType.tilting)
+		} else if (_usedControls == ControlType.tilting)
 		{
-			float tempf = 0.0f;
-			tempf = Mathf.Clamp (Input.acceleration.x / 4.2f, -currentSpeed, currentSpeed);
-			transform.position += new Vector3 (tempf, 0.0f);
-		} else if (usedControls == ControlType.dragging)
+			float deltaPosition = 0.0f;
+			deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, -_currentSpeed, _currentSpeed);
+			transform.position += new Vector3 (deltaPosition, 0.0f);
+		} else if (_usedControls == ControlType.dragging)
 		{
+			float deltaPosition = 0.0f;
+			if (Input.touchCount != 0 || Input.GetMouseButton (0))
+			{
+				_touchTimer += Time.deltaTime;
+			}
+			else
+			{
+				if (_touchTimer > 0.0f && _touchTimer <= 0.1f)
+				{
+					AutomaticPaddle();
+				}
+				_touchTimer = 0.0f;
+			}
+			if (_touchTimer > 0.1f)
+			{			
+				_touchPosition = (Input.mousePosition.x) / (Screen.width / 5.4f) - 2.7f;
+			}
 
-
+			deltaPosition = _touchPosition - transform.position.x;
+			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
 		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 
@@ -102,23 +122,28 @@ public class PlayerBehaviour : MonoBehaviour
 		stunned = false;
 	}
 
+	void AutomaticPaddle()
+	{
+		Debug.Log ("Derp Herp.");
+	}
+
 	void OnGUI()
 	{
-		if (usedControls != ControlType.keyboard)
+		if (_usedControls != ControlType.keyboard)
 		{
-			if (usedControls == ControlType.touchpad || usedControls == ControlType.invertedtouchpad)
+			if (_usedControls == ControlType.touchpad || _usedControls == ControlType.invertedtouchpad)
 			{
 				if (GUI.RepeatButton (new Rect (0, Screen.height - sixty, eighty, sixty), "<----", Statics.menuStyle))
 				{
-					transform.position -= new Vector3 (currentSpeed, 0.0f);
+					transform.position -= new Vector3 (_currentSpeed, 0.0f);
 				}
 				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - sixty, eighty, sixty), "---->", Statics.menuStyle))
 				{
-					transform.position += new Vector3 (currentSpeed, 0.0f);
+					transform.position += new Vector3 (_currentSpeed, 0.0f);
 				}
 			}
 
-			if (usedControls == ControlType.touchpad || usedControls == ControlType.tilting)
+			if (_usedControls == ControlType.touchpad || _usedControls == ControlType.tilting)
 			{
 				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuStyle))
 				{
@@ -129,7 +154,7 @@ public class PlayerBehaviour : MonoBehaviour
 					PaddleActivate (rightPaddle);
 				}
 			}
-			if (usedControls == ControlType.invertedtouchpad)
+			if (_usedControls == ControlType.invertedtouchpad)
 			{
 				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuStyle))
 				{
