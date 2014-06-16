@@ -61,12 +61,15 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				PaddleActivate (rightPaddle);
 			}
-		}
-		else if (usedControls == ControlType.tilting)
+		} else if (usedControls == ControlType.tilting)
 		{
 			float tempf = 0.0f;
 			tempf = Mathf.Clamp (Input.acceleration.x / 4.2f, -currentSpeed, currentSpeed);
 			transform.position += new Vector3 (tempf, 0.0f);
+		} else if (usedControls == ControlType.dragging)
+		{
+
+
 		}
 		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 
