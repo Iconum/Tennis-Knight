@@ -14,16 +14,15 @@ public class KnightAnimation : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.Space))
+		if (Input.GetKeyDown (KeyCode.X))
 		{
 			anim.SetTrigger("RightSwing");
-			//if(this.anim.GetCurrentAnimatorStateInfo(0).IsName("RightSwing"))
-			//{
 
-			//	anim.SetBool("RightSwing",false);
-			//}
 		}
-
+		if (Input.GetKeyDown (KeyCode.C))
+		{
+			anim.SetTrigger("LeftSwing");
+		}
 
 	}
 }
