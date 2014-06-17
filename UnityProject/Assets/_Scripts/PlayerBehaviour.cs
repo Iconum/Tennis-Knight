@@ -4,13 +4,15 @@ using System.Collections.Generic;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-	public GameObject leftPaddle = null, rightPaddle = null, ballPrefab;
+	public GameObject leftPaddle = null, rightPaddle = null;
 	public bool paddleActive = false, stunned = false;
 	public float strafeSpeed = 0.1f;
+	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
 
 	private List<GameObject> _collisionList = new List<GameObject> ();
-	private float currentSpeed;
-	private float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
+	private float _currentSpeed;
+	private float _touchPosition = 0.0f, _touchTimer = 0.0f;
+	private ControlType _usedControls = ControlType.keyboard;
 
 	// Use this for initialization
 	void Start ()
@@ -18,48 +20,89 @@ public class PlayerBehaviour : MonoBehaviour
 		sixty = (60.0f / 640.0f) * Screen.height;
 		eighty = (80.0f / 400.0f) * Screen.width;
 		onefourty = (140.0f / 640.0f) * Screen.height;
+
+		leftPaddle.SetActive (false);
+		rightPaddle.SetActive (false);
+
+		_usedControls = Statics.selectedControlMethod;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		currentSpeed = strafeSpeed;
-		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && !stunned)
+		_currentSpeed = strafeSpeed * Time.deltaTime;
+		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) || _usedControls == ControlType.tilting || _usedControls == ControlType.dragging) && !stunned)
 		{
-			currentSpeed *= 3;
+			_currentSpeed *= 2;
 		} else if (stunned)
 		{
-			currentSpeed *= 0.2f;
+			//_currentSpeed *= 0.2f;
 		}
 
-		if (Input.GetKey (KeyCode.RightArrow))
+		if (Input.GetKeyDown (KeyCode.Escape))
 		{
-			transform.position += new Vector3 (currentSpeed, 0.0f);
+			Application.LoadLevel(0);
 		}
-		if (Input.GetKey (KeyCode.LeftArrow))
+
+		if (_usedControls == ControlType.keyboard)
 		{
-			transform.position -= new Vector3 (currentSpeed, 0.0f);
-		}
-		if (Input.GetKeyDown (KeyCode.Z))
+			if (Input.GetKey (KeyCode.RightArrow))
+			{
+				transform.position += new Vector3 (_currentSpeed, 0.0f);
+			}
+			if (Input.GetKey (KeyCode.LeftArrow))
+			{
+				transform.position -= new Vector3 (_currentSpeed, 0.0f);
+			}
+			if (Input.GetKeyDown (KeyCode.Z))
+			{
+				PaddleActivate (leftPaddle);
+			}
+			if (Input.GetKeyDown (KeyCode.X))
+			{
+				PaddleActivate (rightPaddle);
+			}
+		} else if (_usedControls == ControlType.tilting)
 		{
-			PaddleActivate (leftPaddle);
-		}
-		if (Input.GetKeyDown (KeyCode.X))
+			float deltaPosition = 0.0f;
+			deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, -_currentSpeed, _currentSpeed);
+			transform.position += new Vector3 (deltaPosition, 0.0f);
+		} else if (_usedControls == ControlType.dragging)
 		{
-			PaddleActivate (rightPaddle);
+			float deltaPosition = 0.0f;
+			if (Input.touchCount != 0 || Input.GetMouseButton (0))
+			{
+				_touchTimer += Time.deltaTime;
+			}
+			else
+			{
+				if (_touchTimer > 0.0f && _touchTimer <= 0.1f)
+				{
+					AutomaticPaddle();
+				}
+				_touchTimer = 0.0f;
+			}
+			if (_touchTimer > 0.1f)
+			{			
+				_touchPosition = (Input.mousePosition.x) / (Screen.width / 5.4f) - 2.7f;
+			}
+
+			deltaPosition = _touchPosition - transform.position.x;
+			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
-//#if UNITY_ANDROID
-		float tempf = 0.0f;
-		tempf = Mathf.Clamp(Input.acceleration.x / 5.0f, -currentSpeed, currentSpeed);
-		transform.position += new Vector3(tempf, 0.0f);
-//#endif
-		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -3.0f, 3.0f), -2.5f);
+		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 
 
 		//Debug näppäimet
-		if (Input.GetKeyDown (KeyCode.Space))
+		if (Input.GetKeyDown (KeyCode.KeypadPlus))
 		{
-			GameObject.Instantiate(ballPrefab, transform.position + new Vector3(0.0f, 10.0f), transform.rotation);
+			Time.timeScale += 0.1f;
+		}
+		if (Input.GetKeyDown (KeyCode.KeypadMinus))
+		{
+			if (Time.timeScale > 0.1f)
+				Time.timeScale -= 0.1f;
 		}
 	}
 
@@ -79,24 +122,49 @@ public class PlayerBehaviour : MonoBehaviour
 		stunned = false;
 	}
 
+	void AutomaticPaddle()
+	{
+		Debug.Log ("Derp Herp.");
+	}
+
 	void OnGUI()
 	{
-		if (GUI.RepeatButton (new Rect (0, Screen.height-sixty, eighty, sixty), "<----"))
+		if (_usedControls != ControlType.keyboard)
 		{
-			transform.position -= new Vector3 (currentSpeed, 0.0f);
-		}
-		if (GUI.RepeatButton (new Rect (Screen.width-eighty, Screen.height-sixty, eighty, sixty), "---->"))
-		{
-			transform.position += new Vector3 (currentSpeed, 0.0f);
-		}
+			if (_usedControls == ControlType.touchpad || _usedControls == ControlType.invertedtouchpad)
+			{
+				if (GUI.RepeatButton (new Rect (0, Screen.height - sixty, eighty, sixty), "<----", Statics.menuStyle))
+				{
+					transform.position -= new Vector3 (_currentSpeed, 0.0f);
+				}
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - sixty, eighty, sixty), "---->", Statics.menuStyle))
+				{
+					transform.position += new Vector3 (_currentSpeed, 0.0f);
+				}
+			}
 
-		if (GUI.Button (new Rect (0, Screen.height-onefourty, eighty, sixty), "Vasen"))
-		{
-			PaddleActivate(leftPaddle);
-		}
-		if (GUI.Button (new Rect (Screen.width-eighty, Screen.height-onefourty, eighty, sixty), "Oikea"))
-		{
-			PaddleActivate(rightPaddle);
+			if (_usedControls == ControlType.touchpad || _usedControls == ControlType.tilting)
+			{
+				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuStyle))
+				{
+					PaddleActivate (leftPaddle);
+				}
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Oikea", Statics.menuStyle))
+				{
+					PaddleActivate (rightPaddle);
+				}
+			}
+			if (_usedControls == ControlType.invertedtouchpad)
+			{
+				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuStyle))
+				{
+					PaddleActivate (leftPaddle);
+				}
+				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Oikea", Statics.menuStyle))
+				{
+					PaddleActivate (rightPaddle);
+				}
+			}
 		}
 	}
 
