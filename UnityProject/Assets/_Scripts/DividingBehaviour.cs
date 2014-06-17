@@ -29,8 +29,10 @@ public class DividingBehaviour : BallBehaviour {
 	{
 		GameObject tempo = (GameObject)Instantiate (selfPrefab, transform.position, transform.rotation);
 		tempo.GetComponent<DividingBehaviour> ().DownPhase (_deflectPhase, new Vector2(Mathf.Sin(20)+rigidbody2D.velocity.x, Mathf.Cos(20)+rigidbody2D.velocity.y), isPaddle);
+		levelManager.GetComponent<LevelBehaviour> ().AddToDeflectable (tempo);
 		tempo = (GameObject)Instantiate (selfPrefab, transform.position, transform.rotation);
 		tempo.GetComponent<DividingBehaviour> ().DownPhase (_deflectPhase, new Vector2(Mathf.Sin(-20)+rigidbody2D.velocity.x, Mathf.Cos(-20)+rigidbody2D.velocity.y));
+		levelManager.GetComponent<LevelBehaviour> ().AddToDeflectable (tempo);
 		Destroy (gameObject);
 	}
 

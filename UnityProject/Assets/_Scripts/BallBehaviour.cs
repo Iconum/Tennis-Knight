@@ -19,6 +19,14 @@ public class BallBehaviour : MonoBehaviour
 		rigidbody2D.velocity = constantSpeed * rigidbody2D.velocity.normalized;
 	}
 
+	protected virtual void OnDestroy()
+	{
+		if (levelManager != null)
+		{
+			levelManager.GetComponent<LevelBehaviour> ().RemoveFromDeflectable (gameObject);
+		}
+	}
+
 	protected virtual void OnCollisionEnter2D (Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Paddle"))
