@@ -6,15 +6,6 @@ public class LevelTester : LevelBehaviour {
 	public List<GameObject> enemySpawnPrefabs = new List<GameObject> ();
 	public Vector3 vihuPaikka;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void OssiKuoli()
 	{
