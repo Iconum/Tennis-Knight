@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-	public GameObject leftPaddle = null, rightPaddle = null;
+	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null;
 	public bool paddleActive = false, stunned = false;
 	public float strafeSpeed = 0.1f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
-
 	private List<GameObject> _collisionList = new List<GameObject> ();
 	private float _currentSpeed;
-	private float _touchPosition = 0.0f, _touchTimer = 0.0f;
+	private float _touchPosition = 0.0f;
 	private ControlType _usedControls = ControlType.keyboard;
+	private bool tappedPaddle = false;
 
 	// Use this for initialization
 	void Start ()
@@ -41,7 +41,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.Escape))
 		{
-			Application.LoadLevel(0);
+			Application.LoadLevel (0);
 		}
 
 		if (_usedControls == ControlType.keyboard)
@@ -62,29 +62,56 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				PaddleActivate (rightPaddle);
 			}
+			if (Input.GetKeyDown (KeyCode.Space))
+			{
+				AutomaticPaddle ();
+			}
 		} else if (_usedControls == ControlType.tilting)
 		{
 			float deltaPosition = 0.0f;
 			deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
+			if (Input.touchCount != 0 || Input.GetMouseButton (0))
+			{
+				if (!tappedPaddle)
+				{
+					tappedPaddle = true;
+					AutomaticPaddle ();
+				}
+			} else
+			{
+				tappedPaddle = false;
+			}
 		} else if (_usedControls == ControlType.dragging)
 		{
 			float deltaPosition = 0.0f;
-			if (Input.touchCount != 0 || Input.GetMouseButton (0))
+			bool isPaddling = false;
+			if (Input.touchCount != 0)
 			{
-				_touchTimer += Time.deltaTime;
-			}
-			else
-			{
-				if (_touchTimer > 0.0f && _touchTimer <= 0.1f)
+				if ((Input.touches [0].position.y) / (Screen.width / 10.0f) - 5.0f < -2.0f)
 				{
-					AutomaticPaddle();
+					_touchPosition = (Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f;
+				} else if (!tappedPaddle)
+				{
+					tappedPaddle = true;
+					isPaddling = true;
+					AutomaticPaddle ();
 				}
-				_touchTimer = 0.0f;
-			}
-			if (_touchTimer > 0.1f)
-			{			
-				_touchPosition = (Input.mousePosition.x) / (Screen.width / 5.4f) - 2.7f;
+
+				if (Input.touchCount > 1)
+				{
+					if ((Input.touches [1].position.y) / (Screen.width / 10.0f) - 5.0f < -2.0f && isPaddling)
+					{
+						_touchPosition = (Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f;
+					} else if (!tappedPaddle)
+					{
+						tappedPaddle = true;
+						AutomaticPaddle ();
+					}
+				} else if (!isPaddling)
+				{
+					tappedPaddle = false;
+				}
 			}
 
 			deltaPosition = _touchPosition - transform.position.x;
@@ -112,22 +139,46 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			paddleActive = true;
 			paddle.SetActive (true);
-			paddle.GetComponent<PaddleBehaviour>().PaddleHit();
+			paddle.GetComponent<PaddleBehaviour> ().PaddleHit ();
 		}
 	}
 
-	IEnumerator StunRemove()
+	IEnumerator StunRemove ()
 	{
 		yield return new WaitForSeconds (3.0f);
 		stunned = false;
 	}
 
-	void AutomaticPaddle()
+	void AutomaticPaddle ()
 	{
-		Debug.Log ("Derp Herp.");
+		GameObject tempo = levelManager.GetComponent<LevelBehaviour> ().FindClosestDeflectable (transform.position);
+		if (tempo != null)
+		{
+			if (IntersectionPoint (new Vector2 (tempo.transform.position.x, tempo.transform.position.y), tempo.rigidbody2D.velocity).x < transform.position.x)
+			{
+				PaddleActivate (leftPaddle);
+			} else
+			{
+				PaddleActivate (rightPaddle);
+			}
+		} else
+		{
+			PaddleActivate (rightPaddle);
+		}
+
 	}
 
-	void OnGUI()
+	Vector2 IntersectionPoint (Vector2 pos, Vector2 vel)
+	{
+		if (vel.y != 0.0f)
+		{
+			float tempf = (transform.position.y - pos.y) / vel.y;
+			return new Vector2 (pos.x + tempf * vel.x, transform.position.y);
+		} else
+			return pos;
+	}
+
+	void OnGUI ()
 	{
 		if (_usedControls != ControlType.keyboard)
 		{
@@ -143,7 +194,7 @@ public class PlayerBehaviour : MonoBehaviour
 				}
 			}
 
-			if (_usedControls == ControlType.touchpad || _usedControls == ControlType.tilting)
+			if (_usedControls == ControlType.touchpad)
 			{
 				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuStyle))
 				{
@@ -168,13 +219,13 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D collision)
+	void OnCollisionEnter2D (Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("Deflectable"))
+		if (collision.gameObject.CompareTag ("Deflectable"))
 		{
 			stunned = true;
-			StartCoroutine(StunRemove ());
-			Destroy(collision.gameObject);
+			StartCoroutine (StunRemove ());
+			Destroy (collision.gameObject);
 		}
 	}
 }

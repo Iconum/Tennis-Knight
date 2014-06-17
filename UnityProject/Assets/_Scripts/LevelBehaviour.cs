@@ -9,15 +9,9 @@ public class LevelBehaviour : MonoBehaviour {
 	{
 		public Vector3 _targetPosition;
 
-		public override int Compare(GameObject x, GameObject y)
+		public override int Compare (GameObject x, GameObject y)
 		{
-			if (x.rigidbody2D.velocity.y < 0 || x.rigidbody2D.velocity.y < 0)
-			{
-				return (int)Mathf.Round(x.rigidbody2D.velocity.y - x.rigidbody2D.velocity.y);
-			} else
-			{
-				return (int)Mathf.Round(Vector3.Distance(x.transform.position, _targetPosition) - Vector3.Distance(y.transform.position, _targetPosition));
-			}
+			return (int)Mathf.Round (Vector3.Distance (x.transform.position, _targetPosition) - Vector3.Distance (y.transform.position, _targetPosition));
 		}
 	}
 
@@ -37,8 +31,9 @@ public class LevelBehaviour : MonoBehaviour {
 		{
 			DeflectableSorter sorter = new DeflectableSorter ();
 			sorter._targetPosition = pos;
-			deflectableList.Sort (sorter);
-			return deflectableList[0];
+			List<GameObject> templist = deflectableList.FindAll (x => x.transform.position.y > (pos.y - 0.3f));
+			templist.Sort (sorter);
+			return templist [0];
 		} else
 			return null;
 	}
