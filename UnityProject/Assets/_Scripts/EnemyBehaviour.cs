@@ -6,6 +6,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	public GameObject levelManager = null;
 	public float flickerTimerLimit = 4.0f;
 	public int health = 10;
+	public bool specialInvincibility = false;
 	
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false;
@@ -43,14 +44,29 @@ public class EnemyBehaviour : MonoBehaviour {
 	{
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{
-			Destroy(collision.gameObject);
-			if (!_flickerActive)
+			Destroy (collision.gameObject);
+			if (!specialInvincibility)
 			{
-				--health;
-				_flickerActive = true;
-				if (health <= 0)
-					Destroy(gameObject);
+				DamageHealth ();
 			}
 		}
+	}
+	protected virtual void DamageHealth()
+	{
+		if (!_flickerActive)
+		{
+			--health;
+			_flickerActive = true;
+			if (health <= 0)
+			{
+				levelManager.GetComponent<LevelBehaviour>().EnemyDied();
+				Destroy(gameObject);
+			}
+		}
+	}
+	protected virtual void InstantDeath()
+	{
+		levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
+		Destroy (gameObject);
 	}
 }

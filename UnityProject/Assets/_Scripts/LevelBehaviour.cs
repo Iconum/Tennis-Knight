@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LevelBehaviour : MonoBehaviour {
+	public GameObject topBorder;
+
 	protected List<GameObject> deflectableList = new List<GameObject>();
 
 	public class DeflectableSorter : Comparer<GameObject>
@@ -13,6 +15,11 @@ public class LevelBehaviour : MonoBehaviour {
 		{
 			return (int)Mathf.Round (Vector3.Distance (x.transform.position, _targetPosition) - Vector3.Distance (y.transform.position, _targetPosition));
 		}
+	}
+
+	public virtual void EnemyDied()
+	{
+
 	}
 
 	public void AddToDeflectable(GameObject deflectable)
@@ -36,6 +43,19 @@ public class LevelBehaviour : MonoBehaviour {
 			return templist [0];
 		} else
 			return null;
+	}
+
+	public void ToggleWall()
+	{
+		if (topBorder.CompareTag ("Removal"))
+		{
+			topBorder.tag = "Border";
+			topBorder.collider2D.isTrigger = false;
+		} else
+		{
+			topBorder.tag = "Removal";
+			topBorder.collider2D.isTrigger = true;
+		}
 	}
 }
 
