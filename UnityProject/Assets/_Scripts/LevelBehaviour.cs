@@ -15,6 +15,11 @@ public class LevelBehaviour : MonoBehaviour {
 		}
 	}
 
+	public virtual void EnemyDied()
+	{
+
+	}
+
 	public void AddToDeflectable(GameObject deflectable)
 	{
 		deflectableList.Add (deflectable);

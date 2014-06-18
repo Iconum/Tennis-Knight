@@ -3,8 +3,10 @@ using System.Collections;
 
 public class OssiBehaviour : EnemyBehaviour {
 	public float shootTimerLimit = 1.0f;
+	public bool usesSinModifier = false;
 
-	private float _shootTimer = 0.0f, _levelStartTime = 0.0f;
+	private float _shootTimer = 0.0f, _levelStartTime = 0.0f, _sinModifier = 1.0f;
+	private bool _sinDirection = true;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +17,28 @@ public class OssiBehaviour : EnemyBehaviour {
 	void Update () {
 		base.Update ();
 
-		transform.position = new Vector3(Mathf.Sin(Time.time - _levelStartTime) * 2.5f, transform.position.y);
+		if (usesSinModifier)
+		{
+			if (_sinDirection)
+			{
+				_sinModifier -= Time.deltaTime;
+				if (_sinModifier < 0.0f)
+				{
+					_sinModifier = 0.0f;
+					_sinDirection = false;
+				}
+			} else
+			{
+				_sinModifier += Time.deltaTime;
+				if (_sinModifier > 1.0f)
+				{
+					_sinModifier = 1.0f;
+					_sinDirection = true;
+				}
+			}
+		}
+
+		transform.position = new Vector3(Mathf.Sin(Time.time - _levelStartTime) * 2.5f * _sinModifier, transform.position.y);
 		
 		_shootTimer += Time.deltaTime;
 		if (_shootTimer > shootTimerLimit)
@@ -24,24 +47,6 @@ public class OssiBehaviour : EnemyBehaviour {
 			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
 			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
 			ListDeflectable(tempo);
-		}
-	}
-
-	protected override void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag ("Deflected"))
-		{
-			Destroy(collision.gameObject);
-			if (!_flickerActive)
-			{
-				--health;
-				_flickerActive = true;
-				if (health <= 0)
-				{
-					levelManager.GetComponent<LevelTester> ().OssiKuoli ();
-					Destroy(gameObject);
-				}
-			}
 		}
 	}
 }
