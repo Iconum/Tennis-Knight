@@ -7,7 +7,8 @@ public class BigOssiBehaviour : MonoBehaviour {
 	public GameObject projectilePrefab;
 	public GameObject shieldBallPrefab;
 	public float ballCount = 5f;
-	public float shootingSpeed = 0f;
+	public float shootingSpeed = 3f;
+	public int health = 3;
 
 	protected List<GameObject> shieldBalls = new List<GameObject>();
 	protected bool isSpawningBalls = true;
@@ -52,7 +53,7 @@ public class BigOssiBehaviour : MonoBehaviour {
 	public void ShootBalls()
 	{
 		_shootTimer += Time.deltaTime;
-		if (_shootTimer >= 5.0f)
+		if (_shootTimer >= shootingSpeed)
 		{
 			_shootTimer = 0.0f;
 			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
@@ -61,8 +62,40 @@ public class BigOssiBehaviour : MonoBehaviour {
 		}
 	}
 
+	protected virtual void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag ("Deflected"))
+		{
+			_shootTimer = 0.0f;
+
+			Destroy(collision.gameObject);
+
+			if(health > 0)
+			{
+				health--;
+				DeleteAll();
+				shieldBalls.Clear();
+				isSpawningBalls = true;
+
+			}
+			else 
+			{
+				Destroy(gameObject);
+				DeleteAll();
+				shieldBalls.Clear();
+			}
+		}
+	}
+
 	public void Delete(GameObject me)
 	{
 		Destroy (me);
+	}
+	public void DeleteAll()
+	{
+		for(int i = 0; i < shieldBalls.Count; ++i)
+		{
+			Delete(shieldBalls[i]);
+		}
 	}
 }
