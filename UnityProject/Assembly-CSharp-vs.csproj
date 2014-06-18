@@ -48,11 +48,15 @@
   <ItemGroup>
      <Compile Include="Assets\_Scripts\BackgroundLoop.cs" />
      <Compile Include="Assets\_Scripts\BallBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\BigOssiBallBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\BigOssiBehaviour.cs" />
      <Compile Include="Assets\_Scripts\DividingBehaviour.cs" />
      <Compile Include="Assets\_Scripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\_Scripts\KingAnimation.cs" />
      <Compile Include="Assets\_Scripts\KnightAnimation.cs" />
+     <Compile Include="Assets\_Scripts\LevelBehaviour.cs" />
      <Compile Include="Assets\_Scripts\LevelTester.cs" />
+     <Compile Include="Assets\_Scripts\MeleeBehaviour.cs" />
      <Compile Include="Assets\_Scripts\MenuFunctionality.cs" />
      <Compile Include="Assets\_Scripts\OssiAnimation.cs" />
      <Compile Include="Assets\_Scripts\OssiBehaviour.cs" />
@@ -61,6 +65,7 @@
      <Compile Include="Assets\_Scripts\SpearBehaviour.cs" />
      <Compile Include="Assets\_Scripts\Statics.cs" />
      <Compile Include="Assets\_Scripts\VillagerBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\VillagerHandler.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
