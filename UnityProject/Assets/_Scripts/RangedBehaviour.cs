@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OssiBehaviour : EnemyBehaviour {
+public class RangedBehaviour : EnemyBehaviour {
 	public float shootTimerLimit = 1.0f;
 	public bool usesSinModifier = false;
 
