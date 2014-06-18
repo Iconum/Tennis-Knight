@@ -47,7 +47,11 @@ public class LevelBehaviour : MonoBehaviour {
 
 	public void ToggleWall()
 	{
-		if (topBorder.CompareTag ("Removal"))
+		SetWall (topBorder.CompareTag ("Removal"));
+	}
+	public void SetWall(bool solidity)
+	{
+		if (solidity)
 		{
 			topBorder.tag = "Border";
 			topBorder.collider2D.isTrigger = false;
