@@ -13,7 +13,8 @@ public class BigOssiBehaviour : MonoBehaviour {
 	protected List<GameObject> shieldBalls = new List<GameObject>();
 	protected bool isSpawningBalls = true;
 	protected float spawnTime = 0f;
-	
+	protected GameObject bigOssiReference;
+	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
 
 	// Use this for initialization
@@ -26,6 +27,18 @@ public class BigOssiBehaviour : MonoBehaviour {
 			SpawnBalls ();
 		else {
 			ShootBalls();
+		}
+
+		if (isOnLimitDistance == false)
+		{
+			gameObject.transform.Translate (new Vector3 (Time.deltaTime, 0, 0));
+			if(gameObject.transform.position.x >= 2.5f)
+				isOnLimitDistance = true;
+		} else 
+		{
+			gameObject.transform.Translate (new Vector3 (-Time.deltaTime, 0, 0));
+			if(gameObject.transform.position.x <= -2.5f)
+				isOnLimitDistance = false;
 		}
 	}
 

@@ -14,6 +14,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 		bigOssi = GameObject.Find ("BigOssi").GetComponent<BigOssiBehaviour> ();
 		startPos = bigOssi.transform.position;
 		gameObject.transform.position = new Vector3(startPos.x - 1.4f,startPos.y);
+		gameObject.transform.parent = bigOssi.transform;
 
 	}
 	
