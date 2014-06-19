@@ -39,8 +39,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb70e68e80297b7469f9ac9d168c6656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
   ballCount: 15
+  shootingSpeed: 3
+  health: 3
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
