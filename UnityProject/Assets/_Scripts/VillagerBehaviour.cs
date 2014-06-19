@@ -58,7 +58,13 @@ public class VillagerBehaviour : MonoBehaviour {
 		if (deathTime > 0)
 		{
 			if(gameObject.transform.position.y < flyingHeight && isGoingup == true)
+			{
+				if (!audio.isPlaying)
+				{
+					audio.Play();
+				}
 				height = flyingSpeed/100;
+			}
 			else 
 				isGoingup = false;
 

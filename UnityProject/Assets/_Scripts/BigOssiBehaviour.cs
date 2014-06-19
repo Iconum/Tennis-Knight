@@ -70,7 +70,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			_shootTimer = 0.0f;
 			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
 			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
-			//ListDeflectable(tempo);
+			ListDeflectable(tempo);
 		}
 	}
 

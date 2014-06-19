@@ -70,7 +70,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   levelManager: {fileID: 0}
   flickerTimerLimit: .5
-  health: 3
+  health: 1
   specialInvincibility: 0
   meleeAttacking: 0
   usesProjectile: 0

@@ -54,7 +54,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 100000, guid: 7163f3f64a2319a409cda4fa6bc6b288, type: 2}
   levelManager: {fileID: 0}
   flickerTimerLimit: 4
-  health: 4
+  health: 2
   specialInvincibility: 0
   shootTimerLimit: 2
   usesSinModifier: 1

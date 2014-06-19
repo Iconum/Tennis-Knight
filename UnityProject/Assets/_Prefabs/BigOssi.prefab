@@ -54,7 +54,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
   levelManager: {fileID: 0}
   flickerTimerLimit: 4
-  health: 3
+  health: 5
   specialInvincibility: 0
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
   ballCount: 7
