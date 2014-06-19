@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BombBehaviour : BallBehaviour {
 	public float fuseLength = 6.0f, explosiveForce = 2.0f;
+	public AudioClip explosion;
 
 	private bool _exploding = false;
 
@@ -16,6 +17,11 @@ public class BombBehaviour : BallBehaviour {
 		yield return new WaitForSeconds (fuseLength);
 		Explode ();
 	}
+	IEnumerator StopExploding()
+	{
+		yield return new WaitForSeconds (0.3f);
+		collider2D.enabled = false;
+	}
 
 	void Explode()
 	{
@@ -24,8 +30,22 @@ public class BombBehaviour : BallBehaviour {
 			GetComponent<CircleCollider2D> ().isTrigger = true;
 			GetComponent<CircleCollider2D> ().radius = explosiveForce;
 			rigidbody2D.velocity = Vector2.zero;
-			Debug.Log ("Boom.");
-			Destroy (gameObject, 0.25f);
+			if (!audio.isPlaying)
+			{
+				audio.clip = explosion;
+				audio.volume = 0.6f;
+				audio.Play ();
+			}
+			StartCoroutine (StopExploding ());
+			Destroy (gameObject, 1.2f);
+		}
+	}
+
+	protected override void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.CompareTag ("Removal"))
+		{
+			Explode ();
 		}
 	}
 

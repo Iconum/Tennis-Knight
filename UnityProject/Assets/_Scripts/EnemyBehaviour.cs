@@ -61,7 +61,6 @@ public class EnemyBehaviour : MonoBehaviour {
 	{
 		if (other.CompareTag ("Deflected"))
 		{
-			other.gameObject.GetComponent<BallBehaviour>().BallDestroy();
 			if (!specialInvincibility)
 			{
 				DamageHealth ();
