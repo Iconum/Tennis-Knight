@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class LevelTester : LevelBehaviour {
+public class BasicLevel : LevelBehaviour {
 	public List<EnemyPackage> enemySpawnPackages = new List<EnemyPackage> ();
 
 	void Start()
@@ -17,9 +17,16 @@ public class LevelTester : LevelBehaviour {
 
 	public void VihunLuonti()
 	{
-		GameObject pahis = enemySpawnPackages [0].Spawner () [0];
+		GameObject[] baddudes = enemySpawnPackages [0].Spawner ();
 		enemySpawnPackages.RemoveAt (0);
-		pahis.GetComponent<EnemyBehaviour> ().levelManager = gameObject;
+		for (int i = 0; i < baddudes.Length; ++i)
+		{
+			baddudes[i].GetComponent<EnemyBehaviour> ().levelManager = gameObject;
+		}
+		if (enemySpawnPackages.Count == 0)
+		{
+			ToggleWall();
+		}
 	}
 	IEnumerator DelayedCreation(float t)
 	{

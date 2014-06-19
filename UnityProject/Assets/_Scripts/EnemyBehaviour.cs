@@ -32,6 +32,12 @@ public class EnemyBehaviour : MonoBehaviour {
 				_flickerTimer = 0.0f;
 			}
 		}
+
+		//Debug Controls
+		if (Input.GetKeyDown (KeyCode.End))
+		{
+			InstantDeath();
+		}
 	}
 
 	protected void ListDeflectable(GameObject deflectable)
