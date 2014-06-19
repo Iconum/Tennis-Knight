@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BombBehaviourScript : BallBehaviour {
+public class BombBehaviour : BallBehaviour {
 	public float fuseLength = 6.0f, explosiveForce = 2.0f;
 
 	private bool _exploding = false;
