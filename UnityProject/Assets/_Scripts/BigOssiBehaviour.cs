@@ -2,13 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BigOssiBehaviour : MonoBehaviour {
+public class BigOssiBehaviour : EnemyBehaviour {
 
-	public GameObject projectilePrefab;
 	public GameObject shieldBallPrefab;
 	public float ballCount = 5f;
 	public float shootingSpeed = 3f;
-	public int health = 3;
 
 	protected List<GameObject> shieldBalls = new List<GameObject>();
 	protected bool isSpawningBalls = true;
@@ -23,6 +21,7 @@ public class BigOssiBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		base.Update ();
 		if (isSpawningBalls == true)
 			SpawnBalls ();
 		else {
@@ -75,27 +74,25 @@ public class BigOssiBehaviour : MonoBehaviour {
 		}
 	}
 
-	protected virtual void OnCollisionEnter2D(Collision2D collision)
+	protected override void DamageHealth ()
 	{
-		if (collision.gameObject.CompareTag ("Deflected"))
+		_shootTimer = 0.0f;
+
+		if (!_flickerActive)
 		{
-			_shootTimer = 0.0f;
+			--health;
+			_flickerActive = true;
+			DeleteAll();
+			shieldBalls.Clear();
 
-			Destroy(collision.gameObject);
-
-			if(health > 0)
+			if (health <= 0)
 			{
-				health--;
-				DeleteAll();
-				shieldBalls.Clear();
-				isSpawningBalls = true;
-
-			}
-			else 
-			{
+				levelManager.GetComponent<LevelBehaviour>().EnemyDied();
 				Destroy(gameObject);
-				DeleteAll();
-				shieldBalls.Clear();
+			}
+			else
+			{
+				isSpawningBalls = true;
 			}
 		}
 	}
