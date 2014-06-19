@@ -15,8 +15,10 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
 
+	private Animator anim;
 	// Use this for initialization
 	void Start () {
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -31,6 +33,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		if (isOnLimitDistance == false)
 		{
 			gameObject.transform.Translate (new Vector3 (Time.deltaTime, 0, 0));
+
 			if(gameObject.transform.position.x >= 2.5f)
 				isOnLimitDistance = true;
 		} else 
@@ -70,6 +73,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			_shootTimer = 0.0f;
 			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
 			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
+			anim.SetTrigger("BOAttack");
 			//ListDeflectable(tempo);
 		}
 	}
