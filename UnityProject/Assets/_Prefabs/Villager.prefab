@@ -126,6 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 0}
+  deathSounds:
+  - {fileID: 8300000, guid: dce045727ea26df45b8b64d1bafb52ea, type: 3}
+  - {fileID: 8300000, guid: 61b96326f2b205940b6fddc59b710c71, type: 3}
+  - {fileID: 8300000, guid: 8586a24512cf245409040360ad819715, type: 3}
   flyingHeight: -4
   deathTime: 2
   rotationSpeed: 60

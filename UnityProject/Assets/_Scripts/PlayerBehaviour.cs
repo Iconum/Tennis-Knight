@@ -225,7 +225,7 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			stunned = true;
 			StartCoroutine (StunRemove (2.0f));
-			Destroy (collision.gameObject);
+			collision.gameObject.GetComponent<BallBehaviour>().BallDestroy();
 		}
 		if (collision.gameObject.CompareTag ("Enemy"))
 		{

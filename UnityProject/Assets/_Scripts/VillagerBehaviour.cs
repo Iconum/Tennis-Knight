@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class VillagerBehaviour : MonoBehaviour {
 
 	public VillagerHandler handler;
 	//Death variables
+	public List<AudioClip> deathSounds = null;
 	public float flyingHeight = 2.0f;
 	public float deathTime = 2.0f;
 	public float rotationSpeed = 5.0f;
@@ -15,6 +17,7 @@ public class VillagerBehaviour : MonoBehaviour {
 	protected bool isGoingup = true;
 	//Spawn variables
 	protected bool isSpawning = true;
+	protected bool hasScreamed = false;
 	protected Vector3 spawnEndPos;
 	protected Vector3 spawnStartPos;
 	protected float startTime;
@@ -57,12 +60,15 @@ public class VillagerBehaviour : MonoBehaviour {
 	protected virtual void death(){
 		if (deathTime > 0)
 		{
+			if(!hasScreamed && deathSounds != null)
+			{
+				audio.clip = deathSounds[Random.Range(0, deathSounds.Count)];
+				audio.Play();
+				hasScreamed = true;
+			}
+
 			if(gameObject.transform.position.y < flyingHeight && isGoingup == true)
 			{
-				if (!audio.isPlaying)
-				{
-					audio.Play();
-				}
 				height = flyingSpeed/100;
 			}
 			else 
