@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OssiBehaviour : EnemyBehaviour {
+public class RangedBehaviour : EnemyBehaviour {
 	public float shootTimerLimit = 1.0f;
 	public bool usesSinModifier = false;
 
@@ -14,7 +14,7 @@ public class OssiBehaviour : EnemyBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
 		base.Update ();
 
 		if (usesSinModifier)

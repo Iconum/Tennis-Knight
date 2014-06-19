@@ -388,7 +388,8 @@ GameObject:
   - 4: {fileID: 809841461}
   - 212: {fileID: 809841460}
   - 114: {fileID: 809841459}
-  m_Layer: 0
+  - 61: {fileID: 809841462}
+  m_Layer: 10
   m_Name: BigOssi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,8 +408,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb70e68e80297b7469f9ac9d168c6656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
-  ballCount: 14
+  ballCount: 7
+  shootingSpeed: 3
+  health: 3
 --- !u!212 &809841460
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -444,6 +448,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!61 &809841462
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809841458}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 1.5, y: 2}
+  m_Center: {x: 0, y: 0}
 --- !u!1 &850100846
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefbd3e5f16d27049a957e0c97c05502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topBorder: {fileID: 694197995}
   enemySpawnPrefabs:
   - {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}
   - {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
@@ -1024,7 +1040,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
       propertyPath: ballCount
-      value: 14
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
+      propertyPath: shootingSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
+    - target: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}

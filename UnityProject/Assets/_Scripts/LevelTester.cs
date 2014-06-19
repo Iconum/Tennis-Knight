@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LevelTester : LevelBehaviour {
-	public List<GameObject> enemySpawnPrefabs = new List<GameObject> ();
-	public Vector3 vihuPaikka;
+	public List<EnemyPackage> enemySpawnPackages = new List<EnemyPackage> ();
 
 	void Start()
 	{
@@ -18,7 +17,8 @@ public class LevelTester : LevelBehaviour {
 
 	public void VihunLuonti()
 	{
-		GameObject pahis = (GameObject)Instantiate(enemySpawnPrefabs[Random.Range(0, enemySpawnPrefabs.Count)], vihuPaikka, Quaternion.Euler(Vector3.zero));
+		GameObject pahis = enemySpawnPackages [0].Spawner () [0];
+		enemySpawnPackages.RemoveAt (0);
 		pahis.GetComponent<EnemyBehaviour> ().levelManager = gameObject;
 	}
 	IEnumerator DelayedCreation(float t)

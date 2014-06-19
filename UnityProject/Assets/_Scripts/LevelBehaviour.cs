@@ -2,6 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class EnemySpawnData
+{
+	public GameObject enemy = null;
+	public Vector3 position = new Vector3(0.0f, 4.0f);
+}
+
+[System.Serializable]
+public class EnemyPackage
+{
+	public EnemySpawnData[] prefabPositionCombo;
+
+	public GameObject[] Spawner()
+	{
+		List<GameObject> instantiated = new List<GameObject> ();
+		for (int i = 0; i < prefabPositionCombo.Length; ++i)
+		{
+			instantiated.Add((GameObject)GameObject.Instantiate(prefabPositionCombo[i].enemy, prefabPositionCombo[i].position, Quaternion.Euler(Vector3.zero)));
+		}
+		return instantiated.ToArray ();
+	}
+}
+
 public class LevelBehaviour : MonoBehaviour {
 	public GameObject topBorder;
 
@@ -47,7 +70,11 @@ public class LevelBehaviour : MonoBehaviour {
 
 	public void ToggleWall()
 	{
-		if (topBorder.CompareTag ("Removal"))
+		SetWall (topBorder.CompareTag ("Removal"));
+	}
+	public void SetWall(bool solidity)
+	{
+		if (solidity)
 		{
 			topBorder.tag = "Border";
 			topBorder.collider2D.isTrigger = false;
