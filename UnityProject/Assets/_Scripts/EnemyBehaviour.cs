@@ -44,13 +44,25 @@ public class EnemyBehaviour : MonoBehaviour {
 	{
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{
-			Destroy (collision.gameObject);
+			collision.gameObject.GetComponent<BallBehaviour>().BallDestroy();
 			if (!specialInvincibility)
 			{
 				DamageHealth ();
 			}
 		}
 	}
+	protected virtual void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag ("Deflected"))
+		{
+			other.gameObject.GetComponent<BallBehaviour>().BallDestroy();
+			if (!specialInvincibility)
+			{
+				DamageHealth ();
+			}
+		}
+	}
+
 	protected virtual void DamageHealth()
 	{
 		if (!_flickerActive)

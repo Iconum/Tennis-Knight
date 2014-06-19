@@ -49,6 +49,11 @@ public class BallBehaviour : MonoBehaviour
 			Destroy (gameObject);
 		}
 	}
+
+	public virtual void BallDestroy()
+	{
+		Destroy (gameObject);
+	}
 		
 	public void SetStartVelocity (Vector2 velocity)
 	{
