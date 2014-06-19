@@ -130,7 +130,7 @@ MonoBehaviour:
   constantSpeed: 2
   paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
   levelManager: {fileID: 0}
-  fuseLength: 6
+  fuseLength: 5
   explosiveForce: 2
 --- !u!212 &21200000
 SpriteRenderer:

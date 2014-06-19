@@ -51,6 +51,18 @@ public class EnemyBehaviour : MonoBehaviour {
 			}
 		}
 	}
+	protected virtual void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag ("Deflected"))
+		{
+			other.gameObject.GetComponent<BallBehaviour>().BallDestroy();
+			if (!specialInvincibility)
+			{
+				DamageHealth ();
+			}
+		}
+	}
+
 	protected virtual void DamageHealth()
 	{
 		if (!_flickerActive)

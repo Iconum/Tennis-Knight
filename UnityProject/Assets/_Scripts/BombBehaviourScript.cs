@@ -21,9 +21,11 @@ public class BombBehaviourScript : BallBehaviour {
 	{
 		if (!_exploding)
 		{
+			GetComponent<CircleCollider2D> ().isTrigger = true;
 			GetComponent<CircleCollider2D> ().radius = explosiveForce;
+			rigidbody2D.velocity = Vector2.zero;
 			Debug.Log ("Boom.");
-			Destroy (gameObject, 0.2f);
+			Destroy (gameObject, 0.25f);
 		}
 	}
 
