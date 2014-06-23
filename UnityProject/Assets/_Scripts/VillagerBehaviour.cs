@@ -47,10 +47,11 @@ public class VillagerBehaviour : MonoBehaviour {
 	//When hit by "Deflectable", villager dies
 	protected virtual void OnCollisionEnter2D(Collision2D collision) {
 
-		if (collision.gameObject.CompareTag ("Deflectable") && isDead == false ||
-		    collision.gameObject.CompareTag ("Deflected") && isDead == false) {
-			handler.spawnPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
-			handler.spawnPositions.Add(handler.spawnPos);
+		if ((collision.gameObject.CompareTag ("Deflectable") && isDead == false) ||
+			(collision.gameObject.CompareTag ("Deflected") && isDead == false))
+		{
+			handler.spawnPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
+			handler.spawnPositions.Add (handler.spawnPos);
 			isDead = true;
 		}
 
@@ -58,10 +59,11 @@ public class VillagerBehaviour : MonoBehaviour {
 	}
 	protected virtual void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag ("Deflectable") && isDead == false ||
-		    other.CompareTag ("Deflected") && isDead == false) {
-			handler.spawnPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
-			handler.spawnPositions.Add(handler.spawnPos);
+		if ((other.CompareTag ("Deflectable") && isDead == false) ||
+			(other.CompareTag ("Deflected") && isDead == false))
+		{
+			handler.spawnPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
+			handler.spawnPositions.Add (handler.spawnPos);
 			isDead = true;
 		}
 	}
