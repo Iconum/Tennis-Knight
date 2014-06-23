@@ -83,7 +83,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
 			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
 			anim.SetTrigger("BOAttack");
-			//ListDeflectable(tempo);
+			ListDeflectable(tempo);
 		}
 	}
 
