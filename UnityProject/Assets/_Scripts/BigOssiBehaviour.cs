@@ -9,7 +9,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	public float shootingSpeed = 3f;
 
 	protected List<GameObject> shieldBalls = new List<GameObject>();
-	protected bool isSpawningBalls = true;
+	public bool isSpawningBalls = true;
 	protected float spawnTime = 0f;
 	protected GameObject bigOssiReference;
 	protected bool isOnLimitDistance = false;
@@ -56,8 +56,9 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	public void Spawn()
 	{
 		shieldBalls.Add((GameObject)Instantiate(shieldBallPrefab,
-		                        gameObject.transform.position,
-		                        gameObject.transform.rotation));
+		                        new Vector3(gameObject.transform.position.x,
+		                                    gameObject.transform.position.y + gameObject.renderer.bounds.size.y/2),
+		                                    gameObject.transform.rotation));
 		shieldBalls [shieldBalls.Count - 1].GetComponent<BigOssiBallBehaviour> ().bigOssi = this;
 	}
 
