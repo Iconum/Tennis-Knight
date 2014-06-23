@@ -35,12 +35,21 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			gameObject.transform.Translate (new Vector3 (Time.deltaTime, 0, 0));
 
 			if(gameObject.transform.position.x >= 2.5f)
+			{
 				isOnLimitDistance = true;
-		} else 
+				anim.SetBool("BOMovingLeft", true);
+				anim.SetBool("BOMovingRight", false);
+			}
+		}
+		else 
 		{
 			gameObject.transform.Translate (new Vector3 (-Time.deltaTime, 0, 0));
 			if(gameObject.transform.position.x <= -2.5f)
+			{
 				isOnLimitDistance = false;
+				anim.SetBool("BOMovingRight",true);
+				anim.SetBool("BOMovingLeft", false);
+			}
 		}
 	}
 
@@ -88,6 +97,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			_flickerActive = true;
 			DeleteAll();
 			shieldBalls.Clear();
+			anim.SetTrigger("BODamage");
 
 			if (health <= 0)
 			{
