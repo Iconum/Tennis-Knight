@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MenuStart.cs" />
      <Compile Include="Assets\_Scripts\BackgroundLoop.cs" />
      <Compile Include="Assets\_Scripts\BallBehaviour.cs" />
      <Compile Include="Assets\_Scripts\BasicLevel.cs" />
@@ -59,6 +60,7 @@
      <Compile Include="Assets\_Scripts\LevelBehaviour.cs" />
      <Compile Include="Assets\_Scripts\MeleeBehaviour.cs" />
      <Compile Include="Assets\_Scripts\MenuFunctionality.cs" />
+     <Compile Include="Assets\_Scripts\MenuProto.cs" />
      <Compile Include="Assets\_Scripts\OssiAnimation.cs" />
      <Compile Include="Assets\_Scripts\PaddleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PlayerBehaviour.cs" />
