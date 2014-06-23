@@ -53,9 +53,8 @@ public class VillagerBehaviour : MonoBehaviour {
 			handler.spawnPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
 			handler.spawnPositions.Add (handler.spawnPos);
 			isDead = true;
+			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 		}
-
-		collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 	}
 	protected virtual void OnTriggerEnter2D(Collider2D other)
 	{
