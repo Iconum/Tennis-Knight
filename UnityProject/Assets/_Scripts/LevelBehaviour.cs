@@ -68,6 +68,15 @@ public class LevelBehaviour : MonoBehaviour {
 			return null;
 	}
 
+	public void ClearDeflectables()
+	{
+		for (int i = 0; i < deflectableList.Count; ++i)
+		{
+			Destroy(deflectableList[i]);
+		}
+		deflectableList.Clear ();
+	}
+
 	public void ToggleWall()
 	{
 		SetWall (topBorder.CompareTag ("Removal"));

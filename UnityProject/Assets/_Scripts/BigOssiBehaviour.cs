@@ -2,13 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BigOssiBehaviour : MonoBehaviour {
+public class BigOssiBehaviour : EnemyBehaviour {
 
-	public GameObject projectilePrefab;
 	public GameObject shieldBallPrefab;
 	public float ballCount = 5f;
 	public float shootingSpeed = 3f;
-	public int health = 3;
 
 	protected List<GameObject> shieldBalls = new List<GameObject>();
 	protected bool isSpawningBalls = true;
@@ -17,12 +15,15 @@ public class BigOssiBehaviour : MonoBehaviour {
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
 
+	private Animator anim;
 	// Use this for initialization
 	void Start () {
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		base.Update ();
 		if (isSpawningBalls == true)
 			SpawnBalls ();
 		else {
@@ -32,6 +33,7 @@ public class BigOssiBehaviour : MonoBehaviour {
 		if (isOnLimitDistance == false)
 		{
 			gameObject.transform.Translate (new Vector3 (Time.deltaTime, 0, 0));
+
 			if(gameObject.transform.position.x >= 2.5f)
 				isOnLimitDistance = true;
 		} else 
@@ -71,31 +73,30 @@ public class BigOssiBehaviour : MonoBehaviour {
 			_shootTimer = 0.0f;
 			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
 			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
+			anim.SetTrigger("BOAttack");
 			//ListDeflectable(tempo);
 		}
 	}
 
-	protected virtual void OnCollisionEnter2D(Collision2D collision)
+	protected override void DamageHealth ()
 	{
-		if (collision.gameObject.CompareTag ("Deflected"))
+		_shootTimer = 0.0f;
+
+		if (!_flickerActive)
 		{
-			_shootTimer = 0.0f;
+			--health;
+			_flickerActive = true;
+			DeleteAll();
+			shieldBalls.Clear();
 
-			Destroy(collision.gameObject);
-
-			if(health > 0)
+			if (health <= 0)
 			{
-				health--;
-				DeleteAll();
-				shieldBalls.Clear();
-				isSpawningBalls = true;
-
-			}
-			else 
-			{
+				levelManager.GetComponent<LevelBehaviour>().EnemyDied();
 				Destroy(gameObject);
-				DeleteAll();
-				shieldBalls.Clear();
+			}
+			else
+			{
+				isSpawningBalls = true;
 			}
 		}
 	}

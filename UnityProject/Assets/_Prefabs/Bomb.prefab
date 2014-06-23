@@ -132,6 +132,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   fuseLength: 5
   explosiveForce: 2
+  explosion: {fileID: 8300000, guid: 0ef0e0da6f6c8704cb6d46be9b59ce86, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -151,7 +152,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 9868584eab131ee409434f258a2c5282, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

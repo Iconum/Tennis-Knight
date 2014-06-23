@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class VillagerBehaviour : MonoBehaviour {
 
 	public VillagerHandler handler;
 	//Death variables
+	public List<AudioClip> deathSounds = null;
 	public float flyingHeight = 2.0f;
 	public float deathTime = 2.0f;
 	public float rotationSpeed = 5.0f;
@@ -15,6 +17,7 @@ public class VillagerBehaviour : MonoBehaviour {
 	protected bool isGoingup = true;
 	//Spawn variables
 	protected bool isSpawning = true;
+	protected bool hasScreamed = false;
 	protected Vector3 spawnEndPos;
 	protected Vector3 spawnStartPos;
 	protected float startTime;
@@ -50,15 +53,34 @@ public class VillagerBehaviour : MonoBehaviour {
 			handler.spawnPositions.Add(handler.spawnPos);
 			isDead = true;
 		}
-		
-		Destroy(collision.gameObject);
+
+		collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 	}
+	protected virtual void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag ("Deflectable") && isDead == false ||
+		    other.CompareTag ("Deflected") && isDead == false) {
+			handler.spawnPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
+			handler.spawnPositions.Add(handler.spawnPos);
+			isDead = true;
+		}
+	}
+
 	//Death "animation"
 	protected virtual void death(){
 		if (deathTime > 0)
 		{
+			if(!hasScreamed && deathSounds != null)
+			{
+				audio.clip = deathSounds[Random.Range(0, deathSounds.Count)];
+				audio.Play();
+				hasScreamed = true;
+			}
+
 			if(gameObject.transform.position.y < flyingHeight && isGoingup == true)
+			{
 				height = flyingSpeed/100;
+			}
 			else 
 				isGoingup = false;
 
