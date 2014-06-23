@@ -132,7 +132,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   fuseLength: 5
   explosiveForce: 2
-  explosion: {fileID: 8300000, guid: f1e70edef4216e64897fba70274b1c7e, type: 3}
+  explosion: {fileID: 8300000, guid: 0ef0e0da6f6c8704cb6d46be9b59ce86, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

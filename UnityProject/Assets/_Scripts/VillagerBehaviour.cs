@@ -53,9 +53,19 @@ public class VillagerBehaviour : MonoBehaviour {
 			handler.spawnPositions.Add(handler.spawnPos);
 			isDead = true;
 		}
-		
-		Destroy(collision.gameObject);
+
+		collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 	}
+	protected virtual void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag ("Deflectable") && isDead == false ||
+		    other.CompareTag ("Deflected") && isDead == false) {
+			handler.spawnPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
+			handler.spawnPositions.Add(handler.spawnPos);
+			isDead = true;
+		}
+	}
+
 	//Death "animation"
 	protected virtual void death(){
 		if (deathTime > 0)
