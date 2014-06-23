@@ -8,7 +8,8 @@ public enum ControlType
 	touchpad,
 	invertedtouchpad,
 	tilting,
-	dragging
+	dragging,
+	freedragging
 }
 
 public static class Statics
