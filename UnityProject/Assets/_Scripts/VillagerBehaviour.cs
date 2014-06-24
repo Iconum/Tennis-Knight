@@ -43,6 +43,14 @@ public class VillagerBehaviour : MonoBehaviour {
 		if (isDead) {
 			death ();
 		}
+
+		//Debug
+		if (Input.GetKeyDown (KeyCode.P))
+		{
+			audio.clip = deathSounds[Random.Range(0, deathSounds.Count)];
+			audio.pitch = Random.Range(0.5f, 2.0f);
+			audio.Play();
+		}
 	}
 	//When hit by "Deflectable", villager dies
 	protected virtual void OnCollisionEnter2D(Collision2D collision) {
@@ -74,6 +82,7 @@ public class VillagerBehaviour : MonoBehaviour {
 			if(!hasScreamed && deathSounds != null)
 			{
 				audio.clip = deathSounds[Random.Range(0, deathSounds.Count)];
+				audio.pitch = Random.Range(0.9f, 1.2f);
 				audio.Play();
 				hasScreamed = true;
 			}
