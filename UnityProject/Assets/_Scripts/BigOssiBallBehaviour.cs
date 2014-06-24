@@ -10,6 +10,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	
 	protected Vector3 startPos;
 	protected float spawnTime;
+	public float realRadius = 0;
 	protected bool radiusDir = true;
 	
 	// Use this for initialization
@@ -22,11 +23,8 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 			Debug.Log("Please don't use more than 2f");
 			spinningRadius = 2f;
 		}
-		gameObject.transform.position = new Vector3(startPos.x 
-		                                            - bigOssi.renderer.bounds.size.x/2
-		                                            + spinningRadius,
-		                                            startPos.y);
-
+		realRadius = bigOssi.renderer.bounds.size.x/2 + spinningRadius;
+		gameObject.transform.position = new Vector3(startPos.x - realRadius, startPos.y);
 		gameObject.transform.parent = bigOssi.transform;
 
 	}
@@ -45,21 +43,22 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 	protected void SpinBalls()
 	{
+		var speed = 2.24f;
 		gameObject.transform.position = (new Vector3(
-			(Mathf.Sin((spawnTime*spinningRadius*2.24f)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.x),
-			Mathf.Cos((spawnTime*spinningRadius*2.24f)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.y));
+			(Mathf.Sin((spawnTime*spinningRadius*speed)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.x),
+			Mathf.Cos((spawnTime*spinningRadius*speed)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.y));
 	}
 
 	protected void changeRadius()
 	{
 		if (radiusDir)
-			enlargeSpeed += Time.deltaTime/2;
+			enlargeSpeed += Time.deltaTime/3;
 		else
-			enlargeSpeed -= Time.deltaTime/2;
+			enlargeSpeed -= Time.deltaTime/3;
 
-		if (enlargeSpeed <= 0.8f)
+		if (enlargeSpeed <= 0.9f)
 			radiusDir = true;
-		if (enlargeSpeed >= 1.8f)
+		if (enlargeSpeed >= 1.5f)
 			radiusDir = false;
 
 	}

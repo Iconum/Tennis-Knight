@@ -359,7 +359,7 @@ MonoBehaviour:
   health: 5
   specialInvincibility: 0
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
-  ballCount: 7
+  ballCount: 5
   shootingSpeed: 3
   isSpawningBalls: 1
 --- !u!212 &809841460
@@ -661,6 +661,10 @@ Prefab:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 100004, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+    - target: {fileID: 11400000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
+      propertyPath: ballCount
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
   m_RootGameObject: {fileID: 809841458}

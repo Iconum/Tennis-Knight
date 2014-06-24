@@ -9,22 +9,37 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	public float shootingSpeed = 3f;
 
 
+
 	protected List<GameObject> shieldBalls = new List<GameObject>();
 	public bool isSpawningBalls = true;
 	protected float spawnTime = 0f;
 	protected GameObject bigOssiReference;
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
+	protected float spawnDistance = 0f;
 
 	private Animator anim;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
+		var speed = 2.24f;
+
+		var radius = renderer.bounds.size.x/2
+			+ shieldBallPrefab.GetComponent<BigOssiBallBehaviour>().spinningRadius;
+
+		Debug.Log (radius);
+		var circumference = 2 * radius * Mathf.PI;
+
+		var ballTime = circumference / speed;
+
+		spawnDistance = ballTime / ballCount;
+		Debug.Log (spawnDistance);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		base.Update ();
+
 		if (isSpawningBalls == true)
 			SpawnBalls ();
 		else {
@@ -66,7 +81,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	public void SpawnBalls()
 	{
 		spawnTime += Time.deltaTime;
-		if (spawnTime >= 0.4f)
+		//if (spawnTime >= 0.4f)
+		if (spawnTime >= spawnDistance)
 		{
 			Spawn();
 			spawnTime = 0f;
@@ -123,5 +139,10 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		{
 			Delete(shieldBalls[i]);
 		}
+	}
+
+	IEnumerator joku()
+	{
+		yield return new WaitForSeconds (4.0f);
 	}
 }
