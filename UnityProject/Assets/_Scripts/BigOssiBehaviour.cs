@@ -22,18 +22,21 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
+
+
 		var speed = 2.24f;
 
 		var radius = renderer.bounds.size.x/2
 			+ shieldBallPrefab.GetComponent<BigOssiBallBehaviour>().spinningRadius;
 
-		Debug.Log (radius);
 		var circumference = 2 * radius * Mathf.PI;
 
 		var ballTime = circumference / speed;
-
+		//TODO: Distance = interval
 		spawnDistance = ballTime / ballCount;
-		Debug.Log (spawnDistance);
+
+		//if (ballCount % 2 == 0)
+			spawnDistance /= 2;
 	}
 	
 	// Update is called once per frame
