@@ -361,6 +361,7 @@ MonoBehaviour:
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
   ballCount: 7
   shootingSpeed: 3
+  isSpawningBalls: 1
 --- !u!212 &809841460
 SpriteRenderer:
   m_ObjectHideFlags: 0

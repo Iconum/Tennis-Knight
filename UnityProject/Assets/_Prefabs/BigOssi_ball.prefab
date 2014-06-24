@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigOssi: {fileID: 0}
   shootTimeLimit: 0
+  spinningRadius: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
