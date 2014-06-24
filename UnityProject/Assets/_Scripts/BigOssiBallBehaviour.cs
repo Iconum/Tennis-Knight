@@ -6,6 +6,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	public BigOssiBehaviour bigOssi;
 	public float shootTimeLimit = 0;
 	public float spinningRadius = 1.0f;
+	public float enlargeSpeed = 1.0f;
 	
 	protected Vector3 startPos;
 	protected float spawnTime;
@@ -45,20 +46,20 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	protected void SpinBalls()
 	{
 		gameObject.transform.position = (new Vector3(
-			(Mathf.Sin(spawnTime*spinningRadius*2.24f)/(spinningRadius) +  bigOssi.transform.position.x),
-			 Mathf.Cos(spawnTime*spinningRadius*2.24f)/(spinningRadius)  + bigOssi.transform.position.y));
+			(Mathf.Sin((spawnTime*spinningRadius*2.24f)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.x),
+			Mathf.Cos((spawnTime*spinningRadius*2.24f)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.y));
 	}
 
 	protected void changeRadius()
 	{
 		if (radiusDir)
-			spinningRadius += 0.01f;
+			enlargeSpeed += Time.deltaTime/2;
 		else
-			spinningRadius -= 0.01f;
+			enlargeSpeed -= Time.deltaTime/2;
 
-		if (spinningRadius <= 0f)
+		if (enlargeSpeed <= 0.8f)
 			radiusDir = true;
-		if (spinningRadius >= 2f)
+		if (enlargeSpeed >= 1.8f)
 			radiusDir = false;
 
 	}

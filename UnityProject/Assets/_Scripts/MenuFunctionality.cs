@@ -2,13 +2,22 @@
 using System.Collections;
 
 public class MenuFunctionality : MonoBehaviour {
-	float width, height;
+	float width, height, thirty, sixty, eighty, onefourty;
 	string menuText;
 
 	// Use this for initialization
 	void Start () {
+		thirty = (30.0f / 640.0f) * Screen.height;
+		sixty = (60.0f / 640.0f) * Screen.height;
+		eighty = (80.0f / 400.0f) * Screen.width;
+		onefourty = (140.0f / 640.0f) * Screen.height;
 		width = Screen.width;
 		height = Screen.height;
+
+		if (PlayerPrefs.HasKey ("GlobalVolume"))
+		{
+			Statics.setVolume(PlayerPrefs.GetFloat("GlobalVolume"));
+		}
 		if (PlayerPrefs.HasKey ("ControlMethod"))
 		{
 			Statics.selectedControlMethod = (ControlType)PlayerPrefs.GetInt ("ControlMethod");
@@ -51,8 +60,12 @@ public class MenuFunctionality : MonoBehaviour {
 			if (GUILayout.Button ("Start", Statics.menuButtonStyle))
 			{
 				PlayerPrefs.SetInt ("ControlMethod", (int)Statics.selectedControlMethod);
+				PlayerPrefs.SetFloat("GlobalVolume", Statics.globalVolume);
 				Application.LoadLevel ("TestLevel");
 			}
+			GUILayout.Label("Volume:", Statics.menuTextStyle);
+			Statics.setVolume(GUILayout.HorizontalSlider(Statics.globalVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle));
+			GUILayout.Space(thirty);
 			if (GUILayout.Button ("Keyboard Controls", Statics.menuButtonStyle))
 			{
 				Statics.selectedControlMethod = ControlType.keyboard;

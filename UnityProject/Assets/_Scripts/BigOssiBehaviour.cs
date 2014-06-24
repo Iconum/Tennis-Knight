@@ -8,6 +8,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	public float ballCount = 5f;
 	public float shootingSpeed = 3f;
 
+
 	protected List<GameObject> shieldBalls = new List<GameObject>();
 	public bool isSpawningBalls = true;
 	protected float spawnTime = 0f;
