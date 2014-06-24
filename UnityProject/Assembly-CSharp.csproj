@@ -56,6 +56,8 @@
      <Compile Include="Assets\_Scripts\DividingBehaviour.cs" />
      <Compile Include="Assets\_Scripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\_Scripts\KingAnimation.cs" />
+     <Compile Include="Assets\_Scripts\KingBall.cs" />
+     <Compile Include="Assets\_Scripts\KingProto.cs" />
      <Compile Include="Assets\_Scripts\KnightAnimation.cs" />
      <Compile Include="Assets\_Scripts\LevelBehaviour.cs" />
      <Compile Include="Assets\_Scripts\MeleeBehaviour.cs" />
