@@ -15,6 +15,10 @@ public class MenuStart : MonoBehaviour {
 //		{
 //			Application.LoadLevel("testi2");
 //		}
+		if (Input.touchCount == 1)
+		{
+			Application.LoadLevel("testi2");
+		}
 	}
 
 	void OnMouseDown()
