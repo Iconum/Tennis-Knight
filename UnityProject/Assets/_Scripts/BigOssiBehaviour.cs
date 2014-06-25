@@ -16,8 +16,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	protected GameObject bigOssiReference;
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
-
-	private Animator anim;
+	
 	// Use this for initialization
 	void Start ()
 	{   //Get the animator

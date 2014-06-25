@@ -63,7 +63,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26ed69eb6e6821944886486da2702d79, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d5065cccefb4f746bd224e854fc8385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
@@ -71,6 +71,7 @@ MonoBehaviour:
   flickerTimerLimit: 4
   health: 3
   specialInvincibility: 0
+  anim: {fileID: 0}
   shootTimerLimit: 2.5
   usesSinModifier: 0
 --- !u!212 &21200000

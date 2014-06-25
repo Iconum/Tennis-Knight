@@ -53,6 +53,7 @@
      <Compile Include="Assets\_Scripts\BasicLevel.cs" />
      <Compile Include="Assets\_Scripts\BigOssiBallBehaviour.cs" />
      <Compile Include="Assets\_Scripts\BigOssiBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\BigOssiShardBehaviour.cs" />
      <Compile Include="Assets\_Scripts\BombBehaviour.cs" />
      <Compile Include="Assets\_Scripts\DividingBehaviour.cs" />
      <Compile Include="Assets\_Scripts\EnemyBehaviour.cs" />
