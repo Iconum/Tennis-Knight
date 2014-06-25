@@ -12,10 +12,10 @@ GameObject:
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
-  - 61: {fileID: 6100000}
-  m_Layer: 0
+  - 58: {fileID: 5800000}
+  m_Layer: 10
   m_Name: King
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,12 +27,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.11207557, z: 0}
+  m_LocalPosition: {x: -.243879989, y: 5.44629669, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!61 &6100000
-BoxCollider2D:
+--- !u!58 &5800000
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -40,8 +40,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1.91999996, y: 2.4000001}
-  m_Center: {x: 0, y: 0}
+  m_Radius: .949999988
+  m_Center: {x: 0, y: -.189999998}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -62,27 +62,25 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e56711381734b0a47ba9c6afe22dfd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 100000, guid: 3bd29ae801ae5324aba51d3d04feee17, type: 2}
   levelManager: {fileID: 0}
-  flickerTimerLimit: 4
-  health: 10
+  flickerTimerLimit: 2
+  health: 5
   specialInvincibility: 0
-  shootTimerLimit: 1
   player: {fileID: 0}
-  level: {fileID: 0}
-  ballUsed: 0
+  maxDeflections: 8
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a7f9d3acc140f849a1a00570dcf9fd8, type: 3}
   m_Name: 

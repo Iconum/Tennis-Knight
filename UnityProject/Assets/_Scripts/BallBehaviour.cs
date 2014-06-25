@@ -31,6 +31,7 @@ public class BallBehaviour : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag ("Paddle"))
 		{
+			rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.normalized.x,-0.7f, 0.7f), rigidbody2D.velocity.y).normalized;
 			if (!audio.isPlaying)
 			{
 				if (audio.clip != paddleHit)
@@ -54,9 +55,21 @@ public class BallBehaviour : MonoBehaviour
 	{
 		Destroy (gameObject);
 	}
+
+	public void SetConstantSpeed(float speed)
+	{
+		constantSpeed = speed;
+	}
 		
 	public void SetStartVelocity (Vector2 velocity)
 	{
 		startVelocity = velocity;
 	}
+
+	public void SetStartParameters (Vector2 velocity, float speed)
+	{
+		SetConstantSpeed (speed);
+		SetStartVelocity (velocity);
+	}
+
 }
