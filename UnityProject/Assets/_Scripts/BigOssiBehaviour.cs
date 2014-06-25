@@ -24,7 +24,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		anim = GetComponent<Animator> ();
 		shieldBall = shieldBallPrefab.GetComponent<BigOssiBallBehaviour> ();
 		//calculation for spawning for first time
-		calculateCircumference ();
+		bossPhaseSetter ();
+		//calculateCircumference ();
 	}
 	
 	// Update is called once per frame
@@ -114,7 +115,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			DeleteAll();
 			//animation Take Damage
 			anim.SetTrigger("BODamage");
-
+			bossPhaseSetter();
 			if (health <= 0)
 			{
 				//Destroy boss when health is 0
@@ -160,6 +161,41 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		//Lastly divide spawn interval with 2 and you have rigth spawning rate for balls!
 		spawnInterval /= 2;
 	}
+
+	protected void bossPhaseSetter()
+	{
+		switch (health)
+		{
+		case 5:
+			shieldBall.speed = 1.5f;
+			ballCount = 4;
+			calculateCircumference ();
+			break;
+		case 4:
+			shieldBall.speed = 1.8f;
+			ballCount = 5;
+			calculateCircumference ();
+			break;
+		case 3:
+			shieldBall.speed = 2f;
+			ballCount = 6;
+			calculateCircumference ();
+			break;
+		case 2:
+			shieldBall.speed = 2.2f;
+			ballCount = 8;
+			calculateCircumference ();
+			break;
+		case 1:
+			shieldBall.speed = 2.5f;
+			ballCount = 10;
+			calculateCircumference ();
+			break;
+		default:
+			break;
+		}
+	}
+
 	//Test ienumerator
 	IEnumerator joku()
 	{
