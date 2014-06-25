@@ -80,9 +80,15 @@ public class MeleeBehaviour : EnemyBehaviour {
 				StartCoroutine (StartAttack (attackTime));
 			}
 		}
-		if (collision.gameObject.CompareTag ("Villager"))
+	}
+
+	protected override void OnTriggerEnter2D (Collider2D other)
+	{
+		base.OnTriggerEnter2D (other);
+
+		if (other.CompareTag ("Removal"))
 		{
-			InstantDeath();
+			InstantDeath ();
 		}
 	}
 }
