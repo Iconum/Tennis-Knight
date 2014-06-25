@@ -63,6 +63,12 @@ public class MenuFunctionality : MonoBehaviour {
 				PlayerPrefs.SetFloat("GlobalVolume", Statics.globalVolume);
 				Application.LoadLevel ("TestLevel");
 			}
+			if (GUILayout.Button("King Test", Statics.menuButtonStyle))
+			{
+				PlayerPrefs.SetInt ("ControlMethod", (int)Statics.selectedControlMethod);
+				PlayerPrefs.SetFloat("GlobalVolume", Statics.globalVolume);
+				Application.LoadLevel ("kingProto");
+			}
 			GUILayout.Label("Volume:", Statics.menuTextStyle);
 			Statics.setVolume(GUILayout.HorizontalSlider(Statics.globalVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle));
 			GUILayout.Space(thirty);
