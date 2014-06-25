@@ -26,7 +26,7 @@ public class EnemyPackage
 }
 
 public class LevelBehaviour : MonoBehaviour {
-	public GameObject topBorder;
+	public GameObject topBorder, player = null;
 
 	protected List<GameObject> deflectableList = new List<GameObject>();
 
