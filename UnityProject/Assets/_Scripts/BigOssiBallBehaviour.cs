@@ -4,20 +4,22 @@ using System.Collections;
 public class BigOssiBallBehaviour : MonoBehaviour {
 
 	public BigOssiBehaviour bigOssi;
+	public GameObject bigOssiBallShardPrefab;
 	public float shootTimeLimit = 0;
 	public float spinningRadius = 1.0f;
 	public float enlargeSpeed = 1.0f;
 	public float speed = 2.24f;
 	public float realRadius = 0;
-	
+
+	protected BigOssiShardBehaviour ballShard;
 	protected Vector3 startPos;
 	protected float spawnTime;
 	protected bool radiusDir = true;
 	
 	// Use this for initialization
 	void Start () {
-		startPos = new Vector3(gameObject.transform.position.x,
-		            gameObject.transform.position.y);
+		ballShard = bigOssiBallShardPrefab.GetComponent<BigOssiShardBehaviour> ();
+		startPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
 		//gameObject.transform.position = new Vector3(startPos.x - 1.4f,startPos.y);
 		if (spinningRadius > 2f)
 		{
@@ -74,10 +76,19 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 			renderer.sortingLayerName = "Characters";
 	}
 
+	protected void spawnShards()
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			GameObject shard = (GameObject)Instantiate (bigOssiBallShardPrefab, transform.position, transform.rotation);
+		}
+	}
+
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{
+			spawnShards();
 			Destroy(collision.gameObject);
 			bigOssi.Delete(gameObject);
 			Destroy(gameObject);
