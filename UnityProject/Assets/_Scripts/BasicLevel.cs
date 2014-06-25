@@ -35,7 +35,7 @@ public class BasicLevel : LevelBehaviour {
 			}
 		} else
 		{
-
+			ToggleWall ();
 		}
 	}
 	IEnumerator DelayedCreation(float t)

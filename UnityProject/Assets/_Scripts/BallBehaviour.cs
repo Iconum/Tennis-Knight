@@ -31,7 +31,7 @@ public class BallBehaviour : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag ("Paddle"))
 		{
-			rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.normalized.x,-0.7f, 0.7f), rigidbody2D.velocity.y).normalized;
+			rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.normalized.x,-0.7f, 0.7f), rigidbody2D.velocity.normalized.y).normalized;
 			if (!audio.isPlaying)
 			{
 				if (audio.clip != paddleHit)
