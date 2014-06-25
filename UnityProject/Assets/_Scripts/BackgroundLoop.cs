@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BackgroundLoop : MonoBehaviour {
@@ -10,7 +10,6 @@ public class BackgroundLoop : MonoBehaviour {
 	private Vector3 startPosition;
 	private Vector3 cpos, bg1pos, bg2pos,bg2bs;
 	private float chmax,chmin;
-	private float asd = 5.0f;
 
 	private float cheight, cwidth;
 
@@ -39,22 +38,23 @@ public class BackgroundLoop : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		var deltaspeed = bgspeed * Time.deltaTime;
 		//transform.position = new Vector3(transform.position.x, transform.position.y+=bgspeed, transform.position.z);
-		bg1.transform.position += new Vector3 (0,bgspeed);
-		bg2.transform.position += new Vector3 (0,bgspeed);
+		bg1.transform.position += new Vector3 (0,deltaspeed);
+		bg2.transform.position += new Vector3 (0,deltaspeed);
 
 		//Debug.Log (bg2.transform.position);
 
 		if (bg2.transform.position.y < -cheight)
 		{
 			bg2.transform.position = new Vector3(bg2.transform.position.x,cheight);
-			bg2.transform.position += new Vector3 (0,bgspeed);
+			bg2.transform.position += new Vector3 (0,deltaspeed);
 		}
 
 		if (bg1.transform.position.y < -cheight)
 		{
 			bg1.transform.position = new Vector3(bg1.transform.position.x,cheight);
-			bg1.transform.position += new Vector3 (0,bgspeed);
+			bg1.transform.position += new Vector3 (0,deltaspeed);
 		}
 
 		//if (Input.GetKey (KeyCode.Space))
