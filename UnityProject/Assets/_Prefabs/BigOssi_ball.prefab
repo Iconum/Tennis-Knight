@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
   - 58: {fileID: 5800000}
+  - 114: {fileID: 11400004}
   m_Layer: 12
   m_Name: BigOssi_ball
   m_TagString: Enemy
@@ -126,7 +127,7 @@ MonoBehaviour:
   shootTimeLimit: 0
   spinningRadius: 1
   enlargeSpeed: 1
-  speed: 2.24000001
+  speed: 2.5
   realRadius: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -134,12 +135,24 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a8a233c9db812b4b8930bed88dba12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tr: {fileID: 0}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8a233c9db812b4b8930bed88dba12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tr: {fileID: 9600000}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

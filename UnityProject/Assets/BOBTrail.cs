@@ -8,7 +8,7 @@ public class BOBTrail : MonoBehaviour {
 	void Start () 
 	{
 
-		//tr.sortingLayerName = "Characters";
+		tr.sortingLayerName = "Characters";
 	
 	}
 	
