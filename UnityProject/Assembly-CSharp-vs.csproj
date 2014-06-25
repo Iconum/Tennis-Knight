@@ -56,6 +56,7 @@
      <Compile Include="Assets\_Scripts\BombBehaviour.cs" />
      <Compile Include="Assets\_Scripts\DividingBehaviour.cs" />
      <Compile Include="Assets\_Scripts\EnemyBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\EnemyBehaviourG.cs" />
      <Compile Include="Assets\_Scripts\KingAnimation.cs" />
      <Compile Include="Assets\_Scripts\KingBall.cs" />
      <Compile Include="Assets\_Scripts\KingProto.cs" />
@@ -70,6 +71,7 @@
      <Compile Include="Assets\_Scripts\PlayerBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PlayerBehaviourG.cs" />
      <Compile Include="Assets\_Scripts\RangedBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\RangedBehaviourG.cs" />
      <Compile Include="Assets\_Scripts\SpearBehaviour.cs" />
      <Compile Include="Assets\_Scripts\Statics.cs" />
      <Compile Include="Assets\_Scripts\VillagerBehaviour.cs" />

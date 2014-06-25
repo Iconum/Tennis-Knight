@@ -244,6 +244,7 @@ GameObject:
   - 212: {fileID: 443500284}
   - 61: {fileID: 443500283}
   - 114: {fileID: 443500282}
+  - 95: {fileID: 443500286}
   - 95: {fileID: 443500281}
   m_Layer: 0
   m_Name: BloodBat
@@ -275,7 +276,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 443500280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5065cccefb4f746bd224e854fc8385, type: 3}
+  m_Script: {fileID: 11500000, guid: 26ed69eb6e6821944886486da2702d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 100000, guid: 7163f3f64a2319a409cda4fa6bc6b288, type: 2}
@@ -328,10 +329,25 @@ Transform:
   m_PrefabInternal: {fileID: 1328886040}
   m_GameObject: {fileID: 443500280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.760685861, y: 1.67207122, z: 0}
+  m_LocalPosition: {x: -5.5634613, y: 1.52708173, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!95 &443500286
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9500000, guid: 018119bda3141414690c0a2bf8c3ec37,
+    type: 2}
+  m_PrefabInternal: {fileID: 1328886040}
+  m_GameObject: {fileID: 443500280}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba5542977d7529442879176f32df85bc, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!1 &772558631
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,11 +797,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.760685861
+      value: -5.5634613
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.67207122
+      value: 1.52708173
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       propertyPath: m_LocalPosition.z
@@ -806,6 +822,10 @@ Prefab:
     - target: {fileID: 400000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
