@@ -11,6 +11,7 @@ public class RangedBehaviour : EnemyBehaviour {
 	// Use this for initialization
 	void Start () {
 		_levelStartTime = Time.time;
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -47,6 +48,7 @@ public class RangedBehaviour : EnemyBehaviour {
 			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
 			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
 			ListDeflectable(tempo);
+			anim.SetTrigger("Attack");
 		}
 	}
 }
