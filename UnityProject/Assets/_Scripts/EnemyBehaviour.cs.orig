@@ -11,6 +11,10 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false;
+<<<<<<< Updated upstream
+
+	public Animator anim;
+=======
 	protected Vector3 _startLocation;
 
 	protected virtual void Awake()
@@ -29,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		targetLocation = target;
 	}
 
-	public Animator anim;
+>>>>>>> Stashed changes
 	// Update is called once per frame
 	protected virtual void Update () {
 
@@ -55,12 +59,11 @@ public class EnemyBehaviour : MonoBehaviour {
 		if (spawning)
 		{
 			_flickerTimer += Time.deltaTime / spawnLerpLimit;
-			transform.position = Vector3.Lerp (_startLocation, targetLocation, _flickerTimer);
+			transform.position = Vector3.Lerp(_startLocation, targetLocation, _flickerTimer);
 			if (_flickerTimer >= 1.0f)
 			{
 				spawning = false;
 				_flickerTimer = 0.0f;
-				Initialize ();
 			}
 		}
 
