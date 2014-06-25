@@ -35,7 +35,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 		spawnTime += Time.deltaTime;
 		SpinBalls ();
-
+		changeLayer ();
 		if(!bigOssi.isSpawningBalls)
 			changeRadius ();
 		//gameObject.transform.Translate(new Vector3((Mathf.Sin(spawnTime*2.24f)/20.0f),Mathf.Cos(spawnTime*2.24f)/20.0f));
@@ -62,6 +62,16 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 		if (enlargeSpeed >= 1.5f)
 			radiusDir = false;
 
+	}
+
+	protected void changeLayer()
+	{
+		if (gameObject.transform.position.y > bigOssi.transform.position.y+0.3f)
+		{
+			gameObject.renderer.sortingLayerName = "Background";
+		}
+		else
+			renderer.sortingLayerName = "Characters";
 	}
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
