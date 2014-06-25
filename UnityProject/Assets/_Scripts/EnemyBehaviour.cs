@@ -10,7 +10,8 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false;
-	
+
+	public Animator anim;
 	// Update is called once per frame
 	protected virtual void Update () {
 
@@ -74,6 +75,8 @@ public class EnemyBehaviour : MonoBehaviour {
 		{
 			--health;
 			_flickerActive = true;
+			anim.SetTrigger("Damage");
+
 			if (health <= 0)
 			{
 				levelManager.GetComponent<LevelBehaviour>().EnemyDied();
