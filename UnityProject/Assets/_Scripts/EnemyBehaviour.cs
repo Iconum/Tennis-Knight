@@ -4,13 +4,31 @@ using System.Collections;
 public class EnemyBehaviour : MonoBehaviour {
 	public GameObject projectilePrefab = null;
 	public GameObject levelManager = null;
-	public float flickerTimerLimit = 4.0f;
+	public float flickerTimerLimit = 4.0f, spawnLerpLimit = 3.0f;
 	public int health = 10;
-	public bool specialInvincibility = false;
+	public bool specialInvincibility = false, spawning = true;
+	public Vector3 targetLocation;
 	
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false;
-	
+	protected Vector3 _startLocation;
+
+	protected virtual void Awake()
+	{
+		_startLocation = transform.position;
+	}
+
+	protected virtual void Initialize()
+	{
+
+	}
+
+	public virtual void GiveSpawnDelay(Vector3 target)
+	{
+		spawning = true;
+		targetLocation = target;
+	}
+
 	// Update is called once per frame
 	protected virtual void Update () {
 
@@ -33,6 +51,17 @@ public class EnemyBehaviour : MonoBehaviour {
 			}
 		}
 
+		if (spawning)
+		{
+			_flickerTimer += Time.deltaTime / spawnLerpLimit;
+			transform.position = Vector3.Lerp(_startLocation, targetLocation, _flickerTimer);
+			if (_flickerTimer >= 1.0f)
+			{
+				spawning = false;
+				_flickerTimer = 0.0f;
+			}
+		}
+
 		//Debug Controls
 		if (Input.GetKeyDown (KeyCode.End))
 		{
@@ -51,7 +80,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{
 			collision.gameObject.GetComponent<BallBehaviour>().BallDestroy();
-			if (!specialInvincibility)
+			if (!specialInvincibility && !spawning)
 			{
 				DamageHealth ();
 			}
@@ -61,7 +90,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	{
 		if (other.CompareTag ("Deflected"))
 		{
-			if (!specialInvincibility)
+			if (!specialInvincibility && !spawning)
 			{
 				DamageHealth ();
 			}
