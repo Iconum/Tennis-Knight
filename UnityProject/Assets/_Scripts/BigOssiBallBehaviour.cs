@@ -7,10 +7,11 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	public float shootTimeLimit = 0;
 	public float spinningRadius = 1.0f;
 	public float enlargeSpeed = 1.0f;
+	public float speed = 2.24f;
+	public float realRadius = 0;
 	
 	protected Vector3 startPos;
 	protected float spawnTime;
-	public float realRadius = 0;
 	protected bool radiusDir = true;
 	
 	// Use this for initialization
@@ -43,7 +44,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 	protected void SpinBalls()
 	{
-		var speed = 2.24f;
+		//var speed = 2.24f;
 		gameObject.transform.position = (new Vector3(
 			(Mathf.Sin((spawnTime*spinningRadius*speed)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.x),
 			Mathf.Cos((spawnTime*spinningRadius*speed)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.y));
