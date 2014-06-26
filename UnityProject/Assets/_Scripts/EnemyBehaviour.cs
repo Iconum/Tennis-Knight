@@ -29,6 +29,17 @@ public class EnemyBehaviour : MonoBehaviour {
 		targetLocation = target;
 	}
 
+	protected virtual void Initialize()
+	{
+
+	}
+
+	public virtual void GiveSpawnDelay(Vector3 target)
+	{
+		spawning = true;
+		targetLocation = target;
+	}
+
 	public Animator anim;
 	// Update is called once per frame
 	protected virtual void Update () {
@@ -56,6 +67,10 @@ public class EnemyBehaviour : MonoBehaviour {
 		{
 			_flickerTimer += Time.deltaTime / spawnLerpLimit;
 			transform.position = Vector3.Lerp (_startLocation, targetLocation, _flickerTimer);
+			if (_flickerTimer >= 1.0f)
+			{
+				spawning = false;
+				_flickerTimer = 0.0f;
 			if (_flickerTimer >= 1.0f)
 			{
 				spawning = false;
