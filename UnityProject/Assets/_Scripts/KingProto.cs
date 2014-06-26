@@ -6,9 +6,6 @@ public class KingProto : EnemyBehaviour {
 	public int maxDeflections = 10;
 	
 	private float _shootTimer = 0.0f, _levelStartTime = 0.0f;
-	
-	private Animator anim;
-
 	private Vector2 knightPos;
 	private Vector3 kbipos;
 	private int deflections;

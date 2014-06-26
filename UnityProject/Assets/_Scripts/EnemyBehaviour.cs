@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	public int health = 10;
 	public bool specialInvincibility = false, spawning = true;
 	public Vector3 targetLocation;
+	public Animator anim;
 	
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false;
@@ -29,18 +30,6 @@ public class EnemyBehaviour : MonoBehaviour {
 		targetLocation = target;
 	}
 
-	protected virtual void Initialize()
-	{
-
-	}
-
-	public virtual void GiveSpawnDelay(Vector3 target)
-	{
-		spawning = true;
-		targetLocation = target;
-	}
-
-	public Animator anim;
 	// Update is called once per frame
 	protected virtual void Update () {
 
@@ -50,8 +39,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			if (_flickerTimer % 0.4f < 0.2f)
 			{
 				renderer.enabled = false;
-			}
-			else
+			} else
 			{
 				renderer.enabled = true;
 			}
@@ -71,18 +59,19 @@ public class EnemyBehaviour : MonoBehaviour {
 			{
 				spawning = false;
 				_flickerTimer = 0.0f;
-			if (_flickerTimer >= 1.0f)
-			{
-				spawning = false;
-				_flickerTimer = 0.0f;
-				Initialize ();
+				if (_flickerTimer >= 1.0f)
+				{
+					spawning = false;
+					_flickerTimer = 0.0f;
+					Initialize ();
+				}
 			}
 		}
 
 		//Debug Controls
 		if (Input.GetKeyDown (KeyCode.End))
 		{
-			InstantDeath();
+			InstantDeath ();
 		}
 	}
 
