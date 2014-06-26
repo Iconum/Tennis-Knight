@@ -19,6 +19,7 @@ public class MeleeBehaviour : EnemyBehaviour {
 	{
 		collider2D.enabled = true;
 		_startY = transform.position.y;
+		anim = GetComponent<Animator> ();
 		if (player == null)
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
@@ -43,6 +44,7 @@ public class MeleeBehaviour : EnemyBehaviour {
 		} else
 		{
 			meleeAttacking = true;
+			anim.SetBool("Attack",true);
 		}
 	}
 
@@ -68,6 +70,7 @@ public class MeleeBehaviour : EnemyBehaviour {
 				xDifference = Mathf.Clamp (xDifference, -sideSpeed, sideSpeed);
 				yDifference = Mathf.Clamp (yDifference, -chargeSpeed, chargeSpeed);
 				rigidbody2D.velocity = new Vector2 (xDifference, yDifference);
+				anim.SetBool("Attack",false);
 			} else
 			{
 				rigidbody2D.velocity = new Vector2 (0.0f, -(chargeSpeed));

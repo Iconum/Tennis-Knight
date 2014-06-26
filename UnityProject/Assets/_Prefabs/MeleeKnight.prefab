@@ -12,7 +12,7 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
   - 50: {fileID: 5000000}
-  - 95: {fileID: 9500000}
+  - 95: {fileID: 9500002}
   m_Layer: 10
   m_Name: MeleeKnight
   m_TagString: Enemy
@@ -66,9 +66,23 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0828fc6b18a54e54d9e7ed157485ca3f, type: 2}
+  m_Controller: {fileID: 9100000, guid: f3f2906bff39dfb4fb75756444b2e2be, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
+--- !u!95 &9500002
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2c3de29d3b6a1f45ad2d7bd1fd4545f, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
 --- !u!114 &11400000
