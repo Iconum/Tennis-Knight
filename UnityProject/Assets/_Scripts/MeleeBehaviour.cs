@@ -15,13 +15,13 @@ public class MeleeBehaviour : EnemyBehaviour {
 		collider2D.enabled = false;
 	}
 
-	protected override void Initialize()
+	protected override void Initialize ()
 	{
 		collider2D.enabled = true;
 		_startY = transform.position.y;
 		if (player == null)
 		{
-			player = GameObject.Find("Knight");
+			player = GameObject.FindGameObjectWithTag("Player");
 		}
 		if (usesProjectile)
 		{

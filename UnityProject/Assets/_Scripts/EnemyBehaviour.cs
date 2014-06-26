@@ -21,7 +21,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	protected virtual void Initialize()
 	{
-
+		Debug.Log ("How did you get here?");
 	}
 
 	public virtual void GiveSpawnDelay(Vector3 target)
@@ -59,12 +59,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			{
 				spawning = false;
 				_flickerTimer = 0.0f;
-				if (_flickerTimer >= 1.0f)
-				{
-					spawning = false;
-					_flickerTimer = 0.0f;
-					Initialize ();
-				}
+				Initialize ();
 			}
 		}
 
