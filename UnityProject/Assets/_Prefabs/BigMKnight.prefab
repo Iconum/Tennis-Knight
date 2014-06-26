@@ -66,7 +66,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 79c1ecb653fcb014685fb216deb02d22, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   meleeAttacking: 0
   usesProjectile: 0
-  attackTime: 6
+  attackTime: 5
   throwingTime: 0
   sideSpeed: 1.5
   chargeSpeed: 7
