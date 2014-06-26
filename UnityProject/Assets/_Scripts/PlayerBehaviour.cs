@@ -12,7 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
 	private float _currentSpeed;
 	private float _horizontalTouch = 0.0f, _touchTime = 0.0f;
 	private ControlType _usedControls = ControlType.keyboard;
-	private bool _tappedPaddle = false, _dragging = false;
+	private bool _tappedPaddle = false, _dragging = false, _endLevel = false;
 	private Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
 	private Vector3 _playerPosition = Vector3.zero;
 
@@ -33,6 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
 	void Update ()
 	{
 		_currentSpeed = strafeSpeed * Time.deltaTime;
+		float deltaPosition;
 		if (((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) && _usedControls == ControlType.keyboard) || _usedControls != ControlType.keyboard) && !stunned)
 		{
 			_currentSpeed *= 2;
@@ -46,7 +47,12 @@ public class PlayerBehaviour : MonoBehaviour
 			Application.LoadLevel (0);
 		}
 
-		if (_usedControls == ControlType.keyboard)
+		//Absolutely massive else-if block with all the control methods and the level end movement
+		if (_endLevel)
+		{
+			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -_currentSpeed, _currentSpeed),
+			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -_currentSpeed, _currentSpeed));
+		} else if (_usedControls == ControlType.keyboard)
 		{
 			if (Input.GetKey (KeyCode.RightArrow))
 			{
@@ -70,7 +76,7 @@ public class PlayerBehaviour : MonoBehaviour
 			}
 		} else if (_usedControls == ControlType.tilting)
 		{
-			float deltaPosition = 0.0f;
+			deltaPosition = 0.0f;
 			deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 			if (Input.touchCount != 0)
@@ -93,7 +99,7 @@ public class PlayerBehaviour : MonoBehaviour
 			}
 		} else if (_usedControls == ControlType.dragging)
 		{
-			float deltaPosition = 0.0f;
+			deltaPosition = 0.0f;
 			bool isPaddling = false;
 			if (Input.touchCount != 0)
 			{
@@ -128,7 +134,7 @@ public class PlayerBehaviour : MonoBehaviour
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.oppositedragging)
 		{
-			float deltaPosition = 0.0f;
+			deltaPosition = 0.0f;
 			bool isPaddling = false;
 			if (Input.touchCount != 0)
 			{
@@ -163,7 +169,7 @@ public class PlayerBehaviour : MonoBehaviour
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.freedragging)
 		{
-			float deltaPosition = 0.0f;
+			deltaPosition = 0.0f;
 			bool isPaddling = false;
 			if (Input.touchCount != 0)
 			{
@@ -200,7 +206,10 @@ public class PlayerBehaviour : MonoBehaviour
 			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
-		transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
+		if (!_endLevel)
+		{
+			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
+		}
 
 
 		//Debug näppäimet
@@ -231,6 +240,7 @@ public class PlayerBehaviour : MonoBehaviour
 		stunned = false;
 	}
 
+	//Automatically determines the best paddle to use
 	void AutomaticPaddle ()
 	{
 		GameObject tempo = levelManager.GetComponent<LevelBehaviour> ().FindClosestDeflectable (transform.position);
@@ -249,7 +259,6 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 
 	}
-
 	Vector2 IntersectionPoint (Vector2 pos, Vector2 vel)
 	{
 		if (vel.y != 0.0f)
@@ -258,6 +267,20 @@ public class PlayerBehaviour : MonoBehaviour
 			return new Vector2 (pos.x + tempf * vel.x, transform.position.y);
 		} else
 			return pos;
+	}
+
+	public void StartTheEnd()
+	{
+		_endLevel = true;
+		_touchPosition = new Vector3 (1.5f, transform.position.y);
+		StartCoroutine (WalkOff ());
+	}
+
+	IEnumerator WalkOff()
+	{
+		yield return new WaitForSeconds (3.0f);
+		_touchPosition = new Vector3 (1.5f, 8.0f);
+		levelManager.GetComponent<LevelBehaviour> ().ClearTheLevel ();
 	}
 
 	void OnGUI ()

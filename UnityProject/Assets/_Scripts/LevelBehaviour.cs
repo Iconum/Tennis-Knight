@@ -7,6 +7,7 @@ public class EnemySpawnData
 {
 	public GameObject enemy = null;
 	public Vector3 position = new Vector3(0.0f, 4.0f);
+	public float delayTime = 0.0f;
 }
 
 [System.Serializable]
@@ -25,7 +26,7 @@ public class EnemyPackage
 			} else
 			{
 				instantiated.Add ((GameObject)GameObject.Instantiate (prefabPositionCombo [i].enemy, prefabPositionCombo [i].position + new Vector3(0.0f, 5.0f), Quaternion.Euler (Vector3.zero)));
-				instantiated[instantiated.Count-1].GetComponent<EnemyBehaviour>().GiveSpawnDelay(prefabPositionCombo[i].position);
+				instantiated[instantiated.Count-1].GetComponent<EnemyBehaviour>().GiveSpawnDelay(prefabPositionCombo[i].position, prefabPositionCombo[i].delayTime);
 			}
 		}
 		return instantiated.ToArray ();
@@ -33,9 +34,14 @@ public class EnemyPackage
 }
 
 public class LevelBehaviour : MonoBehaviour {
-	public GameObject topBorder, player = null;
+	public GameObject topBorder, player = null, villagerManager = null;
+	public int loot = 500;
+	public int optimalVillagerAmount = 10;
+	public float fadeTime = 2.0f;
 
 	protected List<GameObject> deflectableList = new List<GameObject>();
+	protected bool _loadingLevel = false;
+	protected AsyncOperation _aOperation = null;
 
 	public class DeflectableSorter : Comparer<GameObject>
 	{
@@ -44,6 +50,14 @@ public class LevelBehaviour : MonoBehaviour {
 		public override int Compare (GameObject x, GameObject y)
 		{
 			return (int)Mathf.Round (Vector3.Distance (x.transform.position, _targetPosition) - Vector3.Distance (y.transform.position, _targetPosition));
+		}
+	}
+
+	protected virtual void Update()
+	{
+		if (_loadingLevel)
+		{
+			//TODO: Kamera haihtuu mustaan
 		}
 	}
 
@@ -82,6 +96,22 @@ public class LevelBehaviour : MonoBehaviour {
 			Destroy(deflectableList[i]);
 		}
 		deflectableList.Clear ();
+	}
+
+	public virtual void ClearTheLevel()
+	{
+		villagerManager.GetComponent<VillagerHandler> ().GetVillagers ();
+		float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
+		Statics.valuables += Mathf.FloorToInt (loot / ratio);
+		_loadingLevel = true;
+		_aOperation = Application.LoadLevelAsync (0);
+		_aOperation.allowSceneActivation = false;
+		StartCoroutine (MinFadeTime ());
+	}
+	IEnumerator MinFadeTime()
+	{
+		yield return new WaitForSeconds (fadeTime);
+		_aOperation.allowSceneActivation = true;
 	}
 
 	public void ToggleWall()

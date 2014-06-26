@@ -11,7 +11,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	public Animator anim;
 	
 	protected float _flickerTimer = 0.0f;
-	protected bool _flickerActive = false;
+	protected bool _flickerActive = false, _delayedActivation = false;
 	protected Vector3 _startLocation;
 
 	protected virtual void Awake()
@@ -24,10 +24,20 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	}
 
-	public virtual void GiveSpawnDelay(Vector3 target)
+	public virtual void GiveSpawnDelay(Vector3 target, float delay)
 	{
 		spawning = true;
 		targetLocation = target;
+		if (delay >= 0.05f)
+		{
+			_delayedActivation = true;
+			StartCoroutine(StartActing(delay));
+		}
+	}
+	IEnumerator StartActing(float t)
+	{
+		yield return new WaitForSeconds (t);
+		_delayedActivation = false;
 	}
 
 	// Update is called once per frame
@@ -51,7 +61,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			}
 		}
 
-		if (spawning)
+		if (spawning && !_delayedActivation)
 		{
 			_flickerTimer += Time.deltaTime / spawnLerpLimit;
 			transform.position = Vector3.Lerp (_startLocation, targetLocation, _flickerTimer);
@@ -59,12 +69,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			{
 				spawning = false;
 				_flickerTimer = 0.0f;
-				if (_flickerTimer >= 1.0f)
-				{
-					spawning = false;
-					_flickerTimer = 0.0f;
-					Initialize ();
-				}
+				Initialize ();
 			}
 		}
 
