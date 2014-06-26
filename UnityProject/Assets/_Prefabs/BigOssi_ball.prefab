@@ -11,9 +11,10 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
   - 58: {fileID: 5800000}
+  - 114: {fileID: 11400004}
   m_Layer: 12
   m_Name: BigOssi_ball
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,8 +123,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bigOssi: {fileID: 0}
+  bigOssiBallShardPrefab: {fileID: 100000, guid: d6e6ed2c375b4764daa3342eb6fc6ff1,
+    type: 2}
   shootTimeLimit: 0
   spinningRadius: 1
+  enlargeSpeed: 1
+  speed: 1.5
+  realRadius: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8a233c9db812b4b8930bed88dba12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tr: {fileID: 9600000}
+  bigOssi: {fileID: 11400000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -142,9 +161,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
+  m_SortingLayer: 2
   m_SortingOrder: 2
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: f62a07b5b0b70704b95c295553f09333, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

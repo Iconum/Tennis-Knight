@@ -74,6 +74,7 @@ MonoBehaviour:
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
   ballCount: 7
   shootingSpeed: 3
+  isSpawningBalls: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -92,9 +93,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: 17741025971996a4aab809ada676961d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

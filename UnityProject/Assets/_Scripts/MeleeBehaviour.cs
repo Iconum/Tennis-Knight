@@ -9,12 +9,20 @@ public class MeleeBehaviour : EnemyBehaviour {
 	protected bool _projectileFired = false;
 	protected float _targetX = 0.0f, _startY = 4.0f;
 
-	protected void Awake()
+	protected override void Awake()
 	{
+		base.Awake ();
+		collider2D.enabled = false;
+	}
+
+	protected override void Initialize ()
+	{
+		collider2D.enabled = true;
 		_startY = transform.position.y;
+		anim = GetComponent<Animator> ();
 		if (player == null)
 		{
-			player = GameObject.Find("Knight");
+			player = GameObject.FindGameObjectWithTag("Player");
 		}
 		if (usesProjectile)
 		{
@@ -36,32 +44,37 @@ public class MeleeBehaviour : EnemyBehaviour {
 		} else
 		{
 			meleeAttacking = true;
+			anim.SetBool("Attack",true);
 		}
 	}
 
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
-		if (usesProjectile && !_projectileFired)
+		if (!spawning)
 		{
-			float xDifference = _targetX - transform.position.x, yDifference = _startY - transform.position.y;
-			while (Mathf.Abs(xDifference) < 0.1f)
+			if (usesProjectile && !_projectileFired)
 			{
-				_targetX = Random.Range(-2.7f, 2.7f);
-				xDifference = _targetX - transform.position.x;
+				float xDifference = _targetX - transform.position.x, yDifference = _startY - transform.position.y;
+				while (Mathf.Abs(xDifference) < 0.1f)
+				{
+					_targetX = Random.Range (-2.7f, 2.7f);
+					xDifference = _targetX - transform.position.x;
+				}
+				xDifference = Mathf.Clamp (xDifference, -sideSpeed, sideSpeed);
+				yDifference = Mathf.Clamp (yDifference, -chargeSpeed, chargeSpeed);
+				rigidbody2D.velocity = new Vector2 (xDifference, yDifference);
+			} else if (!meleeAttacking)
+			{
+				float xDifference = player.transform.position.x - transform.position.x, yDifference = _startY - transform.position.y;
+				xDifference = Mathf.Clamp (xDifference, -sideSpeed, sideSpeed);
+				yDifference = Mathf.Clamp (yDifference, -chargeSpeed, chargeSpeed);
+				rigidbody2D.velocity = new Vector2 (xDifference, yDifference);
+				anim.SetBool("Attack",false);
+			} else
+			{
+				rigidbody2D.velocity = new Vector2 (0.0f, -(chargeSpeed));
 			}
-			xDifference = Mathf.Clamp (xDifference, -sideSpeed, sideSpeed);
-			yDifference = Mathf.Clamp (yDifference, -chargeSpeed, chargeSpeed);
-			rigidbody2D.velocity = new Vector2 (xDifference, yDifference);
-		} else if (!meleeAttacking)
-		{
-			float xDifference = player.transform.position.x - transform.position.x, yDifference = _startY - transform.position.y;
-			xDifference = Mathf.Clamp (xDifference, -sideSpeed, sideSpeed);
-			yDifference = Mathf.Clamp (yDifference, -chargeSpeed, chargeSpeed);
-			rigidbody2D.velocity = new Vector2 (xDifference, yDifference);
-		} else
-		{
-			rigidbody2D.velocity = new Vector2 (0.0f, -(chargeSpeed));
 		}
 	}
 
@@ -80,9 +93,15 @@ public class MeleeBehaviour : EnemyBehaviour {
 				StartCoroutine (StartAttack (attackTime));
 			}
 		}
-		if (collision.gameObject.CompareTag ("Villager"))
+	}
+
+	protected override void OnTriggerEnter2D (Collider2D other)
+	{
+		base.OnTriggerEnter2D (other);
+
+		if (other.CompareTag ("Removal"))
 		{
-			InstantDeath();
+			InstantDeath ();
 		}
 	}
 }

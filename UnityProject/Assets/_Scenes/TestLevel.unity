@@ -589,6 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBorder: {fileID: 1371211474}
+  player: {fileID: 0}
   enemySpawnPackages:
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}

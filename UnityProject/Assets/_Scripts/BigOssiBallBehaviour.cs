@@ -4,29 +4,30 @@ using System.Collections;
 public class BigOssiBallBehaviour : MonoBehaviour {
 
 	public BigOssiBehaviour bigOssi;
+	public GameObject bigOssiBallShardPrefab;
 	public float shootTimeLimit = 0;
 	public float spinningRadius = 1.0f;
 	public float enlargeSpeed = 1.0f;
-	
+	public float speed = 2.24f;
+	public float realRadius = 0;
+
+	protected BigOssiShardBehaviour ballShard;
 	protected Vector3 startPos;
 	protected float spawnTime;
 	protected bool radiusDir = true;
 	
 	// Use this for initialization
 	void Start () {
-		startPos = new Vector3(gameObject.transform.position.x,
-		            gameObject.transform.position.y);
+		ballShard = bigOssiBallShardPrefab.GetComponent<BigOssiShardBehaviour> ();
+		startPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
 		//gameObject.transform.position = new Vector3(startPos.x - 1.4f,startPos.y);
 		if (spinningRadius > 2f)
 		{
 			Debug.Log("Please don't use more than 2f");
 			spinningRadius = 2f;
 		}
-		gameObject.transform.position = new Vector3(startPos.x 
-		                                            - bigOssi.renderer.bounds.size.x/2
-		                                            + spinningRadius,
-		                                            startPos.y);
-
+		realRadius = bigOssi.renderer.bounds.size.x/2 + spinningRadius;
+		gameObject.transform.position = new Vector3(startPos.x - realRadius, startPos.y);
 		gameObject.transform.parent = bigOssi.transform;
 
 	}
@@ -36,7 +37,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 		spawnTime += Time.deltaTime;
 		SpinBalls ();
-
+		changeLayer ();
 		if(!bigOssi.isSpawningBalls)
 			changeRadius ();
 		//gameObject.transform.Translate(new Vector3((Mathf.Sin(spawnTime*2.24f)/20.0f),Mathf.Cos(spawnTime*2.24f)/20.0f));
@@ -45,29 +46,49 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 	protected void SpinBalls()
 	{
+		//var speed = 2.24f;
 		gameObject.transform.position = (new Vector3(
-			(Mathf.Sin((spawnTime*spinningRadius*2.24f)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.x),
-			Mathf.Cos((spawnTime*spinningRadius*2.24f)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.y));
+			(Mathf.Sin((spawnTime*spinningRadius*speed)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.x),
+			Mathf.Cos((spawnTime*spinningRadius*speed)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.y));
 	}
 
 	protected void changeRadius()
 	{
 		if (radiusDir)
-			enlargeSpeed += Time.deltaTime/2;
+			enlargeSpeed += Time.deltaTime/3;
 		else
-			enlargeSpeed -= Time.deltaTime/2;
+			enlargeSpeed -= Time.deltaTime/3;
 
-		if (enlargeSpeed <= 0.8f)
+		if (enlargeSpeed <= 0.9f)
 			radiusDir = true;
-		if (enlargeSpeed >= 1.8f)
+		if (enlargeSpeed >= 1.5f)
 			radiusDir = false;
 
+	}
+
+	protected void changeLayer()
+	{
+		if (gameObject.transform.position.y > bigOssi.transform.position.y+0.3f)
+		{
+			gameObject.renderer.sortingLayerName = "Background";
+		}
+		else
+			renderer.sortingLayerName = "Characters";
+	}
+
+	protected void spawnShards()
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			GameObject shard = (GameObject)Instantiate (bigOssiBallShardPrefab, transform.position, transform.rotation);
+		}
 	}
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{
+			spawnShards();
 			Destroy(collision.gameObject);
 			bigOssi.Delete(gameObject);
 			Destroy(gameObject);

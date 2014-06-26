@@ -20,9 +20,9 @@ AnimationClip:
     - time: 0
       value: {fileID: 21300008, guid: 2212dfb25f3cd01479ad99248310011d, type: 3}
     - time: .166666672
-      value: {fileID: 21300010, guid: 2212dfb25f3cd01479ad99248310011d, type: 3}
+      value: {fileID: 21300006, guid: 2212dfb25f3cd01479ad99248310011d, type: 3}
     - time: .333333343
-      value: {fileID: 21300010, guid: 2212dfb25f3cd01479ad99248310011d, type: 3}
+      value: {fileID: 21300006, guid: 2212dfb25f3cd01479ad99248310011d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212

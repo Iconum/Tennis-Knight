@@ -12,6 +12,7 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
   - 50: {fileID: 5000000}
+  - 95: {fileID: 9500002}
   m_Layer: 10
   m_Name: MeleeKnight
   m_TagString: Enemy
@@ -56,6 +57,34 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .879999995, y: .819999993}
   m_Center: {x: 0, y: -.519999981}
+--- !u!95 &9500000
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f3f2906bff39dfb4fb75756444b2e2be, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
+--- !u!95 &9500002
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2c3de29d3b6a1f45ad2d7bd1fd4545f, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 0
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,8 +99,12 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   levelManager: {fileID: 0}
   flickerTimerLimit: .5
+  spawnLerpLimit: 3
   health: 1
   specialInvincibility: 0
+  spawning: 1
+  targetLocation: {x: 0, y: 0, z: 0}
+  anim: {fileID: 0}
   meleeAttacking: 0
   usesProjectile: 0
   attackTime: 5
@@ -97,9 +130,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: ce81429614c5777449e84b4fbe4ab970, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

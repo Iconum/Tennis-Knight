@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 61: {fileID: 6100000}
   - 82: {fileID: 8200000}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Villager
   m_TagString: Villager
   m_Icon: {fileID: 0}
@@ -152,9 +152,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

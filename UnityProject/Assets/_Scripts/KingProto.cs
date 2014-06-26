@@ -2,14 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 public class KingProto : EnemyBehaviour {
-	public float shootTimerLimit = 1.0f;
-	public GameObject player = null, level = null;
+	public GameObject player = null;
+	public int maxDeflections = 10;
 	
 	private float _shootTimer = 0.0f, _levelStartTime = 0.0f;
-	
-	private Animator anim;
-
-	public bool ballUsed;
 	private Vector2 knightPos;
 	private Vector3 kbipos;
 	private int deflections;
@@ -21,9 +17,9 @@ public class KingProto : EnemyBehaviour {
 	{
 		_levelStartTime = Time.time;
 		anim = GetComponent<Animator> ();
-		ballUsed = false;
-		health = 3;
-		deflections = 3;
+		player = levelManager.GetComponent<LevelBehaviour> ().player;
+		deflections = maxDeflections - health;
+		StartCoroutine (BallSpawning (2.0f));
 	}
 	
 	// Update is called once per frame
@@ -32,32 +28,23 @@ public class KingProto : EnemyBehaviour {
 		base.Update ();
 		transform.position = new Vector3(Mathf.Cos(Time.time*4 - _levelStartTime) , transform.position.y);
 		//transform.position = new Vector3(Mathf.Sin(Time.time - _levelStartTime) * 2.5f, transform.position.y);
-		
-		_shootTimer += Time.deltaTime;
-		//if (_shootTimer > shootTimerLimit)
-		//{
-		//	_shootTimer = 0.0f;
-		//	GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
-		//	tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
-			//anim.SetTrigger("LeftShot");
-		//}
-
 		//knightPos = (player.GetComponent<KnightBossProto>().transform.position);
 		//Debug.Log (player.GetComponent<KnightBossProto> ().transform.position);
-		GameObject asd;
 
+		/*
+		GameObject asd;
 		if (ballUsed == false)
 		{
 			asd = (GameObject)Instantiate (projectilePrefab, transform.position+new Vector3(0,-1.2f,0), transform.rotation);
 			asd.GetComponent<KingBall> ().SetStartVelocity (new Vector2 (0.1f,-0.5f));
-
+			
 			//(Random.Range (-0.2f, 0.2f), -0.4f)
 			//asd.
 			ballUsed = true;
 			Debug.Log (ballUsed);
-
+			
 			//temp=asd.GetComponent<KingBall> ().King.GetComponent<KingProto>().ballUsed;
-
+			
 		}
 		//ballUsed = temp;
 		//kbipos = GameObject.Find("KingBall(Clone)").transform.position;
@@ -66,6 +53,7 @@ public class KingProto : EnemyBehaviour {
 		//temp = projectilePrefab.GetComponent<KingBall>().GetComponent<KingProto>().ballUsed;
 		//Debug.Log (temp);
 		//GameObject.
+		*/
 	}
 	
 	protected override void OnCollisionEnter2D(Collision2D collision)
@@ -74,6 +62,9 @@ public class KingProto : EnemyBehaviour {
 		{
 			//Destroy(collision.gameObject);
 			deflections--;
+			Debug.Log("Herp Derp: " + deflections.ToString());
+			collision.gameObject.GetComponent<KingBall>().SpeedUp(0.4f);
+			collision.gameObject.tag = "Deflectable";
 			//ballUsed = false;
 
 			if (deflections>0)
@@ -84,28 +75,34 @@ public class KingProto : EnemyBehaviour {
 			if(deflections == 0)
 			{
 				Destroy(collision.gameObject);
-				ballUsed = false;
 				--health;
-				deflections =5;
+				deflections = maxDeflections - health;
 				anim.SetTrigger("Damage");
-				//_flickerActive = true;
+				_flickerActive = true;
 				//anim.SetTrigger("Damage");
 
-				if (health == 1)
-				{
-					deflections =12;
-				}
 				if (health <= 0)
 				{
-					//level.GetComponent<LevelTester> ().OssiKuoli ();
+					levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
 					Destroy(gameObject);
 				}
-
 			}
 		}
-		if (collision.gameObject.CompareTag ("KINGBALL"))
-		{
-			anim.SetTrigger("Deflect");
-		}
+	}
+	public void NoBall()
+	{
+		StartCoroutine (BallSpawning (4.0f));
+	}
+	void InstantBalls()
+	{
+		GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+		tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
+		tempo.GetComponent<KingBall> ().GetTheKingAndLink (this, player);
+		ListDeflectable (tempo);
+	}
+	IEnumerator BallSpawning(float t)
+	{
+		yield return new WaitForSeconds (t);
+		InstantBalls ();
 	}
 }

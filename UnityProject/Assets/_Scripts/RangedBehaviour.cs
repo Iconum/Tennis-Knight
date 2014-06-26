@@ -9,14 +9,16 @@ public class RangedBehaviour : EnemyBehaviour {
 	private bool _sinDirection = true;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Awake () {
+		base.Awake ();
 		_levelStartTime = Time.time;
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
-
+		
 		if (usesSinModifier)
 		{
 			if (_sinDirection)
@@ -39,14 +41,18 @@ public class RangedBehaviour : EnemyBehaviour {
 		}
 
 		transform.position = new Vector3(Mathf.Sin(Time.time - _levelStartTime) * 2.5f * _sinModifier, transform.position.y);
-		
-		_shootTimer += Time.deltaTime;
-		if (_shootTimer > shootTimerLimit)
+
+		if (!spawning)
 		{
-			_shootTimer = 0.0f;
-			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
-			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
-			ListDeflectable(tempo);
+			_shootTimer += Time.deltaTime;
+			if (_shootTimer > shootTimerLimit)
+			{
+				_shootTimer = 0.0f;
+				GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
+				ListDeflectable (tempo);
+				anim.SetTrigger("Attack");
+			}
 		}
 	}
 }

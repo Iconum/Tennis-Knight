@@ -23,7 +23,7 @@ public class BasicLevel : LevelBehaviour {
 	{
 		if (enemySpawnPackages.Count != 0)
 		{
-			GameObject[] baddudes = enemySpawnPackages [0].Spawner ();
+			GameObject[] baddudes = enemySpawnPackages [0].Spawner (true);
 			enemySpawnPackages.RemoveAt (0);
 			for (int i = 0; i < baddudes.Length; ++i)
 			{
@@ -35,7 +35,7 @@ public class BasicLevel : LevelBehaviour {
 			}
 		} else
 		{
-
+			ToggleWall ();
 		}
 	}
 	IEnumerator DelayedCreation(float t)

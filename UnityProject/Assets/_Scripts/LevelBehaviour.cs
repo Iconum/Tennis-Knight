@@ -14,19 +14,26 @@ public class EnemyPackage
 {
 	public EnemySpawnData[] prefabPositionCombo;
 
-	public GameObject[] Spawner()
+	public GameObject[] Spawner(bool delayed = false)
 	{
 		List<GameObject> instantiated = new List<GameObject> ();
 		for (int i = 0; i < prefabPositionCombo.Length; ++i)
 		{
-			instantiated.Add((GameObject)GameObject.Instantiate(prefabPositionCombo[i].enemy, prefabPositionCombo[i].position, Quaternion.Euler(Vector3.zero)));
+			if (!delayed)
+			{
+				instantiated.Add ((GameObject)GameObject.Instantiate (prefabPositionCombo [i].enemy, prefabPositionCombo [i].position, Quaternion.Euler (Vector3.zero)));
+			} else
+			{
+				instantiated.Add ((GameObject)GameObject.Instantiate (prefabPositionCombo [i].enemy, prefabPositionCombo [i].position + new Vector3(0.0f, 5.0f), Quaternion.Euler (Vector3.zero)));
+				instantiated[instantiated.Count-1].GetComponent<EnemyBehaviour>().GiveSpawnDelay(prefabPositionCombo[i].position);
+			}
 		}
 		return instantiated.ToArray ();
 	}
 }
 
 public class LevelBehaviour : MonoBehaviour {
-	public GameObject topBorder;
+	public GameObject topBorder, player = null;
 
 	protected List<GameObject> deflectableList = new List<GameObject>();
 
