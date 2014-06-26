@@ -108,8 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg2: {fileID: 100000}
   bg1: {fileID: 100004}
-  omacamera: {fileID: 0}
-  bgspeed: -.0500000007
+  omacamera: {fileID: 100006, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+  bgspeed: -5
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
