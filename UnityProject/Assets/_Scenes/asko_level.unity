@@ -243,6 +243,52 @@ EdgeCollider2D:
   m_Points:
   - {x: 2.81249619, y: -4.99991322}
   - {x: 2.81248546, y: 5.00003338}
+--- !u!1 &321011771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100012, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+  m_PrefabInternal: {fileID: 1398194093}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 321011773}
+  - 114: {fileID: 321011772}
+  m_Layer: 0
+  m_Name: CastleRaidView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &321011772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1398194093}
+  m_GameObject: {fileID: 321011771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770604eceb2bec149a48b1ffcca41498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 1455721225}
+  terrainPrefab: {fileID: 0}
+  castlePrefab: {fileID: 0}
+  tinyVillagerPrefab: {fileID: 0}
+  moneyPrefabs: []
+  startLocation: {x: 0, y: 0, z: 0}
+  endLocation: {x: 0, y: 0, z: 0}
+--- !u!4 &321011773
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400012, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+  m_PrefabInternal: {fileID: 1398194093}
+  m_GameObject: {fileID: 321011771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1455721224}
 --- !u!1 &532427304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,6 +1963,7 @@ Transform:
   - {fileID: 694197996}
   - {fileID: 532427305}
   - {fileID: 302956730}
+  - {fileID: 321011773}
   m_Father: {fileID: 0}
 --- !u!114 &1455721225
 MonoBehaviour:
@@ -1933,6 +1980,7 @@ MonoBehaviour:
   topBorder: {fileID: 694197995}
   player: {fileID: 0}
   villagerManager: {fileID: 0}
+  castleHandler: {fileID: 321011772}
   loot: 500
   optimalVillagerAmount: 10
   startFadeTime: 1

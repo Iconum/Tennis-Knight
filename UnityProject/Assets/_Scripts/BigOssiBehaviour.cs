@@ -60,6 +60,24 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		}
 
 	}
+	protected override void Flicker ()
+	{
+		_flickerTimer += Time.deltaTime;
+		if (_flickerTimer % 0.4f < 0.2f)
+		{
+			GetComponent<SpriteRenderer>().color = new Color(1f,0.7f,0.7f);
+		} else
+		{
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
+		}
+		if (_flickerTimer > flickerTimerLimit)
+		{
+			_flickerActive = false;
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
+			_flickerTimer = 0.0f;
+		}
+	}
+
 	//Spawn shield balls in calculated time.
 	public void SpawnBalls()
 	{
