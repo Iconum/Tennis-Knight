@@ -8,11 +8,12 @@ public class PlayerBehaviour : MonoBehaviour
 	public bool paddleActive = false, stunned = false;
 	public float strafeSpeed = 0.1f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
+	public Vector3 targetPosition = new Vector3(0.0f, -2.5f);
 	private List<GameObject> _collisionList = new List<GameObject> ();
-	private float _currentSpeed;
+	private float _currentSpeed, _lerpTime = 0.0f;
 	private float _horizontalTouch = 0.0f, _touchTime = 0.0f;
 	private ControlType _usedControls = ControlType.keyboard;
-	private bool _tappedPaddle = false, _dragging = false, _endLevel = false;
+	private bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false;
 	private Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
 	private Vector3 _playerPosition = Vector3.zero;
 
@@ -25,6 +26,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 		leftPaddle.SetActive (false);
 		rightPaddle.SetActive (false);
+		_playerPosition = transform.position;
 
 		_usedControls = Statics.selectedControlMethod;
 	}
@@ -52,6 +54,15 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -_currentSpeed, _currentSpeed),
 			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -_currentSpeed, _currentSpeed));
+		} else if (_startLevel)
+		{
+			_lerpTime += Time.deltaTime;
+			transform.position = Vector3.Lerp(_playerPosition, targetPosition, Mathf.SmoothStep(0.0f, 1.0f, _lerpTime));
+			if (_lerpTime >= 1.0f)
+			{
+				_startLevel = false;
+				_lerpTime = 0.0f;
+			}
 		} else if (_usedControls == ControlType.keyboard)
 		{
 			if (Input.GetKey (KeyCode.RightArrow))
@@ -86,11 +97,10 @@ public class PlayerBehaviour : MonoBehaviour
 					_tappedPaddle = true;
 					if (((Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f) < 0.0f)
 					{
-						PaddleActivate(leftPaddle);
-					}
-					else
+						PaddleActivate (leftPaddle);
+					} else
 					{
-						PaddleActivate(rightPaddle);
+						PaddleActivate (rightPaddle);
 					}
 				}
 			} else
@@ -206,7 +216,7 @@ public class PlayerBehaviour : MonoBehaviour
 			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
-		if (!_endLevel)
+		if (!_endLevel && !_startLevel)
 		{
 			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 		}
