@@ -35,6 +35,7 @@ public class EnemyPackage
 
 public class LevelBehaviour : MonoBehaviour {
 	public GameObject topBorder, player = null, villagerManager = null;
+	public CastleRaidHandler castleHandler = null;
 	public int loot = 500;
 	public int optimalVillagerAmount = 10;
 	public float startFadeTime = 1.0f, endFadeTime = 2.0f;
@@ -120,9 +121,16 @@ public class LevelBehaviour : MonoBehaviour {
 		villagerManager.GetComponent<VillagerHandler> ().GetVillagers ();
 		float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
 		Statics.valuables += Mathf.FloorToInt (loot / ratio);
-		_loadingLevel = true;
+		_alpha = 0.0f;
 		_aOperation = Application.LoadLevelAsync (0);
 		_aOperation.allowSceneActivation = false;
+		_loadingLevel = true;
+		//TODO: mini castle raid
+	}
+
+	public virtual void BackToMenus()
+	{
+
 	}
 
 	public void ToggleWall()
