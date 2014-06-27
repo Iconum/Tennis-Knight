@@ -153,6 +153,7 @@ MonoBehaviour:
   sixty: 60
   eighty: 80
   onefourty: 140
+  targetPosition: {x: 0, y: -2.5, z: 0}
 --- !u!58 &301573755
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1876,6 +1877,10 @@ Prefab:
       propertyPath: m_TagString
       value: Removal
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: levelTest
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
   m_RootGameObject: {fileID: 1455721223}
@@ -1932,6 +1937,7 @@ MonoBehaviour:
   optimalVillagerAmount: 10
   fadeTime: 2
   enemySpawnPackages: []
+  levelTest: 1
 --- !u!1001 &1856574603
 Prefab:
   m_ObjectHideFlags: 0

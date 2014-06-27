@@ -142,7 +142,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	{   //Destroy all shield balls from a list
 		for(int i = 0; i < shieldBalls.Count; ++i)
 		{
-			Delete(shieldBalls[i]);
+			if (shieldBalls[i])
+			shieldBalls[i].GetComponent<BigOssiBallBehaviour>().DeleteObject();
 		}
 		//clear all shieldBalls from a list
 		shieldBalls.Clear();
