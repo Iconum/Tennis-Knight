@@ -8,29 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 212: {fileID: 21200000}
-  - 114: {fileID: 11400000}
-  - 61: {fileID: 6100000}
-  - 95: {fileID: 9500000}
-  m_Layer: 10
-  m_Name: BigOssi
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100002
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400002}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: DarkMatterEffect
+  m_Name: ShieldBallExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,48 +24,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.67840719, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 400002}
-  m_Father: {fileID: 0}
---- !u!4 &400002
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -.0632648468, y: -.0863282681, z: 0}
+  m_LocalPosition: {x: 2.64040422, y: -.320520967, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400000}
---- !u!61 &6100000
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Size: {x: 1.5, y: 2}
-  m_Center: {x: 0, y: 0}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c7dcc3adef1de4e41a8bb0c1a960f4ee, type: 2}
-  m_CullingMode: 0
-  m_ApplyRootMotion: 1
-  m_AnimatePhysics: 0
-  m_HasTransformHierarchy: 1
+  m_Father: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,41 +37,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb70e68e80297b7469f9ac9d168c6656, type: 3}
+  m_Script: {fileID: 11500000, guid: ad51c619e0198c84789e3fc02d939674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
-  levelManager: {fileID: 0}
-  flickerTimerLimit: 4
-  spawnLerpLimit: 3
-  health: 5
-  specialInvincibility: 0
-  spawning: 0
-  targetLocation: {x: 0, y: 0, z: 0}
-  anim: {fileID: 0}
-  shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
-  ballCount: 11
-  shootingSpeed: 3
-  isSpawningBalls: 1
-  darkMatter: {fileID: 0}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  lengthInSec: .5
+  m_GameObject: {fileID: 100000}
+  lengthInSec: .300000012
   startDelay: 0
   speed: 1
   randomSeed: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: .5
+      scalar: .600000024
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -159,7 +90,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 3.07999992
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -283,10 +214,10 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4282195505
+        rgba: 4285277251
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: .300000012
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -353,13 +284,13 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 20
+    maxNumParticles: 5
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 4
-    radius: 1
-    angle: 37.2134628
+    type: 0
+    radius: .0633963943
+    angle: 25
     length: 5
     boxX: 1
     boxY: 1
@@ -371,7 +302,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 3
+      scalar: 30
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -421,13 +352,13 @@ ParticleSystem:
         m_Curve:
         - time: 0
           value: 1
-          inSlope: -2
-          outSlope: -2
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
         - time: 1
           value: 0
-          inSlope: 0
-          outSlope: 0
+          inSlope: -2
+          outSlope: -2
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1166,7 +1097,7 @@ ParticleSystemRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1194,29 +1125,6 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
---- !u!212 &21200000
-SpriteRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: 2
-  m_SortingOrder: 0
-  m_SortingLayerID: 1061239699
-  m_Sprite: {fileID: 21300000, guid: 17741025971996a4aab809ada676961d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

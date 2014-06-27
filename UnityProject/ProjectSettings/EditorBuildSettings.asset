@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/testi2.unity
   - enabled: 1
     path: Assets/_Scenes/kingProto.unity
+  - enabled: 1
+    path: Assets/_Scenes/asko_level.unity

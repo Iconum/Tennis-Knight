@@ -35,12 +35,15 @@ public class EnemyPackage
 
 public class LevelBehaviour : MonoBehaviour {
 	public GameObject topBorder, player = null, villagerManager = null;
+	public CastleRaidHandler castleHandler = null;
 	public int loot = 500;
 	public int optimalVillagerAmount = 10;
-	public float fadeTime = 2.0f;
+	public float startFadeTime = 1.0f, endFadeTime = 2.0f;
+	public Texture2D fadeTexture;
 
 	protected List<GameObject> deflectableList = new List<GameObject>();
-	protected bool _loadingLevel = false;
+	protected bool _loadingLevel = false, _startingLevel = true;
+	protected float _fadeTimer = 0.0f, _alpha = 1.0f;
 	protected AsyncOperation _aOperation = null;
 
 	public class DeflectableSorter : Comparer<GameObject>
@@ -57,7 +60,22 @@ public class LevelBehaviour : MonoBehaviour {
 	{
 		if (_loadingLevel)
 		{
-			//TODO: Kamera haihtuu mustaan
+			_fadeTimer += Time.deltaTime;
+			if (_fadeTimer >= endFadeTime)
+			{
+				_fadeTimer = endFadeTime;
+				_aOperation.allowSceneActivation = true;
+			}
+			_alpha = _fadeTimer / endFadeTime;
+		} else if (_startingLevel)
+		{
+			_fadeTimer += Time.deltaTime;
+			if (_fadeTimer >= startFadeTime)
+			{
+				_fadeTimer = 0.0f;
+				_startingLevel = false;
+			}
+			_alpha = (startFadeTime - _fadeTimer) / startFadeTime;
 		}
 	}
 
@@ -103,15 +121,16 @@ public class LevelBehaviour : MonoBehaviour {
 		villagerManager.GetComponent<VillagerHandler> ().GetVillagers ();
 		float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
 		Statics.valuables += Mathf.FloorToInt (loot / ratio);
-		_loadingLevel = true;
+		_alpha = 0.0f;
 		_aOperation = Application.LoadLevelAsync (0);
 		_aOperation.allowSceneActivation = false;
-		StartCoroutine (MinFadeTime ());
+		_loadingLevel = true;
+		//TODO: mini castle raid
 	}
-	IEnumerator MinFadeTime()
+
+	public virtual void BackToMenus()
 	{
-		yield return new WaitForSeconds (fadeTime);
-		_aOperation.allowSceneActivation = true;
+
 	}
 
 	public void ToggleWall()
@@ -128,6 +147,16 @@ public class LevelBehaviour : MonoBehaviour {
 		{
 			topBorder.tag = "Removal";
 			topBorder.collider2D.isTrigger = true;
+		}
+	}
+
+	void OnGUI()
+	{
+		if (_startingLevel || _loadingLevel)
+		{
+			GUI.color = new Color(1.0f, 1.0f, 1.0f, _alpha);
+			GUI.depth = -1000;
+			GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), fadeTexture);
 		}
 	}
 }

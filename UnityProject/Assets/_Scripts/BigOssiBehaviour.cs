@@ -17,10 +17,13 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
 	
+	public ParticleSystem darkMatter;
+
 	// Use this for initialization
 	void Start ()
 	{   //Get the animator
 		anim = GetComponent<Animator> ();
+		darkMatter = GetComponentInChildren<ParticleSystem> ();
 		shieldBall = shieldBallPrefab.GetComponent<BigOssiBallBehaviour> ();
 		//calculation for spawning for first time
 		bossPhaseSetter ();
@@ -28,7 +31,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
 		base.Update ();
 		//Check, if boss is spawning shield. No shooting until they are ready
 		if (isSpawningBalls == true) SpawnBalls ();
@@ -57,6 +60,24 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		}
 
 	}
+	protected override void Flicker ()
+	{
+		_flickerTimer += Time.deltaTime;
+		if (_flickerTimer % 0.4f < 0.2f)
+		{
+			GetComponent<SpriteRenderer>().color = new Color(1f,0.7f,0.7f);
+		} else
+		{
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
+		}
+		if (_flickerTimer > flickerTimerLimit)
+		{
+			_flickerActive = false;
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
+			_flickerTimer = 0.0f;
+		}
+	}
+
 	//Spawn shield balls in calculated time.
 	public void SpawnBalls()
 	{
@@ -139,7 +160,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	{   //Destroy all shield balls from a list
 		for(int i = 0; i < shieldBalls.Count; ++i)
 		{
-			Delete(shieldBalls[i]);
+			if (shieldBalls[i])
+			shieldBalls[i].GetComponent<BigOssiBallBehaviour>().DeleteObject();
 		}
 		//clear all shieldBalls from a list
 		shieldBalls.Clear();
@@ -169,26 +191,31 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			shieldBall.speed = 1.5f;
 			ballCount = 4;
 			calculateCircumference ();
+			darkMatter.emissionRate = 3f;
 			break;
 		case 4:
 			shieldBall.speed = 1.8f;
 			ballCount = 5;
 			calculateCircumference ();
+			darkMatter.emissionRate = 5f;
 			break;
 		case 3:
 			shieldBall.speed = 2f;
 			ballCount = 6;
 			calculateCircumference ();
+			darkMatter.emissionRate = 7f;
 			break;
 		case 2:
 			shieldBall.speed = 2.2f;
 			ballCount = 8;
 			calculateCircumference ();
+			darkMatter.emissionRate = 9f;
 			break;
 		case 1:
 			shieldBall.speed = 2.5f;
 			ballCount = 10;
 			calculateCircumference ();
+			darkMatter.emissionRate = 11f;
 			break;
 		default:
 			break;

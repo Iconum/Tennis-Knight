@@ -99,6 +99,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400012}
+  - 114: {fileID: 11400002}
+  m_Layer: 0
+  m_Name: CastleRaidView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -136,6 +152,7 @@ Transform:
   - {fileID: 400010}
   - {fileID: 400002}
   - {fileID: 400000}
+  - {fileID: 400012}
   m_Father: {fileID: 0}
 --- !u!4 &400006
 Transform:
@@ -165,6 +182,17 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400004}
+--- !u!4 &400012
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -206,7 +234,7 @@ EdgeCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6f77c4ab1f2a107439bcfd54b0c51998, type: 2}
   m_IsTrigger: 0
   m_Points:
   - {x: 2.81249619, y: -4.99991322}
@@ -218,7 +246,7 @@ EdgeCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6f77c4ab1f2a107439bcfd54b0c51998, type: 2}
   m_IsTrigger: 0
   m_Points:
   - {x: -2.81251025, y: 4.9999671}
@@ -242,7 +270,7 @@ EdgeCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6f77c4ab1f2a107439bcfd54b0c51998, type: 2}
   m_IsTrigger: 1
   m_Points:
   - {x: -3.161798, y: 5.0510025}
@@ -273,25 +301,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBorder: {fileID: 100010}
+  player: {fileID: 0}
+  villagerManager: {fileID: 0}
+  castleHandler: {fileID: 11400002}
+  loot: 500
+  optimalVillagerAmount: 10
+  startFadeTime: 1
+  endFadeTime: 2
+  fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
       position: {x: 0, y: 3, z: 0}
+      delayTime: 0
+  levelTest: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770604eceb2bec149a48b1ffcca41498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 11400000}
+  terrainPrefab: {fileID: 0}
+  castlePrefab: {fileID: 0}
+  tinyVillagerPrefab: {fileID: 0}
+  moneyPrefabs: []
+  startLocation: {x: 0, y: 0, z: 0}
+  endLocation: {x: 0, y: 0, z: 0}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
