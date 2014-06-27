@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
-  levelManager: {fileID: 100004, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+  levelManager: {fileID: 0}
   flickerTimerLimit: 4
   spawnLerpLimit: 3
   health: 5
@@ -108,7 +108,7 @@ MonoBehaviour:
   ballCount: 11
   shootingSpeed: 3
   isSpawningBalls: 1
-  darkMatter: {fileID: 19800000}
+  darkMatter: {fileID: 0}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

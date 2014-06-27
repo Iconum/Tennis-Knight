@@ -27,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
 		leftPaddle.SetActive (false);
 		rightPaddle.SetActive (false);
 		_playerPosition = transform.position;
+		levelManager = GameObject.Find ("Level");
 
 		_usedControls = Statics.selectedControlMethod;
 	}
