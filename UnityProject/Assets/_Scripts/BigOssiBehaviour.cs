@@ -31,7 +31,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
 		base.Update ();
 		//Check, if boss is spawning shield. No shooting until they are ready
 		if (isSpawningBalls == true) SpawnBalls ();

@@ -238,7 +238,7 @@ EdgeCollider2D:
   m_PrefabInternal: {fileID: 1398194093}
   m_GameObject: {fileID: 302956729}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6f77c4ab1f2a107439bcfd54b0c51998, type: 2}
   m_IsTrigger: 0
   m_Points:
   - {x: 2.81249619, y: -4.99991322}
@@ -278,7 +278,7 @@ EdgeCollider2D:
   m_PrefabInternal: {fileID: 1398194093}
   m_GameObject: {fileID: 532427304}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6f77c4ab1f2a107439bcfd54b0c51998, type: 2}
   m_IsTrigger: 0
   m_Points:
   - {x: -2.81251025, y: 4.9999671}
@@ -318,7 +318,7 @@ EdgeCollider2D:
   m_PrefabInternal: {fileID: 1398194093}
   m_GameObject: {fileID: 694197995}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6f77c4ab1f2a107439bcfd54b0c51998, type: 2}
   m_IsTrigger: 1
   m_Points:
   - {x: -3.161798, y: 5.0510025}
@@ -1935,7 +1935,9 @@ MonoBehaviour:
   villagerManager: {fileID: 0}
   loot: 500
   optimalVillagerAmount: 10
-  fadeTime: 2
+  startFadeTime: 1
+  endFadeTime: 2
+  fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages: []
   levelTest: 1
 --- !u!1001 &1856574603
