@@ -45,20 +45,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
 		if (_flickerActive)
 		{
-			_flickerTimer += Time.deltaTime;
-			if (_flickerTimer % 0.4f < 0.2f)
-			{
-				renderer.enabled = false;
-			} else
-			{
-				renderer.enabled = true;
-			}
-			if (_flickerTimer > flickerTimerLimit)
-			{
-				_flickerActive = false;
-				renderer.enabled = true;
-				_flickerTimer = 0.0f;
-			}
+			Flicker ();
 		}
 
 		if (spawning && !_delayedActivation)
@@ -77,6 +64,24 @@ public class EnemyBehaviour : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.End))
 		{
 			InstantDeath ();
+		}
+	}
+
+	protected virtual void Flicker()
+	{
+		_flickerTimer += Time.deltaTime;
+		if (_flickerTimer % 0.4f < 0.2f)
+		{
+			renderer.enabled = false;
+		} else
+		{
+			renderer.enabled = true;
+		}
+		if (_flickerTimer > flickerTimerLimit)
+		{
+			_flickerActive = false;
+			renderer.enabled = true;
+			_flickerTimer = 0.0f;
 		}
 	}
 
