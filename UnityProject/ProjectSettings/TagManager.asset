@@ -55,6 +55,10 @@ TagManager:
     userID: 1
     uniqueID: 2288076611
     locked: 0
+  - name: Overlay
+    userID: 3
+    uniqueID: 3287406857
+    locked: 0
   - name: Characters
     userID: 2
     uniqueID: 1061239699

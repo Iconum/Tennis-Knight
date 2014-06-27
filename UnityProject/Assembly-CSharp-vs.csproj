@@ -72,6 +72,7 @@
      <Compile Include="Assets\_Scripts\PaddleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PlayerBehaviour.cs" />
      <Compile Include="Assets\_Scripts\RangedBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\SndBackgroundLoop.cs" />
      <Compile Include="Assets\_Scripts\SpearBehaviour.cs" />
      <Compile Include="Assets\_Scripts\Statics.cs" />
      <Compile Include="Assets\_Scripts\VillagerBehaviour.cs" />

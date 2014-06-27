@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class BackgroundLoop : MonoBehaviour {
+public class SndBackgroundLoop : MonoBehaviour {
 
 	//public GameObject bg1 = null;
-	public GameObject bg2= null, bg1=null;
+	public GameObject bg1= null, bg2=null,ol1=null, ol2=null;
 	public GameObject omacamera = null;
-	public float bgspeed = -0.1f;
+	public float bgspeed = -3f;
 	private Vector3 startPosition;
 	private Vector3 cpos, bg1pos, bg2pos,bg2bs;
 	private float chmax,chmin;
@@ -43,23 +43,36 @@ public class BackgroundLoop : MonoBehaviour {
 		bg1.transform.position += new Vector3 (0,deltaspeed);
 		bg2.transform.position += new Vector3 (0,deltaspeed);
 
+		//ol1.transform.position += new Vector3 (0,deltaspeed);
+		//ol2.transform.position += new Vector3 (0,deltaspeed);
+
 		//Debug.Log (bg2.transform.position);
 
-		if (bg2.transform.position.y <= -cheight)
-		{
-			bg2.transform.position = new Vector3(bg2.transform.position.x,cheight);
-			//bg2.transform.position += new Vector3 (0,deltaspeed);
-		}
+
 
 		if (bg1.transform.position.y <= -cheight)
 		{
-			bg1.transform.position = new Vector3(bg1.transform.position.x,cheight);
+			bg1.transform.position = new Vector3(0,cheight);
 			//bg1.transform.position += new Vector3 (0,deltaspeed);
 		}
 
-		//if (Input.GetKey (KeyCode.Space))
-		//{
-		//	Application.LoadLevel("Testing1");
-		//}
+		if (bg2.transform.position.y <= -cheight)
+		{
+			bg2.transform.position = new Vector3(0,cheight);
+			//bg2.transform.position += new Vector3 (0,deltaspeed);
+		}
+
+		/*
+		if (ol2.transform.position.y <= -cheight)
+		{
+			ol2.transform.position = new Vector3(ol2.transform.position.x,cheight);
+			//bg2.transform.position += new Vector3 (0,deltaspeed);
+		}
+		
+		if (ol1.transform.position.y <= -cheight)
+		{
+			ol1.transform.position = new Vector3(ol1.transform.position.x,cheight);
+			//bg1.transform.position += new Vector3 (0,deltaspeed);
+		}*/
 	}
 }
