@@ -30,6 +30,8 @@ public class VillagerBehaviour : MonoBehaviour
 	protected float _spawnThreshold = 0.0f, _endLerpTime = 0.0f;
 	protected bool _endLerping = false;
 
+	private Animator anim;
+
 	void Start ()
 	{
 		handler = GameObject.Find ("VillagerManager").GetComponent<VillagerHandler> (); //get component from handler
@@ -38,6 +40,8 @@ public class VillagerBehaviour : MonoBehaviour
 		gameObject.transform.position = spawnStartPos; // set villager to spawning start position
 		spawnLength = Vector3.Distance (spawnStartPos, spawnEndPos); // check how long is the distance of spawning positions
 		startTime = Time.time; //check when spawn started
+
+		anim = GetComponent<Animator> ();
 	}
 
 	void Update ()
@@ -109,6 +113,7 @@ public class VillagerBehaviour : MonoBehaviour
 			gameObject.transform.position += new Vector3 (flyingSpeed / 500, height);
 			deathTime -= Time.deltaTime;
 			rotation += Time.deltaTime * rotationSpeed;
+			anim.SetTrigger("Death");
 		} else
 		{
 			handler.Delete (gameObject);
@@ -142,6 +147,7 @@ public class VillagerBehaviour : MonoBehaviour
 			{
 				handler.Delete (gameObject);
 				Destroy (gameObject);
+
 			}
 		}
 	}

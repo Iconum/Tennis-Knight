@@ -312,6 +312,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: a8ec6b740fc3caa47ab4a6f007e06353, type: 2}
+      propertyPath: bgspeed
+      value: -4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8ec6b740fc3caa47ab4a6f007e06353, type: 2}
   m_RootGameObject: {fileID: 1879748291}
@@ -585,7 +589,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   villagerPrefab: {fileID: 100000, guid: 19fa25882e55546449ffdf0fdb8149d4, type: 2}
+  level: {fileID: 0}
   respawnCount: 5
+  villagerSpawnRate: .5
   villagers: []
   spawnPositions: []
   spawnPos: {x: 0, y: 0, z: 0}
@@ -642,7 +648,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100000, guid: 8999954950ea6a446aef72a9cf1cf667, type: 2}
+      objectReference: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
       value: 
@@ -789,7 +795,7 @@ MonoBehaviour:
   bg2: {fileID: 1958515863}
   bg1: {fileID: 947744444}
   omacamera: {fileID: 100006, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
-  bgspeed: -5
+  bgspeed: -4
 --- !u!114 &1879748294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,22 +839,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topBorder: {fileID: 1381512563}
   player: {fileID: 0}
+  villagerManager: {fileID: 0}
+  loot: 500
+  optimalVillagerAmount: 10
+  fadeTime: 2
   enemySpawnPackages:
-  - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 8999954950ea6a446aef72a9cf1cf667, type: 2}
-      position: {x: 0, y: 4, z: 0}
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
+  - prefabPositionCombo:
+    - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
+      position: {x: 0, y: 4, z: 0}
+      delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
       position: {x: 0, y: 4, z: 0}
+      delayTime: 0
 --- !u!4 &1955091983
 Transform:
   m_ObjectHideFlags: 0

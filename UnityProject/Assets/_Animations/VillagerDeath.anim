@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Villager_walk
+  m_Name: VillagerDeath
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -17,18 +17,8 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: .150000006
-      value: {fileID: 21300000, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .316666663
-      value: {fileID: 21300002, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .483333319
-      value: {fileID: 21300004, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .649999976
-      value: {fileID: 21300006, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .816666663
-      value: {fileID: 21300008, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .983333349
-      value: {fileID: 21300010, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
+    - time: 0
+      value: {fileID: 21300010, guid: f05113971b8d95343a85813842a44320, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -41,7 +31,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: .0166666675
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
