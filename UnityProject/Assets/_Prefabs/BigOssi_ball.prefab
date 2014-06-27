@@ -108,7 +108,7 @@ TrailRenderer:
       rgba: 4288169065
     m_Color[4]:
       serializedVersion: 2
-      rgba: 5379121
+      rgba: 4283569201
   m_MinVertexDistance: .100000001
   m_Autodestruct: 0
 --- !u!114 &11400000
@@ -130,6 +130,8 @@ MonoBehaviour:
   enlargeSpeed: 1
   speed: 1.5
   realRadius: 0
+  shardSpawnDir: {x: 0, y: 0, z: 0}
+  explosionPrefab: {fileID: 100000, guid: 2b578a903c44a3845af626eff3686f03, type: 2}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

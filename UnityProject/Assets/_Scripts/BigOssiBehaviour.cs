@@ -17,10 +17,13 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
 	
+	public ParticleSystem darkMatter;
+
 	// Use this for initialization
 	void Start ()
 	{   //Get the animator
 		anim = GetComponent<Animator> ();
+		darkMatter = GetComponentInChildren<ParticleSystem> ();
 		shieldBall = shieldBallPrefab.GetComponent<BigOssiBallBehaviour> ();
 		//calculation for spawning for first time
 		bossPhaseSetter ();
@@ -139,7 +142,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	{   //Destroy all shield balls from a list
 		for(int i = 0; i < shieldBalls.Count; ++i)
 		{
-			Delete(shieldBalls[i]);
+			if (shieldBalls[i])
+			shieldBalls[i].GetComponent<BigOssiBallBehaviour>().DeleteObject();
 		}
 		//clear all shieldBalls from a list
 		shieldBalls.Clear();
@@ -169,26 +173,31 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			shieldBall.speed = 1.5f;
 			ballCount = 4;
 			calculateCircumference ();
+			darkMatter.emissionRate = 3f;
 			break;
 		case 4:
 			shieldBall.speed = 1.8f;
 			ballCount = 5;
 			calculateCircumference ();
+			darkMatter.emissionRate = 5f;
 			break;
 		case 3:
 			shieldBall.speed = 2f;
 			ballCount = 6;
 			calculateCircumference ();
+			darkMatter.emissionRate = 7f;
 			break;
 		case 2:
 			shieldBall.speed = 2.2f;
 			ballCount = 8;
 			calculateCircumference ();
+			darkMatter.emissionRate = 9f;
 			break;
 		case 1:
 			shieldBall.speed = 2.5f;
 			ballCount = 10;
 			calculateCircumference ();
+			darkMatter.emissionRate = 11f;
 			break;
 		default:
 			break;
