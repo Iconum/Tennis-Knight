@@ -4,7 +4,7 @@ using System.Collections;
 public class SndBackgroundLoop : MonoBehaviour {
 
 	//public GameObject bg1 = null;
-	public GameObject bg1= null, bg2=null, ol1=null, ol2=null;
+	public GameObject bg1= null, bg2=null,ol1=null, ol2=null;
 	public GameObject omacamera = null;
 	public float bgspeed = -3f;
 	private Vector3 startPosition;
@@ -43,8 +43,8 @@ public class SndBackgroundLoop : MonoBehaviour {
 		bg1.transform.position += new Vector3 (0,deltaspeed);
 		bg2.transform.position += new Vector3 (0,deltaspeed);
 
-		ol1.transform.position += new Vector3 (0,deltaspeed);
-		ol2.transform.position += new Vector3 (0,deltaspeed);
+		//ol1.transform.position += new Vector3 (0,deltaspeed);
+		//ol2.transform.position += new Vector3 (0,deltaspeed);
 
 		//Debug.Log (bg2.transform.position);
 
@@ -52,16 +52,17 @@ public class SndBackgroundLoop : MonoBehaviour {
 
 		if (bg1.transform.position.y <= -cheight)
 		{
-			bg1.transform.position = new Vector3(bg1.transform.position.x,cheight);
+			bg1.transform.position = new Vector3(0,cheight);
 			//bg1.transform.position += new Vector3 (0,deltaspeed);
 		}
 
 		if (bg2.transform.position.y <= -cheight)
 		{
-			bg2.transform.position = new Vector3(bg2.transform.position.x,cheight);
+			bg2.transform.position = new Vector3(0,cheight);
 			//bg2.transform.position += new Vector3 (0,deltaspeed);
 		}
 
+		/*
 		if (ol2.transform.position.y <= -cheight)
 		{
 			ol2.transform.position = new Vector3(ol2.transform.position.x,cheight);
@@ -72,6 +73,6 @@ public class SndBackgroundLoop : MonoBehaviour {
 		{
 			ol1.transform.position = new Vector3(ol1.transform.position.x,cheight);
 			//bg1.transform.position += new Vector3 (0,deltaspeed);
-		}
+		}*/
 	}
 }
