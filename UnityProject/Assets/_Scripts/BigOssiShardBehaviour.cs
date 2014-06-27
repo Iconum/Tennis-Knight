@@ -35,32 +35,34 @@ public class BigOssiShardBehaviour : BallBehaviour
 
 	protected void spawnMovement()
 	{
-		VelocityY -= Time.deltaTime*2;
+		//VelocityY -= Time.deltaTime*2;
 		timer += Time.deltaTime;
 		
-		if (VelocityX < 0)
-		{
-			VelocityX += Time.deltaTime*2;
-		}
-		else
-		{
-			VelocityX -= Time.deltaTime*2;
-		}
+		//if (VelocityX < 0)
+		//{
+		//	VelocityX += Time.deltaTime*2;
+		//}
+		//else
+		//{
+		//	VelocityX -= Time.deltaTime*2;
+		//}
 		
-		gameObject.transform.position += new Vector3( VelocityX * Time.deltaTime, VelocityY * Time.deltaTime, 0 );
-		//gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*10);
+		gameObject.transform.position += new Vector3( VelocityX * Time.deltaTime*2f, VelocityY * Time.deltaTime*2f, 0 );
 
-		if (timer >= 1f)
+		if (timer >= 0.1f)
 		{
 			VelocityX = 0f; VelocityY = 0f;
 		}
-		if(timer >= 3f)
+		if (timer >= 0.5f)
+			gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*(timer*4));
+		if (timer >= 2f)
 			isSpawning = false;
 	}
 
 	protected void targetingMovement()
 	{
 		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPosition, Time.deltaTime );
+		gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*15);
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
