@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: VillagerAnimation
+  m_Name: VillagerCheer
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -18,22 +18,16 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .0833333358
-      value: {fileID: 21300002, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .166666672
-      value: {fileID: 21300004, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .25
-      value: {fileID: 21300006, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .333333343
-      value: {fileID: 21300008, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
-    - time: .416666657
-      value: {fileID: 21300010, guid: 64710fc483686f04bbebde5c193d322f, type: 3}
+      value: {fileID: 21300006, guid: f05113971b8d95343a85813842a44320, type: 3}
+    - time: .266666681
+      value: {fileID: 21300008, guid: f05113971b8d95343a85813842a44320, type: 3}
+    - time: .666666687
+      value: {fileID: 21300008, guid: f05113971b8d95343a85813842a44320, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 60
+  m_SampleRate: 30
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -41,7 +35,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: .433333337
+    m_StopTime: .700000048
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -57,11 +51,4 @@ AnimationClip:
     m_Mirror: 0
   m_EditorCurves: []
   m_EulerEditorCurves: []
-  m_Events:
-  - time: 0
-    functionName: 
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

@@ -95,15 +95,15 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	protected void addShardDirections()
 	{
 		//Up
-		shardSpawnDirections.Add(new Vector3 (0,0.4f));
+		shardSpawnDirections.Add(new Vector3 (0, 1f));
 		//UpLeft
-		shardSpawnDirections.Add(new Vector3 (-1.0f,0.2f));
+		shardSpawnDirections.Add(new Vector3 (-0.8f,0.5f));
 		//DownLeft
-		shardSpawnDirections.Add(new Vector3 (-1.0f,-0.2f));
+		shardSpawnDirections.Add(new Vector3 (-0.5f,-0.5f));
 		//DownRight
-		shardSpawnDirections.Add(new Vector3 (1.0f,-0.2f));
+		shardSpawnDirections.Add(new Vector3 (0.5f,-0.5f));
 		//UpRight
-		shardSpawnDirections.Add(new Vector3 (1.0f,0.2f));
+		shardSpawnDirections.Add(new Vector3 (0.8f,0.5f));
 	}
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)

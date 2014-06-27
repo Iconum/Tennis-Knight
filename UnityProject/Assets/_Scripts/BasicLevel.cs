@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class BasicLevel : LevelBehaviour {
 	public List<EnemyPackage> enemySpawnPackages = new List<EnemyPackage> ();
+	public bool levelTest = false;
 
 	void Start()
 	{
@@ -22,12 +23,14 @@ public class BasicLevel : LevelBehaviour {
 	{
 		if (enemySpawnPackages.Count >= 0)
 		{
-			StartCoroutine (DelayedCreation (5.0f));
 			if (enemySpawnPackages.Count == 0)
 			{
 				ClearDeflectables ();
 				ToggleWall ();
-				StartTheEnd();
+				StartTheEnd ();
+			} else
+			{
+				StartCoroutine (DelayedCreation (5.0f));
 			}
 		}
 	}
@@ -46,6 +49,9 @@ public class BasicLevel : LevelBehaviour {
 			{
 				ToggleWall ();
 			}
+		} else if (levelTest)
+		{
+			ToggleWall ();
 		}
 	}
 	IEnumerator DelayedCreation(float t)
