@@ -6,12 +6,15 @@ public class VillagerHandler : MonoBehaviour {
 
 
 	public GameObject villagerPrefab;
+	public LevelBehaviour level;
 	public int respawnCount = 5;
+	public float villagerSpawnRate = 0.5f;
 	public List<GameObject> villagers = new List<GameObject>();
 	public List<Vector3> spawnPositions = new List<Vector3> ();
 	public Vector3 spawnPos;
 
-	protected int health = Statics.villagers - 1;
+	protected int health = Statics.villagers, living = 0;
+	protected bool _looting = false;
 	// Use this for initialization
 	void Start () {
 		//Spawn villagers on screen when game starts
@@ -22,6 +25,7 @@ public class VillagerHandler : MonoBehaviour {
 			Spawn(villagerPrefab, transform.position + new Vector3 (-2.0f + i, -4.6f), transform.rotation);
 			//villagers.Add((GameObject)Instantiate (villagerPrefab, transform.position + new Vector3 (-2.0f + i, -4.6f), transform.rotation));
 		}
+		villagerSpawnRate = 1.0f / villagerPrefab.GetComponent<VillagerBehaviour> ().movementSpeed;
 	}
 	
 	// Update is called once per frame
@@ -37,15 +41,51 @@ public class VillagerHandler : MonoBehaviour {
 		Spawn(villagerPrefab, spawnPositions [0], transform.rotation);
 		spawnPositions.RemoveAt (0);
 	}
+	public void OffScreen(GameObject me)
+	{
+		++living;
+		villagers.Remove (me);
+		if (villagers.Count == 0)
+		{
+
+		}
+	}
 	//Checks if there is health, so it can respawn a villager.
 	//Also extracts one health per spawn
-	public void Spawn(GameObject obj, Vector3 vec3, Quaternion quat)
+	public GameObject Spawn(GameObject obj, Vector3 vec3, Quaternion quat)
 	{
 		if (health > 0)
 		{
-			villagers.Add ((GameObject)Instantiate (obj, vec3, quat));
+			GameObject tempo = (GameObject)Instantiate (obj, vec3, quat); //tempo = temporary object
+			villagers.Add (tempo);
 			health--;
+			return tempo;
+		}
+		return null;
+	}
+
+	public void LootCastle()
+	{
+		for (int i = 0; i < villagers.Count; ++i)
+		{
+			villagers[i].GetComponent<VillagerBehaviour>().StartLooting(true);
+		}
+		StartCoroutine (SpawnLine (villagerSpawnRate));
+	}
+	IEnumerator SpawnLine(float t)
+	{
+		yield return new WaitForSeconds (t);
+		GameObject tempo = Spawn (villagerPrefab, new Vector3 (0.0f, -6.0f), Quaternion.Euler (Vector3.zero));
+		if (tempo)
+		{
+			tempo.GetComponent<VillagerBehaviour> ().StartLooting ();
+			StartCoroutine (SpawnLine (villagerSpawnRate));
 		}
 	}
 
+	public void GetVillagers()
+	{
+		Statics.villagers = living + health + villagers.Count;
+		StopAllCoroutines ();
+	}
 }

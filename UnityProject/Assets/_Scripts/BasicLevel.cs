@@ -7,16 +7,29 @@ public class BasicLevel : LevelBehaviour {
 
 	void Start()
 	{
+		if (!player)
+		{
+			player = GameObject.FindGameObjectWithTag ("Player");
+		}
+		if (!villagerManager)
+		{
+			villagerManager = GameObject.Find ("VillagerManager");
+		}
 		StartCoroutine (DelayedCreation (1.5f));
 	}
 
 	public override void EnemyDied()
 	{
-		if (enemySpawnPackages.Count == 0)
+		if (enemySpawnPackages.Count >= 0)
 		{
-			ClearDeflectables();
+			StartCoroutine (DelayedCreation (5.0f));
+			if (enemySpawnPackages.Count == 0)
+			{
+				ClearDeflectables ();
+				ToggleWall ();
+				StartTheEnd();
+			}
 		}
-		StartCoroutine (DelayedCreation(5.0f));
 	}
 
 	public void EnemyCreation()
@@ -33,14 +46,17 @@ public class BasicLevel : LevelBehaviour {
 			{
 				ToggleWall ();
 			}
-		} else
-		{
-			ToggleWall ();
 		}
 	}
 	IEnumerator DelayedCreation(float t)
 	{
 		yield return new WaitForSeconds (t);
 		EnemyCreation ();
+	}
+
+	public void StartTheEnd()
+	{
+ 		villagerManager.GetComponent<VillagerHandler> ().LootCastle ();
+		player.GetComponent<PlayerBehaviour> ().StartTheEnd ();
 	}
 }

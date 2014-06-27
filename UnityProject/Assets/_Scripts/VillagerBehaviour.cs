@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class VillagerBehaviour : MonoBehaviour {
+public class VillagerBehaviour : MonoBehaviour
+{
 
 	public VillagerHandler handler;
 	//Death variables
@@ -11,10 +12,12 @@ public class VillagerBehaviour : MonoBehaviour {
 	public float deathTime = 2.0f;
 	public float rotationSpeed = 5.0f;
 	public float flyingSpeed = 5.0f;
+	public float movementSpeed = 2.0f;
 	protected float rotation = 0.0f;
 	protected float height = 0.0f;
 	protected bool isDead = false;
 	protected bool isGoingup = true;
+	protected bool goingToLoot = false;
 	//Spawn variables
 	protected bool isSpawning = true;
 	protected bool hasScreamed = false;
@@ -23,8 +26,12 @@ public class VillagerBehaviour : MonoBehaviour {
 	protected float startTime;
 	protected float spawnLength;
 	protected float spawnTime = 0.0f;
-	// Use this for initialization
-	void Start () {
+	protected Vector3 _lootLocation;
+	protected float _spawnThreshold = 0.0f, _endLerpTime = 0.0f;
+	protected bool _endLerping = false;
+
+	void Start ()
+	{
 		handler = GameObject.Find ("VillagerManager").GetComponent<VillagerHandler> (); //get component from handler
 		spawnEndPos = new Vector3 (gameObject.transform.position.x, -4.6f); // set spawning start position
 		spawnStartPos = new Vector3 (gameObject.transform.position.x, -6.0f); // set spawning end position
@@ -32,20 +39,28 @@ public class VillagerBehaviour : MonoBehaviour {
 		spawnLength = Vector3.Distance (spawnStartPos, spawnEndPos); // check how long is the distance of spawning positions
 		startTime = Time.time; //check when spawn started
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void Update ()
+	{
 		//update for spawning movement
-		if (isSpawning){ 
-			spawning();
+		if (isSpawning)
+		{ 
+			spawning ();
 		}
 		//update for death movement
-		if (isDead) {
+		if (isDead)
+		{
 			death ();
+		}
+		//update for level end
+		if (goingToLoot && !isDead)
+		{
+			ProceedToLoot ();
 		}
 	}
 	//When hit by "Deflectable", villager dies
-	protected virtual void OnCollisionEnter2D(Collision2D collision) {
+	protected virtual void OnCollisionEnter2D (Collision2D collision)
+	{
 
 		if ((collision.gameObject.CompareTag ("Deflectable") && isDead == false) ||
 			(collision.gameObject.CompareTag ("Deflected") && isDead == false))
@@ -56,7 +71,8 @@ public class VillagerBehaviour : MonoBehaviour {
 			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 		}
 	}
-	protected virtual void OnTriggerEnter2D(Collider2D other)
+
+	protected virtual void OnTriggerEnter2D (Collider2D other)
 	{
 		if ((other.CompareTag ("Deflectable") && isDead == false) ||
 			(other.CompareTag ("Deflected") && isDead == false))
@@ -68,50 +84,85 @@ public class VillagerBehaviour : MonoBehaviour {
 	}
 
 	//Death "animation"
-	protected virtual void death(){
+	protected virtual void death ()
+	{
 		if (deathTime > 0)
 		{
-			if(!hasScreamed && deathSounds != null)
+			if (!hasScreamed && deathSounds != null)
 			{
-				audio.clip = deathSounds[Random.Range(0, deathSounds.Count)];
-				audio.pitch = Random.Range(0.9f, 1.2f);
-				audio.Play();
+				audio.clip = deathSounds [Random.Range (0, deathSounds.Count)];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
 				hasScreamed = true;
 			}
 
-			if(gameObject.transform.position.y < flyingHeight && isGoingup == true)
+			if (gameObject.transform.position.y < flyingHeight && isGoingup == true)
 			{
-				height = flyingSpeed/100;
-			}
-			else 
+				height = flyingSpeed / 100;
+			} else 
 				isGoingup = false;
 
 			if (isGoingup == false)
-				height = -flyingSpeed/50;
+				height = -flyingSpeed / 50;
 
-			gameObject.transform.Rotate( new Vector3(0.0f,0.0f,rotation));
-			gameObject.transform.position += new Vector3 (flyingSpeed/500, height);
+			gameObject.transform.Rotate (new Vector3 (0.0f, 0.0f, rotation));
+			gameObject.transform.position += new Vector3 (flyingSpeed / 500, height);
 			deathTime -= Time.deltaTime;
-			rotation += Time.deltaTime*rotationSpeed;
-		} 
-		else {
-			handler.Delete(gameObject);
-			Destroy(gameObject);
+			rotation += Time.deltaTime * rotationSpeed;
+		} else
+		{
+			handler.Delete (gameObject);
+			Destroy (gameObject);
 		}
 
 	}
 	//Spawn movement using with lerp function
-	protected virtual void spawning()
+	protected virtual void spawning ()
 	{
 		if (spawnEndPos.y > gameObject.transform.position.y)
 		{
 			spawnTime += Time.deltaTime;
-			gameObject.transform.position = Vector3.Lerp(spawnStartPos, spawnEndPos, Mathf.SmoothStep(0.0f, 1.0f, spawnTime));
+			gameObject.transform.position = Vector3.Lerp (spawnStartPos, spawnEndPos, Mathf.SmoothStep (0.0f, 1.0f, spawnTime));
 		} else
 		{
 			isSpawning = false;
 			spawnTime = 0.0f;
 		}
-			//gameObject.transform.position.y = targetPos.y;
+		//gameObject.transform.position.y = targetPos.y;
+	}
+	//Begin the level end procedures
+	public void StartLooting (bool washerealready = false)
+	{
+		goingToLoot = true;
+		if (washerealready)
+		{
+			_endLerping = true;
+			_lootLocation = new Vector3 (0.0f, transform.position.x - 2.0f);
+			if (isDead)
+			{
+				handler.Delete (gameObject);
+				Destroy (gameObject);
+			}
+		}
+	}
+
+	protected virtual void ProceedToLoot ()
+	{
+		transform.position += new Vector3 (0.0f, movementSpeed * Time.deltaTime);
+		if (_endLerping)
+		{
+			_lootLocation += new Vector3 (0.0f, movementSpeed * Time.deltaTime);
+			_endLerpTime += Time.deltaTime;
+			transform.position = Vector3.Lerp (spawnEndPos, _lootLocation, _endLerpTime);
+			if (_endLerpTime >= 1.0f)
+			{
+				_endLerping = false;
+			}
+		}
+		if (transform.position.y > 7.0f)
+		{
+			handler.OffScreen (gameObject);
+			Destroy (gameObject);
+		}
 	}
 }

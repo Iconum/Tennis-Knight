@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BigOssiBallBehaviour : MonoBehaviour {
 
@@ -11,10 +12,14 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	public float speed = 2.24f;
 	public float realRadius = 0;
 
-	protected BigOssiShardBehaviour ballShard;
 	protected Vector3 startPos;
 	protected float spawnTime;
 	protected bool radiusDir = true;
+
+	protected BigOssiShardBehaviour ballShard;
+	public Vector3 shardSpawnDir;
+	protected List<GameObject> ballShards = new List<GameObject>();
+	protected List<Vector3> shardSpawnDirections = new List<Vector3>();
 	
 	// Use this for initialization
 	void Start () {
@@ -30,6 +35,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 		gameObject.transform.position = new Vector3(startPos.x - realRadius, startPos.y);
 		gameObject.transform.parent = bigOssi.transform;
 
+		addShardDirections ();
 	}
 	
 	// Update is called once per frame
@@ -78,10 +84,26 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 	protected void spawnShards()
 	{
-		for (int i = 0; i < 3; ++i)
+		for (int i = 0; i < 5; ++i)
 		{
-			GameObject shard = (GameObject)Instantiate (bigOssiBallShardPrefab, transform.position, transform.rotation);
+			ballShards.Add((GameObject)Instantiate (bigOssiBallShardPrefab, transform.position, transform.rotation));
+			ballShards[i].GetComponent<BigOssiShardBehaviour>().Velocity = shardSpawnDirections[i];
+			ballShards[i].GetComponent<BigOssiShardBehaviour>().transform.Rotate(new Vector3(0,0,72f*i));
 		}
+	}
+
+	protected void addShardDirections()
+	{
+		//Up
+		shardSpawnDirections.Add(new Vector3 (0,0.4f));
+		//UpLeft
+		shardSpawnDirections.Add(new Vector3 (-1.0f,0.2f));
+		//DownLeft
+		shardSpawnDirections.Add(new Vector3 (-1.0f,-0.2f));
+		//DownRight
+		shardSpawnDirections.Add(new Vector3 (1.0f,-0.2f));
+		//UpRight
+		shardSpawnDirections.Add(new Vector3 (1.0f,0.2f));
 	}
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
