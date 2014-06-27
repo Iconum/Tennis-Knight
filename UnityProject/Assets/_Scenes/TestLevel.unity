@@ -236,9 +236,10 @@ MonoBehaviour:
   terrainPrefab: {fileID: 0}
   castlePrefab: {fileID: 0}
   tinyVillagerPrefab: {fileID: 0}
-  moneyPrefabs: []
   startLocation: {x: 0, y: 0, z: 0}
   endLocation: {x: 0, y: 0, z: 0}
+  castleOffset: {x: 0, y: 0, z: 0}
+  villagerBundleAmount: 20
 --- !u!1001 &1191133733
 Prefab:
   m_ObjectHideFlags: 0
