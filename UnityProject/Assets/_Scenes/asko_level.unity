@@ -275,9 +275,10 @@ MonoBehaviour:
   terrainPrefab: {fileID: 0}
   castlePrefab: {fileID: 0}
   tinyVillagerPrefab: {fileID: 0}
-  moneyPrefabs: []
   startLocation: {x: 0, y: 0, z: 0}
   endLocation: {x: 0, y: 0, z: 0}
+  castleOffset: {x: 0, y: 0, z: 0}
+  villagerBundleAmount: 20
 --- !u!4 &321011773
 Transform:
   m_ObjectHideFlags: 0
@@ -433,7 +434,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: 17741025971996a4aab809ada676961d, type: 3}
@@ -852,7 +853,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 20
+    maxNumParticles: 120
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -1875,6 +1876,10 @@ Prefab:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1455721223}
+    - target: {fileID: 11400000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
   m_RootGameObject: {fileID: 809841458}

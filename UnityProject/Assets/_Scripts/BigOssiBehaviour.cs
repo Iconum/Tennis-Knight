@@ -16,7 +16,11 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	protected GameObject bigOssiReference;
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
-	
+
+	protected bool isBossDying = false;
+	protected float _dieTimer = 0f;
+	protected Vector3 tempPosition;
+
 	public ParticleSystem darkMatter;
 
 	// Use this for initialization
@@ -34,30 +38,27 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	protected override void Update () {
 		base.Update ();
 		//Check, if boss is spawning shield. No shooting until they are ready
-		if (isSpawningBalls == true) SpawnBalls ();
-		else ShootBalls();
-		//Move right when touched the left corner
-		if (isOnLimitDistance == false)
+		if (isSpawningBalls == true)
 		{
-			gameObject.transform.Translate (new Vector3 (Time.deltaTime, 0, 0));
-			if(gameObject.transform.position.x >= 2.5f)
-			{
-				isOnLimitDistance = true;
-				anim.SetBool("BOMovingLeft", true);
-				anim.SetBool("BOMovingRight", false);
-			}
+			SpawnBalls();
 		}
 		//Move left when touched the right corner
-		else 
+		else
 		{
-			gameObject.transform.Translate (new Vector3 (-Time.deltaTime, 0, 0));
-			if(gameObject.transform.position.x <= -2.5f)
-			{
-				isOnLimitDistance = false;
-				anim.SetBool("BOMovingRight",true);
-				anim.SetBool("BOMovingLeft", false);
-			}
+			ShootBalls();
 		}
+
+		if (isBossDying == true)
+		{
+			bossDeathAnim ();
+		}
+		else
+		{
+			bossMoving();
+		}
+
+		spaceGtowin();
+
 
 	}
 	protected override void Flicker ()
@@ -138,9 +139,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			bossPhaseSetter();
 			if (health <= 0)
 			{
-				//Destroy boss when health is 0
-				levelManager.GetComponent<LevelBehaviour>().EnemyDied();
-				Destroy(gameObject);
+				isBossDying = true;
 			}
 			else
 			{
@@ -179,7 +178,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		var ballTime = circumference / speed;
 		//Calculate spawn interval
 		spawnInterval = ballTime / ballCount;
-		//Lastly divide spawn interval with 2 and you have rigth spawning rate for balls!
+		//Lastly divide spawn interval with 2 and you have right spawning rate for balls!
 		spawnInterval /= 2;
 	}
 
@@ -189,19 +188,19 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		{
 		case 5:
 			shieldBall.speed = 1.5f;
-			ballCount = 4;
+			ballCount = 5;
 			calculateCircumference ();
 			darkMatter.emissionRate = 3f;
 			break;
 		case 4:
 			shieldBall.speed = 1.8f;
-			ballCount = 5;
+			ballCount = 6;
 			calculateCircumference ();
 			darkMatter.emissionRate = 5f;
 			break;
 		case 3:
 			shieldBall.speed = 2f;
-			ballCount = 6;
+			ballCount = 7;
 			calculateCircumference ();
 			darkMatter.emissionRate = 7f;
 			break;
@@ -218,7 +217,60 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			darkMatter.emissionRate = 11f;
 			break;
 		default:
+			tempPosition = gameObject.transform.position;
 			break;
+		}
+	}
+	
+	protected void bossMoving()
+	{	
+		if (isOnLimitDistance == true)
+		{
+			gameObject.transform.Translate (new Vector3 (-Time.deltaTime, 0, 0));
+			if (gameObject.transform.position.x <= -2.5f)
+			{
+				isOnLimitDistance = false;
+				anim.SetBool ("BOMovingRight", true);
+				anim.SetBool ("BOMovingLeft", false);
+			}
+		} else
+		{
+			gameObject.transform.Translate (new Vector3 (Time.deltaTime, 0, 0));
+			if (gameObject.transform.position.x >= 2.5f)
+			{
+				isOnLimitDistance = true;
+				anim.SetBool ("BOMovingLeft", true);
+				anim.SetBool ("BOMovingRight", false);
+			}
+		}
+	}
+
+	protected void bossDeathAnim()
+	{
+		anim.SetTrigger("BODamage");
+		_dieTimer += Time.deltaTime;
+		var randX = Random.Range(-0.1f,0.1f);
+		var randY = Random.Range(-0.1f,0.1f);
+
+		gameObject.transform.position = new Vector3(tempPosition.x + randX , tempPosition.y + randY);
+		
+		darkMatter.emissionRate = 11f + _dieTimer*20f;
+		darkMatter.startSize = 1f + _dieTimer;
+
+		if (_dieTimer >= 3f)
+		{
+			//Destroy boss when health is 0
+			levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
+			Destroy (gameObject);
+		}
+
+	}
+
+	protected void spaceGtowin()
+	{
+		if (Input.GetKey (KeyCode.G))
+		{
+			DamageHealth();
 		}
 	}
 
