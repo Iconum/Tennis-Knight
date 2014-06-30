@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BasicLevel : LevelBehaviour {
-	public List<EnemyPackage> enemySpawnPackages = new List<EnemyPackage> ();
 	public bool levelTest = false;
 
 	void Start()
@@ -14,7 +13,7 @@ public class BasicLevel : LevelBehaviour {
 		}
 		if (!villagerManager)
 		{
-			villagerManager = GameObject.Find ("VillagerManager");
+			villagerManager = GameObject.Find ("VillagerManager").GetComponent<VillagerHandler>();
 		}
 		StartCoroutine (DelayedCreation (1.5f));
 	}
@@ -26,6 +25,7 @@ public class BasicLevel : LevelBehaviour {
 			if (enemySpawnPackages.Count == 0)
 			{
 				ClearDeflectables ();
+				ClearTheLevel();
 				ToggleWall ();
 				StartTheEnd ();
 			} else

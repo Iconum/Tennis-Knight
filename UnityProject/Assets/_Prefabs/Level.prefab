@@ -114,7 +114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -308,6 +308,7 @@ MonoBehaviour:
   optimalVillagerAmount: 10
   startFadeTime: 1
   endFadeTime: 2
+  miniWaitTime: 3
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
@@ -347,12 +348,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 11400000}
-  terrainPrefab: {fileID: 0}
-  castlePrefab: {fileID: 0}
-  tinyVillagerPrefab: {fileID: 0}
-  moneyPrefabs: []
-  startLocation: {x: 0, y: 0, z: 0}
-  endLocation: {x: 0, y: 0, z: 0}
+  terrainPrefab: {fileID: 100000, guid: 848895cc44808d44d982e3babbfbe079, type: 2}
+  castlePrefab: {fileID: 100000, guid: 51de250b61ce04b46ae0ddb7ad65ec85, type: 2}
+  tinyVillagerPrefab: {fileID: 100000, guid: 382fd6959b638644399a39c5f78fa32d, type: 2}
+  startLocation: {x: -1, y: -2, z: 0}
+  endLocation: {x: -1, y: 2, z: 0}
+  castleOffset: {x: 0, y: 0, z: 0}
+  villagerBundleAmount: 20
+  spawnDelay: .25
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
