@@ -63,3 +63,7 @@ TagManager:
     userID: 2
     uniqueID: 1061239699
     locked: 0
+  - name: MiniView
+    userID: 4
+    uniqueID: 3918986253
+    locked: 0
