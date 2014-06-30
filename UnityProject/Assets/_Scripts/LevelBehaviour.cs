@@ -149,6 +149,15 @@ public class LevelBehaviour : MonoBehaviour {
 		_loadingLevel = true;
 	}
 
+	public int GetValuableObjects()
+	{
+		if (Statics.villagers < 2 * optimalVillagerAmount)
+		{
+			return Statics.villagers;
+		}
+		return 2 * optimalVillagerAmount;
+	}
+
 	public void ToggleWall()
 	{
 		SetWall (topBorder.CompareTag ("Removal"));

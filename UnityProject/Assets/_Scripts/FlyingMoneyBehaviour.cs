@@ -7,7 +7,7 @@ public class FlyingMoneyBehaviour : MonoBehaviour {
 	void Start ()
 	{
 		Destroy (gameObject, lifetime);
-		rigidbody2D.velocity = new Vector2 (Random.Range (-randomRange, randomRange), flyingSpeed);
+		rigidbody2D.velocity = new Vector2 (Random.Range (-randomRange, randomRange), Random.Range (-randomRange, randomRange) + flyingSpeed);
 	}
 	
 	void Update ()

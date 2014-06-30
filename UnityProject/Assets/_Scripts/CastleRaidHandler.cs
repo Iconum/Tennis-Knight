@@ -53,6 +53,11 @@ public class CastleRaidHandler : MonoBehaviour {
 		level.BackToMenus ();
 	}
 
+	public int GetFlyingStuff()
+	{
+		return level.GetValuableObjects ();
+	}
+
 	public void RemoveFromList(GameObject me)
 	{
 		_villagers.Remove (me);

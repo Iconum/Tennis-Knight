@@ -8,8 +8,8 @@ public class MiniCastleBehaviour : MonoBehaviour {
 	public List<GameObject> moneyPrefabs;
 
 	private CastleRaidHandler _raidHandler;
-	private int _villagers;
-	private float _spittingTimer = 0.0f, _bumpTimer = 0.0f, _animationFinish = 0.0f;
+	private int _valuables;
+	private float _spittingTimer = 0.0f, _bumpTimer = 0.0f, _animationFinish = 0.0f, _moneySpittingRate = 0.1f;
 
 	void Update ()
 	{
@@ -18,25 +18,26 @@ public class MiniCastleBehaviour : MonoBehaviour {
 			_spittingTimer += Time.deltaTime;
 			_animationFinish -= Time.deltaTime;
 			GameObject tempo = null;
-			if (_spittingTimer >= spittingTimerLimit && _villagers > 0)
+			if (_spittingTimer >= _moneySpittingRate && _valuables > 0)
 			{
-				_spittingTimer -= spittingTimerLimit;
-				--_villagers;
+				_spittingTimer -= _moneySpittingRate;
+				--_valuables;
 				tempo = (GameObject)Instantiate (moneyPrefabs [Random.Range (0, moneyPrefabs.Count)], transform.position, Quaternion.Euler (Vector3.zero));
 				tempo.GetComponent<FlyingMoneyBehaviour> ().PlaySound ();
 			}
 			if (Input.GetMouseButton (0))
 			{
-				while (_villagers > 0)
+				int tempi = _valuables - 20;
+				while (_valuables > tempi)
 				{
 					tempo = (GameObject)Instantiate (moneyPrefabs [Random.Range (0, moneyPrefabs.Count)], transform.position, Quaternion.Euler (Vector3.zero));
-					--_villagers;
+					CheckLifetime (tempo);
+					--_valuables;
 				}
 			}
-			if (tempo)
-			if (tempo.GetComponent<FlyingMoneyBehaviour> ().lifetime > _animationFinish)
-				_animationFinish = tempo.GetComponent<FlyingMoneyBehaviour> ().lifetime;
-			if (_villagers == 0 && _animationFinish <= 0.0f)
+			CheckLifetime (tempo);
+
+			if (_valuables == 0 && _animationFinish <= 0.0f)
 			{
 				_raidHandler.FinishedAnimation ();
 			}
@@ -56,6 +57,12 @@ public class MiniCastleBehaviour : MonoBehaviour {
 			}
 		}
 	}
+	void CheckLifetime(GameObject obj)
+	{
+		if (obj)
+			if (obj.GetComponent<FlyingMoneyBehaviour> ().lifetime > _animationFinish)
+				_animationFinish = obj.GetComponent<FlyingMoneyBehaviour> ().lifetime;
+	}
 
 	public void SetRaidHandler(CastleRaidHandler handler)
 	{
@@ -64,8 +71,9 @@ public class MiniCastleBehaviour : MonoBehaviour {
 
 	public void RainingMoney()
 	{
-		_villagers = Statics.villagers;
-		spittingMoney = true;
+		_valuables = _raidHandler.GetFlyingStuff();
+		_moneySpittingRate = (spittingTimerLimit * _raidHandler.villagerBundleAmount) / _valuables;
+		spittingMoney = true;;
 	}
 
 	public void Bump()

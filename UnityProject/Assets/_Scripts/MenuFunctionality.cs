@@ -40,6 +40,11 @@ public class MenuFunctionality : MonoBehaviour {
 		{
 			Application.Quit();
 		}
+
+		if (Input.GetKeyDown (KeyCode.Insert))
+		{
+			Statics.villagers += 10;
+		}
 	}
 
 	void StyleInitialization()

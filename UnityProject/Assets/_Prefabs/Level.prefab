@@ -307,7 +307,7 @@ MonoBehaviour:
   loot: 500
   optimalVillagerAmount: 10
   startFadeTime: 1
-  endFadeTime: 2
+  endFadeTime: 1
   miniWaitTime: 3
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
