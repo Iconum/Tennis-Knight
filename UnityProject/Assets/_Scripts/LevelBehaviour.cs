@@ -34,12 +34,14 @@ public class EnemyPackage
 }
 
 public class LevelBehaviour : MonoBehaviour {
-	public GameObject topBorder, player = null, villagerManager = null;
+	public GameObject topBorder, player = null;
+	public VillagerHandler  villagerManager = null;
 	public CastleRaidHandler castleHandler = null;
 	public int loot = 500;
 	public int optimalVillagerAmount = 10;
-	public float startFadeTime = 1.0f, endFadeTime = 2.0f;
+	public float startFadeTime = 1.0f, endFadeTime = 2.0f, miniWaitTime = 3.0f;
 	public Texture2D fadeTexture;
+	public List<EnemyPackage> enemySpawnPackages = new List<EnemyPackage> ();
 
 	protected List<GameObject> deflectableList = new List<GameObject>();
 	protected bool _loadingLevel = false, _startingLevel = true;
@@ -76,6 +78,13 @@ public class LevelBehaviour : MonoBehaviour {
 				_startingLevel = false;
 			}
 			_alpha = (startFadeTime - _fadeTimer) / startFadeTime;
+		}
+
+		//Debug
+		if (Input.GetKeyDown (KeyCode.PageDown))
+		{
+			if (enemySpawnPackages.Count != 0)
+				enemySpawnPackages.RemoveAt (0);
 		}
 	}
 
@@ -118,19 +127,26 @@ public class LevelBehaviour : MonoBehaviour {
 
 	public virtual void ClearTheLevel()
 	{
-		villagerManager.GetComponent<VillagerHandler> ().GetVillagers ();
+		villagerManager.GetVillagers ();
 		float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
 		Statics.valuables += Mathf.FloorToInt (loot / ratio);
 		_alpha = 0.0f;
 		_aOperation = Application.LoadLevelAsync (0);
 		_aOperation.allowSceneActivation = false;
-		_loadingLevel = true;
-		//TODO: mini castle raid
+		StartCoroutine (StartMiniView ());
+	}
+	IEnumerator StartMiniView()
+	{
+		yield return new WaitForSeconds (miniWaitTime);
+		villagerManager.HideVillagers ();
+		player.renderer.enabled = false;
+		castleHandler.gameObject.SetActive (true);
+		castleHandler.Display ();
 	}
 
 	public virtual void BackToMenus()
 	{
-
+		_loadingLevel = true;
 	}
 
 	public void ToggleWall()
