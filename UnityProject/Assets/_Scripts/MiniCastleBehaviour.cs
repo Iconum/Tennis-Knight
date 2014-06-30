@@ -34,6 +34,7 @@ public class MiniCastleBehaviour : MonoBehaviour {
 					CheckLifetime (tempo);
 					--_valuables;
 				}
+				_valuables = 0;
 			}
 			CheckLifetime (tempo);
 
