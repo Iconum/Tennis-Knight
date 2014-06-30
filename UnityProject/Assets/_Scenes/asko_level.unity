@@ -258,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &321011772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,13 +272,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 1455721225}
-  terrainPrefab: {fileID: 0}
-  castlePrefab: {fileID: 0}
-  tinyVillagerPrefab: {fileID: 0}
-  startLocation: {x: 0, y: 0, z: 0}
-  endLocation: {x: 0, y: 0, z: 0}
+  terrainPrefab: {fileID: 100000, guid: 848895cc44808d44d982e3babbfbe079, type: 2}
+  castlePrefab: {fileID: 100000, guid: 51de250b61ce04b46ae0ddb7ad65ec85, type: 2}
+  tinyVillagerPrefab: {fileID: 100000, guid: 382fd6959b638644399a39c5f78fa32d, type: 2}
+  startLocation: {x: -1, y: -2, z: 0}
+  endLocation: {x: -1, y: 2, z: 0}
   castleOffset: {x: 0, y: 0, z: 0}
   villagerBundleAmount: 20
+  spawnDelay: .25
 --- !u!4 &321011773
 Transform:
   m_ObjectHideFlags: 0
@@ -405,7 +406,7 @@ MonoBehaviour:
   levelManager: {fileID: 1455721223}
   flickerTimerLimit: 4
   spawnLerpLimit: 3
-  health: 5
+  health: 1
   specialInvincibility: 0
   spawning: 0
   targetLocation: {x: 0, y: 0, z: 0}
@@ -415,6 +416,7 @@ MonoBehaviour:
   shootingSpeed: 3
   isSpawningBalls: 1
   darkMatter: {fileID: 0}
+  deathExplosionPrefab: {fileID: 100000, guid: 2f841ab8bbb5985488c2609622c00bd3, type: 2}
 --- !u!212 &809841460
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1878,8 +1880,12 @@ Prefab:
       objectReference: {fileID: 1455721223}
     - target: {fileID: 11400000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
       propertyPath: health
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
+      propertyPath: deathExplosionPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 2f841ab8bbb5985488c2609622c00bd3, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
   m_RootGameObject: {fileID: 809841458}
@@ -1990,6 +1996,7 @@ MonoBehaviour:
   optimalVillagerAmount: 10
   startFadeTime: 1
   endFadeTime: 2
+  miniWaitTime: 3
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages: []
   levelTest: 1

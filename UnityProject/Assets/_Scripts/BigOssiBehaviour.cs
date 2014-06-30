@@ -22,12 +22,14 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	protected Vector3 tempPosition;
 
 	public ParticleSystem darkMatter;
+	public GameObject deathExplosionPrefab;
 
 	// Use this for initialization
 	void Start ()
 	{   //Get the animator
 		anim = GetComponent<Animator> ();
 		darkMatter = GetComponentInChildren<ParticleSystem> ();
+
 		shieldBall = shieldBallPrefab.GetComponent<BigOssiBallBehaviour> ();
 		//calculation for spawning for first time
 		bossPhaseSetter ();
@@ -260,6 +262,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		if (_dieTimer >= 3f)
 		{
 			//Destroy boss when health is 0
+			Instantiate(deathExplosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
 			levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
 			Destroy (gameObject);
 		}
