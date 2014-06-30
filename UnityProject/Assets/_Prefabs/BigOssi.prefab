@@ -109,6 +109,7 @@ MonoBehaviour:
   shootingSpeed: 3
   isSpawningBalls: 1
   darkMatter: {fileID: 0}
+  deathExplosionPrefab: {fileID: 100000, guid: 2f841ab8bbb5985488c2609622c00bd3, type: 2}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
