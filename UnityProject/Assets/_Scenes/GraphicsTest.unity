@@ -122,6 +122,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 285174561}
+  - 95: {fileID: 285174563}
+  - 212: {fileID: 285174562}
   m_Layer: 0
   m_Name: ForestBG
   m_TagString: Untagged
@@ -136,12 +138,49 @@ Transform:
   m_PrefabInternal: {fileID: 895435889}
   m_GameObject: {fileID: 285174560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.51594639, y: -1.49811745, z: -.109202385}
+  m_LocalPosition: {x: -1.60095811, y: -1.97985053, z: -.109202385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1314931417}
   - {fileID: 1461105234}
   m_Father: {fileID: 0}
+--- !u!212 &285174562
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 285174560}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!95 &285174563
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 285174560}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eee0d9a433b2ed64a8f662b7b13ed81e, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!1 &296462312
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,11 +484,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 89c120f2f7d6f1f44bb71e838bdf14d1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.51594639
+      value: -1.60095811
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 89c120f2f7d6f1f44bb71e838bdf14d1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.49811745
+      value: -1.97985053
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 89c120f2f7d6f1f44bb71e838bdf14d1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -855,7 +894,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
+      objectReference: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
       value: 
@@ -1238,7 +1277,7 @@ MonoBehaviour:
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
+    - enemy: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
       position: {x: 0, y: 4, z: 0}
       delayTime: 0
   - prefabPositionCombo:
