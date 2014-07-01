@@ -13,9 +13,9 @@ public class VillagerBehaviour : MonoBehaviour
 	public float rotationSpeed = 5.0f;
 	public float flyingSpeed = 5.0f;
 	public float movementSpeed = 2.0f;
+	public bool isDead = false;
 	protected float rotation = 0.0f;
 	protected float height = 0.0f;
-	protected bool isDead = false;
 	protected bool isGoingup = true;
 	protected bool goingToLoot = false;
 	//Spawn variables
@@ -47,20 +47,21 @@ public class VillagerBehaviour : MonoBehaviour
 
 	void Update ()
 	{
-		//update for spawning movement
-		if (isSpawning)
-		{ 
-			spawning ();
-		}
+
 		//update for death movement
 		if (isDead)
 		{
 			death ();
 		}
 		//update for level end
-		if (goingToLoot && !isDead)
+		else if (goingToLoot)
 		{
 			ProceedToLoot ();
+		}
+		//update for spawning movement
+		else if (isSpawning)
+		{ 
+			spawning ();
 		}
 	}
 	//When hit by "Deflectable", villager dies
@@ -137,7 +138,7 @@ public class VillagerBehaviour : MonoBehaviour
 		//gameObject.transform.position.y = targetPos.y;
 	}
 	//Begin the level end procedures
-	public void StartLooting (bool washerealready = false)
+	public bool StartLooting (bool washerealready = false)
 	{
 		goingToLoot = true;
 		if (washerealready)
@@ -148,9 +149,10 @@ public class VillagerBehaviour : MonoBehaviour
 			{
 				handler.Delete (gameObject);
 				Destroy (gameObject);
-
+				return false;
 			}
 		}
+		return true;
 	}
 
 	protected virtual void ProceedToLoot ()

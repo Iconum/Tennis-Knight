@@ -29,6 +29,10 @@ public class EnemyPackage
 				instantiated[instantiated.Count-1].GetComponent<EnemyBehaviour>().GiveSpawnDelay(prefabPositionCombo[i].position, prefabPositionCombo[i].delayTime);
 			}
 		}
+		for (int j = 0; j < instantiated.Count; ++j)
+		{
+			instantiated [j].GetComponent<EnemyBehaviour> ().WaveEnemies (instantiated);
+		}
 		return instantiated.ToArray ();
 	}
 }

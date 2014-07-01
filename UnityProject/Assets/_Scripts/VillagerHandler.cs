@@ -22,7 +22,7 @@ public class VillagerHandler : MonoBehaviour {
 		{
 			//Spawn villagers at fitted positions (this can be tweaked later if there
 			//Will be more than 5 villagers on screen
-			Spawn(villagerPrefab, transform.position + new Vector3 (-2.0f + i, -4.6f), transform.rotation);
+			Spawn (villagerPrefab, transform.position + new Vector3 (-2.0f + i, -4.6f), transform.rotation);
 			//villagers.Add((GameObject)Instantiate (villagerPrefab, transform.position + new Vector3 (-2.0f + i, -4.6f), transform.rotation));
 		}
 		villagerSpawnRate = 1.0f / villagerPrefab.GetComponent<VillagerBehaviour> ().movementSpeed;
@@ -38,7 +38,12 @@ public class VillagerHandler : MonoBehaviour {
 	public void Delete(GameObject me)
 	{
 		villagers.Remove (me);
-		Spawn(villagerPrefab, spawnPositions [0], transform.rotation);
+		GameObject tempo = Spawn(villagerPrefab, spawnPositions [0], transform.rotation);
+		if (_looting)
+		{
+			Debug.Log("No mitäs vattua?");
+			tempo.GetComponent<VillagerBehaviour> ().StartLooting (true);
+		}
 		spawnPositions.RemoveAt (0);
 	}
 	public void OffScreen(GameObject me)
@@ -66,9 +71,13 @@ public class VillagerHandler : MonoBehaviour {
 
 	public void LootCastle()
 	{
+		_looting = true;
 		for (int i = 0; i < villagers.Count; ++i)
 		{
-			villagers[i].GetComponent<VillagerBehaviour>().StartLooting(true);
+			if (!villagers [i].GetComponent<VillagerBehaviour> ().StartLooting (true))
+			{
+				--i;
+			}
 		}
 		StartCoroutine (SpawnLine (villagerSpawnRate));
 	}
