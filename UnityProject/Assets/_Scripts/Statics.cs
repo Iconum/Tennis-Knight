@@ -20,7 +20,7 @@ public static class Statics
 	public static int villagers = 20;
 	public static GUIStyle menuButtonStyle;
 	public static GUIStyle menuTextStyle;
-	public static float globalVolume = 1.0f;
+	public static float globalVolume = 1.0f, soundVolume = 1.0f, musicVolume = 1.0f;
 
 	public static void setVolume()
 	{
