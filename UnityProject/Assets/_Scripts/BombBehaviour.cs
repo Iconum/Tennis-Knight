@@ -7,9 +7,12 @@ public class BombBehaviour : BallBehaviour {
 
 	private bool _exploding = false;
 
+	private Animator anim;
+
 	void Awake()
 	{
 		StartCoroutine (LitFuse());
+		anim = GetComponent<Animator> ();
 	}
 
 	IEnumerator LitFuse()
@@ -21,6 +24,7 @@ public class BombBehaviour : BallBehaviour {
 	{
 		yield return new WaitForSeconds (0.3f);
 		collider2D.enabled = false;
+
 	}
 
 	void Explode()
@@ -35,10 +39,15 @@ public class BombBehaviour : BallBehaviour {
 				audio.clip = explosion;
 				audio.volume = 0.6f;
 				audio.Play ();
+
 			}
 			StartCoroutine (StopExploding ());
+
 			Destroy (gameObject, 1.2f);
+			anim.SetTrigger("explode");
+			//animation.Play();
 		}
+
 	}
 
 	protected override void OnTriggerEnter2D (Collider2D other)
@@ -46,11 +55,13 @@ public class BombBehaviour : BallBehaviour {
 		if (other.CompareTag ("Removal"))
 		{
 			Explode ();
+
 		}
 	}
 
 	public override void BallDestroy ()
 	{
 		Explode ();
+		//anim.SetTrigger("explode");
 	}
 }

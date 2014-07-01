@@ -86,6 +86,14 @@ public class VillagerHandler : MonoBehaviour {
 	public void GetVillagers()
 	{
 		Statics.villagers = living + health + villagers.Count;
-		StopAllCoroutines ();
+	}
+
+	public void HideVillagers()
+	{
+		health = 0;
+		for (int i = 0; i < villagers.Count; ++i)
+		{
+			villagers[i].renderer.enabled = false;
+		}
 	}
 }

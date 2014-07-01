@@ -27,8 +27,11 @@ public class PlayerBehaviour : MonoBehaviour
 		leftPaddle.SetActive (false);
 		rightPaddle.SetActive (false);
 		_playerPosition = transform.position;
+		levelManager = GameObject.Find ("Level");
 
 		_usedControls = Statics.selectedControlMethod;
+		if (audio)
+		audio.volume = Statics.soundVolume;
 	}
 	
 	// Update is called once per frame
@@ -288,9 +291,8 @@ public class PlayerBehaviour : MonoBehaviour
 
 	IEnumerator WalkOff()
 	{
-		yield return new WaitForSeconds (3.0f);
+		yield return new WaitForSeconds (1.5f);
 		_touchPosition = new Vector3 (1.5f, 8.0f);
-		levelManager.GetComponent<LevelBehaviour> ().ClearTheLevel ();
 	}
 
 	void OnGUI ()

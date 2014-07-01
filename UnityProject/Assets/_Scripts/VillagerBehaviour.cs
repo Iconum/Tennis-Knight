@@ -35,12 +35,13 @@ public class VillagerBehaviour : MonoBehaviour
 	void Start ()
 	{
 		handler = GameObject.Find ("VillagerManager").GetComponent<VillagerHandler> (); //get component from handler
-		spawnEndPos = new Vector3 (gameObject.transform.position.x, -4.6f); // set spawning start position
+		spawnEndPos = new Vector3 (gameObject.transform.position.x, -4.4f); // set spawning start position
 		spawnStartPos = new Vector3 (gameObject.transform.position.x, -6.0f); // set spawning end position
 		gameObject.transform.position = spawnStartPos; // set villager to spawning start position
 		spawnLength = Vector3.Distance (spawnStartPos, spawnEndPos); // check how long is the distance of spawning positions
 		startTime = Time.time; //check when spawn started
 
+		audio.volume = Statics.soundVolume;
 		anim = GetComponent<Animator> ();
 	}
 
