@@ -41,6 +41,7 @@ public class VillagerBehaviour : MonoBehaviour
 		spawnLength = Vector3.Distance (spawnStartPos, spawnEndPos); // check how long is the distance of spawning positions
 		startTime = Time.time; //check when spawn started
 
+		audio.volume = Statics.soundVolume;
 		anim = GetComponent<Animator> ();
 	}
 

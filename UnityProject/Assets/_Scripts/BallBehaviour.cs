@@ -12,6 +12,7 @@ public class BallBehaviour : MonoBehaviour
 	{
 		rigidbody2D.velocity = constantSpeed * startVelocity.normalized;
 		audio.clip = paddleHit;
+		audio.volume = Statics.soundVolume;
 	}
 
 	protected virtual void FixedUpdate ()

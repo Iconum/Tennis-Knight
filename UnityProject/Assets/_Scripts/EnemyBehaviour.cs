@@ -17,6 +17,10 @@ public class EnemyBehaviour : MonoBehaviour {
 	protected virtual void Awake()
 	{
 		_startLocation = transform.position;
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+		}
 	}
 
 	protected virtual void Initialize()

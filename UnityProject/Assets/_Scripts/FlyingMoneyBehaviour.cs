@@ -6,6 +6,7 @@ public class FlyingMoneyBehaviour : MonoBehaviour {
 
 	void Start ()
 	{
+		audio.volume = Statics.soundVolume;
 		Destroy (gameObject, lifetime);
 		rigidbody2D.velocity = new Vector2 (Random.Range (-randomRange, randomRange), Random.Range (-randomRange, randomRange) + flyingSpeed);
 	}

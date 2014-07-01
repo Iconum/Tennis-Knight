@@ -30,6 +30,8 @@ public class PlayerBehaviour : MonoBehaviour
 		levelManager = GameObject.Find ("Level");
 
 		_usedControls = Statics.selectedControlMethod;
+		if (audio)
+		audio.volume = Statics.soundVolume;
 	}
 	
 	// Update is called once per frame

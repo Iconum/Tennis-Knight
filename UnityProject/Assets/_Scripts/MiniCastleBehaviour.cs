@@ -11,6 +11,11 @@ public class MiniCastleBehaviour : MonoBehaviour {
 	private int _valuables;
 	private float _spittingTimer = 0.0f, _bumpTimer = 0.0f, _animationFinish = 0.0f, _moneySpittingRate = 0.1f;
 
+	void Awake()
+	{
+		audio.volume = Statics.soundVolume;
+	}
+
 	void Update ()
 	{
 		if (spittingMoney)
