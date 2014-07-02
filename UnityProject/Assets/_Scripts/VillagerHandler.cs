@@ -73,10 +73,9 @@ public class VillagerHandler : MonoBehaviour {
 		_looting = true;
 		for (int i = 0; i < villagers.Count; ++i)
 		{
+			if (villagers [i])
 			if (!villagers [i].GetComponent<VillagerBehaviour> ().StartLooting (true))
-			{
 				--i;
-			}
 		}
 		StartCoroutine (SpawnLine (villagerSpawnRate));
 	}
