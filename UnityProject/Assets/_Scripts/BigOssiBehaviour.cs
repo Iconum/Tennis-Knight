@@ -263,7 +263,6 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		{
 			//Destroy boss when health is 0
 			Instantiate(deathExplosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
-			levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
 			Destroy (gameObject);
 		}
 

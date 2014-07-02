@@ -41,7 +41,6 @@ public class VillagerHandler : MonoBehaviour {
 		GameObject tempo = Spawn(villagerPrefab, spawnPositions [0], transform.rotation);
 		if (_looting)
 		{
-			Debug.Log("No mitäs vattua?");
 			tempo.GetComponent<VillagerBehaviour> ().StartLooting (true);
 		}
 		spawnPositions.RemoveAt (0);
