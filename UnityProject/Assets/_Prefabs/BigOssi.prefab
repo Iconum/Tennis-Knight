@@ -100,6 +100,7 @@ MonoBehaviour:
   flickerTimerLimit: 4
   spawnLerpLimit: 3
   health: 5
+  projectileLimit: 1
   specialInvincibility: 0
   spawning: 0
   targetLocation: {x: 0, y: 0, z: 0}

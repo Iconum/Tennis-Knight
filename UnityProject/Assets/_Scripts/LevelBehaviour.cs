@@ -107,6 +107,11 @@ public class LevelBehaviour : MonoBehaviour {
 		deflectableList.Remove (deflectable);
 	}
 
+	public int DeflectableCount()
+	{
+		return deflectableList.Count;
+	}
+
 	public GameObject FindClosestDeflectable(Vector3 pos)
 	{
 		if (deflectableList.Count != 0)

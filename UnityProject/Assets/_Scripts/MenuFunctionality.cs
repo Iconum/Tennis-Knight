@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class MenuFunctionality : MonoBehaviour {
-	float width, height, thirty, sixty, eighty, onefourty;
+	public float width, height, thirty, sixty, eighty, onefourty;
+
 	string menuText;
 
 	// Use this for initialization
