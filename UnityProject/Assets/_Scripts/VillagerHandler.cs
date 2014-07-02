@@ -41,7 +41,6 @@ public class VillagerHandler : MonoBehaviour {
 		GameObject tempo = Spawn(villagerPrefab, spawnPositions [0], transform.rotation);
 		if (_looting)
 		{
-			Debug.Log("No mitäs vattua?");
 			tempo.GetComponent<VillagerBehaviour> ().StartLooting (true);
 		}
 		spawnPositions.RemoveAt (0);
@@ -74,10 +73,9 @@ public class VillagerHandler : MonoBehaviour {
 		_looting = true;
 		for (int i = 0; i < villagers.Count; ++i)
 		{
+			if (villagers [i])
 			if (!villagers [i].GetComponent<VillagerBehaviour> ().StartLooting (true))
-			{
 				--i;
-			}
 		}
 		StartCoroutine (SpawnLine (villagerSpawnRate));
 	}
