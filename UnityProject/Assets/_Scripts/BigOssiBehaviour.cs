@@ -112,7 +112,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		_shootTimer += Time.deltaTime;
 		if (_shootTimer >= shootingSpeed)
 		{
-			if (levelManager.GetComponent<LevelBehaviour> ().DeflectableCount () > projectileLimit)
+			if (levelManager.GetComponent<LevelBehaviour> ().DeflectableCount () < projectileLimit)
 			{
 				//set timer to 0
 				_shootTimer = 0.0f;
