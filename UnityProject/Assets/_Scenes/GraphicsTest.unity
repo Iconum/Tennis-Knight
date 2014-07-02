@@ -873,6 +873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: .100000001, y: -1}
   constantSpeed: 2
+  heatGeneration: 1.5
   paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
   levelManager: {fileID: 0}
   fuseLength: 5
@@ -1509,12 +1510,18 @@ MonoBehaviour:
       delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
+      position: {x: -1, y: 4, z: 0}
+      delayTime: 0
+    - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: 0, y: 4, z: 0}
       delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
       position: {x: 0, y: 4, z: 0}
       delayTime: 0
+    - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
+      position: {x: 2, y: 4, z: 0}
+      delayTime: 2.5
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
       position: {x: 0, y: 4, z: 0}
