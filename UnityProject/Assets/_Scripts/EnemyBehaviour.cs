@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyBehaviour : MonoBehaviour {
 	public GameObject projectilePrefab = null;
@@ -13,6 +14,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false, _delayedActivation = false;
 	protected Vector3 _startLocation;
+	protected List<GameObject> _waveEnemies = new List<GameObject>();
 
 	protected virtual void Awake()
 	{
@@ -23,16 +25,41 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 	}
 
+	protected virtual void OnDestroy()
+	{
+		if (_waveEnemies.Count > 0)
+		{
+			if (_waveEnemies.TrueForAll (x => x == null))
+			{
+				levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
+			}
+		} else
+		{
+			if (levelManager)
+				levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
+		}
+	}
+
 	protected virtual void Initialize()
 	{
 
+	}
+	public void WaveEnemies(List<GameObject> wave)
+	{
+		for (int i = 0; i < wave.Count; ++i)
+		{
+			if (wave[i] != gameObject)
+			{
+				_waveEnemies.Add(wave[i]);
+			}
+		}
 	}
 
 	public virtual void GiveSpawnDelay(Vector3 target, float delay)
 	{
 		spawning = true;
 		targetLocation = target;
-		if (delay >= 0.05f)
+		if (delay >= 0.01f)
 		{
 			_delayedActivation = true;
 			StartCoroutine(StartActing(delay));
@@ -127,14 +154,12 @@ public class EnemyBehaviour : MonoBehaviour {
 
 			if (health <= 0)
 			{
-				levelManager.GetComponent<LevelBehaviour>().EnemyDied();
 				Destroy(gameObject);
 			}
 		}
 	}
 	protected virtual void InstantDeath()
 	{
-		levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
 		Destroy (gameObject);
 	}
 }

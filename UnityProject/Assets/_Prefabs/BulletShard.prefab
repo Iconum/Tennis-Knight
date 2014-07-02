@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: .100000001, y: -1}
   constantSpeed: 2
+  heatGeneration: 1
   paddleHit: {fileID: 0}
   levelManager: {fileID: 0}
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
@@ -162,7 +163,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: 0eb34b9ceed2b074ba5ce86e8dfb1e0d, type: 3}
