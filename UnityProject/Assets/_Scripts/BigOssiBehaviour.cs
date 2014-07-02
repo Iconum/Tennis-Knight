@@ -112,16 +112,19 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		_shootTimer += Time.deltaTime;
 		if (_shootTimer >= shootingSpeed)
 		{
-			//set timer to 0
-			_shootTimer = 0.0f;
-			//Shoot projectile
-			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
-			//Set velocity to it
-			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
-			//animation Attack
-			anim.SetTrigger("BOAttack");
-			//list projectile ball
-			ListDeflectable(tempo);
+			if (levelManager.GetComponent<LevelBehaviour> ().DeflectableCount () > projectileLimit)
+			{
+				//set timer to 0
+				_shootTimer = 0.0f;
+				//Shoot projectile
+				GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+				//Set velocity to it
+				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
+				//animation Attack
+				anim.SetTrigger ("BOAttack");
+				//list projectile ball
+				ListDeflectable (tempo);
+			}
 		}
 	}
 	//Boss took damage, do function with stuff in it
@@ -263,7 +266,6 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		{
 			//Destroy boss when health is 0
 			Instantiate(deathExplosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
-			levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
 			Destroy (gameObject);
 		}
 

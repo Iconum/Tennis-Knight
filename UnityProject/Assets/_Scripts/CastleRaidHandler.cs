@@ -16,13 +16,16 @@ public class CastleRaidHandler : MonoBehaviour {
 
 	public void Display()
 	{
-		_displaying = true;
-		_terrain = (GameObject)Instantiate (terrainPrefab, transform.position, transform.rotation);
-		_terrain.transform.parent = transform;
-		_castle = (GameObject)Instantiate (castlePrefab, endLocation + castleOffset, Quaternion.Euler (Vector3.zero));
-		_castle.GetComponent<MiniCastleBehaviour> ().SetRaidHandler (this);
-		_castle.transform.parent = transform;
-		SpawnBundle ();
+		if (!_displaying)
+		{
+			_displaying = true;
+			_terrain = (GameObject)Instantiate (terrainPrefab, transform.position, transform.rotation);
+			_terrain.transform.parent = transform;
+			_castle = (GameObject)Instantiate (castlePrefab, endLocation + castleOffset, Quaternion.Euler (Vector3.zero));
+			_castle.GetComponent<MiniCastleBehaviour> ().SetRaidHandler (this);
+			_castle.transform.parent = transform;
+			SpawnBundle ();
+		}
 	}
 
 	public void SpawnBundle()

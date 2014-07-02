@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RangedBehaviour : EnemyBehaviour {
 	public float shootTimerLimit = 1.0f;
@@ -7,6 +8,7 @@ public class RangedBehaviour : EnemyBehaviour {
 
 	private float _shootTimer = 0.0f, _levelStartTime = 0.0f, _sinModifier = 1.0f;
 	private bool _sinDirection = true;
+	private List<GameObject> _shotProjectiles = new List<GameObject>();
 
 	// Use this for initialization
 	protected override void Awake () {
@@ -40,18 +42,33 @@ public class RangedBehaviour : EnemyBehaviour {
 			}
 		}
 
-		transform.position = new Vector3(Mathf.Sin(Time.time - _levelStartTime) * 2.5f * _sinModifier, transform.position.y);
+		transform.position = new Vector3 (Mathf.Sin (Time.time - _levelStartTime) * 2.5f * _sinModifier, transform.position.y);
 
 		if (!spawning)
 		{
 			_shootTimer += Time.deltaTime;
 			if (_shootTimer > shootTimerLimit)
 			{
-				_shootTimer = 0.0f;
-				GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
-				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
-				ListDeflectable (tempo);
-				anim.SetTrigger("Attack");
+				if (projectileLimit != 0)
+				{
+					for (int i = 0; i < _shotProjectiles.Count; ++i)
+					{
+						if (!_shotProjectiles [i])
+						{
+							_shotProjectiles.RemoveAt (i);
+							--i;
+						}
+					}
+				}
+				if (projectileLimit == 0 || _shotProjectiles.Count < projectileLimit)
+				{
+					_shootTimer = 0.0f;
+					GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+					tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
+					_shotProjectiles.Add (tempo);
+					ListDeflectable (tempo);
+					anim.SetTrigger ("Attack");
+				}
 			}
 		}
 	}

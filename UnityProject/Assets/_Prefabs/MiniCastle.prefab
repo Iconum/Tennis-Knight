@@ -102,7 +102,7 @@ MonoBehaviour:
   spittingTimerLimit: .100000001
   bumpTimerLimit: .699999988
   moneyPrefabs:
-  - {fileID: 100000, guid: 24e0f5f254caac9499c4df7d1d61c648, type: 2}
+  - {fileID: 100000, guid: aed87878063630048ac307088be4d4ed, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

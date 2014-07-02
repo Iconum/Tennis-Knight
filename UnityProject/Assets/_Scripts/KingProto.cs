@@ -83,7 +83,6 @@ public class KingProto : EnemyBehaviour {
 
 				if (health <= 0)
 				{
-					levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
 					Destroy(gameObject);
 				}
 			}

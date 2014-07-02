@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class FlyingMoneyBehaviour : MonoBehaviour {
-	public float lifetime = 1.0f, rotateSpeed = 1.0f, randomRange = 1.0f, flyingSpeed = 5.0f;
+	public float lifetime = 2.0f, rotateSpeed = 5.0f, randomRange = 1.0f, flyingSpeed = 5.0f;
 
 	void Start ()
 	{

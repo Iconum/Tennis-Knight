@@ -6,7 +6,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	public GameObject projectilePrefab = null;
 	public GameObject levelManager = null;
 	public float flickerTimerLimit = 4.0f, spawnLerpLimit = 3.0f;
-	public int health = 10;
+	public int health = 10, projectileLimit = 0;
 	public bool specialInvincibility = false, spawning = true;
 	public Vector3 targetLocation;
 	public Animator anim;
