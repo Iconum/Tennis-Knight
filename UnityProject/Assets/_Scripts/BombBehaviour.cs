@@ -19,22 +19,25 @@ public class BombBehaviour : BallBehaviour {
 	{
 		yield return new WaitForSeconds (fuseLength);
 		Explode ();
+
 	}
 	IEnumerator StopExploding()
 	{
 		yield return new WaitForSeconds (0.3f);
 		collider2D.enabled = false;
-		gameObject.transform.localScale = new Vector3(4f,4f,0);
-		anim.SetTrigger("explode");
+		gameObject.transform.localScale = new Vector3(8f,8f,0);
+
 	}
 
 	void Explode()
 	{
 		if (!_exploding)
 		{
+			anim.SetTrigger("explode");
 			GetComponent<CircleCollider2D> ().isTrigger = true;
 			GetComponent<CircleCollider2D> ().radius = explosiveForce;
 			rigidbody2D.velocity = Vector2.zero;
+
 			if (!audio.isPlaying)
 			{
 				audio.clip = explosion;
@@ -42,7 +45,9 @@ public class BombBehaviour : BallBehaviour {
 				audio.Play ();
 
 			}
+
 			StartCoroutine (StopExploding ());
+
 
 			Destroy (gameObject, 1.2f);
 
