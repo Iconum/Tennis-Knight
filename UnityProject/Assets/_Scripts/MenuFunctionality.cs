@@ -59,10 +59,10 @@ public class MenuFunctionality : MonoBehaviour {
 	void StyleInitialization()
 	{
 		Statics.menuButtonStyle = new GUIStyle (GUI.skin.button);
-		Statics.menuButtonStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 32;
+		Statics.menuButtonStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 26;
 
 		Statics.menuTextStyle = new GUIStyle (GUI.skin.box);
-		Statics.menuTextStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 24;
+		Statics.menuTextStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 22;
 		Statics.menuTextStyle.wordWrap = true;
 	}
 
@@ -73,17 +73,18 @@ public class MenuFunctionality : MonoBehaviour {
 		{
 			if (GUILayout.Button ("Start", Statics.menuButtonStyle))
 			{
-				PrefStoring();
+				Statics.villagers = 20;
+				Statics.PrefStoring();
 				Application.LoadLevel ("TestLevel");
 			}
 			if (GUILayout.Button("King Test", Statics.menuButtonStyle))
 			{
-				PrefStoring();
+				Statics.PrefStoring();
 				Application.LoadLevel ("kingProto");
 			}
 			if (GUILayout.Button("Ossi Test", Statics.menuButtonStyle))
 			{
-				PrefStoring();
+				Statics.PrefStoring();
 				Application.LoadLevel ("asko_level");
 			}
 			GUILayout.Label("Master Volume:", Statics.menuTextStyle);
@@ -154,14 +155,5 @@ public class MenuFunctionality : MonoBehaviour {
 		{
 			return ":/   :\\   :|";
 		}
-	}
-
-	public void PrefStoring()
-	{
-		PlayerPrefs.SetInt ("ControlMethod", (int)Statics.selectedControlMethod);
-		PlayerPrefs.SetFloat ("GlobalVolume", Statics.globalVolume);
-		PlayerPrefs.SetFloat ("SoundVolume", Statics.soundVolume);
-		PlayerPrefs.SetFloat ("MusicVolume", Statics.musicVolume);
-		PlayerPrefs.Save ();
 	}
 }

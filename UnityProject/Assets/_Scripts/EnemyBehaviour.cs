@@ -14,7 +14,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false, _delayedActivation = false;
 	protected Vector3 _startLocation;
-	protected List<GameObject> _waveEnemies = new List<GameObject>();
+	protected List<GameObject> _waveEnemies = new List<GameObject>(), _otherEnemies = new List<GameObject>();
 
 	protected virtual void Awake()
 	{
@@ -27,9 +27,9 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	protected virtual void OnDestroy()
 	{
-		if (_waveEnemies.Count > 0)
+		if (_otherEnemies.Count > 0)
 		{
-			if (_waveEnemies.TrueForAll (x => x == null))
+			if (_otherEnemies.TrueForAll (x => x == null))
 			{
 			if (levelManager)
 				levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
@@ -47,11 +47,12 @@ public class EnemyBehaviour : MonoBehaviour {
 	}
 	public void WaveEnemies(List<GameObject> wave)
 	{
+		_waveEnemies = wave;
 		for (int i = 0; i < wave.Count; ++i)
 		{
 			if (wave[i] != gameObject)
 			{
-				_waveEnemies.Add(wave[i]);
+				_otherEnemies.Add(wave[i]);
 			}
 		}
 	}

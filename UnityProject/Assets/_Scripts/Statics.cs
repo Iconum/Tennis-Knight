@@ -31,4 +31,13 @@ public static class Statics
 		globalVolume = volume;
 		setVolume ();
 	}
+
+	public static void PrefStoring()
+	{
+		PlayerPrefs.SetInt ("ControlMethod", (int)Statics.selectedControlMethod);
+		PlayerPrefs.SetFloat ("GlobalVolume", Statics.globalVolume);
+		PlayerPrefs.SetFloat ("SoundVolume", Statics.soundVolume);
+		PlayerPrefs.SetFloat ("MusicVolume", Statics.musicVolume);
+		PlayerPrefs.Save ();
+	}
 }
