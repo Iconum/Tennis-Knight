@@ -18,6 +18,8 @@ public class PlayerBehaviour : MonoBehaviour
 	private Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
 	private Vector3 _playerPosition = Vector3.zero;
 
+	private Animator anim;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -31,6 +33,8 @@ public class PlayerBehaviour : MonoBehaviour
 		_usedControls = Statics.selectedControlMethod;
 		if (audio)
 		audio.volume = Statics.soundVolume;
+
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -90,10 +94,12 @@ public class PlayerBehaviour : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.Z))
 			{
 				PaddleActivate (leftPaddle);
+				anim.SetTrigger ("LeftSwing");
 			}
 			if (Input.GetKeyDown (KeyCode.X))
 			{
 				PaddleActivate (rightPaddle);
+				anim.SetTrigger ("RightSwing");
 			}
 			if (Input.GetKeyDown (KeyCode.Space))
 			{
@@ -267,9 +273,11 @@ public class PlayerBehaviour : MonoBehaviour
 			if (IntersectionPoint (new Vector2 (tempo.transform.position.x, tempo.transform.position.y), tempo.rigidbody2D.velocity).x < transform.position.x)
 			{
 				PaddleActivate (leftPaddle);
+				anim.SetTrigger ("LeftSwing");
 			} else
 			{
 				PaddleActivate (rightPaddle);
+				anim.SetTrigger ("RightSwing");
 			}
 		} else
 		{

@@ -57,10 +57,12 @@
      <Compile Include="Assets\_Scripts\BigOssiShardBehaviour.cs" />
      <Compile Include="Assets\_Scripts\BombBehaviour.cs" />
      <Compile Include="Assets\_Scripts\BundleBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\ButtonFunctionality.cs" />
      <Compile Include="Assets\_Scripts\CastleRaidHandler.cs" />
      <Compile Include="Assets\_Scripts\DividingBehaviour.cs" />
      <Compile Include="Assets\_Scripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\_Scripts\ExplosionParticleBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\FlyingMoneyBehaviour.cs" />
      <Compile Include="Assets\_Scripts\GraphicsPaddleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\GraphicsPlayerBehaviour.cs" />
      <Compile Include="Assets\_Scripts\KingAnimation.cs" />
@@ -71,6 +73,7 @@
      <Compile Include="Assets\_Scripts\MeleeBehaviour.cs" />
      <Compile Include="Assets\_Scripts\MenuFunctionality.cs" />
      <Compile Include="Assets\_Scripts\MenuProto.cs" />
+     <Compile Include="Assets\_Scripts\MiniCastleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\OssiAnimation.cs" />
      <Compile Include="Assets\_Scripts\PaddleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PlayerBehaviour.cs" />
