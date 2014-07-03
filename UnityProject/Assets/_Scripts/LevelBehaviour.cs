@@ -119,8 +119,14 @@ public class LevelBehaviour : MonoBehaviour {
 			DeflectableSorter sorter = new DeflectableSorter ();
 			sorter._targetPosition = pos;
 			List<GameObject> templist = deflectableList.FindAll (x => x.transform.position.y > (pos.y - 0.3f));
-			templist.Sort (sorter);
-			return templist [0];
+			if (templist.Count != 0)
+			{
+				templist.Sort (sorter);
+				return templist [0];
+			} else
+			{
+				return null;
+			}
 		} else
 			return null;
 	}

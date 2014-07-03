@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: .100000001, y: -1}
   constantSpeed: 2
-  heatGeneration: 1
+  heatGeneration: 2
   paddleHit: {fileID: 0}
   levelManager: {fileID: 0}
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}

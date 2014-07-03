@@ -62,7 +62,10 @@ public class BasicLevel : LevelBehaviour {
 
 	public void StartTheEnd()
 	{
- 		villagerManager.GetComponent<VillagerHandler> ().LootCastle ();
-		player.GetComponent<PlayerBehaviour> ().StartTheEnd ();
+		if (villagerManager && player)
+		{
+			villagerManager.GetComponent<VillagerHandler> ().LootCastle ();
+			player.GetComponent<PlayerBehaviour> ().StartTheEnd ();
+		}
 	}
 }

@@ -31,6 +31,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		{
 			if (_waveEnemies.TrueForAll (x => x == null))
 			{
+			if (levelManager)
 				levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
 			}
 		} else

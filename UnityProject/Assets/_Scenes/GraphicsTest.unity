@@ -260,6 +260,22 @@ Prefab:
       propertyPath: m_Name
       value: GraphicsKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .52924037
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -.0969643146
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
+      propertyPath: m_LocalScale.x
+      value: .683716178
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
+      propertyPath: m_LocalScale.y
+      value: .683716238
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
   m_RootGameObject: {fileID: 1143653018}
@@ -290,8 +306,8 @@ Transform:
   m_PrefabInternal: {fileID: 309130556}
   m_GameObject: {fileID: 402807316}
   m_LocalRotation: {x: 0, y: 0, z: .173648298, w: -.98480773}
-  m_LocalPosition: {x: .529240906, y: -.0969641507, z: 0}
-  m_LocalScale: {x: .683716476, y: .683716536, z: 1}
+  m_LocalPosition: {x: .52924037, y: -.0969643146, z: 0}
+  m_LocalScale: {x: .683716178, y: .683716238, z: 1}
   m_Children: []
   m_Father: {fileID: 1143653019}
 --- !u!114 &402807318

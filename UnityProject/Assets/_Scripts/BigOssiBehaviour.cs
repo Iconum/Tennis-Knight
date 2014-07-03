@@ -11,6 +11,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	
 	protected BigOssiBallBehaviour shieldBall;
 	protected List<GameObject> shieldBalls = new List<GameObject>();
+	protected List<GameObject> ownProjectiles = new List<GameObject> ();
 	protected float spawnInterval = 0f;
 	protected float spawnTime = 0f;
 	protected GameObject bigOssiReference;
@@ -105,6 +106,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		                                    gameObject.transform.rotation));
 		//set that ball to list
 		shieldBalls [shieldBalls.Count - 1].GetComponent<BigOssiBallBehaviour> ().bigOssi = this;
+		shieldBalls [shieldBalls.Count - 1].GetComponent<BigOssiBallBehaviour> ().SetListing(ListDeflectable, levelManager);
+
 	}
 	//Shoot projectile balls like every other ranged enemy.
 	public void ShootBalls()
@@ -112,7 +115,15 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		_shootTimer += Time.deltaTime;
 		if (_shootTimer >= shootingSpeed)
 		{
-			if (levelManager.GetComponent<LevelBehaviour> ().DeflectableCount () > projectileLimit)
+			for (int i = 0; i < ownProjectiles.Count; ++i)
+			{
+				if (!ownProjectiles [i])
+				{
+					ownProjectiles.RemoveAt (i);
+					--i;
+				}
+			}
+			if (ownProjectiles.Count < projectileLimit || projectileLimit == 0)
 			{
 				//set timer to 0
 				_shootTimer = 0.0f;
@@ -123,6 +134,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 				//animation Attack
 				anim.SetTrigger ("BOAttack");
 				//list projectile ball
+				ownProjectiles.Add (tempo);
 				ListDeflectable (tempo);
 			}
 		}
