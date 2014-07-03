@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: .100000001, y: -1}
   constantSpeed: 2
+  heatGeneration: 7
   paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
   levelManager: {fileID: 0}
   fuseLength: 5

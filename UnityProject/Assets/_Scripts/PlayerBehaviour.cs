@@ -55,7 +55,7 @@ public class PlayerBehaviour : MonoBehaviour
 		//Absolutely massive else-if block with all the control methods and the level end movement
 		if (_heat > 0.0f)
 		{
-			_heat -= Time.deltaTime;
+			_heat -= Time.deltaTime * 4.0f;
 			if (_heat < 0.0f)
 			{
 				_heat = 0.0f;
@@ -64,8 +64,10 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				_heat = heatLimit;
 			}
-			_currentSpeed /= (1.0f + _heat);
+			_currentSpeed /= (1.0f + (_heat / (heatLimit / 4.0f)));
 		}
+
+		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
 
 		if (_endLevel)
 		{
@@ -326,6 +328,20 @@ public class PlayerBehaviour : MonoBehaviour
 			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 		}
 		if (collision.gameObject.CompareTag ("Enemy"))
+		{
+			_heat = heatLimit;
+		}
+	}
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.CompareTag ("Deflectable"))
+		{
+			_heat += other.GetComponent<BallBehaviour> ().heatGeneration;
+			if (_heat > heatLimit)
+				_heat = heatLimit;
+		}
+		if (other.CompareTag ("Enemy"))
 		{
 			_heat = heatLimit;
 		}

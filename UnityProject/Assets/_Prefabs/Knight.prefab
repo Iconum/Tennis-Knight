@@ -179,7 +179,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   paddleActive: 0
   strafeSpeed: 4
-  heatLimit: 25
+  heatLimit: 20
   sixty: 60
   eighty: 80
   onefourty: 140

@@ -23,6 +23,10 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 	public GameObject explosionPrefab;
 	protected ParticleSystem explosion;
+
+	public delegate void Listing(GameObject deflectable);
+	public GameObject levelManager = null;
+	public Listing ListDefs;
 	
 	// Use this for initialization
 	void Start () {
@@ -87,9 +91,10 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	{
 		for (int i = 0; i < 5; ++i)
 		{
-			ballShards.Add((GameObject)Instantiate (bigOssiBallShardPrefab, transform.position, transform.rotation));
-			ballShards[i].GetComponent<BigOssiShardBehaviour>().Velocity = shardSpawnDirections[i];
-			ballShards[i].GetComponent<BigOssiShardBehaviour>().transform.Rotate(new Vector3(0,0,72f*i));
+			ballShards.Add ((GameObject)Instantiate (bigOssiBallShardPrefab, transform.position, transform.rotation));
+			ballShards [i].GetComponent<BigOssiShardBehaviour> ().Velocity = shardSpawnDirections [i];
+			ballShards [i].GetComponent<BigOssiShardBehaviour> ().transform.Rotate (new Vector3 (0, 0, 72f * i));
+			ListDefs (ballShards [i]);
 		}
 	}
 
@@ -111,6 +116,12 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	{
 		Instantiate (explosionPrefab, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
 		Destroy (gameObject);
+	}
+
+	public void SetListing (Listing listing, GameObject level)
+	{
+		ListDefs = listing;
+		levelManager = level;
 	}
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
