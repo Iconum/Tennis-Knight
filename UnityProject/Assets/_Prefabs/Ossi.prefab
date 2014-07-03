@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
   levelManager: {fileID: 0}
-  flickerTimerLimit: 4
+  flickerTimerLimit: 1.5
   spawnLerpLimit: 3
   health: 3
   projectileLimit: 2

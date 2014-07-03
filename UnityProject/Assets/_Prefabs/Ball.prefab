@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: 0, y: -3}
   constantSpeed: 5
+  heatGeneration: 5
   paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
   levelManager: {fileID: 0}
 --- !u!212 &21200000
@@ -148,7 +149,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: d98c557b658917e40baeb42e69cdd709, type: 3}
