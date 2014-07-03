@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class MenuFunctionality : MonoBehaviour {
-	float width, height, thirty, sixty, eighty, onefourty;
+	public float width, height, thirty, sixty, eighty, onefourty;
+
 	string menuText;
 
 	// Use this for initialization
@@ -17,6 +18,14 @@ public class MenuFunctionality : MonoBehaviour {
 		if (PlayerPrefs.HasKey ("GlobalVolume"))
 		{
 			Statics.setVolume(PlayerPrefs.GetFloat("GlobalVolume"));
+		}
+		if (PlayerPrefs.HasKey ("SoundVolume"))
+		{
+			Statics.soundVolume = PlayerPrefs.GetFloat ("SoundVolume");
+		}
+		if (PlayerPrefs.HasKey ("MusicVolume"))
+		{
+			Statics.musicVolume = PlayerPrefs.GetFloat ("MusicVolume");
 		}
 		if (PlayerPrefs.HasKey ("ControlMethod"))
 		{
@@ -40,37 +49,49 @@ public class MenuFunctionality : MonoBehaviour {
 		{
 			Application.Quit();
 		}
+
+		if (Input.GetKeyDown (KeyCode.Insert))
+		{
+			Statics.villagers += 10;
+		}
 	}
 
 	void StyleInitialization()
 	{
 		Statics.menuButtonStyle = new GUIStyle (GUI.skin.button);
-		Statics.menuButtonStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 24;
+		Statics.menuButtonStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 32;
 
 		Statics.menuTextStyle = new GUIStyle (GUI.skin.box);
-		Statics.menuTextStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 20;
+		Statics.menuTextStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 24;
 		Statics.menuTextStyle.wordWrap = true;
 	}
 
 	void OnGUI()
 	{
 		StyleInitialization ();
-		GUILayout.BeginArea (new Rect (50.0f, 50.0f, width - 100.0f, height - 100.0f));
+		GUILayout.BeginArea (new Rect (20.0f, 20.0f, width - 40.0f, height - 40.0f));
 		{
 			if (GUILayout.Button ("Start", Statics.menuButtonStyle))
 			{
-				PlayerPrefs.SetInt ("ControlMethod", (int)Statics.selectedControlMethod);
-				PlayerPrefs.SetFloat("GlobalVolume", Statics.globalVolume);
+				PrefStoring();
 				Application.LoadLevel ("TestLevel");
 			}
 			if (GUILayout.Button("King Test", Statics.menuButtonStyle))
 			{
-				PlayerPrefs.SetInt ("ControlMethod", (int)Statics.selectedControlMethod);
-				PlayerPrefs.SetFloat("GlobalVolume", Statics.globalVolume);
+				PrefStoring();
 				Application.LoadLevel ("kingProto");
 			}
-			GUILayout.Label("Volume:", Statics.menuTextStyle);
+			if (GUILayout.Button("Ossi Test", Statics.menuButtonStyle))
+			{
+				PrefStoring();
+				Application.LoadLevel ("asko_level");
+			}
+			GUILayout.Label("Master Volume:", Statics.menuTextStyle);
 			Statics.setVolume(GUILayout.HorizontalSlider(Statics.globalVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle));
+			GUILayout.Label("Sound Volume:", Statics.menuTextStyle);
+			Statics.soundVolume = GUILayout.HorizontalSlider(Statics.soundVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle);
+			GUILayout.Label("Music Volume:", Statics.menuTextStyle);
+			Statics.musicVolume = GUILayout.HorizontalSlider(Statics.musicVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle);
 			GUILayout.Space(thirty);
 			if (GUILayout.Button ("Keyboard Controls", Statics.menuButtonStyle))
 			{
@@ -133,5 +154,14 @@ public class MenuFunctionality : MonoBehaviour {
 		{
 			return ":/   :\\   :|";
 		}
+	}
+
+	public void PrefStoring()
+	{
+		PlayerPrefs.SetInt ("ControlMethod", (int)Statics.selectedControlMethod);
+		PlayerPrefs.SetFloat ("GlobalVolume", Statics.globalVolume);
+		PlayerPrefs.SetFloat ("SoundVolume", Statics.soundVolume);
+		PlayerPrefs.SetFloat ("MusicVolume", Statics.musicVolume);
+		PlayerPrefs.Save ();
 	}
 }

@@ -11,16 +11,26 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	
 	protected BigOssiBallBehaviour shieldBall;
 	protected List<GameObject> shieldBalls = new List<GameObject>();
+	protected List<GameObject> ownProjectiles = new List<GameObject> ();
 	protected float spawnInterval = 0f;
 	protected float spawnTime = 0f;
 	protected GameObject bigOssiReference;
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
-	
+
+	protected bool isBossDying = false;
+	protected float _dieTimer = 0f;
+	protected Vector3 tempPosition;
+
+	public ParticleSystem darkMatter;
+	public GameObject deathExplosionPrefab;
+
 	// Use this for initialization
 	void Start ()
 	{   //Get the animator
 		anim = GetComponent<Animator> ();
+		darkMatter = GetComponentInChildren<ParticleSystem> ();
+
 		shieldBall = shieldBallPrefab.GetComponent<BigOssiBallBehaviour> ();
 		//calculation for spawning for first time
 		bossPhaseSetter ();
@@ -28,35 +38,50 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
 		base.Update ();
 		//Check, if boss is spawning shield. No shooting until they are ready
-		if (isSpawningBalls == true) SpawnBalls ();
-		else ShootBalls();
-		//Move right when touched the left corner
-		if (isOnLimitDistance == false)
+		if (isSpawningBalls == true)
 		{
-			gameObject.transform.Translate (new Vector3 (Time.deltaTime, 0, 0));
-			if(gameObject.transform.position.x >= 2.5f)
-			{
-				isOnLimitDistance = true;
-				anim.SetBool("BOMovingLeft", true);
-				anim.SetBool("BOMovingRight", false);
-			}
+			SpawnBalls();
 		}
 		//Move left when touched the right corner
-		else 
+		else
 		{
-			gameObject.transform.Translate (new Vector3 (-Time.deltaTime, 0, 0));
-			if(gameObject.transform.position.x <= -2.5f)
-			{
-				isOnLimitDistance = false;
-				anim.SetBool("BOMovingRight",true);
-				anim.SetBool("BOMovingLeft", false);
-			}
+			ShootBalls();
 		}
 
+		if (isBossDying == true)
+		{
+			bossDeathAnim ();
+		}
+		else
+		{
+			bossMoving();
+		}
+
+		spaceGtowin();
+
+
 	}
+	protected override void Flicker ()
+	{
+		_flickerTimer += Time.deltaTime;
+		if (_flickerTimer % 0.4f < 0.2f)
+		{
+			GetComponent<SpriteRenderer>().color = new Color(1f,0.7f,0.7f);
+		} else
+		{
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
+		}
+		if (_flickerTimer > flickerTimerLimit)
+		{
+			_flickerActive = false;
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
+			_flickerTimer = 0.0f;
+		}
+	}
+
 	//Spawn shield balls in calculated time.
 	public void SpawnBalls()
 	{
@@ -81,6 +106,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		                                    gameObject.transform.rotation));
 		//set that ball to list
 		shieldBalls [shieldBalls.Count - 1].GetComponent<BigOssiBallBehaviour> ().bigOssi = this;
+		shieldBalls [shieldBalls.Count - 1].GetComponent<BigOssiBallBehaviour> ().SetListing(ListDeflectable, levelManager);
+
 	}
 	//Shoot projectile balls like every other ranged enemy.
 	public void ShootBalls()
@@ -88,16 +115,28 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		_shootTimer += Time.deltaTime;
 		if (_shootTimer >= shootingSpeed)
 		{
-			//set timer to 0
-			_shootTimer = 0.0f;
-			//Shoot projectile
-			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
-			//Set velocity to it
-			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
-			//animation Attack
-			anim.SetTrigger("BOAttack");
-			//list projectile ball
-			ListDeflectable(tempo);
+			for (int i = 0; i < ownProjectiles.Count; ++i)
+			{
+				if (!ownProjectiles [i])
+				{
+					ownProjectiles.RemoveAt (i);
+					--i;
+				}
+			}
+			if (ownProjectiles.Count < projectileLimit || projectileLimit == 0)
+			{
+				//set timer to 0
+				_shootTimer = 0.0f;
+				//Shoot projectile
+				GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+				//Set velocity to it
+				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
+				//animation Attack
+				anim.SetTrigger ("BOAttack");
+				//list projectile ball
+				ownProjectiles.Add (tempo);
+				ListDeflectable (tempo);
+			}
 		}
 	}
 	//Boss took damage, do function with stuff in it
@@ -117,9 +156,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			bossPhaseSetter();
 			if (health <= 0)
 			{
-				//Destroy boss when health is 0
-				levelManager.GetComponent<LevelBehaviour>().EnemyDied();
-				Destroy(gameObject);
+				isBossDying = true;
 			}
 			else
 			{
@@ -139,7 +176,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	{   //Destroy all shield balls from a list
 		for(int i = 0; i < shieldBalls.Count; ++i)
 		{
-			Delete(shieldBalls[i]);
+			if (shieldBalls[i])
+			shieldBalls[i].GetComponent<BigOssiBallBehaviour>().DeleteObject();
 		}
 		//clear all shieldBalls from a list
 		shieldBalls.Clear();
@@ -157,7 +195,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		var ballTime = circumference / speed;
 		//Calculate spawn interval
 		spawnInterval = ballTime / ballCount;
-		//Lastly divide spawn interval with 2 and you have rigth spawning rate for balls!
+		//Lastly divide spawn interval with 2 and you have right spawning rate for balls!
 		spawnInterval /= 2;
 	}
 
@@ -167,31 +205,89 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		{
 		case 5:
 			shieldBall.speed = 1.5f;
-			ballCount = 4;
+			ballCount = 5;
 			calculateCircumference ();
+			darkMatter.emissionRate = 3f;
 			break;
 		case 4:
 			shieldBall.speed = 1.8f;
-			ballCount = 5;
+			ballCount = 6;
 			calculateCircumference ();
+			darkMatter.emissionRate = 5f;
 			break;
 		case 3:
 			shieldBall.speed = 2f;
-			ballCount = 6;
+			ballCount = 7;
 			calculateCircumference ();
+			darkMatter.emissionRate = 7f;
 			break;
 		case 2:
 			shieldBall.speed = 2.2f;
 			ballCount = 8;
 			calculateCircumference ();
+			darkMatter.emissionRate = 9f;
 			break;
 		case 1:
 			shieldBall.speed = 2.5f;
 			ballCount = 10;
 			calculateCircumference ();
+			darkMatter.emissionRate = 11f;
 			break;
 		default:
+			tempPosition = gameObject.transform.position;
 			break;
+		}
+	}
+	
+	protected void bossMoving()
+	{	
+		if (isOnLimitDistance == true)
+		{
+			gameObject.transform.Translate (new Vector3 (-Time.deltaTime, 0, 0));
+			if (gameObject.transform.position.x <= -2.5f)
+			{
+				isOnLimitDistance = false;
+				anim.SetBool ("BOMovingRight", true);
+				anim.SetBool ("BOMovingLeft", false);
+			}
+		} else
+		{
+			gameObject.transform.Translate (new Vector3 (Time.deltaTime, 0, 0));
+			if (gameObject.transform.position.x >= 2.5f)
+			{
+				isOnLimitDistance = true;
+				anim.SetBool ("BOMovingLeft", true);
+				anim.SetBool ("BOMovingRight", false);
+			}
+		}
+	}
+
+	protected void bossDeathAnim()
+	{
+		anim.SetTrigger("BODamage");
+		_dieTimer += Time.deltaTime;
+		var randX = Random.Range(-0.1f,0.1f);
+		var randY = Random.Range(-0.1f,0.1f);
+
+		gameObject.transform.position = new Vector3(tempPosition.x + randX , tempPosition.y + randY);
+		
+		darkMatter.emissionRate = 11f + _dieTimer*20f;
+		darkMatter.startSize = 1f + _dieTimer;
+
+		if (_dieTimer >= 3f)
+		{
+			//Destroy boss when health is 0
+			Instantiate(deathExplosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
+			Destroy (gameObject);
+		}
+
+	}
+
+	protected void spaceGtowin()
+	{
+		if (Input.GetKey (KeyCode.G))
+		{
+			DamageHealth();
 		}
 	}
 

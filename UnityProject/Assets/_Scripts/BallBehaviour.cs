@@ -4,7 +4,7 @@ using System.Collections;
 public class BallBehaviour : MonoBehaviour
 {
 	public Vector2 startVelocity = new Vector2 (0.1f, -1.0f);
-	public float constantSpeed = 2.0f;
+	public float constantSpeed = 2.0f, heatGeneration = 1.5f;
 	public AudioClip paddleHit;
 	public GameObject levelManager = null;
 
@@ -12,6 +12,7 @@ public class BallBehaviour : MonoBehaviour
 	{
 		rigidbody2D.velocity = constantSpeed * startVelocity.normalized;
 		audio.clip = paddleHit;
+		audio.volume = Statics.soundVolume;
 	}
 
 	protected virtual void FixedUpdate ()

@@ -20,12 +20,19 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	public Vector3 shardSpawnDir;
 	protected List<GameObject> ballShards = new List<GameObject>();
 	protected List<Vector3> shardSpawnDirections = new List<Vector3>();
+
+	public GameObject explosionPrefab;
+	protected ParticleSystem explosion;
+
+	public delegate void Listing(GameObject deflectable);
+	public GameObject levelManager = null;
+	public Listing ListDefs;
 	
 	// Use this for initialization
 	void Start () {
+		explosion = explosionPrefab.GetComponent<ParticleSystem> ();
 		ballShard = bigOssiBallShardPrefab.GetComponent<BigOssiShardBehaviour> ();
 		startPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
-		//gameObject.transform.position = new Vector3(startPos.x - 1.4f,startPos.y);
 		if (spinningRadius > 2f)
 		{
 			Debug.Log("Please don't use more than 2f");
@@ -46,13 +53,11 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 		changeLayer ();
 		if(!bigOssi.isSpawningBalls)
 			changeRadius ();
-		//gameObject.transform.Translate(new Vector3((Mathf.Sin(spawnTime*2.24f)/20.0f),Mathf.Cos(spawnTime*2.24f)/20.0f));
 
 	}
 
 	protected void SpinBalls()
 	{
-		//var speed = 2.24f;
 		gameObject.transform.position = (new Vector3(
 			(Mathf.Sin((spawnTime*spinningRadius*speed)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.x),
 			Mathf.Cos((spawnTime*spinningRadius*speed)/(spinningRadius))*enlargeSpeed + bigOssi.transform.position.y));
@@ -86,9 +91,10 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	{
 		for (int i = 0; i < 5; ++i)
 		{
-			ballShards.Add((GameObject)Instantiate (bigOssiBallShardPrefab, transform.position, transform.rotation));
-			ballShards[i].GetComponent<BigOssiShardBehaviour>().Velocity = shardSpawnDirections[i];
-			ballShards[i].GetComponent<BigOssiShardBehaviour>().transform.Rotate(new Vector3(0,0,72f*i));
+			ballShards.Add ((GameObject)Instantiate (bigOssiBallShardPrefab, transform.position, transform.rotation));
+			ballShards [i].GetComponent<BigOssiShardBehaviour> ().Velocity = shardSpawnDirections [i];
+			ballShards [i].GetComponent<BigOssiShardBehaviour> ().transform.Rotate (new Vector3 (0, 0, 72f * i));
+			ListDefs (ballShards [i]);
 		}
 	}
 
@@ -106,6 +112,18 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 		shardSpawnDirections.Add(new Vector3 (0.8f,0.5f));
 	}
 
+	public virtual void DeleteObject()
+	{
+		Instantiate (explosionPrefab, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
+		Destroy (gameObject);
+	}
+
+	public void SetListing (Listing listing, GameObject level)
+	{
+		ListDefs = listing;
+		levelManager = level;
+	}
+
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Deflected"))
@@ -113,7 +131,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 			spawnShards();
 			Destroy(collision.gameObject);
 			bigOssi.Delete(gameObject);
-			Destroy(gameObject);
+			DeleteObject();
 		}
 	}
 }

@@ -68,9 +68,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 100000, guid: b27f24671ff2950448d65db20133bf2f, type: 2}
   levelManager: {fileID: 0}
-  flickerTimerLimit: 4
+  flickerTimerLimit: 1.5
+  spawnLerpLimit: 3
   health: 3
+  projectileLimit: 2
   specialInvincibility: 0
+  spawning: 1
+  targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   shootTimerLimit: 3
   usesSinModifier: 0
@@ -92,7 +96,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: 3c9c298f185cd5047847d5ba3c59b3ae, type: 3}

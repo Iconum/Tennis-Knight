@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyBehaviour : MonoBehaviour {
 	public GameObject projectilePrefab = null;
 	public GameObject levelManager = null;
 	public float flickerTimerLimit = 4.0f, spawnLerpLimit = 3.0f;
-	public int health = 10;
+	public int health = 10, projectileLimit = 0;
 	public bool specialInvincibility = false, spawning = true;
 	public Vector3 targetLocation;
 	public Animator anim;
@@ -13,22 +14,53 @@ public class EnemyBehaviour : MonoBehaviour {
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false, _delayedActivation = false;
 	protected Vector3 _startLocation;
+	protected List<GameObject> _waveEnemies = new List<GameObject>();
 
 	protected virtual void Awake()
 	{
 		_startLocation = transform.position;
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+		}
+	}
+
+	protected virtual void OnDestroy()
+	{
+		if (_waveEnemies.Count > 0)
+		{
+			if (_waveEnemies.TrueForAll (x => x == null))
+			{
+			if (levelManager)
+				levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
+			}
+		} else
+		{
+			if (levelManager)
+				levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
+		}
 	}
 
 	protected virtual void Initialize()
 	{
 
 	}
+	public void WaveEnemies(List<GameObject> wave)
+	{
+		for (int i = 0; i < wave.Count; ++i)
+		{
+			if (wave[i] != gameObject)
+			{
+				_waveEnemies.Add(wave[i]);
+			}
+		}
+	}
 
 	public virtual void GiveSpawnDelay(Vector3 target, float delay)
 	{
 		spawning = true;
 		targetLocation = target;
-		if (delay >= 0.05f)
+		if (delay >= 0.01f)
 		{
 			_delayedActivation = true;
 			StartCoroutine(StartActing(delay));
@@ -45,20 +77,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
 		if (_flickerActive)
 		{
-			_flickerTimer += Time.deltaTime;
-			if (_flickerTimer % 0.4f < 0.2f)
-			{
-				renderer.enabled = false;
-			} else
-			{
-				renderer.enabled = true;
-			}
-			if (_flickerTimer > flickerTimerLimit)
-			{
-				_flickerActive = false;
-				renderer.enabled = true;
-				_flickerTimer = 0.0f;
-			}
+			Flicker ();
 		}
 
 		if (spawning && !_delayedActivation)
@@ -77,6 +96,24 @@ public class EnemyBehaviour : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.End))
 		{
 			InstantDeath ();
+		}
+	}
+
+	protected virtual void Flicker()
+	{
+		_flickerTimer += Time.deltaTime;
+		if (_flickerTimer % 0.4f < 0.2f)
+		{
+			renderer.enabled = false;
+		} else
+		{
+			renderer.enabled = true;
+		}
+		if (_flickerTimer > flickerTimerLimit)
+		{
+			_flickerActive = false;
+			renderer.enabled = true;
+			_flickerTimer = 0.0f;
 		}
 	}
 
@@ -118,14 +155,12 @@ public class EnemyBehaviour : MonoBehaviour {
 
 			if (health <= 0)
 			{
-				levelManager.GetComponent<LevelBehaviour>().EnemyDied();
 				Destroy(gameObject);
 			}
 		}
 	}
 	protected virtual void InstantDeath()
 	{
-		levelManager.GetComponent<LevelBehaviour> ().EnemyDied ();
 		Destroy (gameObject);
 	}
 }

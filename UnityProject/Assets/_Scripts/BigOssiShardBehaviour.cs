@@ -15,6 +15,9 @@ public class BigOssiShardBehaviour : BallBehaviour
 	protected bool isSpawning = true;
 	protected float timer;
 
+	public GameObject explosionPrefab;
+	protected ParticleSystem explosion;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -22,6 +25,8 @@ public class BigOssiShardBehaviour : BallBehaviour
 		VelocityX = Velocity.x;
 		VelocityY = Velocity.y;
 		endPosition = new Vector3 (gameObject.transform.position.x, -10f);
+		
+		Instantiate (explosionPrefab, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
 	}
 	
 	// Update is called once per frame
@@ -61,7 +66,7 @@ public class BigOssiShardBehaviour : BallBehaviour
 
 	protected void targetingMovement()
 	{
-		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPosition, Time.deltaTime );
+		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPosition, Time.deltaTime/2 );
 		gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*15);
 	}
 

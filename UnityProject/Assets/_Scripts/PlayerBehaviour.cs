@@ -5,17 +5,20 @@ using System.Collections.Generic;
 public class PlayerBehaviour : MonoBehaviour
 {
 	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null;
-	public bool paddleActive = false, stunned = false;
-	public float strafeSpeed = 0.1f;
+	public bool paddleActive = false;
+	public float strafeSpeed = 0.1f, heatLimit = 25.0f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
 	public Vector3 targetPosition = new Vector3(0.0f, -2.5f);
+
 	private List<GameObject> _collisionList = new List<GameObject> ();
-	private float _currentSpeed, _lerpTime = 0.0f;
+	private float _currentSpeed, _lerpTime = 0.0f, _heat = 0.0f;
 	private float _horizontalTouch = 0.0f, _touchTime = 0.0f;
 	private ControlType _usedControls = ControlType.keyboard;
 	private bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false;
 	private Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
 	private Vector3 _playerPosition = Vector3.zero;
+
+	private Animator anim;
 
 	// Use this for initialization
 	void Start ()
@@ -23,12 +26,15 @@ public class PlayerBehaviour : MonoBehaviour
 		sixty = (60.0f / 640.0f) * Screen.height;
 		eighty = (80.0f / 400.0f) * Screen.width;
 		onefourty = (140.0f / 640.0f) * Screen.height;
-
-		leftPaddle.SetActive (false);
-		rightPaddle.SetActive (false);
+		
 		_playerPosition = transform.position;
+		levelManager = GameObject.Find ("Level");
 
 		_usedControls = Statics.selectedControlMethod;
+		if (audio)
+		audio.volume = Statics.soundVolume;
+
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -36,12 +42,9 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		_currentSpeed = strafeSpeed * Time.deltaTime;
 		float deltaPosition;
-		if (((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) && _usedControls == ControlType.keyboard) || _usedControls != ControlType.keyboard) && !stunned)
+		if (((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && _usedControls == ControlType.keyboard) || _usedControls != ControlType.keyboard)
 		{
 			_currentSpeed *= 2;
-		} else if (stunned)
-		{
-			//_currentSpeed *= 0.2f;
 		}
 
 		if (Input.GetKeyDown (KeyCode.Escape))
@@ -50,8 +53,25 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 
 		//Absolutely massive else-if block with all the control methods and the level end movement
+		if (_heat > 0.0f)
+		{
+			_heat -= Time.deltaTime * 4.0f;
+			if (_heat < 0.0f)
+			{
+				_heat = 0.0f;
+			}
+			if (_heat > heatLimit)
+			{
+				_heat = heatLimit;
+			}
+			_currentSpeed /= (1.0f + (_heat / (heatLimit / 4.0f)));
+		}
+
+		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
+
 		if (_endLevel)
 		{
+			_heat = 0.0f;
 			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -_currentSpeed, _currentSpeed),
 			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -_currentSpeed, _currentSpeed));
 		} else if (_startLevel)
@@ -76,10 +96,12 @@ public class PlayerBehaviour : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.Z))
 			{
 				PaddleActivate (leftPaddle);
+				anim.SetTrigger ("LeftSwing");
 			}
 			if (Input.GetKeyDown (KeyCode.X))
 			{
 				PaddleActivate (rightPaddle);
+				anim.SetTrigger ("RightSwing");
 			}
 			if (Input.GetKeyDown (KeyCode.Space))
 			{
@@ -244,12 +266,6 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 	}
 
-	IEnumerator StunRemove (float t)
-	{
-		yield return new WaitForSeconds (t);
-		stunned = false;
-	}
-
 	//Automatically determines the best paddle to use
 	void AutomaticPaddle ()
 	{
@@ -259,9 +275,11 @@ public class PlayerBehaviour : MonoBehaviour
 			if (IntersectionPoint (new Vector2 (tempo.transform.position.x, tempo.transform.position.y), tempo.rigidbody2D.velocity).x < transform.position.x)
 			{
 				PaddleActivate (leftPaddle);
+				anim.SetTrigger ("LeftSwing");
 			} else
 			{
 				PaddleActivate (rightPaddle);
+				anim.SetTrigger ("RightSwing");
 			}
 		} else
 		{
@@ -288,49 +306,15 @@ public class PlayerBehaviour : MonoBehaviour
 
 	IEnumerator WalkOff()
 	{
-		yield return new WaitForSeconds (3.0f);
+		yield return new WaitForSeconds (1.5f);
 		_touchPosition = new Vector3 (1.5f, 8.0f);
-		levelManager.GetComponent<LevelBehaviour> ().ClearTheLevel ();
 	}
 
 	void OnGUI ()
 	{
-		if (_usedControls != ControlType.keyboard)
+		if (!_endLevel)
 		{
-			if (_usedControls == ControlType.touchpad || _usedControls == ControlType.invertedtouchpad)
-			{
-				if (GUI.RepeatButton (new Rect (0, Screen.height - sixty, eighty, sixty), "<----", Statics.menuButtonStyle))
-				{
-					transform.position -= new Vector3 (_currentSpeed, 0.0f);
-				}
-				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - sixty, eighty, sixty), "---->", Statics.menuButtonStyle))
-				{
-					transform.position += new Vector3 (_currentSpeed, 0.0f);
-				}
-			}
 
-			if (_usedControls == ControlType.touchpad)
-			{
-				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuButtonStyle))
-				{
-					PaddleActivate (leftPaddle);
-				}
-				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Oikea", Statics.menuButtonStyle))
-				{
-					PaddleActivate (rightPaddle);
-				}
-			}
-			if (_usedControls == ControlType.invertedtouchpad)
-			{
-				if (GUI.RepeatButton (new Rect (Screen.width - eighty, Screen.height - onefourty, eighty, sixty), "Vasen", Statics.menuButtonStyle))
-				{
-					PaddleActivate (leftPaddle);
-				}
-				if (GUI.RepeatButton (new Rect (0, Screen.height - onefourty, eighty, sixty), "Oikea", Statics.menuButtonStyle))
-				{
-					PaddleActivate (rightPaddle);
-				}
-			}
 		}
 	}
 
@@ -338,14 +322,28 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag ("Deflectable"))
 		{
-			stunned = true;
-			StartCoroutine (StunRemove (2.0f));
+			_heat += collision.gameObject.GetComponent<BallBehaviour> ().heatGeneration;
+			if (_heat > heatLimit)
+				_heat = heatLimit;
 			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 		}
 		if (collision.gameObject.CompareTag ("Enemy"))
 		{
-			stunned = true;
-			StartCoroutine (StunRemove (5.0f));
+			_heat = heatLimit;
+		}
+	}
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.CompareTag ("Deflectable"))
+		{
+			_heat += other.GetComponent<BallBehaviour> ().heatGeneration;
+			if (_heat > heatLimit)
+				_heat = heatLimit;
+		}
+		if (other.CompareTag ("Enemy"))
+		{
+			_heat = heatLimit;
 		}
 	}
 }

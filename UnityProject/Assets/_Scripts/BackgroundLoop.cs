@@ -45,16 +45,16 @@ public class BackgroundLoop : MonoBehaviour {
 
 		//Debug.Log (bg2.transform.position);
 
-		if (bg2.transform.position.y < -cheight)
+		if (bg2.transform.position.y <= -cheight)
 		{
 			bg2.transform.position = new Vector3(bg2.transform.position.x,cheight);
-			bg2.transform.position += new Vector3 (0,deltaspeed);
+			//bg2.transform.position += new Vector3 (0,deltaspeed);
 		}
 
-		if (bg1.transform.position.y < -cheight)
+		if (bg1.transform.position.y <= -cheight)
 		{
 			bg1.transform.position = new Vector3(bg1.transform.position.x,cheight);
-			bg1.transform.position += new Vector3 (0,deltaspeed);
+			//bg1.transform.position += new Vector3 (0,deltaspeed);
 		}
 
 		//if (Input.GetKey (KeyCode.Space))
