@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 119251064}
   m_LocalRotation: {x: 0, y: 0, z: .173648193, w: .984807789}
   m_LocalPosition: {x: -.81088829, y: -.216226459, z: 0}
-  m_LocalScale: {x: .743217587, y: .743217587, z: 1}
+  m_LocalScale: {x: .75999999, y: .75999999, z: 1}
   m_Children: []
   m_Father: {fileID: 1926826947}
 --- !u!212 &119251067
@@ -462,8 +462,8 @@ MonoBehaviour:
   terrainPrefab: {fileID: 100000, guid: 848895cc44808d44d982e3babbfbe079, type: 2}
   castlePrefab: {fileID: 100000, guid: 51de250b61ce04b46ae0ddb7ad65ec85, type: 2}
   tinyVillagerPrefab: {fileID: 100000, guid: 382fd6959b638644399a39c5f78fa32d, type: 2}
-  startLocation: {x: -1, y: -2, z: 0}
-  endLocation: {x: -1, y: 2, z: 0}
+  startLocation: {x: 0, y: -3, z: 0}
+  endLocation: {x: 0, y: 0, z: 0}
   castleOffset: {x: 0, y: 0, z: 0}
   villagerBundleAmount: 20
   spawnDelay: .25
@@ -689,7 +689,7 @@ Transform:
   m_GameObject: {fileID: 1605661274}
   m_LocalRotation: {x: 0, y: 0, z: .173648298, w: -.98480773}
   m_LocalPosition: {x: .588891625, y: -.223966032, z: 0}
-  m_LocalScale: {x: .743219197, y: .743219137, z: 1}
+  m_LocalScale: {x: .75999999, y: .75999999, z: 1}
   m_Children: []
   m_Father: {fileID: 1926826947}
 --- !u!61 &1605661276
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   paddleActive: 0
   strafeSpeed: 4
-  heatLimit: 25
+  heatLimit: 20
   sixty: 60
   eighty: 80
   onefourty: 140
