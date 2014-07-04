@@ -7,8 +7,8 @@ public class PaddleBehaviour : MonoBehaviour {
 
 	private Vector3 _startPosition;
 	private Quaternion _startRotation;
-	private float _hitTime = 0.0f;
 	private int _deflectedLayer;
+	private float _hitTime;
 	private bool _hitting = false;
 
 	// Use this for initialization
@@ -20,31 +20,33 @@ public class PaddleBehaviour : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (_hitting)
 		{
-			_hitTime += Time.deltaTime * 5;
+			_hitTime += Time.fixedDeltaTime;
 			if (isLeft)
 			{
-				transform.localPosition = Vector3.Lerp (_startPosition, _startPosition + new Vector3 (0.6f, 0.8f), _hitTime);
-				transform.localRotation = Quaternion.Lerp (_startRotation, Quaternion.Euler (0.0f, 0.0f, -35.0f), _hitTime);
+				rigidbody2D.velocity = new Vector2 (7.0f, 9.0f);
+				rigidbody2D.angularVelocity = -640.0f;
 			} else
 			{
-				transform.localPosition = Vector3.Lerp (_startPosition, _startPosition + new Vector3 (-0.6f, 0.8f), _hitTime);
-				transform.localRotation = Quaternion.Lerp (_startRotation, Quaternion.Euler (0.0f, 0.0f, 35.0f), _hitTime);
+				rigidbody2D.velocity = new Vector2 (-7.0f, 9.0f);
+				rigidbody2D.angularVelocity = 640.0f;
 			}
+			if (_hitTime > 0.3f)
+				PaddleDisable ();
 		}
 	}
 
 	public void PaddleHit()
 	{
 		Hitting (true);
-		StartCoroutine (PaddleDisable ());
 	}
 
-	IEnumerator PaddleDisable ()
+	void PaddleDisable ()
 	{
-		yield return new WaitForSeconds (0.2f);
+		rigidbody2D.velocity = Vector2.zero;
+		rigidbody2D.angularVelocity = 0.0f;
 		transform.localPosition = _startPosition;
 		transform.localRotation = _startRotation;
 		_hitTime = 0.0f;

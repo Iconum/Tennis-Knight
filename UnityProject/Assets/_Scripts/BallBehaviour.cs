@@ -35,14 +35,14 @@ public class BallBehaviour : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag ("Paddle"))
 		{
-			rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.normalized.x,-0.7f, 0.7f), rigidbody2D.velocity.normalized.y).normalized;
+			//rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.normalized.x,-0.7f, 0.7f), rigidbody2D.velocity.normalized.y).normalized;
 			if (!audio.isPlaying)
 			{
 				if (audio.clip != paddleHit)
 				{
 					audio.clip = paddleHit;
 				}
-				StartCoroutine(Home());
+				Home();
 				audio.Play();
 			}
 		}
@@ -56,9 +56,8 @@ public class BallBehaviour : MonoBehaviour
 		}
 	}
 
-	protected virtual IEnumerator Home()
+	protected virtual void Home()
 	{
-		yield return new WaitForSeconds (0.05f);
 		for (int i = 0; i < _enemies.Count; ++i)
 		{
 			if (!_enemies [i])
@@ -71,7 +70,7 @@ public class BallBehaviour : MonoBehaviour
 		{
 			int ind = Random.Range (0, _enemies.Count);
 			Debug.Log (rigidbody2D.velocity.normalized.ToString ());
-			rigidbody2D.velocity += new Vector2 ((_enemies [ind].transform.position - transform.position).normalized.x, (_enemies [ind].transform.position - transform.position).normalized.y) * 2;
+			rigidbody2D.velocity += new Vector2 ((_enemies [ind].transform.position - transform.position).normalized.x, (_enemies [ind].transform.position - transform.position).normalized.y);
 			Debug.Log (rigidbody2D.velocity.normalized.ToString ());
 		}
 	}
