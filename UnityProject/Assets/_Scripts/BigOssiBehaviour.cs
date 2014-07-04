@@ -60,7 +60,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			bossMoving();
 		}
 
-		spaceGtowin();
+		//spaceGtowin();
 
 
 	}
@@ -283,13 +283,13 @@ public class BigOssiBehaviour : EnemyBehaviour {
 
 	}
 
-	protected void spaceGtowin()
-	{
-		if (Input.GetKey (KeyCode.G))
-		{
-			DamageHealth();
-		}
-	}
+//	protected void spaceGtowin()
+//	{
+//		if (Input.GetKey (KeyCode.G))
+//		{
+//			DamageHealth();
+//		}
+//	}
 
 	//Test ienumerator
 	IEnumerator joku()
