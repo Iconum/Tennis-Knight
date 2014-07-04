@@ -19,7 +19,7 @@ public class ButtonFunctionality : MonoBehaviour {
 				hasInput = true;
 			}
 		}
-#if UNITY_STANDALONE
+#if UNITY_STANDALONE || UNITY_EDITOR
 		if (Input.GetMouseButtonUp (0))
 		{
 			inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

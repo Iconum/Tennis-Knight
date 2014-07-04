@@ -146,7 +146,7 @@ public class LevelBehaviour : MonoBehaviour {
 		float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
 		Statics.valuables += Mathf.FloorToInt (loot / ratio);
 		_alpha = 0.0f;
-		_aOperation = Application.LoadLevelAsync (0);
+		_aOperation = Application.LoadLevelAsync ("LevelSelectMenu");
 		_aOperation.allowSceneActivation = false;
 		StartCoroutine (StartMiniView ());
 	}

@@ -15,6 +15,7 @@ public class RangedBehaviour : EnemyBehaviour {
 		base.Awake ();
 		_levelStartTime = Time.time;
 		anim = GetComponent<Animator> ();
+		_levelStartTime += transform.position.x;
 	}
 	
 	// Update is called once per frame

@@ -86,7 +86,8 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   flickerTimerLimit: .5
   spawnLerpLimit: 3
-  health: 1
+  health: 3
+  projectileLimit: 0
   specialInvincibility: 0
   spawning: 1
   targetLocation: {x: 0, y: 0, z: 0}
@@ -96,7 +97,7 @@ MonoBehaviour:
   attackTime: 5
   throwingTime: 0
   sideSpeed: 1.5
-  chargeSpeed: 7
+  chargeSpeed: 6
   player: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
@@ -116,7 +117,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: f93452ee6eb57de488579aec58c82348, type: 3}

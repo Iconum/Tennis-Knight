@@ -19,7 +19,7 @@ public class KingProto : EnemyBehaviour {
 		anim = GetComponent<Animator> ();
 		player = levelManager.GetComponent<LevelBehaviour> ().player;
 		deflections = maxDeflections - health;
-		StartCoroutine (BallSpawning (2.0f));
+		StartCoroutine (BallSpawning (spawnLerpLimit));
 	}
 	
 	// Update is called once per frame
