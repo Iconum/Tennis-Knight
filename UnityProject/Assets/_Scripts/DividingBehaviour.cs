@@ -29,12 +29,12 @@ public class DividingBehaviour : BallBehaviour {
 	void GetDeflected(bool isPaddle = false)
 	{
 		GameObject tempo = (GameObject)Instantiate (selfPrefab, transform.position, transform.rotation);
-		tempo.GetComponent<DividingBehaviour> ().DownPhase (_deflectPhase, new Vector2(Mathf.Sin(20)+rigidbody2D.velocity.x, Mathf.Cos(20)+rigidbody2D.velocity.y), isPaddle);
 		tempo.GetComponent<DividingBehaviour> ().SetEnemyWave (_enemies);
+		tempo.GetComponent<DividingBehaviour> ().DownPhase (_deflectPhase, new Vector2(Mathf.Sin(20)+rigidbody2D.velocity.x, Mathf.Cos(20)+rigidbody2D.velocity.y), isPaddle);
 		levelManager.GetComponent<LevelBehaviour> ().AddToDeflectable (tempo);
 		tempo = (GameObject)Instantiate (selfPrefab, transform.position, transform.rotation);
-		tempo.GetComponent<DividingBehaviour> ().DownPhase (_deflectPhase, new Vector2(Mathf.Sin(-20)+rigidbody2D.velocity.x, Mathf.Cos(-20)+rigidbody2D.velocity.y));
 		tempo.GetComponent<DividingBehaviour> ().SetEnemyWave (_enemies);
+		tempo.GetComponent<DividingBehaviour> ().DownPhase (_deflectPhase, new Vector2(Mathf.Sin(-20)+rigidbody2D.velocity.x, Mathf.Cos(-20)+rigidbody2D.velocity.y));
 		levelManager.GetComponent<LevelBehaviour> ().AddToDeflectable (tempo);
 		Destroy (gameObject);
 	}
@@ -47,6 +47,6 @@ public class DividingBehaviour : BallBehaviour {
 		{
 			audio.Play ();
 		}
-		StartCoroutine (Home ());
+		Home ();
 	}
 }
