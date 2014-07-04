@@ -300,6 +300,10 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
+      propertyPath: fluff
+      value: 
+      objectReference: {fileID: 105880910}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
   m_RootGameObject: {fileID: 1143653018}
@@ -664,6 +668,7 @@ MonoBehaviour:
   leftPaddle: {fileID: 2087534907}
   rightPaddle: {fileID: 402807316}
   levelManager: {fileID: 0}
+  fluff: {fileID: 105880910}
   paddleActive: 0
   stunned: 0
   strafeSpeed: 2
