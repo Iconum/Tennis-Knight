@@ -18,8 +18,12 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
+      value: {fileID: 21300000, guid: ce81429614c5777449e84b4fbe4ab970, type: 3}
+    - time: .166666672
       value: {fileID: 21300002, guid: ce81429614c5777449e84b4fbe4ab970, type: 3}
     - time: .333333343
+      value: {fileID: 21300000, guid: ce81429614c5777449e84b4fbe4ab970, type: 3}
+    - time: .5
       value: {fileID: 21300004, guid: ce81429614c5777449e84b4fbe4ab970, type: 3}
     - time: .666666687
       value: {fileID: 21300004, guid: ce81429614c5777449e84b4fbe4ab970, type: 3}
