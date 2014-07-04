@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class ButtonFunctionality : MonoBehaviour {
+	protected AsyncOperation _asyncOp = null;
 	
 	protected virtual void Start () {
 
@@ -25,17 +26,25 @@ public class ButtonFunctionality : MonoBehaviour {
 			hasInput = true;
 		}
 #endif
-		if (hasInput)
+		if (hasInput && _asyncOp == null)
 		{
 			if (GetComponent<BoxCollider2D> ().OverlapPoint (new Vector2 (inputPos.x, inputPos.y)))
 			{
 				PressButton ();
 			}
 		}
+		if (_asyncOp != null && audio)
+		if (!audio.isPlaying)
+			_asyncOp.allowSceneActivation = true;
 	}
 
 	protected virtual void PressButton()
 	{
-
+		if (audio)
+		{
+			audio.Play();
+			if (_asyncOp != null)
+				_asyncOp.allowSceneActivation = false;
+		}
 	}
 }

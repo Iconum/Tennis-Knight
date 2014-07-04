@@ -15,14 +15,11 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 
 	protected override void PressButton ()
 	{
-		base.PressButton ();
 		switch (buttonType)
 		{
 		case ButtonTypes.Back:
-				Application.LoadLevel("Menu");
 			break;
 		case ButtonTypes.Shop:
-
 			break;
 		case ButtonTypes.Tutorial:
 			break;
@@ -33,5 +30,6 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 		case ButtonTypes.Third:
 			break;
 		}
+		base.PressButton ();
 	}
 }
