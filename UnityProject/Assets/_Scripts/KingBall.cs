@@ -15,7 +15,7 @@ public class KingBall : BallBehaviour
 		}
 	}
 
-	protected override void OnCollisionEnter2D (Collision2D collision)
+	protected override void OnCollisionExit2D (Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Paddle") || collision.gameObject.CompareTag ("Enemy"))
 		{
@@ -42,15 +42,14 @@ public class KingBall : BallBehaviour
 		constantSpeed += speed;
 	}
 
-	IEnumerator Home()
+	protected override void Home()
 	{
-		yield return new WaitForSeconds (0.1f);
 		if (CompareTag ("Deflectable"))
 		{
-			rigidbody2D.velocity += new Vector2 ((player.transform.position - transform.position).normalized.x, (player.transform.position - transform.position).normalized.y) / 2;
+			rigidbody2D.velocity += new Vector2 ((player.transform.position - transform.position).normalized.x, (player.transform.position - transform.position).normalized.y) * 2;
 		} else if (CompareTag ("Deflected"))
 		{
-			rigidbody2D.velocity += new Vector2 ((theKing.transform.position - transform.position).normalized.x, (theKing.transform.position - transform.position).normalized.y) / 2;
+			rigidbody2D.velocity += new Vector2 ((theKing.transform.position - transform.position).normalized.x, (theKing.transform.position - transform.position).normalized.y) * 2;
 		}
 	}
 }

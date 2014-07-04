@@ -2,13 +2,9 @@
 using System.Collections;
 
 public class ButtonFunctionality : MonoBehaviour {
-	public MenuFunctionality menu = null;
 	
 	protected virtual void Start () {
-		if (!menu)
-		{
-			menu = GameObject.Find ("Menu").GetComponent<MenuFunctionality>();
-		}
+
 	}
 
 	protected virtual void Update () {
