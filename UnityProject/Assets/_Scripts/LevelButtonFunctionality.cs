@@ -18,6 +18,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 		switch (buttonType)
 		{
 		case ButtonTypes.Back:
+			Debug.Log("Working!!");
 			break;
 		case ButtonTypes.Shop:
 			break;

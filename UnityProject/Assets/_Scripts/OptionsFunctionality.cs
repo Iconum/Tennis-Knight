@@ -14,32 +14,6 @@ public class OptionsFunctionality : MonoBehaviour {
 		onefourty = (140.0f / 640.0f) * Screen.height;
 		width = Screen.width;
 		height = Screen.height;
-
-		if (PlayerPrefs.HasKey ("GlobalVolume"))
-		{
-			Statics.setVolume(PlayerPrefs.GetFloat("GlobalVolume"));
-		}
-		if (PlayerPrefs.HasKey ("SoundVolume"))
-		{
-			Statics.soundVolume = PlayerPrefs.GetFloat ("SoundVolume");
-		}
-		if (PlayerPrefs.HasKey ("MusicVolume"))
-		{
-			Statics.musicVolume = PlayerPrefs.GetFloat ("MusicVolume");
-		}
-		if (PlayerPrefs.HasKey ("ControlMethod"))
-		{
-			Statics.selectedControlMethod = (ControlType)PlayerPrefs.GetInt ("ControlMethod");
-		} else
-		{
-#if UNITY_ANDROID
-			Statics.selectedControlMethod = ControlType.tilting;
-#elif UNITY_EDITOR
-			Statics.selectedControlMethod = ControlType.keyboard;
-#elif UNITY_STANDALONE
-			Statics.selectedControlMethod = ControlType.keyboard;
-#endif
-		}
 		menuText = GetMenuText ();
 	}
 	
@@ -50,6 +24,7 @@ public class OptionsFunctionality : MonoBehaviour {
 			Application.Quit();
 		}
 
+		//Debug
 		if (Input.GetKeyDown (KeyCode.Insert))
 		{
 			Statics.villagers += 10;
@@ -69,24 +44,8 @@ public class OptionsFunctionality : MonoBehaviour {
 	void OnGUI()
 	{
 		StyleInitialization ();
-		GUILayout.BeginArea (new Rect (20.0f, 20.0f, width - 40.0f, height - 40.0f));
+		GUILayout.BeginArea (new Rect (20.0f, 100.0f, width - 40.0f, height - 40.0f));
 		{
-			if (GUILayout.Button ("Start", Statics.menuButtonStyle))
-			{
-				Statics.villagers = 20;
-				Statics.PrefStoring();
-				Application.LoadLevel ("TestLevel");
-			}
-			if (GUILayout.Button("King Test", Statics.menuButtonStyle))
-			{
-				Statics.PrefStoring();
-				Application.LoadLevel ("kingProto");
-			}
-			if (GUILayout.Button("Ossi Test", Statics.menuButtonStyle))
-			{
-				Statics.PrefStoring();
-				Application.LoadLevel ("asko_level");
-			}
 			GUILayout.Label("Master Volume:", Statics.menuTextStyle);
 			Statics.setVolume(GUILayout.HorizontalSlider(Statics.globalVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle));
 			GUILayout.Label("Sound Volume:", Statics.menuTextStyle);

@@ -32,6 +32,35 @@ public static class Statics
 		setVolume ();
 	}
 
+	public static void PrefLoading()
+	{
+		if (PlayerPrefs.HasKey ("GlobalVolume"))
+		{
+			Statics.setVolume(PlayerPrefs.GetFloat("GlobalVolume"));
+		}
+		if (PlayerPrefs.HasKey ("SoundVolume"))
+		{
+			Statics.soundVolume = PlayerPrefs.GetFloat ("SoundVolume");
+		}
+		if (PlayerPrefs.HasKey ("MusicVolume"))
+		{
+			Statics.musicVolume = PlayerPrefs.GetFloat ("MusicVolume");
+		}
+		if (PlayerPrefs.HasKey ("ControlMethod"))
+		{
+			Statics.selectedControlMethod = (ControlType)PlayerPrefs.GetInt ("ControlMethod");
+		} else
+		{
+			#if UNITY_ANDROID
+			Statics.selectedControlMethod = ControlType.freedragging;
+			#elif UNITY_EDITOR
+			Statics.selectedControlMethod = ControlType.keyboard;
+			#elif UNITY_STANDALONE
+			Statics.selectedControlMethod = ControlType.keyboard;
+			#endif
+		}
+	}
+
 	public static void PrefStoring()
 	{
 		PlayerPrefs.SetInt ("ControlMethod", (int)Statics.selectedControlMethod);
