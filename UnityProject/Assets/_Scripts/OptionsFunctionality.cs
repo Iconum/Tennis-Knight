@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuFunctionality : MonoBehaviour {
+public class OptionsFunctionality : MonoBehaviour {
 	public float width, height, thirty, sixty, eighty, onefourty;
 
 	string menuText;
