@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GraphicsPlayerBehaviour : MonoBehaviour
 {
-	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null;
+	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null, fluff = null;
 	public bool paddleActive = false, stunned = false;
 	public float strafeSpeed = 0.1f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
@@ -52,13 +52,18 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 
 		if (_usedControls == ControlType.keyboard)
 		{
+			anim.SetBool("MovingLeft",false);
+			anim.SetBool("MovingRight",false);
+
 			if (Input.GetKey (KeyCode.RightArrow))
 			{
 				transform.position += new Vector3 (_currentSpeed, 0.0f);
+				anim.SetBool("MovingRight",true);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow))
 			{
 				transform.position -= new Vector3 (_currentSpeed, 0.0f);
+				anim.SetBool("MovingLeft",true);
 			}
 			if (Input.GetKeyDown (KeyCode.Z))
 			{
