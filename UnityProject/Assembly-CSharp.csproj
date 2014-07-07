@@ -70,10 +70,15 @@
      <Compile Include="Assets\_Scripts\KingProto.cs" />
      <Compile Include="Assets\_Scripts\KnightAnimation.cs" />
      <Compile Include="Assets\_Scripts\LevelBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\LevelButtonFunctionality.cs" />
+     <Compile Include="Assets\_Scripts\LevelSelFunctionality.cs" />
      <Compile Include="Assets\_Scripts\MeleeBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\MenuButtonFunctionality.cs" />
      <Compile Include="Assets\_Scripts\MenuFunctionality.cs" />
      <Compile Include="Assets\_Scripts\MenuProto.cs" />
      <Compile Include="Assets\_Scripts\MiniCastleBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\ModeButtonFunctionality.cs" />
+     <Compile Include="Assets\_Scripts\OptionsFunctionality.cs" />
      <Compile Include="Assets\_Scripts\OssiAnimation.cs" />
      <Compile Include="Assets\_Scripts\PaddleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PlayerBehaviour.cs" />
