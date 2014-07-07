@@ -1250,7 +1250,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f21957af399094a95f316267beb296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopped: 0
+  isSubBackground: 0
   speed: .5
+  brakeTime: 3
+  subBackground: []
 --- !u!23 &1975941228
 Renderer:
   m_ObjectHideFlags: 0
