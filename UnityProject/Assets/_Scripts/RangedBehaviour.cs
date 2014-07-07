@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class RangedBehaviour : EnemyBehaviour {
 	public float shootTimerLimit = 1.0f;
-	public bool usesSinModifier = false;
+	public bool usesSinModifier = false, notShootingWalls, dividingProjectiles = false;
 
 	private float _shootTimer = 0.0f, _levelStartTime = 0.0f, _sinModifier = 1.0f;
 	private bool _sinDirection = true;
-	private List<GameObject> _shotProjectiles = new List<GameObject>();
+	protected List<GameObject> _shotProjectiles = new List<GameObject>();
 
 	// Use this for initialization
 	protected override void Awake () {
@@ -65,9 +65,16 @@ public class RangedBehaviour : EnemyBehaviour {
 				{
 					_shootTimer = 0.0f;
 					GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
-					tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
+					if (notShootingWalls)
+					{
+						float tempf = ((transform.position.x + 2.5f) / 5.0f) * 0.4f;
+						tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-tempf, 0.4f-tempf), -0.4f));
+					} else
+						tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
 					tempo.GetComponent<BallBehaviour> ().SetEnemyWave (_waveEnemies);
 					_shotProjectiles.Add (tempo);
+					if (dividingProjectiles)
+						tempo.GetComponent<DividingBehaviour> ().GetShot (_shotProjectiles);
 					ListDeflectable (tempo);
 					anim.SetTrigger ("Attack");
 				}
