@@ -1025,6 +1025,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: c4f22107091f54249b67d83ca299fcf6, type: 2}
+      propertyPath: speed
+      value: .300000012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4f22107091f54249b67d83ca299fcf6, type: 2}
   m_RootGameObject: {fileID: 1975941226}
@@ -1252,7 +1256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopped: 0
   isSubBackground: 0
-  speed: .5
+  speed: .300000012
   brakeTime: 3
   subBackground: []
 --- !u!23 &1975941228
