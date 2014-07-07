@@ -78,6 +78,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   shootTimerLimit: 2.5
   usesSinModifier: 0
+  notShootingWalls: 1
+  dividingProjectiles: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -69,9 +69,7 @@ public class BallBehaviour : MonoBehaviour
 		if (_enemies.Count != 0)
 		{
 			int ind = Random.Range (0, _enemies.Count);
-			Debug.Log (rigidbody2D.velocity.normalized.ToString ());
 			rigidbody2D.velocity += new Vector2 ((_enemies [ind].transform.position - transform.position).normalized.x, (_enemies [ind].transform.position - transform.position).normalized.y);
-			Debug.Log (rigidbody2D.velocity.normalized.ToString ());
 		}
 	}
 
