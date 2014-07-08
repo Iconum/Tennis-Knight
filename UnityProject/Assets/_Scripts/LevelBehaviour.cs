@@ -107,6 +107,11 @@ public class LevelBehaviour : MonoBehaviour {
 		deflectableList.Remove (deflectable);
 	}
 
+	public int DeflectableCount()
+	{
+		return deflectableList.Count;
+	}
+
 	public GameObject FindClosestDeflectable(Vector3 pos)
 	{
 		if (deflectableList.Count != 0)
@@ -114,8 +119,14 @@ public class LevelBehaviour : MonoBehaviour {
 			DeflectableSorter sorter = new DeflectableSorter ();
 			sorter._targetPosition = pos;
 			List<GameObject> templist = deflectableList.FindAll (x => x.transform.position.y > (pos.y - 0.3f));
-			templist.Sort (sorter);
-			return templist [0];
+			if (templist.Count != 0)
+			{
+				templist.Sort (sorter);
+				return templist [0];
+			} else
+			{
+				return null;
+			}
 		} else
 			return null;
 	}
@@ -135,7 +146,7 @@ public class LevelBehaviour : MonoBehaviour {
 		float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
 		Statics.valuables += Mathf.FloorToInt (loot / ratio);
 		_alpha = 0.0f;
-		_aOperation = Application.LoadLevelAsync (0);
+		_aOperation = Application.LoadLevelAsync ("LevelSelectMenu");
 		_aOperation.allowSceneActivation = false;
 		StartCoroutine (StartMiniView ());
 	}

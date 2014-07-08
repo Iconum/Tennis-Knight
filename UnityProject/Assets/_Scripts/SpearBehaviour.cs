@@ -23,9 +23,9 @@ public class SpearBehaviour : BallBehaviour {
 		}
 	}
 
-	protected override void OnCollisionEnter2D(Collision2D collision)
+	protected override void OnCollisionExit2D(Collision2D collision)
 	{
-		base.OnCollisionEnter2D (collision);
+		base.OnCollisionExit2D (collision);
 		if (collision.gameObject.CompareTag ("Border"))
 		{
 			stopped = true;

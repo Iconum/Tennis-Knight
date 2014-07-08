@@ -11,6 +11,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	
 	protected BigOssiBallBehaviour shieldBall;
 	protected List<GameObject> shieldBalls = new List<GameObject>();
+	protected List<GameObject> ownProjectiles = new List<GameObject> ();
 	protected float spawnInterval = 0f;
 	protected float spawnTime = 0f;
 	protected GameObject bigOssiReference;
@@ -59,7 +60,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			bossMoving();
 		}
 
-		spaceGtowin();
+		//spaceGtowin();
 
 
 	}
@@ -105,6 +106,8 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		                                    gameObject.transform.rotation));
 		//set that ball to list
 		shieldBalls [shieldBalls.Count - 1].GetComponent<BigOssiBallBehaviour> ().bigOssi = this;
+		shieldBalls [shieldBalls.Count - 1].GetComponent<BigOssiBallBehaviour> ().SetListing(ListDeflectable, levelManager);
+
 	}
 	//Shoot projectile balls like every other ranged enemy.
 	public void ShootBalls()
@@ -112,16 +115,28 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		_shootTimer += Time.deltaTime;
 		if (_shootTimer >= shootingSpeed)
 		{
-			//set timer to 0
-			_shootTimer = 0.0f;
-			//Shoot projectile
-			GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
-			//Set velocity to it
-			tempo.GetComponent<BallBehaviour>().SetStartVelocity(new Vector2(Random.Range(-0.2f, 0.2f), -0.4f));
-			//animation Attack
-			anim.SetTrigger("BOAttack");
-			//list projectile ball
-			ListDeflectable(tempo);
+			for (int i = 0; i < ownProjectiles.Count; ++i)
+			{
+				if (!ownProjectiles [i])
+				{
+					ownProjectiles.RemoveAt (i);
+					--i;
+				}
+			}
+			if (ownProjectiles.Count < projectileLimit || projectileLimit == 0)
+			{
+				//set timer to 0
+				_shootTimer = 0.0f;
+				//Shoot projectile
+				GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+				//Set velocity to it
+				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
+				//animation Attack
+				anim.SetTrigger ("BOAttack");
+				//list projectile ball
+				ownProjectiles.Add (tempo);
+				ListDeflectable (tempo);
+			}
 		}
 	}
 	//Boss took damage, do function with stuff in it
@@ -268,13 +283,13 @@ public class BigOssiBehaviour : EnemyBehaviour {
 
 	}
 
-	protected void spaceGtowin()
-	{
-		if (Input.GetKey (KeyCode.G))
-		{
-			DamageHealth();
-		}
-	}
+//	protected void spaceGtowin()
+//	{
+//		if (Input.GetKey (KeyCode.G))
+//		{
+//			DamageHealth();
+//		}
+//	}
 
 	//Test ienumerator
 	IEnumerator joku()

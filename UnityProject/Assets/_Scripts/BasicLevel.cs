@@ -24,6 +24,7 @@ public class BasicLevel : LevelBehaviour {
 		{
 			if (enemySpawnPackages.Count == 0)
 			{
+				BGLoop.current.ToggleStop();
 				ClearDeflectables ();
 				ClearTheLevel();
 				ToggleWall ();
@@ -47,6 +48,7 @@ public class BasicLevel : LevelBehaviour {
 			}
 			if (enemySpawnPackages.Count == 0)
 			{
+				BGLoop.current.ToggleStop();
 				ToggleWall ();
 			}
 		} else if (levelTest)
@@ -62,7 +64,10 @@ public class BasicLevel : LevelBehaviour {
 
 	public void StartTheEnd()
 	{
- 		villagerManager.GetComponent<VillagerHandler> ().LootCastle ();
-		player.GetComponent<PlayerBehaviour> ().StartTheEnd ();
+		if (villagerManager && player)
+		{
+			villagerManager.GetComponent<VillagerHandler> ().LootCastle ();
+			player.GetComponent<PlayerBehaviour> ().StartTheEnd ();
+		}
 	}
 }

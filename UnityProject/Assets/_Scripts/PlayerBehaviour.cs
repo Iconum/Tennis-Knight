@@ -18,6 +18,8 @@ public class PlayerBehaviour : MonoBehaviour
 	private Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
 	private Vector3 _playerPosition = Vector3.zero;
 
+	private Animator anim;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -31,6 +33,8 @@ public class PlayerBehaviour : MonoBehaviour
 		_usedControls = Statics.selectedControlMethod;
 		if (audio)
 		audio.volume = Statics.soundVolume;
+
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -51,7 +55,7 @@ public class PlayerBehaviour : MonoBehaviour
 		//Absolutely massive else-if block with all the control methods and the level end movement
 		if (_heat > 0.0f)
 		{
-			_heat -= Time.deltaTime;
+			_heat -= Time.deltaTime * 4.0f;
 			if (_heat < 0.0f)
 			{
 				_heat = 0.0f;
@@ -60,8 +64,10 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				_heat = heatLimit;
 			}
-			_currentSpeed /= (1.0f + _heat);
+			_currentSpeed /= (1.0f + (_heat / (heatLimit / 4.0f)));
 		}
+
+		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
 
 		if (_endLevel)
 		{
@@ -90,10 +96,12 @@ public class PlayerBehaviour : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.Z))
 			{
 				PaddleActivate (leftPaddle);
+				anim.SetTrigger ("LeftSwing");
 			}
 			if (Input.GetKeyDown (KeyCode.X))
 			{
 				PaddleActivate (rightPaddle);
+				anim.SetTrigger ("RightSwing");
 			}
 			if (Input.GetKeyDown (KeyCode.Space))
 			{
@@ -267,9 +275,11 @@ public class PlayerBehaviour : MonoBehaviour
 			if (IntersectionPoint (new Vector2 (tempo.transform.position.x, tempo.transform.position.y), tempo.rigidbody2D.velocity).x < transform.position.x)
 			{
 				PaddleActivate (leftPaddle);
+				anim.SetTrigger ("LeftSwing");
 			} else
 			{
 				PaddleActivate (rightPaddle);
+				anim.SetTrigger ("RightSwing");
 			}
 		} else
 		{
@@ -318,6 +328,20 @@ public class PlayerBehaviour : MonoBehaviour
 			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 		}
 		if (collision.gameObject.CompareTag ("Enemy"))
+		{
+			_heat = heatLimit;
+		}
+	}
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.CompareTag ("Deflectable"))
+		{
+			_heat += other.GetComponent<BallBehaviour> ().heatGeneration;
+			if (_heat > heatLimit)
+				_heat = heatLimit;
+		}
+		if (other.CompareTag ("Enemy"))
 		{
 			_heat = heatLimit;
 		}

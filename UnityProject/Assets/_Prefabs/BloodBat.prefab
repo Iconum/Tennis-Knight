@@ -66,11 +66,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5065cccefb4f746bd224e854fc8385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 100000, guid: 7163f3f64a2319a409cda4fa6bc6b288, type: 2}
+  projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
   levelManager: {fileID: 0}
-  flickerTimerLimit: 4
+  flickerTimerLimit: 1.5
+  spawnLerpLimit: 3
   health: 2
+  projectileLimit: 1
   specialInvincibility: 0
+  spawning: 1
+  targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   shootTimerLimit: 2
   usesSinModifier: 1
@@ -92,7 +96,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: d06caf1d39201044ab7440094afc6cad, type: 3}

@@ -8,12 +8,14 @@ public class MiniCastleBehaviour : MonoBehaviour {
 	public List<GameObject> moneyPrefabs;
 
 	private CastleRaidHandler _raidHandler;
+	private Vector3 _startScale;
 	private int _valuables;
 	private float _spittingTimer = 0.0f, _bumpTimer = 0.0f, _animationFinish = 0.0f, _moneySpittingRate = 0.1f;
 
 	void Awake()
 	{
 		audio.volume = Statics.soundVolume;
+		_startScale = transform.localScale;
 	}
 
 	void Update ()
@@ -51,7 +53,7 @@ public class MiniCastleBehaviour : MonoBehaviour {
 
 		if (_bumpTimer > 0.0f)
 		{
-			transform.localScale = new Vector3 (1.0f + _bumpTimer / 10.0f, 1.0f + _bumpTimer / 10.0f, 1.0f + _bumpTimer / 10.0f);
+			transform.localScale = new Vector3 (_startScale.x + _bumpTimer / 10.0f, _startScale.y + _bumpTimer / 10.0f, _startScale.z + _bumpTimer / 10.0f);
 			_bumpTimer -= Time.deltaTime;
 			if (_bumpTimer > bumpTimerLimit)
 			{
