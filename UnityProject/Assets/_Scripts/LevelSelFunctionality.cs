@@ -7,84 +7,77 @@ public class LevelSelFunctionality : MonoBehaviour {
 	public int levelsCleared = 0;
 	public int lastClearedLevel = 0;
 	public GameObject levelSelectorPrefab;
-	public GameObject wayPointHandler;
+	public GameObject wayPointHandlerPrefab;
 
 	protected int _curPoint = 0,_nextPoint = 0,_tempPoint = 0,_waypointCount = 0;
 	protected Vector3 _curPointPos;
 	protected Vector3 _nextPointPos;
-	protected List<Vector3> _wayPoints = new List<Vector3>();
+	protected Vector3 _tempPointPos;
+	protected List<GameObject> _levels = new List<GameObject>();
+	protected GameObject _level;
 	protected GameObject levelSelector;
+	protected bool isInPosition = true;
+
+	protected float moveTime = 0f;
 
 	// Use this for initialization
 	void Start () 
 	{
-		_waypointCount = countChildren (wayPointHandler.transform);
-		for (int i = 0; _waypointCount > i; ++i)
+		for (int i = 0; wayPointHandlerPrefab.transform.childCount > i; ++i)
 		{
-			_wayPoints.Add(wayPointHandler.transform.GetChild(i).position);
+			_level = wayPointHandlerPrefab.transform.GetChild(i).gameObject;
+			_levels.Add(_level);
 		}
-		_curPointPos = _wayPoints [levelsCleared];
-		_curPoint  = levelsCleared;
-		_nextPoint = levelsCleared;
 		levelSelector = (GameObject)Instantiate ( levelSelectorPrefab,
-		                                         _curPointPos,
-		                                          levelSelectorPrefab.transform.rotation);
+		                                         _levels[levelsCleared].transform.position,
+	                                          	  levelSelectorPrefab.transform.rotation);
+		setPoint (0);
+
 	}
-	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (_curPoint == _nextPoint)
-			_curPoint = _nextPoint;
-		else if (_curPoint > _nextPoint)
+		levelSelector.transform.position = new Vector3 (_curPointPos.x, 
+		                                                _curPointPos.y + Mathf.Cos(Time.time*2)/6);
+		if (isInPosition == false)
 		{
-
-		} else if (_curPoint < _nextPoint)
-		{
-
+			move (_curPointPos,_levels[_nextPoint].transform.position);
 		}
 
-
-
-
-		levelSelector.transform.position = new Vector3 (_curPointPos.x, 
-		                                                _curPointPos.y + Mathf.Cos(Time.time*4)/4);
+		//Optional
+		keyboardThings ();
 	}
 
-	protected void gotoNextPoint(int ID)
+	protected void move (Vector3 from, Vector3 to)
 	{
-		//_tempPoint = _wayPoints [ID];
-		//levelSelector.transform.position = Vector3.Lerp(_curPoint, _tempPoint, Time.time*2);
-
+		_curPointPos = Vector3.Lerp (from, to, Time.deltaTime*4);
+		if (_curPointPos == to)
+			isInPosition = true;
 	}
 
 	public void setPoint(int pointID)
 	{
 		_nextPoint = pointID;
+		isInPosition = false;
 	}
-
+	
 	protected void keyboardThings()
 	{
-		if (Input.GetKey (KeyCode.Alpha1))
+		if (Input.GetKeyDown (KeyCode.Alpha1))
 		{
 			setPoint(0);
 		}
-		if (Input.GetKey (KeyCode.Alpha2))
+		if (Input.GetKeyDown (KeyCode.Alpha2))
 		{
-			setPoint(4);
+			setPoint(1);
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha3))
+		{
+			setPoint(2);
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha4))
+		{
+			setPoint(3);
 		}
 	}
-
-	protected int countChildren(Transform a)
-	{
-		int childCount = 0;
-		foreach (Transform b in a)
-		{
-			childCount++;
-			childCount += countChildren(b);
-		}
-		return childCount;
-
-	}
-
 }
