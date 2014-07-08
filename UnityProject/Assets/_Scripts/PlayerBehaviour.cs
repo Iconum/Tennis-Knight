@@ -10,18 +10,18 @@ public class PlayerBehaviour : MonoBehaviour
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
 	public Vector3 targetPosition = new Vector3(0.0f, -2.5f);
 
-	private List<GameObject> _collisionList = new List<GameObject> ();
-	private float _currentSpeed, _lerpTime = 0.0f, _heat = 0.0f;
-	private float _horizontalTouch = 0.0f, _touchTime = 0.0f;
-	private ControlType _usedControls = ControlType.keyboard;
-	private bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false;
-	private Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
-	private Vector3 _playerPosition = Vector3.zero;
+	protected List<GameObject> _collisionList = new List<GameObject> ();
+	protected float _currentSpeed, _lerpTime = 0.0f, _heat = 0.0f;
+	protected float _horizontalTouch = 0.0f, _touchTime = 0.0f;
+	protected ControlType _usedControls = ControlType.keyboard;
+	protected bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false;
+	protected Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
+	protected Vector3 _playerPosition = Vector3.zero;
 
-	private Animator anim;
+	protected Animator anim;
 
 	// Use this for initialization
-	void Start ()
+	protected virtual void Start ()
 	{
 		sixty = (60.0f / 640.0f) * Screen.height;
 		eighty = (80.0f / 400.0f) * Screen.width;
@@ -38,7 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	protected virtual void Update ()
 	{
 		_currentSpeed = strafeSpeed * Time.deltaTime;
 		float deltaPosition;
@@ -52,7 +52,6 @@ public class PlayerBehaviour : MonoBehaviour
 			Application.LoadLevel (0);
 		}
 
-		//Absolutely massive else-if block with all the control methods and the level end movement
 		if (_heat > 0.0f)
 		{
 			_heat -= Time.deltaTime * 4.0f;
@@ -69,6 +68,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
 
+		//Absolutely massive else-if block with all the control methods and the level transition movement
 		if (_endLevel)
 		{
 			_heat = 0.0f;
@@ -256,7 +256,7 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 	}
 
-	void PaddleActivate (GameObject paddle)
+	protected virtual void PaddleActivate (GameObject paddle)
 	{
 		if (!paddleActive)
 		{
@@ -267,7 +267,7 @@ public class PlayerBehaviour : MonoBehaviour
 	}
 
 	//Automatically determines the best paddle to use
-	void AutomaticPaddle ()
+	protected virtual void AutomaticPaddle ()
 	{
 		GameObject tempo = levelManager.GetComponent<LevelBehaviour> ().FindClosestDeflectable (transform.position);
 		if (tempo != null)
@@ -287,7 +287,7 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 
 	}
-	Vector2 IntersectionPoint (Vector2 pos, Vector2 vel)
+	protected Vector2 IntersectionPoint (Vector2 pos, Vector2 vel)
 	{
 		if (vel.y != 0.0f)
 		{
@@ -310,15 +310,7 @@ public class PlayerBehaviour : MonoBehaviour
 		_touchPosition = new Vector3 (1.5f, 8.0f);
 	}
 
-	void OnGUI ()
-	{
-		if (!_endLevel)
-		{
-
-		}
-	}
-
-	void OnCollisionEnter2D (Collision2D collision)
+	protected virtual void OnCollisionEnter2D (Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Deflectable"))
 		{
@@ -333,7 +325,7 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter2D (Collider2D other)
+	protected virtual void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.CompareTag ("Deflectable"))
 		{
