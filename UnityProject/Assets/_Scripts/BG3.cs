@@ -41,11 +41,12 @@ public class BG3 : MonoBehaviour {
 	
 		renderer.material.mainTextureOffset = new Vector2 (0, pos);
 
-		GameObject tempo = (GameObject)Instantiate (propPrefab1,transform.position,transform.rotation);
+		/*GameObject tempo = (GameObject)Instantiate (propPrefab1,transform.position,transform.rotation);
 		Vector3 temp = tempo.transform.position;
 		temp.y += deltaspeed;
 		tempo.transform.position = temp;
 		//temp.transform.position.x = ps+=deltaspeed;
+		*/
 	}
 
 	public void ToggleStop()
