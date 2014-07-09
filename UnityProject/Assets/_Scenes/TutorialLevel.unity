@@ -254,9 +254,17 @@ MonoBehaviour:
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
-  tutorialState: 0
-  tutorialTexts: []
-  tutorialStateOffset: 
+  currentState: 0
+  tutoStates: 00000000
+  tutoTexts:
+  - tutorialText:
+    - Blaa blaa blaa, mister Freeman. Wake up and smell the scripts.
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
+    currentText: 0
 --- !u!58 &418376560
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -359,7 +367,7 @@ GameObject:
   - 23: {fileID: 528316761}
   - 114: {fileID: 528316760}
   m_Layer: 0
-  m_Name: NewBackground1
+  m_Name: Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -754,6 +762,18 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoStates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[0].tutorialText.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
       propertyPath: m_LocalPosition.x
       value: -.0274151564
@@ -781,6 +801,21 @@ Prefab:
     - target: {fileID: 400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[0].tutorialText.Array.data[0]
+      value: Blaa blaa blaa, mister Freeman. Wake up and smell the scripts.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[0].tutorialText.Array.data[1]
+      value: Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+        Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[0].tutorialText.Array.data[2]
+      value: Thank you, Unity!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
