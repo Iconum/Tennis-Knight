@@ -12,12 +12,51 @@ public enum TutorialState
 	Villagers
 }
 
-public class TutorialBehaviour : PlayerBehaviour {
-	public TutorialState tutorialState = TutorialState.Start;
-	public List<string> tutorialTexts = null;
-	public int[] tutorialStateOffset = new int[6];
+[System.Serializable]
+public class TutorialTexts
+{
+	public List<string> tutorialText = new List<string>();
+	public int currentText = 0;
 
-	protected int _currentText = 0;
+	public void DrawText()
+	{
+		Statics.StyleInitialization ();
+		Vector3 startvec = Camera.main.WorldToScreenPoint (new Vector3 (-2.5f, 4.0f)), endvec = Camera.main.WorldToScreenPoint(new Vector3(2.5f, -2.0f));
+		GUILayout.BeginArea (new Rect (startvec.x, Screen.height - startvec.y, endvec.x - startvec.x, Screen.height - endvec.y), Statics.menuTextStyle);
+		{
+			GUILayout.TextArea (tutorialText [currentText], Statics.menuTextStyle);
+		}
+		GUILayout.EndArea ();
+	}
+
+	public bool AdvanceText()
+	{
+		++currentText;
+		if (currentText >= tutorialText.Count)
+		{
+			--currentText;
+			return false;
+		}
+		return true;
+	}
+}
+
+public class TutorialBehaviour : PlayerBehaviour {
+	public TutorialState currentState = TutorialState.Start;
+	public Dictionary<TutorialState, TutorialTexts> tutorialPhases = new Dictionary<TutorialState, TutorialTexts> ();
+	public TutorialState[] tutoStates;
+	public TutorialTexts[] tutoTexts;
+
+	protected bool _tutorialOn = true;
+
+	protected override void Start ()
+	{
+		for (int i = 0; i < tutoStates.Length && i < tutoTexts.Length; ++i)
+		{
+			tutorialPhases.Add (tutoStates [i], tutoTexts [i]);
+		}
+		base.Start ();
+	}
 
 	protected override void Update ()
 	{
@@ -57,7 +96,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 		} else if (_startLevel)
 		{
 			_lerpTime += Time.deltaTime;
-			transform.position = Vector3.Lerp(_playerPosition, targetPosition, Mathf.SmoothStep(0.0f, 1.0f, _lerpTime));
+			transform.position = Vector3.Lerp (_playerPosition, targetPosition, Mathf.SmoothStep (0.0f, 1.0f, _lerpTime));
 			if (_lerpTime >= 1.0f)
 			{
 				_startLevel = false;
@@ -218,21 +257,34 @@ public class TutorialBehaviour : PlayerBehaviour {
 			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
-		if (!_endLevel && !_startLevel)
+		if (!_endLevel && !_startLevel && !_tutorialOn)
 		{
 			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 		}
-		
-		
-		//Debug näppäimet
-		if (Input.GetKeyDown (KeyCode.KeypadPlus))
+	}
+
+	protected void OnGUI()
+	{
+		if (_tutorialOn)
+			tutorialPhases [currentState].DrawText ();
+	}
+
+	protected override void PaddleActivate (GameObject paddle)
+	{
+		if (_tutorialOn)
 		{
-			Time.timeScale += 0.1f;
-		}
-		if (Input.GetKeyDown (KeyCode.KeypadMinus))
+			if (!tutorialPhases [currentState].AdvanceText ())
+			{
+				_tutorialOn = false;
+			}
+		} else
 		{
-			if (Time.timeScale > 0.1f)
-				Time.timeScale -= 0.1f;
+			if (currentState == TutorialState.Move)
+			{
+				currentState = TutorialState.Swing;
+				_tutorialOn = true;
+			}
+			base.PaddleActivate (paddle);
 		}
 	}
 }

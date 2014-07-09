@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: NewBackground1
+  m_Name: Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f21957af399094a95f316267beb296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopped: 0
+  isSubBackground: 0
   speed: .5
+  brakeTime: 3
+  subBackground: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
