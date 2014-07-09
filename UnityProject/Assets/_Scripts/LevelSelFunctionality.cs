@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class LevelSelFunctionality : MonoBehaviour {
 
 	public int levelsCleared = 0;
-	public int lastClearedLevel = 0;
 	public GameObject levelSelectorPrefab;
 	public GameObject wayPointHandlerPrefab;
 
@@ -31,7 +30,7 @@ public class LevelSelFunctionality : MonoBehaviour {
 		levelSelector = (GameObject)Instantiate ( levelSelectorPrefab,
 		                                         _levels[levelsCleared].transform.position,
 	                                          	  levelSelectorPrefab.transform.rotation);
-		setPoint (0);
+		setPoint (levelsCleared);
 
 	}
 	// Update is called once per frame
