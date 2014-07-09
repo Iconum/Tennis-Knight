@@ -12,6 +12,8 @@ public class BG3 : MonoBehaviour {
 	
 	protected float _actualSpeed = 5.0f;
 	private Vector3 ps;
+	private bool asd;
+	private float randvar=5;
 
 	float pos = 0;
 	// Use this for initialization
@@ -19,6 +21,7 @@ public class BG3 : MonoBehaviour {
 		if (!isSubBackground)
 			current = this;
 		_actualSpeed = speed;
+		asd = true;
 	}
 	
 	// Update is called once per frame
@@ -41,12 +44,17 @@ public class BG3 : MonoBehaviour {
 	
 		renderer.material.mainTextureOffset = new Vector2 (0, pos);
 
-		/*GameObject tempo = (GameObject)Instantiate (propPrefab1,transform.position,transform.rotation);
-		Vector3 temp = tempo.transform.position;
-		temp.y += deltaspeed;
-		tempo.transform.position = temp;
-		//temp.transform.position.x = ps+=deltaspeed;
-		*/
+
+
+
+		//GameObject tempo = (GameObject)Instantiate (propPrefab1, new Vector3(0,randvar-=deltaspeed), transform.rotation);
+		//tempo.transform.position+=new Vector3(0,deltaspeed);
+		if (asd == true)
+		{
+			asd=false;
+			GameObject tempo = (GameObject)Instantiate (propPrefab1, new Vector3(0,randvar-=deltaspeed), transform.rotation);
+		}
+	
 	}
 
 	public void ToggleStop()
