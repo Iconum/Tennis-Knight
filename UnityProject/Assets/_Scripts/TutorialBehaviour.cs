@@ -2,43 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerBehaviour : MonoBehaviour
+public enum TutorialState
 {
-	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null;
-	public bool paddleActive = false;
-	public float strafeSpeed = 0.1f, heatLimit = 25.0f;
-	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
-	public Vector3 targetPosition = new Vector3(0.0f, -2.5f);
+	Start,
+	End,
+	Move,
+	Swing,
+	Dodge,
+	Villagers
+}
 
-	protected List<GameObject> _collisionList = new List<GameObject> ();
-	protected float _currentSpeed, _lerpTime = 0.0f, _heat = 0.0f;
-	protected float _horizontalTouch = 0.0f, _touchTime = 0.0f;
-	protected ControlType _usedControls = ControlType.keyboard;
-	protected bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false;
-	protected Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
-	protected Vector3 _playerPosition = Vector3.zero;
+public class TutorialBehaviour : PlayerBehaviour {
+	public TutorialState tutorialState = TutorialState.Start;
+	public List<string> tutorialTexts = null;
+	public int[] tutorialStateOffset = new int[6];
 
-	protected Animator anim;
+	protected int _currentText = 0;
 
-	// Use this for initialization
-	protected virtual void Start ()
-	{
-		sixty = (60.0f / 640.0f) * Screen.height;
-		eighty = (80.0f / 400.0f) * Screen.width;
-		onefourty = (140.0f / 640.0f) * Screen.height;
-		
-		_playerPosition = transform.position;
-		levelManager = GameObject.Find ("Level");
-
-		_usedControls = Statics.selectedControlMethod;
-		if (audio)
-		audio.volume = Statics.soundVolume;
-
-		anim = GetComponent<Animator> ();
-	}
-	
-	// Update is called once per frame
-	protected virtual void Update ()
+	protected override void Update ()
 	{
 		_currentSpeed = strafeSpeed * Time.deltaTime;
 		float deltaPosition;
@@ -46,7 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			_currentSpeed *= 2;
 		}
-
+		
 		if (Input.GetKeyDown (KeyCode.Escape))
 		{
 			Application.LoadLevel (0);
@@ -65,10 +46,9 @@ public class PlayerBehaviour : MonoBehaviour
 			}
 			_currentSpeed /= (1.0f + (_heat / (heatLimit / 4.0f)));
 		}
-
+		
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
-
-		//Absolutely massive else-if block with all the control methods and the level transition movement
+		
 		if (_endLevel)
 		{
 			_heat = 0.0f;
@@ -144,7 +124,7 @@ public class PlayerBehaviour : MonoBehaviour
 					isPaddling = true;
 					AutomaticPaddle ();
 				}
-
+				
 				if (Input.touchCount > 1)
 				{
 					if ((Input.touches [1].position.y) / (Screen.height / 10.0f) - 5.0f < -2.0f && isPaddling)
@@ -160,7 +140,7 @@ public class PlayerBehaviour : MonoBehaviour
 					_tappedPaddle = false;
 				}
 			}
-
+			
 			deltaPosition = _horizontalTouch - transform.position.x;
 			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
@@ -233,7 +213,7 @@ public class PlayerBehaviour : MonoBehaviour
 				_touchTime = 0.0f;
 				_dragging = false;
 			}
-
+			
 			deltaPosition = (_touchPosition.x - _touchStartPosition.x) - (transform.position.x - _playerPosition.x);
 			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
@@ -242,8 +222,8 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 		}
-
-
+		
+		
 		//Debug näppäimet
 		if (Input.GetKeyDown (KeyCode.KeypadPlus))
 		{
@@ -253,89 +233,6 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			if (Time.timeScale > 0.1f)
 				Time.timeScale -= 0.1f;
-		}
-	}
-
-	protected virtual void PaddleActivate (GameObject paddle)
-	{
-		if (!paddleActive)
-		{
-			paddleActive = true;
-			paddle.SetActive (true);
-			paddle.GetComponent<PaddleBehaviour> ().PaddleHit ();
-		}
-	}
-
-	//Automatically determines the best paddle to use
-	protected virtual void AutomaticPaddle ()
-	{
-		GameObject tempo = levelManager.GetComponent<LevelBehaviour> ().FindClosestDeflectable (transform.position);
-		if (tempo != null)
-		{
-			if (IntersectionPoint (new Vector2 (tempo.transform.position.x, tempo.transform.position.y), tempo.rigidbody2D.velocity).x < transform.position.x)
-			{
-				PaddleActivate (leftPaddle);
-				anim.SetTrigger ("LeftSwing");
-			} else
-			{
-				PaddleActivate (rightPaddle);
-				anim.SetTrigger ("RightSwing");
-			}
-		} else
-		{
-			PaddleActivate (rightPaddle);
-		}
-
-	}
-	protected Vector2 IntersectionPoint (Vector2 pos, Vector2 vel)
-	{
-		if (vel.y != 0.0f)
-		{
-			float tempf = (transform.position.y - pos.y) / vel.y;
-			return new Vector2 (pos.x + tempf * vel.x, transform.position.y);
-		} else
-			return pos;
-	}
-
-	public void StartTheEnd()
-	{
-		_endLevel = true;
-		_touchPosition = new Vector3 (1.5f, transform.position.y);
-		StartCoroutine (WalkOff ());
-	}
-
-	IEnumerator WalkOff()
-	{
-		yield return new WaitForSeconds (1.5f);
-		_touchPosition = new Vector3 (1.5f, 8.0f);
-	}
-
-	protected virtual void OnCollisionEnter2D (Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag ("Deflectable"))
-		{
-			_heat += collision.gameObject.GetComponent<BallBehaviour> ().heatGeneration;
-			if (_heat > heatLimit)
-				_heat = heatLimit;
-			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
-		}
-		if (collision.gameObject.CompareTag ("Enemy"))
-		{
-			_heat = heatLimit;
-		}
-	}
-
-	protected virtual void OnTriggerEnter2D (Collider2D other)
-	{
-		if (other.CompareTag ("Deflectable"))
-		{
-			_heat += other.GetComponent<BallBehaviour> ().heatGeneration;
-			if (_heat > heatLimit)
-				_heat = heatLimit;
-		}
-		if (other.CompareTag ("Enemy"))
-		{
-			_heat = heatLimit;
 		}
 	}
 }
