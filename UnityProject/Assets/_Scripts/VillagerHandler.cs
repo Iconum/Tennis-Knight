@@ -90,6 +90,11 @@ public class VillagerHandler : MonoBehaviour {
 		}
 	}
 
+	public void attackMelee(Vector3 attackPosition)
+	{
+
+	}
+
 	public void GetVillagers()
 	{
 		Statics.villagers = living + health + villagers.Count;
