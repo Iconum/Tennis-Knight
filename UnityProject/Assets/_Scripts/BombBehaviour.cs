@@ -25,7 +25,7 @@ public class BombBehaviour : BallBehaviour {
 	{
 		yield return new WaitForSeconds (0.3f);
 		collider2D.enabled = false;
-		gameObject.transform.localScale = new Vector3(8f,8f,0);
+		//gameObject.transform.localScale = new Vector3(2f,2f,0);
 
 	}
 

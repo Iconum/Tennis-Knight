@@ -248,14 +248,14 @@ MonoBehaviour:
   rightPaddle: {fileID: 911955506}
   levelManager: {fileID: 0}
   paddleActive: 0
-  strafeSpeed: .100000001
+  strafeSpeed: 4
   heatLimit: 25
   sixty: 60
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
   currentState: 0
-  tutoStates: 00000000
+  tutoStates: 000000000400000005000000
   tutoTexts:
   - tutorialText:
     - Blaa blaa blaa, mister Freeman. Wake up and smell the scripts.
@@ -264,7 +264,20 @@ MonoBehaviour:
       Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
       Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
     - Thank you, Unity!
-    currentText: 0
+  - tutorialText:
+    - There you go, you bloody sniper.
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
+  - tutorialText:
+    - Now hit it!
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
 --- !u!58 &418376560
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -321,6 +334,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -348,6 +369,22 @@ Prefab:
     - target: {fileID: 400004, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: levelTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 100000, guid: f0af2b9545311d346b138235b152c6f9, type: 2}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].position.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].position.x
+      value: 1.79999995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
@@ -764,14 +801,22 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
       propertyPath: tutoTexts.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
       propertyPath: tutoStates.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
       propertyPath: tutoTexts.Array.data[0].tutorialText.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[1].tutorialText.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[2].tutorialText.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
@@ -815,6 +860,48 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
       propertyPath: tutoTexts.Array.data[0].tutorialText.Array.data[2]
+      value: Thank you, Unity!
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[1].tutorialText.Array.data[0]
+      value: There you go, you bloody sniper.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[1].tutorialText.Array.data[1]
+      value: Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+        Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[1].tutorialText.Array.data[2]
+      value: Thank you, Unity!
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoStates.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoStates.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoStates.Array.data[2]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[2].tutorialText.Array.data[0]
+      value: Now hit it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[2].tutorialText.Array.data[1]
+      value: Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+        Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5fc757321a07c024aabe0ee52c6aada2, type: 2}
+      propertyPath: tutoTexts.Array.data[2].tutorialText.Array.data[2]
       value: Thank you, Unity!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -879,36 +966,10 @@ MonoBehaviour:
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}
-      position: {x: 0, y: 4, z: 0}
+    - enemy: {fileID: 100000, guid: f0af2b9545311d346b138235b152c6f9, type: 2}
+      position: {x: 1.79999995, y: 4, z: 0}
       delayTime: 0
-  - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
-      position: {x: 0, y: 4, z: 0}
-      delayTime: 0
-  - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 8999954950ea6a446aef72a9cf1cf667, type: 2}
-      position: {x: -1, y: 4, z: 0}
-      delayTime: 0
-    - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
-      position: {x: 0, y: 4, z: 0}
-      delayTime: 0
-  - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}
-      position: {x: 0, y: 4, z: 0}
-      delayTime: 0
-    - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
-      position: {x: 2, y: 4, z: 0}
-      delayTime: 2.5
-  - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
-      position: {x: 0, y: 4, z: 0}
-      delayTime: 0
-  - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
-      position: {x: 0, y: 3, z: 0}
-      delayTime: 0
-  levelTest: 0
+  levelTest: 1
 --- !u!1001 &1678182528
 Prefab:
   m_ObjectHideFlags: 0

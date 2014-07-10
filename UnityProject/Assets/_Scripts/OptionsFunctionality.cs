@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class OptionsFunctionality : MonoBehaviour {
-	public float width, height, thirty, sixty, eighty, onefourty;
+	public float thirty, sixty, eighty, onefourty;
 
 	string menuText;
 
@@ -32,7 +32,7 @@ public class OptionsFunctionality : MonoBehaviour {
 	void OnGUI()
 	{
 		Statics.StyleInitialization ();
-		GUILayout.BeginArea (new Rect (20.0f, 100.0f, width - 40.0f, height - 40.0f));
+		GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f));
 		{
 			GUILayout.Label("Master Volume:", Statics.menuTextStyle);
 			Statics.setVolume(GUILayout.HorizontalSlider(Statics.globalVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle));
