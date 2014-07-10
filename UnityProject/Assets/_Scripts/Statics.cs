@@ -69,4 +69,14 @@ public static class Statics
 		PlayerPrefs.SetFloat ("MusicVolume", Statics.musicVolume);
 		PlayerPrefs.Save ();
 	}
+
+	public static void StyleInitialization()
+	{
+		Statics.menuButtonStyle = new GUIStyle (GUI.skin.button);
+		Statics.menuButtonStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
+		
+		Statics.menuTextStyle = new GUIStyle (GUI.skin.box);
+		Statics.menuTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 22;
+		Statics.menuTextStyle.wordWrap = true;
+	}
 }

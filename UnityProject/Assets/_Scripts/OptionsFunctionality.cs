@@ -12,8 +12,6 @@ public class OptionsFunctionality : MonoBehaviour {
 		sixty = (60.0f / 640.0f) * Screen.height;
 		eighty = (80.0f / 400.0f) * Screen.width;
 		onefourty = (140.0f / 640.0f) * Screen.height;
-		width = Screen.width;
-		height = Screen.height;
 		menuText = GetMenuText ();
 	}
 	
@@ -31,19 +29,9 @@ public class OptionsFunctionality : MonoBehaviour {
 		}
 	}
 
-	void StyleInitialization()
-	{
-		Statics.menuButtonStyle = new GUIStyle (GUI.skin.button);
-		Statics.menuButtonStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 26;
-
-		Statics.menuTextStyle = new GUIStyle (GUI.skin.box);
-		Statics.menuTextStyle.fontSize = (Mathf.FloorToInt(height) / 640) * 22;
-		Statics.menuTextStyle.wordWrap = true;
-	}
-
 	void OnGUI()
 	{
-		StyleInitialization ();
+		Statics.StyleInitialization ();
 		GUILayout.BeginArea (new Rect (20.0f, 100.0f, width - 40.0f, height - 40.0f));
 		{
 			GUILayout.Label("Master Volume:", Statics.menuTextStyle);

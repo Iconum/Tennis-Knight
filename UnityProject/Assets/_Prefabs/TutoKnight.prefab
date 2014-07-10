@@ -218,7 +218,19 @@ MonoBehaviour:
   targetPosition: {x: 0, y: -2.5, z: 0}
   tutorialState: 0
   tutorialTexts: []
-  tutorialStateOffset: 
+  offsetPairs:
+  - state: 0
+    lastText: 1
+  - state: 2
+    lastText: 4
+  - state: 0
+    lastText: 6
+  - state: 0
+    lastText: 9
+  - state: 0
+    lastText: 11
+  - state: 0
+    lastText: 14
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
