@@ -67,13 +67,15 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 			}
 			if (Input.GetKeyDown (KeyCode.Z))
 			{
-				PaddleActivate (leftPaddle);
 				anim.SetTrigger("LeftSwing");
+				PaddleActivate (leftPaddle);
+
 			}
 			if (Input.GetKeyDown (KeyCode.X))
 			{
-				PaddleActivate (rightPaddle);
 				anim.SetTrigger("RightSwing");
+				PaddleActivate (rightPaddle);
+
 			}
 			if (Input.GetKeyDown (KeyCode.Space))
 			{
