@@ -25,7 +25,7 @@ public class BallBehaviour : MonoBehaviour
 
 	protected virtual void OnDestroy()
 	{
-		if (levelManager != null)
+		if (levelManager)
 		{
 			levelManager.GetComponent<LevelBehaviour> ().RemoveFromDeflectable (gameObject);
 		}

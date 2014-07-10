@@ -64,21 +64,27 @@ public class RangedBehaviour : EnemyBehaviour {
 				if (projectileLimit == 0 || _shotProjectiles.Count < projectileLimit)
 				{
 					_shootTimer = 0.0f;
-					GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
 					if (notShootingWalls)
 					{
 						float tempf = ((transform.position.x + 2.5f) / 5.0f) * 0.4f;
-						tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-tempf, 0.4f-tempf), -0.4f));
-					} else
-						tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
-					tempo.GetComponent<BallBehaviour> ().SetEnemyWave (_waveEnemies);
-					_shotProjectiles.Add (tempo);
-					if (dividingProjectiles)
-						tempo.GetComponent<DividingBehaviour> ().GetShot (_shotProjectiles);
-					ListDeflectable (tempo);
-					anim.SetTrigger ("Attack");
+						ShootProjectile (new Vector2 (Random.Range (-tempf, 0.4f-tempf), -0.4f));
+					}
+					else
+						ShootProjectile (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
 				}
 			}
 		}
+	}
+
+	protected virtual void ShootProjectile(Vector3 dir)
+	{
+		GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+		tempo.GetComponent<BallBehaviour> ().SetStartVelocity (dir);
+		tempo.GetComponent<BallBehaviour> ().SetEnemyWave (_waveEnemies);
+		_shotProjectiles.Add (tempo);
+		if (dividingProjectiles)
+			tempo.GetComponent<DividingBehaviour> ().GetShot (_shotProjectiles);
+		ListDeflectable (tempo);
+		anim.SetTrigger ("Attack");
 	}
 }
