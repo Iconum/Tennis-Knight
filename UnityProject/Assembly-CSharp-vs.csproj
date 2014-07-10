@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\BOBTrail.cs" />
      <Compile Include="Assets\MenuStart.cs" />
+     <Compile Include="Assets\MenuSwordScript.cs" />
      <Compile Include="Assets\PointLevel.cs" />
      <Compile Include="Assets\_Scripts\BG3.cs" />
      <Compile Include="Assets\_Scripts\BGLoop.cs" />
@@ -84,10 +85,11 @@
      <Compile Include="Assets\_Scripts\OssiAnimation.cs" />
      <Compile Include="Assets\_Scripts\PaddleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PlayerBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\PropBehaviour.cs" />
      <Compile Include="Assets\_Scripts\RangedBehaviour.cs" />
-     <Compile Include="Assets\_Scripts\SndBackgroundLoop.cs" />
      <Compile Include="Assets\_Scripts\SpearBehaviour.cs" />
      <Compile Include="Assets\_Scripts\Statics.cs" />
+     <Compile Include="Assets\_Scripts\TutorialBehaviour.cs" />
      <Compile Include="Assets\_Scripts\VillagerBehaviour.cs" />
      <Compile Include="Assets\_Scripts\VillagerHandler.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />

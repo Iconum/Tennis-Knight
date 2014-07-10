@@ -16,6 +16,7 @@ public class LevelSelFunctionality : MonoBehaviour {
 	protected GameObject _level;
 	protected GameObject levelSelector;
 	protected bool isInPosition = true;
+	protected float moveSpeed;
 
 	protected float moveTime = 0f;
 
@@ -36,6 +37,8 @@ public class LevelSelFunctionality : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		moveSpeed = Time.deltaTime * 4f;
+
 		levelSelector.transform.position = new Vector3 (_curPointPos.x, 
 		                                                _curPointPos.y + Mathf.Cos(Time.time*2)/6);
 		if (isInPosition == false)
@@ -49,7 +52,7 @@ public class LevelSelFunctionality : MonoBehaviour {
 
 	protected void move (Vector3 from, Vector3 to)
 	{
-		_curPointPos = Vector3.Lerp (from, to, Time.deltaTime*4);
+		_curPointPos = Vector3.Lerp (from, to, moveSpeed);
 		if (_curPointPos == to)
 			isInPosition = true;
 	}
@@ -58,6 +61,10 @@ public class LevelSelFunctionality : MonoBehaviour {
 	{
 		_nextPoint = pointID;
 		isInPosition = false;
+	}
+	public int getPoint()
+	{
+		return _nextPoint;
 	}
 	
 	protected void keyboardThings()
