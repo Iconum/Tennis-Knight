@@ -39,7 +39,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d7cfeedf726694ab7ed8620ceeea25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 0}
+  bg: {fileID: 0}
+  pspeed: 0
+  cheight: 0
+  cwidth: 0
+  textures:
+  - {fileID: 21300000, guid: 13782f1a70839e54599604f0e85a92f8, type: 3}
+  - {fileID: 21300000, guid: d204bc24744fce3428a304b1c6f0adae, type: 3}
+  - {fileID: 21300000, guid: 967b36b2ebce5004591cde2ad1cef7d3, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -61,7 +68,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 13782f1a70839e54599604f0e85a92f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d204bc24744fce3428a304b1c6f0adae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

@@ -12,7 +12,7 @@ public class BG3 : MonoBehaviour {
 	
 	protected float _actualSpeed = 5.0f;
 	private Vector3 ps;
-	private bool asd;
+	public bool asd;
 	private float randvar=5;
 
 	private float cheight,cwidth;
@@ -48,17 +48,22 @@ public class BG3 : MonoBehaviour {
 	
 		renderer.material.mainTextureOffset = new Vector2 (0, pos);
 
+		//GameObject tempo;
+
 		if (asd == true)
 		{
 			asd=false;
-			GameObject tempo = (GameObject)Instantiate (propPrefab1, transform.position+new Vector3(Random.Range(-2f,2f),cheight/2), transform.rotation);
-			if (tempo.transform.position.y <= -20)
+			GameObject tempo = (GameObject)Instantiate (propPrefab1, transform.position+new Vector3(Random.Range(-2.5f,2.5f),cheight/2), transform.rotation);
+			if (transform.position.y <= -10)
 			{
-				Destroy(gameObject);
-				asd=true;
+				Destroy(tempo);
+				//asd=true;
+				Debug.Log ("lol");
+
 			}
 		}
 
+		//Debug.Log (asd);
 
 		//GameObject tempo = (GameObject)Instantiate (propPrefab1, new Vector3(0,randvar-=deltaspeed), transform.rotation);
 		//tempo.transform.position+=new Vector3(0,deltaspeed);
