@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BG3 : MonoBehaviour {
 	public bool stopped = false, isSubBackground = false;
-	public float speed = 5, brakeTime = 3.0f;
+	public float speed = 0.4f, brakeTime = 3.0f;
 	public static BG3 current;
 	public List<BG3> subBackground = new List<BG3>();
 
@@ -15,6 +15,7 @@ public class BG3 : MonoBehaviour {
 	private bool asd;
 	private float randvar=5;
 
+	private float cheight,cwidth;
 	float pos = 0;
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,9 @@ public class BG3 : MonoBehaviour {
 			current = this;
 		_actualSpeed = speed;
 		asd = true;
+
+		cheight  = 2 * Camera.main.orthographicSize;
+		cwidth = cheight * Camera.main.aspect;
 	}
 	
 	// Update is called once per frame
@@ -44,16 +48,21 @@ public class BG3 : MonoBehaviour {
 	
 		renderer.material.mainTextureOffset = new Vector2 (0, pos);
 
-
+		if (asd == true)
+		{
+			asd=false;
+			GameObject tempo = (GameObject)Instantiate (propPrefab1, transform.position+new Vector3(Random.Range(-2f,2f),cheight/2), transform.rotation);
+			if (tempo.transform.position.y <= -20)
+			{
+				Destroy(gameObject);
+				asd=true;
+			}
+		}
 
 
 		//GameObject tempo = (GameObject)Instantiate (propPrefab1, new Vector3(0,randvar-=deltaspeed), transform.rotation);
 		//tempo.transform.position+=new Vector3(0,deltaspeed);
-		if (asd == true)
-		{
-			asd=false;
-			GameObject tempo = (GameObject)Instantiate (propPrefab1, new Vector3(0,randvar-=deltaspeed), transform.rotation);
-		}
+
 	
 	}
 
