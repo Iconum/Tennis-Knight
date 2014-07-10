@@ -16,7 +16,7 @@ public class MenuSwordScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		moveSpeed = Time.deltaTime * 10.0f;
+		moveSpeed = Time.deltaTime * 15.0f;
 
 		if (isSwordOn == true)
 		{
@@ -34,12 +34,10 @@ public class MenuSwordScript : MonoBehaviour
 
 	public void swordActivate()
 	{
-		Debug.Log("activate");
 		isSwordOn = true;
 	}
 	public void swordDeActivate()
 	{
-		Debug.Log("deactivate");
 		isSwordOn = false;
 	}
 

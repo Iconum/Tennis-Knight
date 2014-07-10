@@ -244,7 +244,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.34889817, y: -2.4808197, z: 0}
+  m_LocalPosition: {x: 3.34889817, y: -3.45768261, z: 0}
   m_LocalScale: {x: 1.88679254, y: 1.88679254, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -371,7 +371,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2, y: 1.5}
   m_Center: {x: 0, y: 0}
 --- !u!61 &6100008
 BoxCollider2D:
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonType: 1
   menuPrefab: {fileID: 0}
-  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
+  swordPrefab: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonType: 7
   menuPrefab: {fileID: 0}
-  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
+  swordPrefab: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonType: 6
   menuPrefab: {fileID: 0}
-  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
+  swordPrefab: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonType: 5
   menuPrefab: {fileID: 0}
-  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
+  swordPrefab: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonType: 0
   menuPrefab: {fileID: 0}
-  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
+  swordPrefab: {fileID: 0}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonType: 4
   menuPrefab: {fileID: 0}
-  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
+  swordPrefab: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
