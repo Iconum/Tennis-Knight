@@ -112,6 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f76d40dc83e993419525e475956dbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelsCleared: 0
+  levelSelectorPrefab: {fileID: 100000, guid: ca4c29ea2ec9e6141a14c9be7883115b, type: 2}
+  wayPointHandlerPrefab: {fileID: 0}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

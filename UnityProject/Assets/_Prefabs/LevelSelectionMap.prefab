@@ -67,23 +67,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100008
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400008}
-  - 61: {fileID: 6100000}
-  - 114: {fileID: 11400000}
-  m_Layer: 0
-  m_Name: ButtonTutorial
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +111,7 @@ GameObject:
   - 4: {fileID: 400014}
   - 114: {fileID: 11400012}
   m_Layer: 0
-  m_Name: Point_3
+  m_Name: Point_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +143,7 @@ GameObject:
   - 4: {fileID: 400018}
   - 114: {fileID: 11400016}
   m_Layer: 0
-  m_Name: Point_2
+  m_Name: Point_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,6 +180,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400024}
+  - 61: {fileID: 6100012}
+  - 114: {fileID: 11400020}
+  m_Layer: 0
+  m_Name: ButtonTutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -208,7 +208,7 @@ Transform:
   m_LocalScale: {x: .529999971, y: .529999971, z: 1}
   m_Children:
   - {fileID: 400002}
-  - {fileID: 400008}
+  - {fileID: 400024}
   - {fileID: 400006}
   - {fileID: 400004}
   - {fileID: 400012}
@@ -245,17 +245,6 @@ Transform:
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.34889817, y: -2.4808197, z: 0}
-  m_LocalScale: {x: 1.88679254, y: 1.88679254, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400000}
---- !u!4 &400008
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.46145153, y: -7.56487322, z: 0}
   m_LocalScale: {x: 1.88679254, y: 1.88679254, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -340,17 +329,17 @@ Transform:
   - {fileID: 400014}
   - {fileID: 400018}
   m_Father: {fileID: 400000}
---- !u!61 &6100000
-BoxCollider2D:
+--- !u!4 &400024
+Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Size: {x: 2, y: 2}
-  m_Center: {x: 0, y: 0}
+  m_GameObject: {fileID: 100024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.46145153, y: -7.56487322, z: 0}
+  m_LocalScale: {x: 1.88679254, y: 1.88679254, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
 --- !u!61 &6100002
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -406,18 +395,17 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .800000012, y: .600000024}
   m_Center: {x: 0, y: 0}
---- !u!114 &11400000
-MonoBehaviour:
+--- !u!61 &6100012
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
+  m_GameObject: {fileID: 100024}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c22d72c34c36d04491dfbbf80c2a448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonType: 3
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 2, y: 2}
+  m_Center: {x: 0, y: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,6 +418,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: 1
+  menuPrefab: {fileID: 0}
+  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -441,7 +431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c22d72c34c36d04491dfbbf80c2a448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 6
+  buttonType: 7
+  menuPrefab: {fileID: 0}
+  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,7 +445,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c22d72c34c36d04491dfbbf80c2a448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 5
+  buttonType: 6
+  menuPrefab: {fileID: 0}
+  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,7 +459,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c22d72c34c36d04491dfbbf80c2a448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 4
+  buttonType: 5
+  menuPrefab: {fileID: 0}
+  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -478,6 +474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: 0
+  menuPrefab: {fileID: 0}
+  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -489,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c8af7fe65abdc43b5ddce02b9a4869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelID: 3
+  levelID: 2
   isLocked: 0
 --- !u!114 &11400014
 MonoBehaviour:
@@ -515,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c8af7fe65abdc43b5ddce02b9a4869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelID: 2
+  levelID: 3
   isLocked: 0
 --- !u!114 &11400018
 MonoBehaviour:
@@ -530,6 +528,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelID: 1
   isLocked: 0
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c22d72c34c36d04491dfbbf80c2a448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonType: 4
+  menuPrefab: {fileID: 0}
+  swordPrefab: {fileID: 100002, guid: e08604c162f5e8f4491a442d7454211c, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
