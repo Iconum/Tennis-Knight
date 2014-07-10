@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\BOBTrail.cs" />
      <Compile Include="Assets\MenuStart.cs" />
+     <Compile Include="Assets\MenuSwordScript.cs" />
      <Compile Include="Assets\PointLevel.cs" />
      <Compile Include="Assets\_Scripts\BG3.cs" />
      <Compile Include="Assets\_Scripts\BGLoop.cs" />
