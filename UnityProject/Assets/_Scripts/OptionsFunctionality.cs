@@ -19,7 +19,7 @@ public class OptionsFunctionality : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape))
 		{
-			Application.Quit();
+			Application.LoadLevel("LevelSelectMenu");
 		}
 
 		//Debug
