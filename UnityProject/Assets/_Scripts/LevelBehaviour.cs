@@ -41,6 +41,7 @@ public class LevelBehaviour : MonoBehaviour {
 	public GameObject topBorder, player = null;
 	public VillagerHandler  villagerManager = null;
 	public CastleRaidHandler castleHandler = null;
+	public bool hasMiniView = true;
 	public int loot = 500;
 	public int optimalVillagerAmount = 10;
 	public float startFadeTime = 1.0f, endFadeTime = 2.0f, miniWaitTime = 3.0f;
@@ -148,7 +149,10 @@ public class LevelBehaviour : MonoBehaviour {
 		_alpha = 0.0f;
 		_aOperation = Application.LoadLevelAsync ("LevelSelectMenu");
 		_aOperation.allowSceneActivation = false;
-		StartCoroutine (StartMiniView ());
+		if (hasMiniView)
+			StartCoroutine (StartMiniView ());
+		else 
+			BackToMenus ();
 	}
 	IEnumerator StartMiniView()
 	{
@@ -161,6 +165,10 @@ public class LevelBehaviour : MonoBehaviour {
 
 	public virtual void BackToMenus()
 	{
+		if (Statics.villagers < 20)
+		{
+			Statics.villagers = 20;
+		}
 		_loadingLevel = true;
 	}
 

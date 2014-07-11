@@ -12,7 +12,7 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
   - 95: {fileID: 9500000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TutoBat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -81,6 +81,7 @@ MonoBehaviour:
   notShootingWalls: 0
   dividingProjectiles: 0
   tutoKnight: {fileID: 0}
+  tutorialProjectile: {fileID: 100000, guid: 6505ce1c491811e468849375b43d8baf, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

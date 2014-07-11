@@ -16,6 +16,7 @@ public enum TutorialState
 	DragSwing,
 	OppositeMove,
 	OppositeSwing,
+	Tanking,
 	Dodge,
 	Villagers
 }
@@ -57,6 +58,8 @@ public class TutorialBehaviour : PlayerBehaviour {
 	public TutorialTexts[] tutoTexts;
 	[System.NonSerialized]
 	public bool tutorialOn = true;
+	[System.NonSerialized]
+	public TutoBatBehaviour tutoBat = null;
 
 	protected override void Start ()
 	{
@@ -113,7 +116,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 			}
 		} else if (_usedControls == ControlType.keyboard)
 		{
-			if (Input.GetKey (KeyCode.RightArrow) && (currentState == TutorialState.End || currentState == TutorialState.KeyMove))
+			if (Input.GetKey (KeyCode.RightArrow) && (currentState == TutorialState.End || currentState == TutorialState.KeyMove || currentState == TutorialState.Dodge))
 			{
 				transform.position += new Vector3 (_currentSpeed, 0.0f);
 			}
@@ -140,7 +143,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 			deltaPosition = 0.0f;
 			if (currentState == TutorialState.End)
 				deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, -_currentSpeed, _currentSpeed);
-			else if (currentState == TutorialState.TiltMove)
+			else if (currentState == TutorialState.TiltMove || currentState == TutorialState.Dodge)
 				deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, 0, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 			if (Input.touchCount != 0)
@@ -196,7 +199,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 			deltaPosition = _horizontalTouch - transform.position.x;
 			if (currentState == TutorialState.End)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
-			else if (currentState == TutorialState.DragMove)
+			else if (currentState == TutorialState.DragMove || currentState == TutorialState.Dodge)
 				deltaPosition = Mathf.Clamp (deltaPosition, 0, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.oppositedragging)
@@ -234,7 +237,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 			deltaPosition = _horizontalTouch - transform.position.x;
 			if (currentState == TutorialState.End)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
-			if (currentState == TutorialState.OppositeMove)
+			if (currentState == TutorialState.OppositeMove || currentState == TutorialState.Dodge)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.freedragging)
@@ -275,7 +278,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 			deltaPosition = (_touchPosition.x - _touchStartPosition.x) - (transform.position.x - _playerPosition.x);
 			if (currentState == TutorialState.End)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
-			else if (currentState == TutorialState.FreeMove)
+			else if (currentState == TutorialState.FreeMove || currentState == TutorialState.Dodge)
 				deltaPosition = Mathf.Clamp (deltaPosition, 0, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
@@ -317,7 +320,28 @@ public class TutorialBehaviour : PlayerBehaviour {
 			tutorialPhases [currentState].DrawText ();
 	}
 
-	protected override void PaddleActivate (GameObject paddle)
+	protected override void OnCollisionEnter2D (Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag ("Deflectable"))
+		{
+			_heat += collision.gameObject.GetComponent<BallBehaviour> ().heatGeneration;
+			if (_heat > heatLimit)
+				_heat = heatLimit;
+			if (currentState == TutorialState.Tanking)
+			{
+				currentState = TutorialState.Dodge;
+				tutorialOn = true;
+				tutoBat.shotOne = false;
+			}
+			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
+		}
+		if (collision.gameObject.CompareTag ("Enemy"))
+		{
+			_heat = heatLimit;
+		}
+	}
+
+	protected override void PaddleActivate (GameObject paddle) // Paddle buttons also work to advance the tutorial text
 	{
 		if (tutorialOn)
 		{
@@ -347,6 +371,11 @@ public class TutorialBehaviour : PlayerBehaviour {
 						//WAT
 						break;
 					}
+					tutorialOn = true;
+				}
+				if (currentState == TutorialState.Villagers)
+				{
+					currentState = TutorialState.End;
 					tutorialOn = true;
 				}
 			}

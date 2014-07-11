@@ -217,8 +217,57 @@ MonoBehaviour:
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
   currentState: 0
-  tutoStates: 
-  tutoTexts: []
+  tutoStates: 0000000004000000050000000c0000000d0000000e00000001000000
+  tutoTexts:
+  - tutorialText:
+    - Blaa blaa blaa, mister Freeman. Wake up and smell the scripts.
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
+  - tutorialText:
+    - There you go, you bloody sniper.
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
+  - tutorialText:
+    - Now hit it!
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
+  - tutorialText:
+    - Try tanking it!
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
+  - tutorialText:
+    - Let's try dodging it!
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
+  - tutorialText:
+    - Not the best idea, since villagers are your health!
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
+  - tutorialText:
+    - Let's kill that bat!
+    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+    - Thank you, Unity!
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
