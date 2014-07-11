@@ -6,8 +6,16 @@ public enum TutorialState
 {
 	Start,
 	End,
-	Move,
-	Swing,
+	FreeMove,
+	FreeSwing,
+	KeyMove,
+	KeySwing,
+	TiltMove,
+	TiltSwing,
+	DragMove,
+	DragSwing,
+	OppositeMove,
+	OppositeSwing,
 	Dodge,
 	Villagers
 }
@@ -16,6 +24,7 @@ public enum TutorialState
 public class TutorialTexts
 {
 	public List<string> tutorialText = new List<string>();
+	[System.NonSerialized]
 	public int currentText = 0;
 
 	public void DrawText()
@@ -46,8 +55,8 @@ public class TutorialBehaviour : PlayerBehaviour {
 	public Dictionary<TutorialState, TutorialTexts> tutorialPhases = new Dictionary<TutorialState, TutorialTexts> ();
 	public TutorialState[] tutoStates;
 	public TutorialTexts[] tutoTexts;
-
-	protected bool _tutorialOn = true;
+	[System.NonSerialized]
+	public bool tutorialOn = true;
 
 	protected override void Start ()
 	{
@@ -104,15 +113,15 @@ public class TutorialBehaviour : PlayerBehaviour {
 			}
 		} else if (_usedControls == ControlType.keyboard)
 		{
-			if (Input.GetKey (KeyCode.RightArrow))
+			if (Input.GetKey (KeyCode.RightArrow) && (currentState == TutorialState.End || currentState == TutorialState.KeyMove))
 			{
 				transform.position += new Vector3 (_currentSpeed, 0.0f);
 			}
-			if (Input.GetKey (KeyCode.LeftArrow))
+			if (Input.GetKey (KeyCode.LeftArrow) && currentState == TutorialState.End)
 			{
 				transform.position -= new Vector3 (_currentSpeed, 0.0f);
 			}
-			if (Input.GetKeyDown (KeyCode.Z))
+			if (Input.GetKeyDown (KeyCode.Z) && (currentState == TutorialState.End || currentState == TutorialState.KeySwing))
 			{
 				PaddleActivate (leftPaddle);
 				anim.SetTrigger ("LeftSwing");
@@ -129,18 +138,22 @@ public class TutorialBehaviour : PlayerBehaviour {
 		} else if (_usedControls == ControlType.tilting)
 		{
 			deltaPosition = 0.0f;
-			deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, -_currentSpeed, _currentSpeed);
+			if (currentState == TutorialState.End)
+				deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, -_currentSpeed, _currentSpeed);
+			else if (currentState == TutorialState.TiltMove)
+				deltaPosition = Mathf.Clamp (Input.acceleration.x / 4.2f, 0, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 			if (Input.touchCount != 0)
 			{
 				if (!_tappedPaddle)
 				{
-					_tappedPaddle = true;
 					if (((Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f) < 0.0f)
 					{
+						_tappedPaddle = true;
 						PaddleActivate (leftPaddle);
 					} else
 					{
+						_tappedPaddle = true;
 						PaddleActivate (rightPaddle);
 					}
 				}
@@ -159,9 +172,9 @@ public class TutorialBehaviour : PlayerBehaviour {
 					_horizontalTouch = (Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f;
 				} else if (!_tappedPaddle)
 				{
-					_tappedPaddle = true;
-					isPaddling = true;
-					AutomaticPaddle ();
+						_tappedPaddle = true;
+						isPaddling = true;
+						AutomaticPaddle ();
 				}
 				
 				if (Input.touchCount > 1)
@@ -171,8 +184,8 @@ public class TutorialBehaviour : PlayerBehaviour {
 						_horizontalTouch = (Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f;
 					} else if (!_tappedPaddle)
 					{
-						_tappedPaddle = true;
-						AutomaticPaddle ();
+							_tappedPaddle = true;
+							AutomaticPaddle ();
 					}
 				} else if (!isPaddling)
 				{
@@ -181,7 +194,10 @@ public class TutorialBehaviour : PlayerBehaviour {
 			}
 			
 			deltaPosition = _horizontalTouch - transform.position.x;
-			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			if (currentState == TutorialState.End)
+				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			else if (currentState == TutorialState.DragMove)
+				deltaPosition = Mathf.Clamp (deltaPosition, 0, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.oppositedragging)
 		{
@@ -194,9 +210,9 @@ public class TutorialBehaviour : PlayerBehaviour {
 					_horizontalTouch = (Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f;
 				} else if (!_tappedPaddle)
 				{
-					_tappedPaddle = true;
-					isPaddling = true;
-					AutomaticPaddle ();
+						_tappedPaddle = true;
+						isPaddling = true;
+						AutomaticPaddle ();
 				}
 				
 				if (Input.touchCount > 1)
@@ -206,8 +222,8 @@ public class TutorialBehaviour : PlayerBehaviour {
 						_horizontalTouch = (Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f;
 					} else if (!_tappedPaddle)
 					{
-						_tappedPaddle = true;
-						AutomaticPaddle ();
+							_tappedPaddle = true;
+							AutomaticPaddle ();
 					}
 				} else if (!isPaddling)
 				{
@@ -216,7 +232,10 @@ public class TutorialBehaviour : PlayerBehaviour {
 			}			
 			
 			deltaPosition = _horizontalTouch - transform.position.x;
-			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			if (currentState == TutorialState.End)
+				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			if (currentState == TutorialState.OppositeMove)
+				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.freedragging)
 		{
@@ -228,10 +247,10 @@ public class TutorialBehaviour : PlayerBehaviour {
 				if (!_dragging)
 				{
 					_dragging = true;
-					_touchStartPosition = new Vector2((Input.touches [0].position.x / (Screen.width / 5.4f)), (Input.touches [0].position.y / (Screen.height / 10.0f))) + new Vector2 (-2.7f, -5.0f);
+					_touchStartPosition = new Vector2 ((Input.touches [0].position.x / (Screen.width / 5.4f)), (Input.touches [0].position.y / (Screen.height / 10.0f))) + new Vector2 (-2.7f, -5.0f);
 					_playerPosition = transform.position;
 				}
-				_touchPosition = new Vector2((Input.touches [0].position.x / (Screen.width / 5.4f)), (Input.touches [0].position.y / (Screen.height / 10.0f))) + new Vector2 (-2.7f, -5.0f);
+				_touchPosition = new Vector2 ((Input.touches [0].position.x / (Screen.width / 5.4f)), (Input.touches [0].position.y / (Screen.height / 10.0f))) + new Vector2 (-2.7f, -5.0f);
 				if (Input.touchCount > 1)
 				{
 					if (!_tappedPaddle)
@@ -254,36 +273,86 @@ public class TutorialBehaviour : PlayerBehaviour {
 			}
 			
 			deltaPosition = (_touchPosition.x - _touchStartPosition.x) - (transform.position.x - _playerPosition.x);
-			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			if (currentState == TutorialState.End)
+				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			else if (currentState == TutorialState.FreeMove)
+				deltaPosition = Mathf.Clamp (deltaPosition, 0, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
-		if (!_endLevel && !_startLevel && !_tutorialOn)
+		if (!_endLevel && !_startLevel)
 		{
 			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
+			if (transform.position.x > 2.0f && (currentState == TutorialState.KeyMove || currentState == TutorialState.DragMove || currentState == TutorialState.FreeMove ||
+			                                    currentState == TutorialState.OppositeMove || currentState == TutorialState.TiltMove))
+			{
+				tutorialOn = true;
+				switch (_usedControls)
+				{
+				case ControlType.keyboard:
+					currentState = TutorialState.KeySwing;
+					break;
+				case ControlType.freedragging:
+					currentState = TutorialState.FreeSwing;
+					break;
+				case ControlType.tilting:
+					currentState = TutorialState.TiltSwing;
+					break;
+				case ControlType.dragging:
+					currentState = TutorialState.DragSwing;
+					break;
+				case ControlType.oppositedragging:
+					currentState = TutorialState.OppositeSwing;
+					break;
+				default:
+					//WAT
+					break;
+				}
+			}
 		}
 	}
 
 	protected void OnGUI()
 	{
-		if (_tutorialOn)
+		if (tutorialOn)
 			tutorialPhases [currentState].DrawText ();
 	}
 
 	protected override void PaddleActivate (GameObject paddle)
 	{
-		if (_tutorialOn)
+		if (tutorialOn)
 		{
 			if (!tutorialPhases [currentState].AdvanceText ())
 			{
-				_tutorialOn = false;
+				tutorialOn = false;
+				if (currentState == TutorialState.Start)
+				{
+					switch(_usedControls)
+					{
+					case ControlType.keyboard:
+						currentState = TutorialState.KeyMove;
+						break;
+					case ControlType.freedragging:
+						currentState = TutorialState.FreeMove;
+						break;
+					case ControlType.tilting:
+						currentState = TutorialState.TiltMove;
+						break;
+					case ControlType.dragging:
+						currentState = TutorialState.DragMove;
+						break;
+					case ControlType.oppositedragging:
+						currentState = TutorialState.OppositeMove;
+						break;
+					default:
+						//WAT
+						break;
+					}
+					tutorialOn = true;
+				}
 			}
-		} else
+		} else if (currentState == TutorialState.End || currentState == TutorialState.DragSwing || currentState == TutorialState.FreeSwing ||
+		           currentState == TutorialState.KeySwing || currentState == TutorialState.OppositeSwing)
 		{
-			if (currentState == TutorialState.Move)
-			{
-				currentState = TutorialState.Swing;
-				_tutorialOn = true;
-			}
 			base.PaddleActivate (paddle);
 		}
 	}

@@ -38,6 +38,11 @@ public class VillagerHandler : MonoBehaviour {
 	public void Delete(GameObject me)
 	{
 		villagers.Remove (me);
+		StartCoroutine (DeathSpawn ());
+	}
+	IEnumerator DeathSpawn()
+	{
+		yield return new WaitForSeconds(0.1f);
 		GameObject tempo = Spawn(villagerPrefab, spawnPositions [0], transform.rotation);
 		if (_looting)
 		{
@@ -88,6 +93,11 @@ public class VillagerHandler : MonoBehaviour {
 			tempo.GetComponent<VillagerBehaviour> ().StartLooting ();
 			StartCoroutine (SpawnLine (villagerSpawnRate));
 		}
+	}
+
+	public void attackMelee(Vector3 attackPosition)
+	{
+
 	}
 
 	public void GetVillagers()

@@ -210,27 +210,15 @@ MonoBehaviour:
   rightPaddle: {fileID: 100000}
   levelManager: {fileID: 0}
   paddleActive: 0
-  strafeSpeed: .100000001
+  strafeSpeed: 4
   heatLimit: 25
   sixty: 60
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
-  tutorialState: 0
-  tutorialTexts: []
-  offsetPairs:
-  - state: 0
-    lastText: 1
-  - state: 2
-    lastText: 4
-  - state: 0
-    lastText: 6
-  - state: 0
-    lastText: 9
-  - state: 0
-    lastText: 11
-  - state: 0
-    lastText: 14
+  currentState: 0
+  tutoStates: 
+  tutoTexts: []
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

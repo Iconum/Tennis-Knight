@@ -49,7 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.Escape))
 		{
-			Application.LoadLevel (0);
+			Application.LoadLevel ("LevelSelectMenu");
 		}
 
 		if (_heat > 0.0f)
