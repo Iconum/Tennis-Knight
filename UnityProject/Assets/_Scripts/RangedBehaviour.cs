@@ -6,8 +6,8 @@ public class RangedBehaviour : EnemyBehaviour {
 	public float shootTimerLimit = 1.0f;
 	public bool usesSinModifier = false, notShootingWalls, dividingProjectiles = false;
 
-	private float _shootTimer = 0.0f, _levelStartTime = 0.0f, _sinModifier = 1.0f;
-	private bool _sinDirection = true;
+	protected float _shootTimer = 0.0f, _levelStartTime = 0.0f, _sinModifier = 1.0f;
+	protected bool _sinDirection = true;
 	protected List<GameObject> _shotProjectiles = new List<GameObject>();
 
 	// Use this for initialization
@@ -76,9 +76,11 @@ public class RangedBehaviour : EnemyBehaviour {
 		}
 	}
 
-	protected virtual void ShootProjectile(Vector3 dir)
+	protected virtual GameObject ShootProjectile(Vector3 dir, GameObject projPrefab = null)
 	{
-		GameObject tempo = (GameObject)Instantiate (projectilePrefab, transform.position, transform.rotation);
+		if (!projPrefab)
+			projPrefab = projectilePrefab;
+		GameObject tempo = (GameObject)Instantiate (projPrefab, transform.position, transform.rotation);
 		tempo.GetComponent<BallBehaviour> ().SetStartVelocity (dir);
 		tempo.GetComponent<BallBehaviour> ().SetEnemyWave (_waveEnemies);
 		_shotProjectiles.Add (tempo);
@@ -86,5 +88,6 @@ public class RangedBehaviour : EnemyBehaviour {
 			tempo.GetComponent<DividingBehaviour> ().GetShot (_shotProjectiles);
 		ListDeflectable (tempo);
 		anim.SetTrigger ("Attack");
+		return tempo;
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BasicLevel : LevelBehaviour {
-	public bool levelTest = false;
+	public bool levelTest = false, openEnd = false;
 
 	void Start()
 	{
@@ -24,10 +24,13 @@ public class BasicLevel : LevelBehaviour {
 		{
 			if (enemySpawnPackages.Count == 0)
 			{
-				BGLoop.current.ToggleStop();
 				ClearDeflectables ();
 				ClearTheLevel();
-				ToggleWall ();
+				if (!openEnd)
+				{
+					BGLoop.current.ToggleStop();
+					ToggleWall ();
+				}
 				StartTheEnd ();
 			} else
 			{
@@ -46,7 +49,7 @@ public class BasicLevel : LevelBehaviour {
 			{
 				baddudes [i].GetComponent<EnemyBehaviour> ().levelManager = gameObject;
 			}
-			if (enemySpawnPackages.Count == 0)
+			if (enemySpawnPackages.Count == 0 && !openEnd)
 			{
 				BGLoop.current.ToggleStop();
 				ToggleWall ();
