@@ -89,6 +89,8 @@
      <Compile Include="Assets\_Scripts\RangedBehaviour.cs" />
      <Compile Include="Assets\_Scripts\SpearBehaviour.cs" />
      <Compile Include="Assets\_Scripts\Statics.cs" />
+     <Compile Include="Assets\_Scripts\TutoBallBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\TutoBatBehaviour.cs" />
      <Compile Include="Assets\_Scripts\TutorialBehaviour.cs" />
      <Compile Include="Assets\_Scripts\VillagerBehaviour.cs" />
      <Compile Include="Assets\_Scripts\VillagerHandler.cs" />
