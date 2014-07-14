@@ -34,7 +34,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 		switch (buttonType)
 		{
 		case ButtonTypes.Back:
-			Application.LoadLevel("Menu");
+			Application.LoadLevel("ModeSelect");
 			break;
 		case ButtonTypes.Shop:
 			Debug.Log("click");

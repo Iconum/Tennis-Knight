@@ -15,8 +15,8 @@ public class MenuProto : MonoBehaviour {
 
 	}
 
-	void OnMouseDown()
+	/*void OnMouseDown()
 	{
 		Debug.Log ("Mouse down");
-	}
+	}*/
 }
