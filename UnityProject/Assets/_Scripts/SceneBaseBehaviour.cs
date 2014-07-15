@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuFunctionality : MonoBehaviour {
+public class SceneBaseBehaviour : MonoBehaviour {
+	public static SceneBaseBehaviour curSceneBase = null;
 	public string prevSceneName = "";
 	public AsyncOperation _asyncOp = null;
 	public bool loadPrefs = false;
@@ -14,14 +15,32 @@ public class MenuFunctionality : MonoBehaviour {
 		}
 	}
 
+	void Awake()
+	{
+		curSceneBase = this;
+	}
+
+	void OnApplicationPause(bool paused)
+	{
+		if (paused)
+		{
+			Statics.PrefStoring ();
+		} else
+		{
+			
+		}
+	}
+
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.Escape) && prevSceneName != "" && _asyncOp != null)
+		if (Input.GetKeyDown (KeyCode.Escape) && prevSceneName != "" && _asyncOp == null)
 		{
 			_asyncOp = Application.LoadLevelAsync(prevSceneName);
-			_asyncOp.allowSceneActivation = false;
 			if (audio)
+			{
+				_asyncOp.allowSceneActivation = false;
 				audio.Play();
+			}
 		}
 		if (_asyncOp != null && audio)
 		if (!audio.isPlaying)

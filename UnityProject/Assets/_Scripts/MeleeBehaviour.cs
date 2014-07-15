@@ -51,7 +51,7 @@ public class MeleeBehaviour : EnemyBehaviour {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
-		if (!spawning)
+		if (!spawning && !isPaused)
 		{
 			if (usesProjectile && !_projectileFired)
 			{

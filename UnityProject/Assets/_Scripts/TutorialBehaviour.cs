@@ -78,11 +78,6 @@ public class TutorialBehaviour : PlayerBehaviour {
 		{
 			_currentSpeed *= 2;
 		}
-		
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			Application.LoadLevel (0);
-		}
 
 		if (_heat > 0.0f)
 		{
@@ -100,7 +95,10 @@ public class TutorialBehaviour : PlayerBehaviour {
 		
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
 		
-		if (_endLevel)
+		if (isPaused)
+		{
+			
+		} else if (_endLevel)
 		{
 			_heat = 0.0f;
 			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -_currentSpeed, _currentSpeed),

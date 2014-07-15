@@ -7,7 +7,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	public GameObject levelManager = null;
 	public float flickerTimerLimit = 4.0f, spawnLerpLimit = 3.0f;
 	public int health = 10, projectileLimit = 0;
-	public bool specialInvincibility = false, spawning = true;
+	public bool specialInvincibility = false, spawning = true, isPaused = false;
 	public Vector3 targetLocation;
 	public Animator anim;
 	
@@ -81,7 +81,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			Flicker ();
 		}
 
-		if (spawning && !_delayedActivation)
+		if (spawning && !_delayedActivation && !isPaused)
 		{
 			_flickerTimer += Time.deltaTime / spawnLerpLimit;
 			transform.position = Vector3.Lerp (_startLocation, targetLocation, _flickerTimer);
@@ -122,6 +122,11 @@ public class EnemyBehaviour : MonoBehaviour {
 	{
 		levelManager.GetComponent<LevelBehaviour> ().AddToDeflectable (deflectable);
 		deflectable.GetComponent<BallBehaviour> ().levelManager = levelManager;
+	}
+
+	public void SetPause(bool paused)
+	{
+		isPaused = paused;
 	}
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)

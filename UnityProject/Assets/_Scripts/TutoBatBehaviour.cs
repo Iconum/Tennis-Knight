@@ -68,7 +68,7 @@ public class TutoBatBehaviour : RangedBehaviour {
 					_reLerp = true;
 				}
 				_lerper += Time.deltaTime * 3;
-				transform.position = Vector3.Lerp (_lerpStart, new Vector3 (Mathf.Sin (Time.time - _levelStartTime) * 2.5f * _sinModifier, transform.position.y), _lerper);
+				transform.position = Vector3.Lerp (_lerpStart, new Vector3 (Mathf.Sin (Time.time - _levelSinTime) * 2.5f * _sinModifier, transform.position.y), _lerper);
 				if (_lerper > 1.0f)
 					_ready = true;
 			}

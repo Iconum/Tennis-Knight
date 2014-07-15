@@ -45,11 +45,6 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 			//_currentSpeed *= 0.2f;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			Application.LoadLevel (0);
-		}
-
 		if (_usedControls == ControlType.keyboard)
 		{
 			anim.SetBool("MovingLeft",false);
