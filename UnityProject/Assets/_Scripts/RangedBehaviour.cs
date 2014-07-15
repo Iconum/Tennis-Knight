@@ -10,11 +10,15 @@ public class RangedBehaviour : EnemyBehaviour {
 	protected bool _sinDirection = true;
 	protected List<GameObject> _shotProjectiles = new List<GameObject>();
 
+	public List<AudioClip> batSounds = null;
+
 	// Use this for initialization
 	protected override void Awake () {
 		base.Awake ();
 		anim = GetComponent<Animator> ();
 		_levelSinTime += transform.position.x;
+
+		audio.volume = Statics.soundVolume;
 	}
 	
 	// Update is called once per frame
@@ -71,10 +75,23 @@ public class RangedBehaviour : EnemyBehaviour {
 						ShootProjectile (new Vector2 (Random.Range (-tempf, 0.4f-tempf), -0.4f));
 					}
 					else
+					{
 						ShootProjectile (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
+					}
 				}
 			}
 		}
+		if (health < 1)
+		{
+			Debug.Log("health0");
+			if(batSounds!=null)
+			{
+				audio.clip = batSounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
+		}
+		//Debug.Log (health);
 	}
 
 	protected virtual GameObject ShootProjectile(Vector3 dir, GameObject projPrefab = null)
@@ -89,6 +106,14 @@ public class RangedBehaviour : EnemyBehaviour {
 			tempo.GetComponent<DividingBehaviour> ().GetShot (_shotProjectiles);
 		ListDeflectable (tempo);
 		anim.SetTrigger ("Attack");
+
+		if(batSounds!=null)
+		{
+			audio.clip = batSounds [0];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
+
 		return tempo;
 	}
 }

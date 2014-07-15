@@ -13,7 +13,8 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 		Tutorial,
 		First,
 		Second,
-		Third
+		Third,
+		OffScreen
 	}
 
 	public static ButtonTypes lastButton;
@@ -40,7 +41,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 			Debug.Log("click");
 			break;
 		case ButtonTypes.Tutorial:
-			if(!swordPrefab.gameObject.GetComponent<MenuSwordScript> ().isSwordOn)
+			if(swordPrefab.gameObject.GetComponent<MenuSwordScript> ().canClick)
 			{
 				menuPrefab.GetComponent<LevelSelFunctionality>().setPoint(0);
 				activateSword();
@@ -48,7 +49,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 			}
 			break;
 		case ButtonTypes.First:
-			if(!swordPrefab.GetComponent<MenuSwordScript> ().isSwordOn)
+			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick)
 			{
 				menuPrefab.GetComponent<LevelSelFunctionality>().setPoint(1);
 				activateSword();
@@ -56,7 +57,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 			}
 			break;
 		case ButtonTypes.Second:
-			if(!swordPrefab.GetComponent<MenuSwordScript> ().isSwordOn)
+			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick)
 			{
 				menuPrefab.GetComponent<LevelSelFunctionality>().setPoint(2);
 				activateSword();
@@ -64,7 +65,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 			}
 			break;
 		case ButtonTypes.Third:
-			if(!swordPrefab.GetComponent<MenuSwordScript> ().isSwordOn)
+			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick)
 			{
 				menuPrefab.GetComponent<LevelSelFunctionality>().setPoint(3);
 				activateSword();
@@ -97,6 +98,11 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 			break;
 		case ButtonTypes.Cancel:
 			if(swordPrefab.GetComponent<MenuSwordScript> ().isSwordOn)
+				deActivateSword();
+			break;
+		case ButtonTypes.OffScreen:
+			if(swordPrefab.GetComponent<MenuSwordScript> ().isSwordOn &&
+			   !swordPrefab.GetComponent<MenuSwordScript> ().canClick)
 				deActivateSword();
 			break;
 		}

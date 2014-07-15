@@ -101,6 +101,7 @@ MonoBehaviour:
   flickerTimerLimit: .5
   spawnLerpLimit: 3
   health: 1
+  projectileLimit: 0
   specialInvincibility: 0
   spawning: 1
   targetLocation: {x: 0, y: 0, z: 0}
@@ -130,9 +131,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_SortingLayerID: 1061239699
+  m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: ce81429614c5777449e84b4fbe4ab970, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

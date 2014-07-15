@@ -50,6 +50,7 @@
      <Compile Include="Assets\MenuStart.cs" />
      <Compile Include="Assets\MenuSwordScript.cs" />
      <Compile Include="Assets\PointLevel.cs" />
+     <Compile Include="Assets\VisualRacketBehaviour.cs" />
      <Compile Include="Assets\_Scripts\BG3.cs" />
      <Compile Include="Assets\_Scripts\BGLoop.cs" />
      <Compile Include="Assets\_Scripts\BackgroundLoop.cs" />
@@ -89,6 +90,8 @@
      <Compile Include="Assets\_Scripts\RangedBehaviour.cs" />
      <Compile Include="Assets\_Scripts\SpearBehaviour.cs" />
      <Compile Include="Assets\_Scripts\Statics.cs" />
+     <Compile Include="Assets\_Scripts\TutoBallBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\TutoBatBehaviour.cs" />
      <Compile Include="Assets\_Scripts\TutorialBehaviour.cs" />
      <Compile Include="Assets\_Scripts\VillagerBehaviour.cs" />
      <Compile Include="Assets\_Scripts\VillagerHandler.cs" />
