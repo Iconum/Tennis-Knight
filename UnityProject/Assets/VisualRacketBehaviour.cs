@@ -13,7 +13,7 @@ public class VisualRacketBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (player.GetComponent<GraphicsPlayerBehaviour> ().paddleActive == true)
+		/*if (player.GetComponent<GraphicsPlayerBehaviour> ().paddleActive == true)
 		{
 			//gameObject.SetActive (false);
 			HitIt();
@@ -37,5 +37,6 @@ public class VisualRacketBehaviour : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (0.0f);
 		gameObject.SetActive (false);
+	}*/
 	}
 }

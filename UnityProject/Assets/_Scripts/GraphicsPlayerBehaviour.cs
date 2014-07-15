@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GraphicsPlayerBehaviour : MonoBehaviour
 {
-	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null, fluff = null;
+	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null, fluff = null, visualRacket = null;
 	public bool paddleActive = false, stunned = false;
 	public float strafeSpeed = 0.1f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
@@ -235,6 +235,7 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 			paddleActive = true;
 			paddle.SetActive (true);
 			paddle.GetComponent<GraphicsPaddleBehaviour> ().PaddleHit ();
+			visualRacket.SetActive(false);
 		}
 	}
 

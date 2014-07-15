@@ -43,6 +43,7 @@ public class GraphicsPaddleBehaviour : MonoBehaviour {
 		transform.localRotation = _startRotation;
 		_hitTime = 0.0f;
 		player.GetComponent<GraphicsPlayerBehaviour>().paddleActive = false;
+		player.GetComponent<GraphicsPlayerBehaviour> ().visualRacket.SetActive (true);
 		gameObject.SetActive (false);
 	}
 

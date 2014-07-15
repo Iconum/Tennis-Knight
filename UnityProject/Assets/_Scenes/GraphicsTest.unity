@@ -849,6 +849,7 @@ MonoBehaviour:
   rightPaddle: {fileID: 402807316}
   levelManager: {fileID: 0}
   fluff: {fileID: 105880910}
+  visualRacket: {fileID: 1038937479}
   paddleActive: 0
   stunned: 0
   strafeSpeed: 2
@@ -1234,6 +1235,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
+      propertyPath: visualRacket
+      value: 
+      objectReference: {fileID: 1038937479}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 812aad3dcd4bed04f822c8a7ecda6df3, type: 2}
   m_RootGameObject: {fileID: 1143653018}
