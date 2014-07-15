@@ -4,6 +4,7 @@ using System.Collections;
 public class MenuSwordScript : MonoBehaviour 
 {
 	public bool isSwordOn = false;
+	public bool canClick = true;
 	protected Vector3 startPos;
 	protected float moveSpeed;
 
@@ -24,11 +25,18 @@ public class MenuSwordScript : MonoBehaviour
 			//                                              new Vector3(startPos.x + 100f, startPos.y),
 			//                                              moveSpeed);
 			if(gameObject.transform.position.x <= -1f)
-			gameObject.transform.Translate(new Vector3 (moveSpeed,0f));
+			{
+				gameObject.transform.Translate(new Vector3 (moveSpeed,0f));
+			}
+			canClick = false;
 		} else
 		{
 			if(gameObject.transform.position.x >= startPos.x)
+			{
 				gameObject.transform.Translate(new Vector3 (-moveSpeed,0f));
+			}
+			else
+				canClick = true;
 		}
 	}
 
