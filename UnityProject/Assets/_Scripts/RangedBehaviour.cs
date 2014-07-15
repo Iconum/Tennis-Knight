@@ -72,7 +72,6 @@ public class RangedBehaviour : EnemyBehaviour {
 					{
 						float tempf = ((transform.position.x + 2.5f) / 5.0f) * 0.4f;
 						ShootProjectile (new Vector2 (Random.Range (-tempf, 0.4f-tempf), -0.4f));
-
 					}
 					else
 					{
@@ -81,6 +80,17 @@ public class RangedBehaviour : EnemyBehaviour {
 				}
 			}
 		}
+		if (health < 1)
+		{
+			Debug.Log("health0");
+			if(batSounds!=null)
+			{
+				audio.clip = batSounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
+		}
+		//Debug.Log (health);
 	}
 
 	protected virtual GameObject ShootProjectile(Vector3 dir, GameObject projPrefab = null)
