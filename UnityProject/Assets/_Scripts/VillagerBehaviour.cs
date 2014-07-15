@@ -14,6 +14,7 @@ public class VillagerBehaviour : MonoBehaviour
 	public float flyingSpeed = 5.0f;
 	public float movementSpeed = 2.0f;
 	public bool isDead = false;
+	public bool isPaused = false;
 	protected float rotation = 0.0f;
 	protected float height = 0.0f;
 	protected bool isGoingup = true;
@@ -41,15 +42,18 @@ public class VillagerBehaviour : MonoBehaviour
 		spawnLength = Vector3.Distance (spawnStartPos, spawnEndPos); // check how long is the distance of spawning positions
 		startTime = Time.time; //check when spawn started
 
-		audio.volume = Statics.soundVolume;
+		audio.volume = 0.3f;
 		anim = GetComponent<Animator> ();
 	}
 
 	void Update ()
 	{
+		if (isPaused)
+		{
 
+		}
 		//update for death movement
-		if (isDead)
+		else if (isDead)
 		{
 			death ();
 		}
@@ -153,6 +157,11 @@ public class VillagerBehaviour : MonoBehaviour
 			}
 		}
 		return true;
+	}
+
+	public void SetPause(bool paused)
+	{
+		isPaused = paused;
 	}
 
 	protected virtual void ProceedToLoot ()

@@ -5,7 +5,7 @@ public class KingProto : EnemyBehaviour {
 	public GameObject player = null;
 	public int maxDeflections = 10;
 	
-	private float _shootTimer = 0.0f, _levelStartTime = 0.0f;
+	private float _shootTimer = 0.0f, _levelSinTime = 0.0f;
 	private Vector2 knightPos;
 	private Vector3 kbipos;
 	private int deflections;
@@ -15,7 +15,6 @@ public class KingProto : EnemyBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		_levelStartTime = Time.time;
 		anim = GetComponent<Animator> ();
 		player = levelManager.GetComponent<LevelBehaviour> ().player;
 		deflections = maxDeflections - health;
@@ -26,8 +25,8 @@ public class KingProto : EnemyBehaviour {
 	void Update ()
 	{
 		base.Update ();
-		transform.position = new Vector3(Mathf.Cos(Time.time*4 - _levelStartTime) , transform.position.y);
-		//transform.position = new Vector3(Mathf.Sin(Time.time - _levelStartTime) * 2.5f, transform.position.y);
+		transform.position = new Vector3(Mathf.Cos(_levelSinTime * 4) , transform.position.y);
+		//transform.position = new Vector3(Mathf.Sin(Time.time - _levelSinTime) * 2.5f, transform.position.y);
 		//knightPos = (player.GetComponent<KnightBossProto>().transform.position);
 		//Debug.Log (player.GetComponent<KnightBossProto> ().transform.position);
 
