@@ -15,10 +15,13 @@ public class MenuButtonFunctionality : ButtonFunctionality {
 		switch (buttonType)
 		{
 		case ButtonTypes.Start:
+			_asyncOp = Application.LoadLevelAsync ("ModeSelect");
 			break;
 		case ButtonTypes.Options:
+			_asyncOp = Application.LoadLevelAsync ("Options");
 			break;
 		case ButtonTypes.Credits:
+			_asyncOp = Application.LoadLevelAsync ("Credits");
 			break;
 		}
 		base.PressButton ();

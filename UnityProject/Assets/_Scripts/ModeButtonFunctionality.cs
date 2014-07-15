@@ -15,11 +15,12 @@ public class ModeButtonFunctionality : ButtonFunctionality {
 		switch (buttonType)
 		{
 		case ButtonTypes.Campaign:
-			_asyncOp = Application.LoadLevelAsync("LevelSelect");
+			_asyncOp = Application.LoadLevelAsync ("LevelSelectMenu");
 			break;
 		case ButtonTypes.Endless:
 			break;
 		case ButtonTypes.Back:
+			_asyncOp = Application.LoadLevelAsync ("Menu");
 			break;
 		}
 		base.PressButton ();

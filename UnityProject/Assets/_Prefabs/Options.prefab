@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Menu
+  m_Name: Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,6 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d5f524ee1801e43ba12c5d1658251a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thirty: 0
+  sixty: 0
+  eighty: 0
+  onefourty: 0
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
