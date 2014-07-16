@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null;
+	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null,visualRacket=null;
 	public bool paddleActive = false, isPaused = false;
 	public float strafeSpeed = 0.1f, heatLimit = 25.0f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
@@ -51,6 +51,9 @@ public class PlayerBehaviour : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update ()
 	{
+		anim.SetBool("MovingLeft",false);
+		anim.SetBool("MovingRight",false);
+
 		_currentSpeed = strafeSpeed * Time.deltaTime;
 		float deltaPosition;
 		if (((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && _usedControls == ControlType.keyboard) || _usedControls != ControlType.keyboard)
@@ -103,10 +106,12 @@ public class PlayerBehaviour : MonoBehaviour
 			if (Input.GetKey (KeyCode.RightArrow))
 			{
 				transform.position += new Vector3 (_currentSpeed, 0.0f);
+				anim.SetBool("MovingRight",true);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow))
 			{
 				transform.position -= new Vector3 (_currentSpeed, 0.0f);
+				anim.SetBool("MovingLeft",true);
 			}
 			if (Input.GetKeyDown (KeyCode.Z))
 			{
@@ -278,6 +283,7 @@ public class PlayerBehaviour : MonoBehaviour
 			paddleActive = true;
 			paddle.SetActive (true);
 			paddle.GetComponent<PaddleBehaviour> ().PaddleHit ();
+			visualRacket.SetActive(false);
 		}
 	}
 
