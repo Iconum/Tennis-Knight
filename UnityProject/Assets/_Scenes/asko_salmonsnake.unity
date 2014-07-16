@@ -120,7 +120,8 @@ MonoBehaviour:
   isSubBackground: 1
   speed: .200000003
   brakeTime: 3
-  subBackground: []
+  subBackground:
+  - {fileID: 1054925547}
 --- !u!23 &118227849
 Renderer:
   m_ObjectHideFlags: 0
@@ -359,7 +360,7 @@ MonoBehaviour:
       position: {x: 0, y: 3, z: 0}
       delayTime: 0
   levelTest: 1
-  openEnd: 1
+  openEnd: 0
 --- !u!1 &415575765
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,6 +504,7 @@ MonoBehaviour:
   rightPaddle: {fileID: 1280306705}
   levelManager: {fileID: 0}
   paddleActive: 0
+  isPaused: 0
   strafeSpeed: 4
   heatLimit: 20
   sixty: 60
@@ -1111,6 +1113,10 @@ Prefab:
       objectReference: {fileID: 100000, guid: bbf1fd76531510e4294410d0e5c990fa, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: openEnd
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: levelTest
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1125,6 +1131,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: cfe3d87c97b86814ab5000ba373820d3, type: 2}
+      propertyPath: subBackground.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cfe3d87c97b86814ab5000ba373820d3, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1153,6 +1163,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cfe3d87c97b86814ab5000ba373820d3, type: 2}
+      propertyPath: subBackground.Array.data[0]
+      value: 
+      objectReference: {fileID: 1054925547}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfe3d87c97b86814ab5000ba373820d3, type: 2}
   m_RootGameObject: {fileID: 1437495957}
