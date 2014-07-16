@@ -54,6 +54,9 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 			{
 				transform.position += new Vector3 (_currentSpeed, 0.0f);
 				anim.SetBool("MovingRight",true);
+				//fluff.transform.localRotation=new;
+				//fluff.transform.Rotate(Time.deltaTime*1000000f,Time.deltaTime*1000000f,Time.deltaTime*1000000f);
+				//Debug.Log(fluff.transform.rotation);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow))
 			{
