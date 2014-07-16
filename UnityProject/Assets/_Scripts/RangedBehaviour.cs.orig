@@ -10,16 +10,19 @@ public class RangedBehaviour : EnemyBehaviour {
 	protected bool _sinDirection = true;
 	protected List<GameObject> _shotProjectiles = new List<GameObject>();
 
-	public List<AudioClip> batSounds = new List<AudioClip> ();
+	public List<AudioClip> batSounds = null;
 
 	// Use this for initialization
 	protected override void Awake () {
 		base.Awake ();
 		anim = GetComponent<Animator> ();
+<<<<<<< HEAD
 		_levelSinTime += transform.position.x;
+=======
+		_levelStartTime += transform.position.x;
 
-		if (audio)
-			audio.volume = Statics.soundVolume;
+		audio.volume = Statics.soundVolume;
+>>>>>>> 5e020cd9fbf41b55d0474479b25b444720d6e51b
 	}
 	
 	// Update is called once per frame
@@ -84,8 +87,8 @@ public class RangedBehaviour : EnemyBehaviour {
 		}
 		if (health < 1)
 		{
-			Debug.Log ("health0");
-			if (batSounds.Count > 0 && audio)
+			Debug.Log("health0");
+			if(batSounds!=null)
 			{
 				audio.clip = batSounds [1];
 				audio.pitch = Random.Range (0.9f, 1.2f);
@@ -108,7 +111,7 @@ public class RangedBehaviour : EnemyBehaviour {
 		ListDeflectable (tempo);
 		anim.SetTrigger ("Attack");
 
-		if (batSounds.Count > 0 && audio)
+		if(batSounds!=null)
 		{
 			audio.clip = batSounds [0];
 			audio.pitch = Random.Range (0.9f, 1.2f);

@@ -103,7 +103,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	protected virtual void Flicker()
 	{
 		_flickerTimer += Time.deltaTime;
-		if (_flickerTimer % 0.4f < 0.2f)
+		if (_flickerTimer % 0.1f < 0.05f)
 		{
 			renderer.enabled = false;
 		} else
