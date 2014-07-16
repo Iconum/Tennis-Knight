@@ -64,7 +64,7 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 		} else if (spawned)
 		{
 			moveTimer += Time.deltaTime * 2;
-			spawned = true;
+			shoot = true;
 		}
 
 		if (isOnLimitDistance == true)
