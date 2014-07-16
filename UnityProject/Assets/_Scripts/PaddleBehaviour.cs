@@ -50,6 +50,7 @@ public class PaddleBehaviour : MonoBehaviour {
 		transform.localPosition = _startPosition;
 		transform.localRotation = _startRotation;
 		_hitTime = 0.0f;
+		player.GetComponent<PlayerBehaviour> ().visualRacket.SetActive (true);
 		player.GetComponent<PlayerBehaviour>().paddleActive = false;
 		Hitting(false);
 	}

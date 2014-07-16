@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: BG3randomCoin
+  m_Name: IceBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23,9 +23,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: .0215968806, w: -.999766767}
-  m_LocalPosition: {x: .50163728, y: 2.06839728, z: 0}
-  m_LocalScale: {x: .738714993, y: .738544405, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.35777235, y: -1.96165299, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &11400000
@@ -36,17 +36,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d7cfeedf726694ab7ed8620ceeea25, type: 3}
+  m_Script: {fileID: 11500000, guid: ac1cc1c9565102a47a2dc61fc798b2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bg: {fileID: 0}
-  pspeed: 0
-  cheight: 0
-  cwidth: 0
-  textures:
-  - {fileID: 21300000, guid: 13782f1a70839e54599604f0e85a92f8, type: 3}
-  - {fileID: 21300000, guid: d204bc24744fce3428a304b1c6f0adae, type: 3}
-  - {fileID: 21300000, guid: 967b36b2ebce5004591cde2ad1cef7d3, type: 3}
+  startVelocity: {x: .100000001, y: -1}
+  constantSpeed: 2
+  heatGeneration: 1.5
+  paddleHit: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -66,9 +63,9 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: d204bc24744fce3428a304b1c6f0adae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db9e9fff98368e14183c5ea82efb0ab6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

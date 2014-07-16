@@ -9,17 +9,17 @@ public class BGLoop : MonoBehaviour {
 	public List<BGLoop> subBackground = new List<BGLoop>();
 	
 	protected float _actualSpeed = 5.0f;
+	protected float pos = 0;
 
-	float pos = 0;
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		if (!isSubBackground)
 			current = this;
 		_actualSpeed = speed;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
 		if (stopped && _actualSpeed > 0.0f)
 		{
 			_actualSpeed -= Time.deltaTime * speed / brakeTime;

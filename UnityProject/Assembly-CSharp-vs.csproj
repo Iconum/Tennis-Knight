@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\BOBTrail.cs" />
+     <Compile Include="Assets\DragonBabyBehaviour.cs" />
      <Compile Include="Assets\MenuStart.cs" />
      <Compile Include="Assets\MenuSwordScript.cs" />
      <Compile Include="Assets\PointLevel.cs" />
@@ -78,7 +79,6 @@
      <Compile Include="Assets\_Scripts\LevelSelFunctionality.cs" />
      <Compile Include="Assets\_Scripts\MeleeBehaviour.cs" />
      <Compile Include="Assets\_Scripts\MenuButtonFunctionality.cs" />
-     <Compile Include="Assets\_Scripts\MenuFunctionality.cs" />
      <Compile Include="Assets\_Scripts\MenuProto.cs" />
      <Compile Include="Assets\_Scripts\MiniCastleBehaviour.cs" />
      <Compile Include="Assets\_Scripts\ModeButtonFunctionality.cs" />
@@ -88,6 +88,7 @@
      <Compile Include="Assets\_Scripts\PlayerBehaviour.cs" />
      <Compile Include="Assets\_Scripts\PropBehaviour.cs" />
      <Compile Include="Assets\_Scripts\RangedBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\SceneBaseBehaviour.cs" />
      <Compile Include="Assets\_Scripts\SpearBehaviour.cs" />
      <Compile Include="Assets\_Scripts\Statics.cs" />
      <Compile Include="Assets\_Scripts\TutoBallBehaviour.cs" />
