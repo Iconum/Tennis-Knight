@@ -27,8 +27,7 @@ public class TutoBatBehaviour : RangedBehaviour {
 	protected override void Update ()
 	{
 		if (!tutoKnight.tutorialOn && (tutoKnight.currentState == TutorialState.DragSwing || tutoKnight.currentState == TutorialState.FreeSwing || tutoKnight.currentState == TutorialState.KeySwing ||
-			tutoKnight.currentState == TutorialState.OppositeSwing || tutoKnight.currentState == TutorialState.TiltSwing || tutoKnight.currentState == TutorialState.Tanking ||
-			tutoKnight.currentState == TutorialState.Dodge))
+			tutoKnight.currentState == TutorialState.OppositeSwing || tutoKnight.currentState == TutorialState.TiltSwing || tutoKnight.currentState == TutorialState.Tanking))
 		{
 			if (spawning)
 			{

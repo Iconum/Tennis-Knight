@@ -248,6 +248,7 @@ MonoBehaviour:
   rightPaddle: {fileID: 911955506}
   levelManager: {fileID: 0}
   paddleActive: 0
+  isPaused: 0
   strafeSpeed: 4
   heatLimit: 25
   sixty: 60
@@ -255,43 +256,41 @@ MonoBehaviour:
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
   currentState: 0
-  tutoStates: 0000000004000000050000000c0000000d0000000e00000001000000
+  tutoStates: 0000000004000000050000000c0000000d0000000e000000010000000200000003000000060000000700000008000000090000000a0000000b000000
   tutoTexts:
   - tutorialText:
-    - Blaa blaa blaa, mister Freeman. Wake up and smell the scripts.
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - Welcome to Knight of Tensia's tutorial!
+    - Here you'll learn the basic game mechanics.
   - tutorialText:
-    - There you go, you bloody sniper.
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - Press the left and right arrow buttons to move left and right, and press Shift
+      to move quicker.
+    - Try to move to the right edge of the screen.
   - tutorialText:
-    - Now hit it!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - A basic ranged enemy will soon appear. Try to hit the projectile it shoots back
+      at it!
+    - You can swing your racket to left and right with Z and X keys respectively,
+      or press Space to make the game choose the closest racket.
   - tutorialText:
-    - Try tanking it!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - In this game, your true health meter are the villagers at the bottom of the
+      screen and the ones in reserve.
+    - Your job is to escort them to the castle safely. The game will only end if you
+      lose all of your villagers.
+    - As such, it is better to let projectiles hit you if you are unable to deflect
+      them rather than letting them fly into your villagers.
+    - Now, let the projectile hit you. You don't have to worry, the effects of projectiles
+      hitting you are only temporary.
   - tutorialText:
-    - Let's try dodging it!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - Excellent. You might not have noticed, but your armor heated up a bit but cooled
+      off rapidly. Gain too much heat and you will move more slowly, but you will
+      cool off quickly and suffer no other ill effects.
+    - Another enemy type is approaching. Melee enemies don't throw projectiles. Instead,
+      they will charge at you and cause your armor to heat up massively, effectively
+      stunning you for a while.
+    - The best way to defeat melee enemies is to dodge them and make them crash against
+      the villagers. While defenceless against enemy projectiles, the villagers can
+      beat melee types without fear. If you can manage, you can also deflect enemy
+      projectiles at them to defeat them.
+    - Watch out for the enemy and dodge his charge!
   - tutorialText:
     - Not the best idea, since villagers are your health!
     - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
@@ -300,12 +299,23 @@ MonoBehaviour:
       Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
     - Thank you, Unity!
   - tutorialText:
-    - Let's kill that bat!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - Now, let's kill that bat!
+  - tutorialText:
+    - Now, let's kill that bat!
+  - tutorialText:
+    - Now, let's kill that bat!
+  - tutorialText:
+    - Now, let's kill that bat!
+  - tutorialText:
+    - Now, let's kill that bat!
+  - tutorialText:
+    - Now, let's kill that bat!
+  - tutorialText:
+    - Now, let's kill that bat!
+  - tutorialText:
+    - Now, let's kill that bat!
+  - tutorialText:
+    - Now, let's kill that bat!
 --- !u!58 &418376560
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -368,7 +378,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: m_LocalPosition.x
@@ -429,6 +439,18 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: optimalVillagerAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[1].enemy
+      value: 
+      objectReference: {fileID: 100000, guid: 43cd78ef27afc5b449eaad720c1ef118, type: 2}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[1].position.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[1].position.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
@@ -896,6 +918,9 @@ MonoBehaviour:
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: f0af2b9545311d346b138235b152c6f9, type: 2}
       position: {x: 1.79999995, y: 4, z: 0}
+      delayTime: 0
+    - enemy: {fileID: 100000, guid: 43cd78ef27afc5b449eaad720c1ef118, type: 2}
+      position: {x: -1, y: 4, z: 0}
       delayTime: 0
   levelTest: 0
   openEnd: 1

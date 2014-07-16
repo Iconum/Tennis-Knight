@@ -210,6 +210,7 @@ MonoBehaviour:
   rightPaddle: {fileID: 100000}
   levelManager: {fileID: 0}
   paddleActive: 0
+  isPaused: 0
   strafeSpeed: 4
   heatLimit: 25
   sixty: 60
@@ -217,57 +218,78 @@ MonoBehaviour:
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
   currentState: 0
-  tutoStates: 0000000004000000050000000c0000000d0000000e00000001000000
+  tutoStates: 0000000004000000050000000c0000000d0000000e000000010000000200000003000000060000000700000008000000090000000a0000000b000000
   tutoTexts:
   - tutorialText:
-    - Blaa blaa blaa, mister Freeman. Wake up and smell the scripts.
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - Welcome to Knight of Tensia's tutorial!
+    - Here you'll learn the basic game mechanics.
   - tutorialText:
-    - There you go, you bloody sniper.
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - Press the left and right arrow buttons to move left and right, and press Shift
+      to move quicker.
+    - Try to move to the right edge of the screen.
   - tutorialText:
-    - Now hit it!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - A basic ranged enemy will soon appear. Try to hit the projectile it shoots back
+      at it!
+    - You can swing your racket to left and right with Z and X keys respectively,
+      or press Space to make the game choose the closest racket.
   - tutorialText:
-    - Try tanking it!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - In this game, your true health meter are the villagers at the bottom of the
+      screen and the ones in reserve.
+    - Your job is to escort them to the castle safely. The game will only end if you
+      lose all of your villagers.
+    - As such, it is better to let projectiles hit you if you are unable to deflect
+      them rather than letting them fly into your villagers.
+    - Now, let the projectile hit you. You don't have to worry, the effects of projectiles
+      hitting you are only temporary.
   - tutorialText:
-    - Let's try dodging it!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - Excellent. You might not have noticed, but your armor heated up a bit but cooled
+      off rapidly. Gain too much heat and you will move more slowly, but you will
+      cool off quickly and suffer no other ill effects.
+    - Another enemy type is approaching. Melee enemies don't throw projectiles. Instead,
+      they will charge at you and cause your armor to heat up massively, effectively
+      stunning you for a while.
+    - The best way to defeat melee enemies is to dodge them and make them crash against
+      the villagers. While defenceless against enemy projectiles, the villagers can
+      beat melee types without fear. If you can manage, you can also deflect enemy
+      projectiles at them to defeat them.
+    - Watch out for the enemy and dodge his charge!
   - tutorialText:
-    - Not the best idea, since villagers are your health!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - There we go! That small knight only had one health and was defeated immediatly.
+      Some melee enemies might have more, so watch out.
   - tutorialText:
-    - Let's kill that bat!
-    - Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-      Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-    - Thank you, Unity!
+    - Excellent! You've completed the tutorial! Time to defeat that one remaining
+      bat!
+  - tutorialText:
+    - Tap anywhere on the screen and drag your finger to move the player character.
+    - Try to move to the right edge of the screen.
+  - tutorialText:
+    - A basic ranged enemy will soon appear. Try to hit the projectile it shoots back
+      at it!
+    - You can swing your racket by tapping quickly on the screen. The game will automatically
+      hit the closer racket.
+  - tutorialText:
+    - Tilt your mobile device to control the player characters movement.
+    - Try to move to the right edge of the screen.
+  - tutorialText:
+    - A basic ranged enemy will soon appear. Try to hit the projectile it shoots back
+      at it!
+    - Tap the left side of the screen to swing the racket left, and the right side
+      to swing right.
+  - tutorialText:
+    - Drag the bottom of the screen to move the player character.
+    - Try to move to the right edge of the screen.
+  - tutorialText:
+    - A basic ranged enemy will soon appear. Try to hit the projectile it shoots back
+      at it!
+    - Tap anywhere on the upper or middle screen to swing automatically with the closer
+      racket.
+  - tutorialText:
+    - Drag your finger anywhere in the upper or middle screen to move the player character.
+    - Try to move to the right edge of the screen.
+  - tutorialText:
+    - A basic ranged enemy will soon appear. Try to hit the projectile it shoots back
+      at it!
+    - Tap the screen at the bottom to automatically hit with the closer racket.
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
