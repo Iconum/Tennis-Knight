@@ -101,7 +101,16 @@ public class MeleeBehaviour : EnemyBehaviour {
 
 		if (other.CompareTag ("Removal"))
 		{
-			InstantDeath ();
+			DamageHealth ();
+			meleeAttacking = false;
+			collider2D.enabled = false;
+			StartCoroutine (EnableColliderAgain ());
 		}
+	}
+	IEnumerator EnableColliderAgain()
+	{
+		yield return new WaitForSeconds (1.0f);
+		collider2D.enabled = true;
+		StartCoroutine (StartAttack (attackTime));
 	}
 }

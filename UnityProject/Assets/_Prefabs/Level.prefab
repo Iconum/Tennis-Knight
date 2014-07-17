@@ -314,12 +314,15 @@ MonoBehaviour:
   enemySpawnPackages:
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: bbf1fd76531510e4294410d0e5c990fa, type: 2}
-      position: {x: 0, y: 3, z: 0}
+      position: {x: 2, y: 3.5, z: 0}
       delayTime: 0
   - prefabPositionCombo:
     - enemy: {fileID: 100004, guid: a9a0918ba9a460043bd95e76e22b6700, type: 2}
       position: {x: 0, y: 3.4000001, z: 0}
       delayTime: 0
+    - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
+      position: {x: -1, y: 3.5, z: 0}
+      delayTime: 1
   levelTest: 1
   openEnd: 0
 --- !u!114 &11400002
