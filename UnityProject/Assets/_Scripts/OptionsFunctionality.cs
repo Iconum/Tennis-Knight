@@ -42,11 +42,14 @@ public class OptionsFunctionality : MonoBehaviour {
 			GUILayout.Label("Music Volume:", Statics.menuTextStyle);
 			Statics.musicVolume = GUILayout.HorizontalSlider(Statics.musicVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle);
 			GUILayout.Space(thirty);
+			#if UNITY_STANDALONE || UNITY_EDITOR
 			if (GUILayout.Button ("Keyboard Controls", Statics.menuButtonStyle))
 			{
 				Statics.selectedControlMethod = ControlType.keyboard;
 				menuText = GetMenuText ();
 			}
+#endif
+			#if UNITY_ANDROID || UNITY_IPHONE || UNITY_WP8 || UNITY_EDITOR
 			/*
 			if (GUILayout.Button("Touchpad Controls", Statics.menuButtonStyle))
 			{
@@ -78,6 +81,7 @@ public class OptionsFunctionality : MonoBehaviour {
 				menuText = GetMenuText ();
 			}
 			GUILayout.Box(menuText, Statics.menuTextStyle);
+#endif
 		}
 		GUILayout.EndArea ();
 	}
