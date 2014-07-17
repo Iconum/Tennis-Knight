@@ -55,7 +55,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   flickerTimerLimit: 4
   spawnLerpLimit: 3
-  health: 5
+  health: 2
   projectileLimit: 1
   specialInvincibility: 0
   spawning: 0
@@ -63,6 +63,7 @@ MonoBehaviour:
   targetLocation: {x: 0, y: 2, z: 0}
   anim: {fileID: 0}
   shootingSpeed: 0
+  motherPrefab: {fileID: 100004, guid: a9a0918ba9a460043bd95e76e22b6700, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 9a256e9f3eb53d04fa4616e3100814ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
