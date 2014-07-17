@@ -131,7 +131,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag ("Deflected"))
+		if (collision.gameObject.CompareTag ("Deflected") || collision.gameObject.CompareTag("AllDamaging"))
 		{
 			collision.gameObject.GetComponent<BallBehaviour>().BallDestroy();
 			if (!specialInvincibility && !spawning)
