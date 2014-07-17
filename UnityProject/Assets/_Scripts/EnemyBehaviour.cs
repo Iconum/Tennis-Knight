@@ -9,7 +9,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	public int health = 10, projectileLimit = 0;
 	public bool specialInvincibility = false, spawning = true, isPaused = false;
 	public Vector3 targetLocation;
-	public Animator anim;
+	public Animator anim = null;
 	
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false, _delayedActivation = false;
@@ -157,11 +157,12 @@ public class EnemyBehaviour : MonoBehaviour {
 		{
 			--health;
 			_flickerActive = true;
-			anim.SetTrigger("Damage");
+			if (anim)
+				anim.SetTrigger ("Damage");
 
 			if (health <= 0)
 			{
-				Destroy(gameObject);
+				Destroy (gameObject);
 			}
 		}
 	}

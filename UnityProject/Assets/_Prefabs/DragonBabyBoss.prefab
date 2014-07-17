@@ -11,9 +11,9 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
   - 61: {fileID: 6100000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DragonBabyBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   flickerTimerLimit: 4
   spawnLerpLimit: 3
   health: 10
-  projectileLimit: 0
+  projectileLimit: 1
   specialInvincibility: 0
   spawning: 0
   isPaused: 0
