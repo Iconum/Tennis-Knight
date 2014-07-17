@@ -32,6 +32,8 @@ public class IceBallBehaviour : BallBehaviour {
 			if (gravity <= 2.0f)
 				gameObject.tag = "Deflectable";
 		}
+		if (gravity <= 1f)
+			gravity = 1f;
 	}
 
 	protected void OnCollisionEnter2D(Collision2D collision)
