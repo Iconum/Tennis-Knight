@@ -13,16 +13,27 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 	public float shootingSpeed = 0f;
 	protected float _shootTimer = 0f;
 	protected List<GameObject> ownProjectiles = new List<GameObject> ();
-	
+	protected bool babyDeath = false;
+
+	public GameObject motherPrefab = null;
+	protected bool motherSpawn = false;
+	protected bool isMotherSpawned = false;
+
+
 	// Update is called once per frame
 	void Update () 
 	{
 		shootTimer += Time.deltaTime;
 
 		base.Update ();
+
+		if (!babyDeath)
 		bossMoving ();
-		if(shoot) 
+
+		if(shoot && !babyDeath) 
 		ShootBalls ();
+
+		bossPhaseSetter ();
 	
 	}
 
@@ -107,6 +118,17 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 
 			break;
 		case 1:
+			motherSpawn = true;
+			babyDeath = true;
+			if(motherSpawn && !isMotherSpawned)
+			{
+				isMotherSpawned = true;
+			//	var mother = Instantiate(motherPrefab,new Vector3(0,4f),new Quaternion());
+			}
+
+			if(transform.position.x <= -5f)
+			transform.Translate(-Time.deltaTime*2,0,0);
+
 
 			break;
 		default:
