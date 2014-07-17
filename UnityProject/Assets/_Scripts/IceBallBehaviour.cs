@@ -29,8 +29,6 @@ public class IceBallBehaviour : BallBehaviour {
 		if (gravity >= 2.0f)
 		{
 			gravity -= 2.0f;
-			if (gravity <= 2.0f)
-				gameObject.tag = "Deflectable";
 		}
 		if (gravity <= 1f)
 			gravity = 1f;
