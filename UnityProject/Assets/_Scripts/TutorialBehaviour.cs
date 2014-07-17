@@ -78,11 +78,6 @@ public class TutorialBehaviour : PlayerBehaviour {
 		{
 			_currentSpeed *= 2;
 		}
-		
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			Application.LoadLevel (0);
-		}
 
 		if (_heat > 0.0f)
 		{
@@ -100,7 +95,10 @@ public class TutorialBehaviour : PlayerBehaviour {
 		
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
 		
-		if (_endLevel)
+		if (isPaused)
+		{
+			
+		} else if (_endLevel)
 		{
 			_heat = 0.0f;
 			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -_currentSpeed, _currentSpeed),
@@ -120,7 +118,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 			{
 				transform.position += new Vector3 (_currentSpeed, 0.0f);
 			}
-			if (Input.GetKey (KeyCode.LeftArrow) && currentState == TutorialState.End)
+			if (Input.GetKey (KeyCode.LeftArrow) && (currentState == TutorialState.End || currentState == TutorialState.Dodge))
 			{
 				transform.position -= new Vector3 (_currentSpeed, 0.0f);
 			}
@@ -197,9 +195,9 @@ public class TutorialBehaviour : PlayerBehaviour {
 			}
 			
 			deltaPosition = _horizontalTouch - transform.position.x;
-			if (currentState == TutorialState.End)
+			if (currentState == TutorialState.End || currentState == TutorialState.Dodge)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
-			else if (currentState == TutorialState.DragMove || currentState == TutorialState.Dodge)
+			else if (currentState == TutorialState.DragMove)
 				deltaPosition = Mathf.Clamp (deltaPosition, 0, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.oppositedragging)
@@ -235,9 +233,9 @@ public class TutorialBehaviour : PlayerBehaviour {
 			}			
 			
 			deltaPosition = _horizontalTouch - transform.position.x;
-			if (currentState == TutorialState.End)
+			if (currentState == TutorialState.End || currentState == TutorialState.Dodge)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
-			if (currentState == TutorialState.OppositeMove || currentState == TutorialState.Dodge)
+			if (currentState == TutorialState.OppositeMove)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.freedragging)
@@ -276,9 +274,9 @@ public class TutorialBehaviour : PlayerBehaviour {
 			}
 			
 			deltaPosition = (_touchPosition.x - _touchStartPosition.x) - (transform.position.x - _playerPosition.x);
-			if (currentState == TutorialState.End)
+			if (currentState == TutorialState.End || currentState == TutorialState.Dodge)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
-			else if (currentState == TutorialState.FreeMove || currentState == TutorialState.Dodge)
+			else if (currentState == TutorialState.FreeMove)
 				deltaPosition = Mathf.Clamp (deltaPosition, 0, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}

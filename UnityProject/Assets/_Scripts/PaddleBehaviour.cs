@@ -50,8 +50,9 @@ public class PaddleBehaviour : MonoBehaviour {
 		transform.localPosition = _startPosition;
 		transform.localRotation = _startRotation;
 		_hitTime = 0.0f;
-		player.GetComponent<PlayerBehaviour>().paddleActive = false;
-		Hitting(false);
+		player.GetComponent<PlayerBehaviour> ().visualRacket.SetActive (true);
+		player.GetComponent<PlayerBehaviour> ().paddleActive = false;
+		Hitting (false);
 	}
 
 	void Hitting(bool hit)
@@ -66,6 +67,9 @@ public class PaddleBehaviour : MonoBehaviour {
 		if (collision.gameObject.CompareTag ("Deflectable"))
 		{
 			collision.gameObject.tag = "Deflected";
+			collision.gameObject.layer = (LayerMask)_deflectedLayer;
+		} else if (collision.gameObject.CompareTag ("AllDamaging"))
+		{
 			collision.gameObject.layer = (LayerMask)_deflectedLayer;
 		}
 	}

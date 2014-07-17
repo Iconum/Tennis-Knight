@@ -17,10 +17,6 @@ public class OptionsFunctionality : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			Application.LoadLevel("LevelSelectMenu");
-		}
 
 		//Debug
 		if (Input.GetKeyDown (KeyCode.Insert))
@@ -34,6 +30,11 @@ public class OptionsFunctionality : MonoBehaviour {
 		Statics.StyleInitialization ();
 		GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f));
 		{
+			if (GUILayout.Button ("Back", Statics.menuButtonStyle))
+			{
+				Application.LoadLevel("Menu");
+			}
+			GUILayout.Space(thirty);
 			GUILayout.Label("Master Volume:", Statics.menuTextStyle);
 			Statics.setVolume(GUILayout.HorizontalSlider(Statics.globalVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle));
 			GUILayout.Label("Sound Volume:", Statics.menuTextStyle);

@@ -7,9 +7,9 @@ public class EnemyBehaviour : MonoBehaviour {
 	public GameObject levelManager = null;
 	public float flickerTimerLimit = 4.0f, spawnLerpLimit = 3.0f;
 	public int health = 10, projectileLimit = 0;
-	public bool specialInvincibility = false, spawning = true;
+	public bool specialInvincibility = false, spawning = true, isPaused = false;
 	public Vector3 targetLocation;
-	public Animator anim;
+	public Animator anim = null;
 	
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false, _delayedActivation = false;
@@ -81,7 +81,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			Flicker ();
 		}
 
-		if (spawning && !_delayedActivation)
+		if (spawning && !_delayedActivation && !isPaused)
 		{
 			_flickerTimer += Time.deltaTime / spawnLerpLimit;
 			transform.position = Vector3.Lerp (_startLocation, targetLocation, _flickerTimer);
@@ -103,7 +103,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	protected virtual void Flicker()
 	{
 		_flickerTimer += Time.deltaTime;
-		if (_flickerTimer % 0.4f < 0.2f)
+		if (_flickerTimer % 0.1f < 0.05f)
 		{
 			renderer.enabled = false;
 		} else
@@ -124,9 +124,14 @@ public class EnemyBehaviour : MonoBehaviour {
 		deflectable.GetComponent<BallBehaviour> ().levelManager = levelManager;
 	}
 
+	public void SetPause(bool paused)
+	{
+		isPaused = paused;
+	}
+
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag ("Deflected"))
+		if (collision.gameObject.CompareTag ("Deflected") || collision.gameObject.CompareTag("AllDamaging"))
 		{
 			collision.gameObject.GetComponent<BallBehaviour>().BallDestroy();
 			if (!specialInvincibility && !spawning)
@@ -152,11 +157,12 @@ public class EnemyBehaviour : MonoBehaviour {
 		{
 			--health;
 			_flickerActive = true;
-			anim.SetTrigger("Damage");
+			if (anim)
+				anim.SetTrigger ("Damage");
 
 			if (health <= 0)
 			{
-				Destroy(gameObject);
+				Destroy (gameObject);
 			}
 		}
 	}

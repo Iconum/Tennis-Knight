@@ -14,7 +14,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 95: {fileID: 9500000}
   m_Layer: 10
-  m_Name: BigMKnight
+  m_Name: TutoMeleeKnight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.99349499, y: .0531189106, z: 0}
+  m_LocalPosition: {x: .0521446466, y: 2.78536654, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1, y: .819999993}
+  m_Size: {x: .879999995, y: .819999993}
   m_Center: {x: 0, y: -.519999981}
 --- !u!95 &9500000
 Animator:
@@ -66,7 +66,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 79c1ecb653fcb014685fb216deb02d22, type: 2}
+  m_Controller: {fileID: 9100000, guid: a2c3de29d3b6a1f45ad2d7bd1fd4545f, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
@@ -79,26 +79,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c606cc0ad23fe864ebc093c017828974, type: 3}
+  m_Script: {fileID: 11500000, guid: 39d3245841552604c885bdf3afaef10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
   levelManager: {fileID: 0}
   flickerTimerLimit: .5
   spawnLerpLimit: 3
-  health: 3
+  health: 1
   projectileLimit: 0
   specialInvincibility: 0
   spawning: 1
+  isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   meleeAttacking: 0
   usesProjectile: 0
   attackTime: 5
   throwingTime: 0
-  sideSpeed: 1.5
-  chargeSpeed: 6
+  sideSpeed: 3
+  chargeSpeed: 9
   player: {fileID: 0}
+  tutoKnight: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -120,7 +122,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: f93452ee6eb57de488579aec58c82348, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce81429614c5777449e84b4fbe4ab970, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

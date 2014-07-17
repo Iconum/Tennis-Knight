@@ -27,8 +27,7 @@ public class TutoBatBehaviour : RangedBehaviour {
 	protected override void Update ()
 	{
 		if (!tutoKnight.tutorialOn && (tutoKnight.currentState == TutorialState.DragSwing || tutoKnight.currentState == TutorialState.FreeSwing || tutoKnight.currentState == TutorialState.KeySwing ||
-			tutoKnight.currentState == TutorialState.OppositeSwing || tutoKnight.currentState == TutorialState.TiltSwing || tutoKnight.currentState == TutorialState.Tanking ||
-			tutoKnight.currentState == TutorialState.Dodge))
+			tutoKnight.currentState == TutorialState.OppositeSwing || tutoKnight.currentState == TutorialState.TiltSwing || tutoKnight.currentState == TutorialState.Tanking))
 		{
 			if (spawning)
 			{
@@ -68,7 +67,7 @@ public class TutoBatBehaviour : RangedBehaviour {
 					_reLerp = true;
 				}
 				_lerper += Time.deltaTime * 3;
-				transform.position = Vector3.Lerp (_lerpStart, new Vector3 (Mathf.Sin (Time.time - _levelStartTime) * 2.5f * _sinModifier, transform.position.y), _lerper);
+				transform.position = Vector3.Lerp (_lerpStart, new Vector3 (Mathf.Sin (Time.time - _levelSinTime) * 2.5f * _sinModifier, transform.position.y), _lerper);
 				if (_lerper > 1.0f)
 					_ready = true;
 			}

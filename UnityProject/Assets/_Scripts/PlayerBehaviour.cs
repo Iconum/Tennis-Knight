@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null;
-	public bool paddleActive = false;
+	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null,visualRacket=null;
+	public bool paddleActive = false, isPaused = false;
 	public float strafeSpeed = 0.1f, heatLimit = 25.0f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
 	public Vector3 targetPosition = new Vector3(0.0f, -2.5f);
@@ -36,10 +36,24 @@ public class PlayerBehaviour : MonoBehaviour
 
 		anim = GetComponent<Animator> ();
 	}
+
+	protected void OnApplicationPause(bool paused)
+	{
+		if (paused)
+		{
+			Statics.PrefStoring ();
+		} else
+		{
+
+		}
+	}
 	
 	// Update is called once per frame
 	protected virtual void Update ()
 	{
+		anim.SetBool("MovingLeft",false);
+		anim.SetBool("MovingRight",false);
+
 		_currentSpeed = strafeSpeed * Time.deltaTime;
 		float deltaPosition;
 		if (((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && _usedControls == ControlType.keyboard) || _usedControls != ControlType.keyboard)
@@ -49,6 +63,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.Escape))
 		{
+			//TODO: Pause menu and game
 			Application.LoadLevel ("LevelSelectMenu");
 		}
 
@@ -69,7 +84,10 @@ public class PlayerBehaviour : MonoBehaviour
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
 
 		//Absolutely massive else-if block with all the control methods and the level transition movement
-		if (_endLevel)
+		if (isPaused)
+		{
+
+		} else if (_endLevel)
 		{
 			_heat = 0.0f;
 			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -_currentSpeed, _currentSpeed),
@@ -88,10 +106,12 @@ public class PlayerBehaviour : MonoBehaviour
 			if (Input.GetKey (KeyCode.RightArrow))
 			{
 				transform.position += new Vector3 (_currentSpeed, 0.0f);
+				anim.SetBool("MovingRight",true);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow))
 			{
 				transform.position -= new Vector3 (_currentSpeed, 0.0f);
+				anim.SetBool("MovingLeft",true);
 			}
 			if (Input.GetKeyDown (KeyCode.Z))
 			{
@@ -263,6 +283,7 @@ public class PlayerBehaviour : MonoBehaviour
 			paddleActive = true;
 			paddle.SetActive (true);
 			paddle.GetComponent<PaddleBehaviour> ().PaddleHit ();
+			visualRacket.SetActive(false);
 		}
 	}
 
@@ -310,9 +331,14 @@ public class PlayerBehaviour : MonoBehaviour
 		_touchPosition = new Vector3 (1.5f, 8.0f);
 	}
 
+	public void SetPause(bool paused)
+	{
+		isPaused = paused;
+	}
+
 	protected virtual void OnCollisionEnter2D (Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag ("Deflectable"))
+		if (collision.gameObject.CompareTag ("Deflectable") || collision.gameObject.CompareTag("AllDamaging"))
 		{
 			_heat += collision.gameObject.GetComponent<BallBehaviour> ().heatGeneration;
 			if (_heat > heatLimit)

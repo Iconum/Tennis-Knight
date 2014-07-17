@@ -123,6 +123,7 @@ MonoBehaviour:
   player: {fileID: 0}
   villagerManager: {fileID: 0}
   castleHandler: {fileID: 1275044554}
+  hasMiniView: 1
   loot: 600
   optimalVillagerAmount: 15
   startFadeTime: 1
@@ -176,6 +177,7 @@ MonoBehaviour:
       position: {x: 0, y: 4, z: 0}
       delayTime: 0
   levelTest: 0
+  openEnd: 0
 --- !u!1 &76001756
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +231,7 @@ GameObject:
   - 23: {fileID: 206727835}
   - 114: {fileID: 206727834}
   m_Layer: 0
-  m_Name: NewBackground1
+  m_Name: Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,8 +250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopped: 0
+  isSubBackground: 0
   speed: .5
   brakeTime: 3
+  subBackground: []
 --- !u!23 &206727835
 Renderer:
   m_ObjectHideFlags: 0
@@ -481,6 +485,7 @@ MonoBehaviour:
   rightPaddle: {fileID: 1415978111}
   levelManager: {fileID: 0}
   paddleActive: 0
+  isPaused: 0
   strafeSpeed: 4
   heatLimit: 20
   sixty: 60

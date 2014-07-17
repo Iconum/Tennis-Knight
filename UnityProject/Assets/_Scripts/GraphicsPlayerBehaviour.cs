@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GraphicsPlayerBehaviour : MonoBehaviour
 {
-	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null, fluff = null;
+	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null, fluff = null, visualRacket = null;
 	public bool paddleActive = false, stunned = false;
 	public float strafeSpeed = 0.1f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
@@ -45,11 +45,6 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 			//_currentSpeed *= 0.2f;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			Application.LoadLevel (0);
-		}
-
 		if (_usedControls == ControlType.keyboard)
 		{
 			anim.SetBool("MovingLeft",false);
@@ -59,6 +54,9 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 			{
 				transform.position += new Vector3 (_currentSpeed, 0.0f);
 				anim.SetBool("MovingRight",true);
+				//fluff.transform.localRotation=new;
+				//fluff.transform.Rotate(Time.deltaTime*1000000f,Time.deltaTime*1000000f,Time.deltaTime*1000000f);
+				//Debug.Log(fluff.transform.rotation);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow))
 			{
@@ -235,6 +233,7 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 			paddleActive = true;
 			paddle.SetActive (true);
 			paddle.GetComponent<GraphicsPaddleBehaviour> ().PaddleHit ();
+			visualRacket.SetActive(false);
 		}
 	}
 

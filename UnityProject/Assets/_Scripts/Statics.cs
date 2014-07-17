@@ -53,10 +53,10 @@ public static class Statics
 		{
 			#if UNITY_ANDROID
 			Statics.selectedControlMethod = ControlType.freedragging;
-			#elif UNITY_EDITOR
+			#elif UNITY_EDITOR || UNITY_STANDALONE
 			Statics.selectedControlMethod = ControlType.keyboard;
-			#elif UNITY_STANDALONE
-			Statics.selectedControlMethod = ControlType.keyboard;
+			#else
+			Statics.selectedControlMethod = ControlType.freedragging;
 			#endif
 		}
 	}
