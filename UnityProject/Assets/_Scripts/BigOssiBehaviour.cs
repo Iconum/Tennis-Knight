@@ -2,6 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//[System.Serializable]
+//public class Sounds
+//{
+//	public AudioClip deathSound;
+//	public AudioClip attackSound;
+//	public AudioClip jokuSound;
+//}
+
 public class BigOssiBehaviour : EnemyBehaviour {
 
 	public GameObject shieldBallPrefab;
@@ -25,6 +33,9 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	public ParticleSystem darkMatter;
 	public GameObject deathExplosionPrefab;
 
+	//public Sounds soundsstruct;
+	public List<AudioClip> sounds = new List<AudioClip> ();
+
 	// Use this for initialization
 	void Start ()
 	{   //Get the animator
@@ -35,6 +46,15 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		//calculation for spawning for first time
 		bossPhaseSetter ();
 		//calculateCircumference ();
+
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+			
+			audio.clip = sounds [2];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
 	}
 	
 	// Update is called once per frame
@@ -133,6 +153,14 @@ public class BigOssiBehaviour : EnemyBehaviour {
 				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
 				//animation Attack
 				anim.SetTrigger ("BOAttack");
+
+				if (sounds.Count > 0 && audio)
+				{
+					audio.clip = sounds [0];
+					audio.pitch = Random.Range (0.9f, 1.2f);
+					audio.Play ();
+				}
+
 				//list projectile ball
 				ownProjectiles.Add (tempo);
 				ListDeflectable (tempo);
@@ -154,6 +182,15 @@ public class BigOssiBehaviour : EnemyBehaviour {
 			//animation Take Damage
 			anim.SetTrigger("BODamage");
 			bossPhaseSetter();
+
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [3];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
+
+
 			if (health <= 0)
 			{
 				isBossDying = true;
@@ -273,6 +310,15 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		
 		darkMatter.emissionRate = 11f + _dieTimer*20f;
 		darkMatter.startSize = 1f + _dieTimer;
+
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+			
+			audio.clip = sounds [1];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
 
 		if (_dieTimer >= 3f)
 		{

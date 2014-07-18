@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MeleeBehaviour : EnemyBehaviour {
 	public bool meleeAttacking = false, usesProjectile = false;
@@ -9,6 +10,8 @@ public class MeleeBehaviour : EnemyBehaviour {
 
 	protected bool _projectileFired = false;
 	protected float _targetX = 0.0f, _startY = 4.0f;
+
+	//public List<AudioClip> sounds = new List<AudioClip> ();
 
 	protected override void Awake()
 	{
@@ -89,7 +92,8 @@ public class MeleeBehaviour : EnemyBehaviour {
 			if (usesProjectile)
 			{
 				StartCoroutine (StartAttack (throwingTime));
-			} else
+			}
+			else
 			{
 				StartCoroutine (StartAttack (attackTime));
 			}
