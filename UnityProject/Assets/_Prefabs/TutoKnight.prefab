@@ -279,7 +279,8 @@ MonoBehaviour:
   tutoStates: 0000000004000000050000000c0000000d0000000e000000010000000200000003000000060000000700000008000000090000000a0000000b000000
   tutoTexts:
   - tutorialText:
-    - Welcome to Knight of Tensia's tutorial!
+    - Welcome to Knight of Tensia's tutorial! You're the brave knight who wields a
+      magical tennis racket to take down the evil kingdom with the help of the villagers.
     - Here you'll learn the basic game mechanics.
   - tutorialText:
     - Press the left and right arrow buttons to move left and right, and press Shift
