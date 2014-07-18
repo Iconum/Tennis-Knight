@@ -73,7 +73,8 @@ public class VillagerBehaviour : MonoBehaviour
 	{
 
 		if ((collision.gameObject.CompareTag ("Deflectable") && isDead == false) ||
-			(collision.gameObject.CompareTag ("Deflected") && isDead == false))
+			(collision.gameObject.CompareTag ("Deflected") && isDead == false) ||
+			(collision.gameObject.CompareTag ("AllDamaging") && isDead == false))
 		{
 			handler.spawnPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
 			handler.spawnPositions.Add (handler.spawnPos);

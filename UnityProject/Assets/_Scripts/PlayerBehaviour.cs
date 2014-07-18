@@ -338,7 +338,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 	protected virtual void OnCollisionEnter2D (Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag ("Deflectable"))
+		if (collision.gameObject.CompareTag ("Deflectable") || collision.gameObject.CompareTag("AllDamaging"))
 		{
 			_heat += collision.gameObject.GetComponent<BallBehaviour> ().heatGeneration;
 			if (_heat > heatLimit)
