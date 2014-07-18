@@ -104,6 +104,7 @@ MonoBehaviour:
   projectileLimit: 0
   specialInvincibility: 0
   spawning: 1
+  isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   meleeAttacking: 0
@@ -113,6 +114,7 @@ MonoBehaviour:
   sideSpeed: 3
   chargeSpeed: 9
   player: {fileID: 0}
+  pow: {fileID: 100000, guid: 08c9ac2008664b044ad0da0d8a5d95d7, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

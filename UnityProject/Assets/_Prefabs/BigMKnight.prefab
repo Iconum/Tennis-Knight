@@ -100,6 +100,7 @@ MonoBehaviour:
   sideSpeed: 1.5
   chargeSpeed: 6
   player: {fileID: 0}
+  pow: {fileID: 100000, guid: 08c9ac2008664b044ad0da0d8a5d95d7, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

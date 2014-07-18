@@ -136,7 +136,7 @@ MonoBehaviour:
   isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
-  shootTimerLimit: 2.5
+  shootTimerLimit: 3
   usesSinModifier: 0
   notShootingWalls: 1
   dividingProjectiles: 1
