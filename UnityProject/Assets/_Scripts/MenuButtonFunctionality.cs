@@ -7,7 +7,8 @@ public class MenuButtonFunctionality : ButtonFunctionality {
 	{
 		Start,
 		Options,
-		Credits
+		Credits,
+		Quit
 	}
 
 	protected override void PressButton ()
@@ -22,6 +23,9 @@ public class MenuButtonFunctionality : ButtonFunctionality {
 			break;
 		case ButtonTypes.Credits:
 			_asyncOp = Application.LoadLevelAsync ("Credits");
+			break;
+		case ButtonTypes.Quit:
+			Application.Quit ();
 			break;
 		}
 		base.PressButton ();

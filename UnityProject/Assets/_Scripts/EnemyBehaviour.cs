@@ -76,7 +76,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	protected virtual void Update () {
 
-		if (_flickerActive)
+		if (_flickerActive && !isPaused)
 		{
 			Flicker ();
 		}
@@ -162,6 +162,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
 			if (health <= 0)
 			{
+
 				Destroy (gameObject);
 			}
 		}

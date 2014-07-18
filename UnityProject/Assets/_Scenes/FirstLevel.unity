@@ -136,36 +136,36 @@ MonoBehaviour:
       position: {x: 2, y: 3.5, z: 0}
       delayTime: 0
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
-      position: {x: -1, y: 3.5, z: 0}
-      delayTime: 1
+      position: {x: -2, y: 3.5, z: 0}
+      delayTime: 1.5
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: -1, y: 3.5, z: 0}
       delayTime: 0
     - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
-      position: {x: 0, y: 3, z: 0}
+      position: {x: -1, y: 3, z: 0}
       delayTime: 2
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: 1, y: 3.5, z: 0}
-      delayTime: 1
+      delayTime: 1.5
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 8999954950ea6a446aef72a9cf1cf667, type: 2}
       position: {x: 0, y: 3, z: 0}
       delayTime: 0
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: -1, y: 3.5, z: 0}
-      delayTime: 3
+      delayTime: 5
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: 0, y: 3.5, z: 0}
-      delayTime: 6
+      delayTime: 9.19999981
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: 1, y: 3.5, z: 0}
-      delayTime: 9
+      delayTime: 13.3000002
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 3cb8c90bc17f570438dbc327f24b2cb2, type: 2}
       position: {x: 0, y: 4, z: 0}
       delayTime: 0
-  levelTest: 1
+  levelTest: 0
   openEnd: 0
 --- !u!1 &76001756
 GameObject:
@@ -429,6 +429,10 @@ Prefab:
       propertyPath: enemySpawnPackages.Array.data[3].prefabPositionCombo.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -495,7 +499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[2].delayTime
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[2].prefabPositionCombo.Array.data[0].enemy
@@ -519,7 +523,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[2].prefabPositionCombo.Array.data[1].delayTime
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[2].prefabPositionCombo.Array.data[2].enemy
@@ -531,7 +535,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[2].prefabPositionCombo.Array.data[2].delayTime
-      value: 6
+      value: 9.19999981
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[2].prefabPositionCombo.Array.data[3].enemy
@@ -547,7 +551,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[2].prefabPositionCombo.Array.data[3].delayTime
-      value: 9
+      value: 13.3000002
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[3].prefabPositionCombo.Array.data[0].enemy
@@ -556,6 +560,34 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[3].prefabPositionCombo.Array.data[0].position.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[1].enemy
+      value: 
+      objectReference: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[1].position.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[1].position.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[1].delayTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: levelTest
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: miniWaitTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
@@ -921,7 +953,7 @@ MonoBehaviour:
   startLocation: {x: 0, y: -3, z: 0}
   endLocation: {x: 0, y: 0, z: 0}
   castleOffset: {x: 0, y: 0, z: 0}
-  villagerBundleAmount: 20
+  villagerBundleAmount: 5
   spawnDelay: .25
 --- !u!1 &1415978111
 GameObject:

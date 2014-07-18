@@ -79,6 +79,12 @@ public class TutorialBehaviour : PlayerBehaviour {
 			_currentSpeed *= 2;
 		}
 
+		if (Input.GetKeyDown (KeyCode.Escape))
+		{
+			//TODO: Pause menu and game
+			Application.LoadLevel ("LevelSelectMenu");
+		}
+
 		if (_heat > 0.0f)
 		{
 			_heat -= Time.deltaTime * 4.0f;
@@ -199,6 +205,8 @@ public class TutorialBehaviour : PlayerBehaviour {
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			else if (currentState == TutorialState.DragMove)
 				deltaPosition = Mathf.Clamp (deltaPosition, 0, _currentSpeed);
+			else 
+				deltaPosition = 0.0f;
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.oppositedragging)
 		{
@@ -235,8 +243,10 @@ public class TutorialBehaviour : PlayerBehaviour {
 			deltaPosition = _horizontalTouch - transform.position.x;
 			if (currentState == TutorialState.End || currentState == TutorialState.Dodge)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
-			if (currentState == TutorialState.OppositeMove)
+			else if (currentState == TutorialState.OppositeMove)
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
+			else 
+				deltaPosition = 0.0f;
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		} else if (_usedControls == ControlType.freedragging)
 		{
@@ -278,6 +288,8 @@ public class TutorialBehaviour : PlayerBehaviour {
 				deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			else if (currentState == TutorialState.FreeMove)
 				deltaPosition = Mathf.Clamp (deltaPosition, 0, _currentSpeed);
+			else 
+				deltaPosition = 0.0f;
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
 		if (!_endLevel && !_startLevel)
