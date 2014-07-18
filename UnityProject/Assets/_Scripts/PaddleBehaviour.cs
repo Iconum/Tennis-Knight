@@ -4,12 +4,16 @@ using System.Collections;
 public class PaddleBehaviour : MonoBehaviour {
 	public GameObject player;
 	public bool isLeft;
+	public ParticleSystem swordParticlePrefab = null;
 
+	protected ParticleSystem swordParticle;
 	private Vector3 _startPosition;
 	private Quaternion _startRotation;
 	private int _deflectedLayer;
 	private float _hitTime;
 	private bool _hitting = false;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +21,8 @@ public class PaddleBehaviour : MonoBehaviour {
 		_startRotation = transform.localRotation;
 		_deflectedLayer = LayerMask.NameToLayer ("OwnProjectiles");
 		Hitting (false);
+
+		//swordParticle = swordParticlePrefab.GetComponent<ParticleSystem> ();
 	}
 	
 	// Update is called once per frame
