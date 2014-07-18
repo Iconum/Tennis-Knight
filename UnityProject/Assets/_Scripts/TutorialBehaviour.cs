@@ -79,6 +79,12 @@ public class TutorialBehaviour : PlayerBehaviour {
 			_currentSpeed *= 2;
 		}
 
+		if (Input.GetKeyDown (KeyCode.Escape))
+		{
+			//TODO: Pause menu and game
+			Application.LoadLevel ("LevelSelectMenu");
+		}
+
 		if (_heat > 0.0f)
 		{
 			_heat -= Time.deltaTime * 4.0f;
