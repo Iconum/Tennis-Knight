@@ -9,14 +9,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 58: {fileID: 5800000}
-  - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
-  - 95: {fileID: 9500000}
-  m_Layer: 8
-  m_Name: Bomb
-  m_TagString: Deflectable
+  m_Layer: 0
+  m_Name: DeathSound
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,36 +25,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0282640457, y: 1.45149291, z: 0}
+  m_LocalPosition: {x: -4.42015171, y: -1.63342512, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!50 &5000000
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 0
-  m_FixedAngle: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!58 &5800000
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Radius: .400000006
-  m_Center: {x: 0, y: 0}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -66,10 +37,10 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dce045727ea26df45b8b64d1bafb52ea, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .0900000036
-  m_Pitch: 1
+  m_Volume: 1
+  m_Pitch: 1.06528664
   Loop: 0
   Mute: 0
   Priority: 128
@@ -116,20 +87,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!95 &9500000
-Animator:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 376c9ff2aecda6d42b6d6dc361f06dd7, type: 2}
-  m_CullingMode: 0
-  m_ApplyRootMotion: 0
-  m_AnimatePhysics: 0
-  m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,17 +95,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45279984a27ada24fbb889656bb1460b, type: 3}
+  m_Script: {fileID: 11500000, guid: 92a4ca119bdf8ff4ca15a57e9c78d38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startVelocity: {x: .100000001, y: -1}
-  constantSpeed: 2
-  heatGeneration: 7
-  paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
-  levelManager: {fileID: 0}
-  fuseLength: 5
-  explosiveForce: 2
-  explosion: {fileID: 8300000, guid: 0ef0e0da6f6c8704cb6d46be9b59ce86, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: dce045727ea26df45b8b64d1bafb52ea, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -170,7 +124,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 9868584eab131ee409434f258a2c5282, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4897c1869658527469ae136b00f43fae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

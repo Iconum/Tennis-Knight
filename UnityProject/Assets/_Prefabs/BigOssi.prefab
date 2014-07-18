@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 61: {fileID: 6100000}
   - 95: {fileID: 9500000}
+  - 82: {fileID: 8200000}
   m_Layer: 10
   m_Name: BigOssi
   m_TagString: Untagged
@@ -70,6 +71,64 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 1.5, y: 2}
   m_Center: {x: 0, y: 0}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -95,14 +154,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb70e68e80297b7469f9ac9d168c6656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
+  projectilePrefab: {fileID: 100000, guid: 7163f3f64a2319a409cda4fa6bc6b288, type: 2}
   levelManager: {fileID: 0}
   flickerTimerLimit: 4
   spawnLerpLimit: 3
-  health: 5
+  health: 1
   projectileLimit: 1
   specialInvincibility: 0
   spawning: 0
+  isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
@@ -111,6 +171,11 @@ MonoBehaviour:
   isSpawningBalls: 1
   darkMatter: {fileID: 0}
   deathExplosionPrefab: {fileID: 100000, guid: 2f841ab8bbb5985488c2609622c00bd3, type: 2}
+  sounds:
+  - {fileID: 8300000, guid: 45bebc7d596372c42ae75d3d90ea4ff3, type: 3}
+  - {fileID: 8300000, guid: 72bfc63bb4845ab499a50640023a26b2, type: 3}
+  - {fileID: 8300000, guid: a875a273eff2cfd488c09cbc593f16e7, type: 3}
+  - {fileID: 8300000, guid: 41d51a667db56af4f80c9e9813136f5e, type: 3}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

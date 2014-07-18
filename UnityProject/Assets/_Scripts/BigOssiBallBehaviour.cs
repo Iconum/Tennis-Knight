@@ -27,6 +27,9 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 	public delegate void Listing(GameObject deflectable);
 	public GameObject levelManager = null;
 	public Listing ListDefs;
+
+	public List<AudioClip> sounds = new List<AudioClip> ();
+	public GameObject deathSounds = null;
 	
 	// Use this for initialization
 	void Start () {
@@ -43,6 +46,15 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 		gameObject.transform.parent = bigOssi.transform;
 
 		addShardDirections ();
+
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+
+			audio.clip = sounds [0];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
 	}
 	
 	// Update is called once per frame
@@ -96,6 +108,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 			ballShards [i].GetComponent<BigOssiShardBehaviour> ().transform.Rotate (new Vector3 (0, 0, 72f * i));
 			ListDefs (ballShards [i]);
 		}
+
 	}
 
 	protected void addShardDirections()
@@ -126,6 +139,8 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
+		deathSounds.GetComponent<DeathSound> ().batDeath ();
+
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{
 			spawnShards();

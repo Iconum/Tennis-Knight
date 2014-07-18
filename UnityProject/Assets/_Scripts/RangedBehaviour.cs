@@ -11,7 +11,7 @@ public class RangedBehaviour : EnemyBehaviour {
 	protected List<GameObject> _shotProjectiles = new List<GameObject>();
 
 	public List<AudioClip> sounds = new List<AudioClip> ();
-
+	public GameObject deathSounds = null;
 	// Use this for initialization
 	protected override void Awake () {
 		base.Awake ();
@@ -19,14 +19,19 @@ public class RangedBehaviour : EnemyBehaviour {
 		_levelSinTime += transform.position.x;
 
 		if (audio)
+		{
 			audio.volume = Statics.soundVolume;
-		
-	 
+
+			audio.clip = sounds [2];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
 	}
 	
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
+
 
 		_levelSinTime += Time.deltaTime;
 		if (usesSinModifier)

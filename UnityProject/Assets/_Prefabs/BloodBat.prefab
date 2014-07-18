@@ -144,6 +144,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 24af275241cf2834fa567c25f37dc694, type: 3}
   - {fileID: 8300000, guid: d92753992127fb7498e758c8fa86912d, type: 3}
   - {fileID: 8300000, guid: 9a04cbc8c3bb7be4787eab8397a04a78, type: 3}
+  deathSounds: {fileID: 100000, guid: 13791c2db9855fb44abde4fd671bb6a9, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
