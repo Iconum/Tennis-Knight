@@ -10,9 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
-  - 82: {fileID: 8200000}
   m_Layer: 0
-  m_Name: MiniCastle
+  m_Name: BAM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,68 +24,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .562085867, y: .562084794, z: 1}
+  m_LocalPosition: {x: 4.02176285, y: 1.66267741, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!82 &8200000
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,15 +36,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 824f3126ea48d7849960e7edcd0de826, type: 3}
+  m_Script: {fileID: 11500000, guid: e4c2317f8dcfbef4fa2d3eb9b25d2789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spittingMoney: 0
-  spittingTimerLimit: .5
-  bumpTimerLimit: .699999988
-  minSpittingRate: .0500000007
-  moneyPrefabs:
-  - {fileID: 100000, guid: aed87878063630048ac307088be4d4ed, type: 2}
+  destroyTime: .5
+  effectList:
+  - {fileID: 21300000, guid: b710043f2e341c04ab5952378ff855cd, type: 3}
+  - {fileID: 21300000, guid: 9af96866f681c0b46bb3e1d5e0669e3e, type: 3}
+  - {fileID: 21300000, guid: 57de3f153bd3929488e09d9ef0ba9775, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -122,10 +62,10 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 4
-  m_SortingOrder: 1
-  m_SortingLayerID: 3918986253
-  m_Sprite: {fileID: 21300000, guid: f77053680d4b93a4faa889d69586ee3f, type: 3}
+  m_SortingLayer: 2
+  m_SortingOrder: -3
+  m_SortingLayerID: 3287406857
+  m_Sprite: {fileID: 21300000, guid: b710043f2e341c04ab5952378ff855cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

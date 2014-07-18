@@ -133,9 +133,10 @@ MonoBehaviour:
   projectileLimit: 1
   specialInvincibility: 0
   spawning: 1
+  isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
-  shootTimerLimit: 2
+  shootTimerLimit: 2.5
   usesSinModifier: 1
   notShootingWalls: 0
   dividingProjectiles: 0

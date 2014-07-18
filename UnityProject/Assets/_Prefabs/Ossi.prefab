@@ -74,12 +74,14 @@ MonoBehaviour:
   projectileLimit: 2
   specialInvincibility: 0
   spawning: 1
+  isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
-  shootTimerLimit: 2.5
+  shootTimerLimit: 3
   usesSinModifier: 0
   notShootingWalls: 1
   dividingProjectiles: 1
+  batSounds: []
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

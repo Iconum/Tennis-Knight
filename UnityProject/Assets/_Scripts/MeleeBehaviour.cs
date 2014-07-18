@@ -5,6 +5,7 @@ public class MeleeBehaviour : EnemyBehaviour {
 	public bool meleeAttacking = false, usesProjectile = false;
 	public float attackTime = 4.0f, throwingTime = 0.0f, sideSpeed = 0.5f, chargeSpeed = 4.0f;
 	public GameObject player = null;
+	public GameObject pow = null;
 
 	protected bool _projectileFired = false;
 	protected float _targetX = 0.0f, _startY = 4.0f;
@@ -102,6 +103,7 @@ public class MeleeBehaviour : EnemyBehaviour {
 		if (other.CompareTag ("Removal"))
 		{
 			DamageHealth ();
+			Instantiate (pow, transform.position, transform.rotation);
 			meleeAttacking = false;
 			collider2D.enabled = false;
 			StartCoroutine (EnableColliderAgain ());

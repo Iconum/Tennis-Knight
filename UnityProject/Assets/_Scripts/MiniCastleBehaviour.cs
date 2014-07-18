@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class MiniCastleBehaviour : MonoBehaviour {
 	public bool spittingMoney = false;
-	public float spittingTimerLimit = 0.1f, bumpTimerLimit = 0.7f;
+	public float spittingTimerLimit = 0.5f, bumpTimerLimit = 0.7f, minSpittingRate = 0.005f;
 	public List<GameObject> moneyPrefabs;
 
 	private CastleRaidHandler _raidHandler;
@@ -32,7 +32,7 @@ public class MiniCastleBehaviour : MonoBehaviour {
 				tempo = (GameObject)Instantiate (moneyPrefabs [Random.Range (0, moneyPrefabs.Count)], transform.position, Quaternion.Euler (Vector3.zero));
 				tempo.GetComponent<FlyingMoneyBehaviour> ().PlaySound ();
 			}
-			if (Input.GetMouseButton (0))
+			if (Input.GetKeyDown (KeyCode.Space) || Input.touchCount > 0)
 			{
 				int tempi = _valuables - 20;
 				while (_valuables > tempi)
@@ -80,7 +80,7 @@ public class MiniCastleBehaviour : MonoBehaviour {
 	public void RainingMoney()
 	{
 		_valuables = _raidHandler.GetFlyingStuff();
-		_moneySpittingRate = (spittingTimerLimit * _raidHandler.villagerBundleAmount) / _valuables;
+		_moneySpittingRate = Mathf.Clamp (spittingTimerLimit / _valuables, minSpittingRate, spittingTimerLimit);
 		spittingMoney = true;;
 	}
 
