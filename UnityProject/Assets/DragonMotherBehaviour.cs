@@ -12,10 +12,23 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 	
 	public GameObject[] Projectiles = null;
 	protected GameObject curProjectile;
-	
+
+	public GameObject explosionPrefab = null;
+
+	protected bool isDead = false;
+	protected float deathTimer = 0f;
+	protected float explosiontimer = 0f;
+
 	public float shootingSpeed = 0f;
 	protected float _shootTimer = 0f;
 	protected List<GameObject> ownProjectiles = new List<GameObject> ();
+
+
+
+	void Start ()
+	{
+		anim = GetComponent<Animator> ();
+	}
 	
 	// Update is called once per frame
 	void Update () 
@@ -23,9 +36,64 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 		shootTimer += Time.deltaTime;
 
 		base.Update ();
-		if(!spawning)
+		if(!spawning && !isDead)
 		ShootBalls ();
+		if (isDead)
+			deathAnim ();
 		
+	}
+
+	protected override void DamageHealth()
+	{
+		if (!_flickerActive && !isDead)
+		{
+			--health;
+			_flickerActive = true;
+			if (anim)
+				anim.SetTrigger ("MDDamage");
+			
+			if (health <= 0)
+			{
+				isDead = true;
+				//Destroy (gameObject);
+			}
+		}
+	}
+
+	protected override void Flicker ()
+	{
+		_flickerTimer += Time.deltaTime;
+		if (_flickerTimer % 0.1f < 0.05f)
+		{
+			GetComponent<SpriteRenderer>().color = new Color(0.7f,0.7f,1f);
+		} else
+		{
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
+		}
+		if (_flickerTimer > flickerTimerLimit)
+		{
+			_flickerActive = false;
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
+			_flickerTimer = 0.0f;
+		}
+	}
+
+	protected void deathAnim()
+	{
+		anim.SetTrigger ("MDDamage");
+		deathTimer += Time.deltaTime;
+		explosiontimer += Time.deltaTime;
+		transform.position = new Vector2 (transform.position.x + Random.Range (0, 1), transform.position.y + Random.Range (0, 1));
+		if (explosiontimer >= 0.15f)
+		{
+			var explosion = Instantiate(explosionPrefab,
+			                            new Vector2(transform.position.x + Random.Range (-3, 3), transform.position.y + Random.Range (-3, 3)),
+			                            transform.rotation);
+			explosiontimer = 0;
+		}
+		if (deathTimer >= 5f)
+			Destroy (gameObject);
+
 	}
 	
 	public void ShootBalls()
@@ -51,6 +119,7 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 				//Set velocity to it
 				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
 				//animation Attack
+				anim.SetTrigger ("MDAttack");
 				//list projectile ball
 				ownProjectiles.Add (tempo);
 				ListDeflectable (tempo);

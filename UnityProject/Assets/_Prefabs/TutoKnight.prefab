@@ -239,6 +239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100004}
   isLeft: 1
+  swordParticlePrefab: {fileID: 19800000, guid: 929f5ed78e4231d48b90aefb66df990d,
+    type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,6 +254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100004}
   isLeft: 0
+  swordParticlePrefab: {fileID: 19800000, guid: 929f5ed78e4231d48b90aefb66df990d,
+    type: 2}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

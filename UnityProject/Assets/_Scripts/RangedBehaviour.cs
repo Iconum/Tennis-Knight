@@ -89,6 +89,15 @@ public class RangedBehaviour : EnemyBehaviour {
 				}
 			}
 		}
+		/*if (_flickerActive == true)
+		{
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [2];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
+		}*/
 	}
 
 	protected virtual GameObject ShootProjectile(Vector3 dir, GameObject projPrefab = null)
@@ -112,5 +121,19 @@ public class RangedBehaviour : EnemyBehaviour {
 		}
 
 		return tempo;
+	}
+
+	protected override void OnCollisionEnter2D(Collision2D collision)
+	{
+		base.OnCollisionEnter2D (collision);
+		if (collision.gameObject.CompareTag ("Deflected") || collision.gameObject.CompareTag("AllDamaging"))
+		{
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [3];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
+		}
 	}
 }

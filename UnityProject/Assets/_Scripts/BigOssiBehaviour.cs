@@ -322,7 +322,6 @@ public class BigOssiBehaviour : EnemyBehaviour {
 
 		if (_dieTimer >= 3f)
 		{
-			//Destroy boss when health is 0
 			Instantiate(deathExplosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
 			Destroy (gameObject);
 		}

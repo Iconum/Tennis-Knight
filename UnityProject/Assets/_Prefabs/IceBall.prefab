@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.00290751, y: .0346392356, z: 0}
+  m_LocalPosition: {x: .0326094627, y: .887706518, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -185,7 +185,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 1
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -445,12 +445,17 @@ ParticleSystem:
       maxCurve:
         serializedVersion: 2
         m_Curve:
-        - time: 0
+        - time: .0142857116
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        - time: .111428633
           value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: .688571453
+        - time: .497142851
           value: 0
           inSlope: 0
           outSlope: 0
@@ -476,7 +481,7 @@ ParticleSystem:
   RotationModule:
     enabled: 1
     curve:
-      scalar: 2.61799383
+      scalar: 4.36332321
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1199,7 +1204,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 65836931803ab5b4fb9f60bd418f4100, type: 2}
+  - {fileID: 2100000, guid: e27804e9cd33edc4380a335afc55cbac, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1239,7 +1244,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: db9e9fff98368e14183c5ea82efb0ab6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

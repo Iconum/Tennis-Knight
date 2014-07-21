@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 50: {fileID: 5000000}
   - 95: {fileID: 9500000}
+  - 82: {fileID: 8200000}
   m_Layer: 10
   m_Name: BigMKnight
   m_TagString: Enemy
@@ -57,6 +58,64 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 1, y: .819999993}
   m_Center: {x: 0, y: -.519999981}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -101,6 +160,10 @@ MonoBehaviour:
   chargeSpeed: 6
   player: {fileID: 0}
   pow: {fileID: 100000, guid: 08c9ac2008664b044ad0da0d8a5d95d7, type: 2}
+  sounds:
+  - {fileID: 8300000, guid: 34098d7598c7d8b428ad894abe7c3518, type: 3}
+  - {fileID: 8300000, guid: b4308d433cceff44c8bbe7d93a838522, type: 3}
+  - {fileID: 8300000, guid: a92b5f439bcc61a4887e9cc26161bf73, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
