@@ -106,6 +106,13 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 			ballShards [i].GetComponent<BigOssiShardBehaviour> ().Velocity = shardSpawnDirections [i];
 			ballShards [i].GetComponent<BigOssiShardBehaviour> ().transform.Rotate (new Vector3 (0, 0, 72f * i));
 			ListDefs (ballShards [i]);
+
+			if (audio)
+			{
+				audio.clip = sounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 
 	}
@@ -138,7 +145,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
-
+		//deathSounds.GetComponent<DeathSound>().
 
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{
