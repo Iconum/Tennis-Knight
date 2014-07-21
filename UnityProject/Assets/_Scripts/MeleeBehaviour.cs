@@ -96,12 +96,6 @@ public class MeleeBehaviour : EnemyBehaviour {
 				rigidbody2D.velocity = new Vector2 (0.0f, -(chargeSpeed));
 			}
 		}
-		if (sounds.Count > 0 && audio)
-		{
-			audio.clip = sounds [0];
-			audio.pitch = Random.Range (0.9f, 1.2f);
-			audio.Play ();
-		}
 	}
 
 	protected override void OnCollisionEnter2D (Collision2D collision)
