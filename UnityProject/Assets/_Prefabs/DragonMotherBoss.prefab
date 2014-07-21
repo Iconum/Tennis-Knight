@@ -45,6 +45,7 @@ GameObject:
   - 212: {fileID: 21200004}
   - 114: {fileID: 11400000}
   - 61: {fileID: 6100004}
+  - 95: {fileID: 9500000}
   m_Layer: 10
   m_Name: DragonMotherBoss
   m_TagString: Enemy
@@ -120,6 +121,20 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 6.30000019, y: 6}
   m_Center: {x: 0, y: -2}
+--- !u!95 &9500000
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e3b1a96b09896c847b1202aef4b71134, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
-  levelManager: {fileID: 0}
+  levelManager: {fileID: 100004, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
   flickerTimerLimit: .5
   spawnLerpLimit: 3
   health: 2

@@ -22,6 +22,13 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 	public float shootingSpeed = 0f;
 	protected float _shootTimer = 0f;
 	protected List<GameObject> ownProjectiles = new List<GameObject> ();
+
+
+
+	void Start ()
+	{
+		anim = GetComponent<Animator> ();
+	}
 	
 	// Update is called once per frame
 	void Update () 
@@ -43,7 +50,7 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 			--health;
 			_flickerActive = true;
 			if (anim)
-				anim.SetTrigger ("Damage");
+				anim.SetTrigger ("MDDamage");
 			
 			if (health <= 0)
 			{
@@ -73,6 +80,7 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 
 	protected void deathAnim()
 	{
+		anim.SetTrigger ("MDDamage");
 		deathTimer += Time.deltaTime;
 		explosiontimer += Time.deltaTime;
 		transform.position = new Vector2 (transform.position.x + Random.Range (0, 1), transform.position.y + Random.Range (0, 1));
@@ -111,6 +119,7 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 				//Set velocity to it
 				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
 				//animation Attack
+				anim.SetTrigger ("MDAttack");
 				//list projectile ball
 				ownProjectiles.Add (tempo);
 				ListDeflectable (tempo);
