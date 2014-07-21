@@ -65,7 +65,6 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 		changeLayer ();
 		if(!bigOssi.isSpawningBalls)
 			changeRadius ();
-
 	}
 
 	protected void SpinBalls()
@@ -139,7 +138,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
-		deathSounds.GetComponent<DeathSound> ().batDeath ();
+
 
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{

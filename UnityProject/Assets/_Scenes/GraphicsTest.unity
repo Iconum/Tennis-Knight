@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1143653018}
   isLeft: 0
+  swordParticlePrefab: {fileID: 0}
 --- !u!212 &402807319
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -721,7 +722,7 @@ MonoBehaviour:
   startLocation: {x: 0, y: -3, z: 0}
   endLocation: {x: 0, y: 0, z: 0}
   castleOffset: {x: 0, y: 0, z: 0}
-  villagerBundleAmount: 20
+  villagerBundleAmount: 5
   spawnDelay: .25
 --- !u!1001 &927280217
 Prefab:
@@ -1022,7 +1023,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.size
@@ -1063,7 +1064,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
+      objectReference: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
       value: 
@@ -1091,6 +1092,14 @@ Prefab:
     - target: {fileID: 2000000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: m_BackGroundColor.b
       value: .463235319
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].position.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].position.y
+      value: 3.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
@@ -1537,7 +1546,11 @@ MonoBehaviour:
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
+    - enemy: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
+      position: {x: 2, y: 3.5, z: 0}
+      delayTime: 0
+  - prefabPositionCombo:
+    - enemy: {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}
       position: {x: 2, y: 3.5, z: 0}
       delayTime: 0
   levelTest: 1
@@ -1646,6 +1659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1143653018}
   isLeft: 1
+  swordParticlePrefab: {fileID: 0}
 --- !u!212 &2087534909
 SpriteRenderer:
   m_ObjectHideFlags: 0

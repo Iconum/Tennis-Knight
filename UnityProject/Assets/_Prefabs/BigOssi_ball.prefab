@@ -191,7 +191,7 @@ MonoBehaviour:
   realRadius: 0
   shardSpawnDir: {x: 0, y: 0, z: 0}
   explosionPrefab: {fileID: 100000, guid: 2b578a903c44a3845af626eff3686f03, type: 2}
-  levelManager: {fileID: 100000, guid: 13791c2db9855fb44abde4fd671bb6a9, type: 2}
+  levelManager: {fileID: 0}
   sounds:
   - {fileID: 8300000, guid: a1568c60e4605044f903eecdbdbde429, type: 3}
   - {fileID: 8300000, guid: 4671331526c45894dabd8fe25ef501df, type: 3}
