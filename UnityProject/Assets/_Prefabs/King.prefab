@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 95: {fileID: 9500000}
-  - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 58: {fileID: 5800000}
   m_Layer: 10
@@ -70,21 +69,16 @@ MonoBehaviour:
   projectilePrefab: {fileID: 100000, guid: 3bd29ae801ae5324aba51d3d04feee17, type: 2}
   levelManager: {fileID: 0}
   flickerTimerLimit: 2
+  spawnLerpLimit: 3
   health: 5
+  projectileLimit: 0
   specialInvincibility: 0
+  spawning: 1
+  isPaused: 0
+  targetLocation: {x: 0, y: 0, z: 0}
+  anim: {fileID: 0}
   player: {fileID: 0}
   maxDeflections: 8
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a7f9d3acc140f849a1a00570dcf9fd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -103,7 +97,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_SortingLayerID: 1061239699
   m_Sprite: {fileID: 21300000, guid: b583b8456ecabd6418538b7dfc88cfdd, type: 3}

@@ -8,7 +8,7 @@ public class KingProto : EnemyBehaviour {
 	private float _shootTimer = 0.0f, _levelSinTime = 0.0f;
 	private Vector2 knightPos;
 	private Vector3 kbipos;
-	private int deflections;
+	private int deflections, _projectileLayer;
 	bool temp;
 
 
@@ -25,7 +25,11 @@ public class KingProto : EnemyBehaviour {
 	void Update ()
 	{
 		base.Update ();
-		transform.position = new Vector3(Mathf.Cos(_levelSinTime * 4) , transform.position.y);
+		if (!isPaused)
+		{
+			_levelSinTime += Time.deltaTime;
+			transform.position = new Vector3 (Mathf.Cos (_levelSinTime * 4), transform.position.y);
+		}
 		//transform.position = new Vector3(Mathf.Sin(Time.time - _levelSinTime) * 2.5f, transform.position.y);
 		//knightPos = (player.GetComponent<KnightBossProto>().transform.position);
 		//Debug.Log (player.GetComponent<KnightBossProto> ().transform.position);
@@ -55,7 +59,7 @@ public class KingProto : EnemyBehaviour {
 		*/
 	}
 	
-	protected override void OnCollisionEnter2D(Collision2D collision)
+	protected void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Deflected"))
 		{

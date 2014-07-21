@@ -343,7 +343,7 @@ MonoBehaviour:
   startLocation: {x: 0, y: -3, z: 0}
   endLocation: {x: 0, y: 0, z: 0}
   castleOffset: {x: 0, y: 0, z: 0}
-  villagerBundleAmount: 20
+  villagerBundleAmount: 5
   spawnDelay: .25
 --- !u!124 &12400000
 Behaviour:

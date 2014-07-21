@@ -174,11 +174,7 @@ public class LevelBehaviour : MonoBehaviour {
 
 	public int GetValuableObjects()
 	{
-		if (Statics.villagers < 2 * optimalVillagerAmount)
-		{
-			return Statics.villagers;
-		}
-		return 2 * optimalVillagerAmount;
+		return ((loot / 10) * Mathf.Clamp(Statics.villagers, 0, optimalVillagerAmount))/optimalVillagerAmount;
 	}
 
 	public void ToggleWall()

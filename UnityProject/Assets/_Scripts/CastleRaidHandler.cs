@@ -6,13 +6,26 @@ public class CastleRaidHandler : MonoBehaviour {
 	public LevelBehaviour level = null;
 	public GameObject terrainPrefab, castlePrefab, tinyVillagerPrefab;
 	public Vector3 startLocation, endLocation, castleOffset;
-	public int villagerBundleAmount = 20;
+	public int villagerBundleAmount = 5;
 	public float spawnDelay = 0.25f;
 
 	protected bool _displaying = false;
 	protected GameObject _terrain, _castle;
 	protected List<GameObject> _villagers = new List<GameObject>();
 	protected int _spawnedBundles = 0;
+
+	public void Update()
+	{
+		if (Input.GetKeyDown (KeyCode.Space) || Input.touchCount > 0)
+		{
+			_spawnedBundles = int.MaxValue;
+			for (int i = 0; i < _villagers.Count; ++i)
+			{
+				Destroy (_villagers [i]);
+			}
+			_villagers.Clear ();
+		}
+	}
 
 	public void Display()
 	{

@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spittingMoney: 0
-  spittingTimerLimit: .100000001
+  spittingTimerLimit: .5
   bumpTimerLimit: .699999988
+  minSpittingRate: .0500000007
   moneyPrefabs:
   - {fileID: 100000, guid: aed87878063630048ac307088be4d4ed, type: 2}
 --- !u!212 &21200000
