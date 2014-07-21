@@ -11,12 +11,21 @@ public class MeleeBehaviour : EnemyBehaviour {
 	protected bool _projectileFired = false;
 	protected float _targetX = 0.0f, _startY = 4.0f;
 
-	//public List<AudioClip> sounds = new List<AudioClip> ();
+	public List<AudioClip> sounds = new List<AudioClip> ();
 
 	protected override void Awake()
 	{
 		base.Awake ();
 		collider2D.enabled = false;
+
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+			
+			/*audio.clip = sounds [2];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();*/
+		}
 	}
 
 	protected override void Initialize ()
@@ -49,6 +58,12 @@ public class MeleeBehaviour : EnemyBehaviour {
 		{
 			meleeAttacking = true;
 			anim.SetBool("Attack",true);
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [2];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 	}
 
@@ -75,10 +90,17 @@ public class MeleeBehaviour : EnemyBehaviour {
 				yDifference = Mathf.Clamp (yDifference, -chargeSpeed, chargeSpeed);
 				rigidbody2D.velocity = new Vector2 (xDifference, yDifference);
 				anim.SetBool("Attack",false);
-			} else
+			}
+			else
 			{
 				rigidbody2D.velocity = new Vector2 (0.0f, -(chargeSpeed));
 			}
+		}
+		if (sounds.Count > 0 && audio)
+		{
+			audio.clip = sounds [0];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
 		}
 	}
 
@@ -111,6 +133,12 @@ public class MeleeBehaviour : EnemyBehaviour {
 			meleeAttacking = false;
 			collider2D.enabled = false;
 			StartCoroutine (EnableColliderAgain ());
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 	}
 	IEnumerator EnableColliderAgain()
