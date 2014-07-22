@@ -119,11 +119,25 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				PaddleActivate (leftPaddle);
 				anim.SetTrigger ("LeftSwing");
+
+				if (sounds.Count > 0 && audio)
+				{
+					audio.clip = sounds [2];
+					audio.pitch = Random.Range (0.9f, 1.2f);
+					audio.Play ();
+				}
 			}
 			if (Input.GetKeyDown (KeyCode.X))
 			{
 				PaddleActivate (rightPaddle);
 				anim.SetTrigger ("RightSwing");
+
+				if (sounds.Count > 0 && audio)
+				{
+					audio.clip = sounds [2];
+					audio.pitch = Random.Range (0.9f, 1.2f);
+					audio.Play ();
+				}
 			}
 			if (Input.GetKeyDown (KeyCode.Space))
 			{
@@ -346,10 +360,22 @@ public class PlayerBehaviour : MonoBehaviour
 			if (_heat > heatLimit)
 				_heat = heatLimit;
 			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [0];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 		if (collision.gameObject.CompareTag ("Enemy"))
 		{
 			_heat = heatLimit;
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 	}
 
