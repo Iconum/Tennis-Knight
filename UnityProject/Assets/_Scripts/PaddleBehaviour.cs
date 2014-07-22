@@ -77,15 +77,15 @@ public class PaddleBehaviour : MonoBehaviour {
 			if(!isLeft)
 			{
 				player.GetComponent<PlayerBehaviour> ().swordTrail.transform.position = 
-					new Vector3 (rigidbody2D.transform.position.x + 0.3f,
-					             rigidbody2D.transform.position.y);
+					new Vector3 (rigidbody2D.transform.position.x + 0.5f,
+					             rigidbody2D.transform.position.y - 0.2f);
 			player.GetComponent<PlayerBehaviour> ().swordTrail.startRotation = -transform.rotation.z*2;
 			}
 			else
 			{
 				player.GetComponent<PlayerBehaviour> ().swordTrail.transform.position = 
-					new Vector3 (rigidbody2D.transform.position.x - 0.3f,
-					             rigidbody2D.transform.position.y);
+					new Vector3 (rigidbody2D.transform.position.x - 0.5f,
+					             rigidbody2D.transform.position.y - 0.2f);
 				player.GetComponent<PlayerBehaviour> ().swordTrail.startRotation = transform.rotation.z*2;
 			}
 		}
