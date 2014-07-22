@@ -83,11 +83,11 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 		anim.SetTrigger ("MDDamage");
 		deathTimer += Time.deltaTime;
 		explosiontimer += Time.deltaTime;
-		transform.position = new Vector2 (transform.position.x + Random.Range (0, 1), transform.position.y + Random.Range (0, 1));
+		transform.Translate(0, Time.deltaTime/2,0);
 		if (explosiontimer >= 0.15f)
 		{
 			var explosion = Instantiate(explosionPrefab,
-			                            new Vector2(transform.position.x + Random.Range (-3, 3), transform.position.y + Random.Range (-3, 3)),
+			                            new Vector2(transform.position.x + Random.Range (-2, 2), transform.position.y + Random.Range (-3, 3)),
 			                            transform.rotation);
 			explosiontimer = 0;
 		}

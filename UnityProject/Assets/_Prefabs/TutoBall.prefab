@@ -65,7 +65,7 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 126ade0d2da59f040820786c023d6883, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
   startVelocity: {x: 0, y: -3}
   constantSpeed: 5
   heatGeneration: 5
-  paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
+  paddleHit: {fileID: 8300000, guid: 126ade0d2da59f040820786c023d6883, type: 3}
   levelManager: {fileID: 0}
   tutoBehaviour: {fileID: 0}
   batBehaviour: {fileID: 0}

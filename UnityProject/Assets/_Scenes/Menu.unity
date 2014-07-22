@@ -386,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prevSceneName: 
   loadPrefs: 1
+  quit: 1
 --- !u!4 &1165523880
 Transform:
   m_ObjectHideFlags: 0
@@ -721,6 +722,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 6c3e1bfbc1153fb4289cd73ce0fadbb3, type: 2}
       propertyPath: loadPrefs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6c3e1bfbc1153fb4289cd73ce0fadbb3, type: 2}
+      propertyPath: quit
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -34,7 +34,7 @@ public class TutorialTexts
 		Vector3 startvec = Camera.main.WorldToScreenPoint (new Vector3 (-2.5f, 4.0f)), endvec = Camera.main.WorldToScreenPoint(new Vector3(2.5f, -2.0f));
 		GUILayout.BeginArea (new Rect (startvec.x, Screen.height - startvec.y, endvec.x - startvec.x, Screen.height - endvec.y), Statics.menuTextStyle);
 		{
-			GUILayout.TextArea (tutorialText [currentText], Statics.menuTextStyle);
+			GUILayout.Box (tutorialText [currentText], Statics.menuTextStyle);
 		}
 		GUILayout.EndArea ();
 	}

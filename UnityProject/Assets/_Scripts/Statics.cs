@@ -18,8 +18,7 @@ public static class Statics
 	public static ControlType selectedControlMethod = ControlType.keyboard;
 	public static long valuables = 0;
 	public static int villagers = 20;
-	public static GUIStyle menuButtonStyle;
-	public static GUIStyle menuTextStyle;
+	public static GUIStyle menuButtonStyle, menuTextStyle, creditsTextStyle;
 	public static float globalVolume = 1.0f, soundVolume = 1.0f, musicVolume = 1.0f;
 
 	public static void setVolume()
@@ -72,11 +71,15 @@ public static class Statics
 
 	public static void StyleInitialization()
 	{
-		Statics.menuButtonStyle = new GUIStyle (GUI.skin.button);
-		Statics.menuButtonStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
+		menuButtonStyle = new GUIStyle (GUI.skin.button);
+		menuButtonStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
 		
-		Statics.menuTextStyle = new GUIStyle (GUI.skin.box);
-		Statics.menuTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 22;
-		Statics.menuTextStyle.wordWrap = true;
+		menuTextStyle = new GUIStyle (GUI.skin.box);
+		menuTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 22;
+		menuTextStyle.wordWrap = true;
+
+		creditsTextStyle = new GUIStyle (GUI.skin.label);
+		creditsTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
+		creditsTextStyle.normal.textColor = Color.black;
 	}
 }
