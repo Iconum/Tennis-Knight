@@ -19,12 +19,16 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 	protected bool motherSpawn = false;
 	protected bool isMotherSpawned = false;
 
+	public List<AudioClip> sounds = new List<AudioClip> ();
 	private int prevHealth;
 
 	void Start()
 	{
 		//base.Start ();
 		prevHealth = health;
+
+		if (audio)
+			audio.volume = Statics.soundVolume;
 	}
 
 	// Update is called once per frame
@@ -35,6 +39,12 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 			anim.SetTrigger ("SDDamage");
 			prevHealth = health;
 			Debug.Log(prevHealth);
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [0];
+				audio.pitch = Random.Range (1.5f, 1.8f);
+				audio.Play ();
+			}
 		}
 
 		shootTimer += Time.deltaTime;
@@ -77,6 +87,13 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 				ListDeflectable (tempo);
 
 				anim.SetTrigger ("SDAttack");
+
+				if (sounds.Count > 0 && audio)
+				{
+					audio.clip = sounds [1];
+					audio.pitch = Random.Range (1.5f, 1.8f);
+					audio.Play ();
+				}
 			}
 		}
 	}
