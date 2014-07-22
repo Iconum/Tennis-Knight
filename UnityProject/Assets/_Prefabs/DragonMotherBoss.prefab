@@ -12,7 +12,7 @@ GameObject:
   - 61: {fileID: 6100002}
   m_Layer: 11
   m_Name: dragonClaw
-  m_TagString: Border
+  m_TagString: Removal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ GameObject:
   - 61: {fileID: 6100000}
   m_Layer: 11
   m_Name: dragonClaw
-  m_TagString: Border
+  m_TagString: Removal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,6 +163,9 @@ MonoBehaviour:
   - {fileID: 100000, guid: 7163f3f64a2319a409cda4fa6bc6b288, type: 2}
   explosionPrefab: {fileID: 100000, guid: 92f7fbdcdad95654d8320ba53d3f4bb9, type: 2}
   shootingSpeed: 2.5
+  sounds:
+  - {fileID: 8300000, guid: e725f718b3944114cad930a0d6527293, type: 3}
+  - {fileID: 8300000, guid: 6225bb72d7eefc04b86912e6812150cb, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
