@@ -731,6 +731,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400004, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
+      propertyPath: sounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
       propertyPath: m_LocalPosition.x
       value: .145397305
@@ -917,6 +921,11 @@ MonoBehaviour:
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
+  sounds:
+  - {fileID: 8300000, guid: 209ef46a446e39a408977eb477c48052, type: 3}
+  - {fileID: 8300000, guid: 840c103f52a97ec42a9565f417544d9b, type: 3}
+  - {fileID: 8300000, guid: ff1da506da99bc440a2ea95790793dbb, type: 3}
+  - {fileID: 0}
 --- !u!58 &1143653021
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1064,7 +1073,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100004, guid: a9a0918ba9a460043bd95e76e22b6700, type: 2}
+      objectReference: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
       value: 
@@ -1550,7 +1559,7 @@ MonoBehaviour:
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
-    - enemy: {fileID: 100004, guid: a9a0918ba9a460043bd95e76e22b6700, type: 2}
+    - enemy: {fileID: 100000, guid: 6d842b65739f5324e9a569da57762fd1, type: 2}
       position: {x: 0, y: 3.5, z: 0}
       delayTime: 0
   levelTest: 1

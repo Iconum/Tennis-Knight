@@ -277,6 +277,11 @@ MonoBehaviour:
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
+  sounds:
+  - {fileID: 8300000, guid: 209ef46a446e39a408977eb477c48052, type: 3}
+  - {fileID: 8300000, guid: 840c103f52a97ec42a9565f417544d9b, type: 3}
+  - {fileID: 8300000, guid: ff1da506da99bc440a2ea95790793dbb, type: 3}
+  - {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

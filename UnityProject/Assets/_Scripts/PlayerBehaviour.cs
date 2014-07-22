@@ -20,6 +20,8 @@ public class PlayerBehaviour : MonoBehaviour
 
 	protected Animator anim;
 
+	public List<AudioClip> sounds = new List<AudioClip> ();
+
 	// Use this for initialization
 	protected virtual void Start ()
 	{
