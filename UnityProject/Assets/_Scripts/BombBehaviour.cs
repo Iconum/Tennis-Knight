@@ -4,6 +4,7 @@ using System.Collections;
 public class BombBehaviour : BallBehaviour {
 	public float fuseLength = 6.0f, explosiveForce = 1.0f;
 	public AudioClip explosion;
+	public float rotationSpeed = 10f;
 
 	private bool _exploding = false;
 
@@ -13,6 +14,7 @@ public class BombBehaviour : BallBehaviour {
 	{
 		StartCoroutine (LitFuse());
 		anim = GetComponent<Animator> ();
+		rigidbody2D.AddTorque (rotationSpeed);
 	}
 
 	IEnumerator LitFuse()
