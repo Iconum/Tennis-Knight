@@ -17,15 +17,6 @@ public class MeleeBehaviour : EnemyBehaviour {
 	{
 		base.Awake ();
 		collider2D.enabled = false;
-
-		if (audio)
-		{
-			audio.volume = Statics.soundVolume;
-			
-			/*audio.clip = sounds [2];
-			audio.pitch = Random.Range (0.9f, 1.2f);
-			audio.Play ();*/
-		}
 	}
 
 	protected override void Initialize ()
@@ -43,6 +34,15 @@ public class MeleeBehaviour : EnemyBehaviour {
 		} else
 		{
 			StartCoroutine (StartAttack (attackTime));
+		}
+
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+			
+			/*audio.clip = sounds [2];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();*/
 		}
 	}
 	IEnumerator StartAttack(float t)

@@ -17,15 +17,19 @@ public class RangedBehaviour : EnemyBehaviour {
 		base.Awake ();
 		anim = GetComponent<Animator> ();
 		_levelSinTime += transform.position.x;
+	}
 
+	protected override void Initialize ()
+	{
 		if (audio)
 		{
 			audio.volume = Statics.soundVolume;
-
+			
 			audio.clip = sounds [2];
 			audio.pitch = Random.Range (0.9f, 1.2f);
 			audio.Play ();
 		}
+		base.Initialize ();
 	}
 	
 	// Update is called once per frame
