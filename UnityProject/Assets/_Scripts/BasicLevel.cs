@@ -5,8 +5,13 @@ using System.Collections.Generic;
 public class BasicLevel : LevelBehaviour {
 	public bool levelTest = false, openEnd = false;
 
+	public List<AudioClip> music = new List<AudioClip> ();
+
+	public GameObject oldMusic;
+
 	void Start()
 	{
+
 		if (!player)
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
@@ -16,6 +21,17 @@ public class BasicLevel : LevelBehaviour {
 			villagerManager = GameObject.Find ("VillagerManager").GetComponent<VillagerHandler>();
 		}
 		StartCoroutine (DelayedCreation (1.5f));
+
+		if (audio)
+		{
+			audio.volume = 0.3f;
+
+			audio.clip = music [0];
+			audio.Play ();
+		}
+
+		oldMusic = GameObject.Find("MenuMusic");
+		Destroy (oldMusic);
 	}
 
 	public override void EnemyDied()
@@ -30,6 +46,9 @@ public class BasicLevel : LevelBehaviour {
 				{
 					BGLoop.current.ToggleStop();
 					ToggleWall ();
+
+					audio.clip = music [1];
+					audio.Play ();
 				}
 				StartTheEnd ();
 			} else
@@ -53,6 +72,8 @@ public class BasicLevel : LevelBehaviour {
 			{
 				BGLoop.current.ToggleStop();
 				ToggleWall ();
+				audio.clip = music [1];
+				audio.Play ();
 			}
 		} else if (levelTest)
 		{
