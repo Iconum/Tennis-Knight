@@ -41,21 +41,23 @@ public class BombBehaviour : BallBehaviour {
 			if (!audio.isPlaying)
 			{
 				audio.clip = explosion;
-				audio.volume = 1f;
+				audio.volume = Statics.soundVolume;
 				audio.Play ();
 			}
 
 			StartCoroutine (StopExploding ());
-
-
-			Destroy (gameObject, 1.2f);
+			StartCoroutine (DelayDestroy());
 
 			//anim.GetComponent<Renderer>().transform
 
 			//GetComponent<CircleCollider2D>().transform.localScale=new Vector3(0.25f,0.25f,0);
 			//animation.Play();
 		}
-
+	}
+	IEnumerator DelayDestroy()
+	{
+		yield return new WaitForSeconds (1.2f);
+		Destroy (gameObject);
 	}
 
 	protected override void OnTriggerEnter2D (Collider2D other)
