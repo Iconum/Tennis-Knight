@@ -20,7 +20,10 @@ public class PlayerBehaviour : MonoBehaviour
 
 	protected Animator anim;
 
+	public ParticleSystem swordTrailPrefab = null;
+	public ParticleSystem swordTrail = null;
 	public List<AudioClip> sounds = new List<AudioClip> ();
+
 
 	// Use this for initialization
 	protected virtual void Start ()
@@ -300,6 +303,7 @@ public class PlayerBehaviour : MonoBehaviour
 			paddle.SetActive (true);
 			paddle.GetComponent<PaddleBehaviour> ().PaddleHit ();
 			visualRacket.SetActive(false);
+			swordTrail = (ParticleSystem)Instantiate(swordTrailPrefab, paddle.transform.position, paddle.transform.rotation);
 		}
 	}
 

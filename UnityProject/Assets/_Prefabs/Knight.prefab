@@ -298,7 +298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100006}
   isLeft: 0
-  swordParticlePrefab: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,6 +335,8 @@ MonoBehaviour:
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
+  swordTrailPrefab: {fileID: 19800000, guid: 929f5ed78e4231d48b90aefb66df990d, type: 2}
+  swordTrail: {fileID: 0}
   sounds:
   - {fileID: 8300000, guid: 209ef46a446e39a408977eb477c48052, type: 3}
   - {fileID: 8300000, guid: 840c103f52a97ec42a9565f417544d9b, type: 3}
@@ -354,7 +355,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100006}
   isLeft: 1
-  swordParticlePrefab: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
