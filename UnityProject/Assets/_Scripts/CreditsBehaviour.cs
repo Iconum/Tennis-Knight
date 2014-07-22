@@ -23,7 +23,11 @@ public class CreditsBehaviour : MonoBehaviour {
 	protected void Update ()
 	{
 		_scrollingStateActual += _scrollingActualSpeed * Time.deltaTime;
-		Debug.Log ("State: " + _scrollingStateActual.ToString ());
+
+		if (Input.touchCount > 0)
+		{
+			Application.LoadLevel ("Menu");
+		}
 	}
 
 	protected void OnGUI()

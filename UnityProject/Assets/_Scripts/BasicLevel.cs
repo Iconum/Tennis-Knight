@@ -41,7 +41,7 @@ public class BasicLevel : LevelBehaviour {
 			if (enemySpawnPackages.Count == 0)
 			{
 				ClearDeflectables ();
-				ClearTheLevel();
+				ClearTheLevel(true);
 				if (!openEnd)
 				{
 					BGLoop.current.ToggleStop();
