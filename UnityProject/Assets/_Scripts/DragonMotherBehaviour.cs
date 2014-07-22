@@ -54,7 +54,14 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 			_flickerActive = true;
 			if (anim)
 				anim.SetTrigger ("MDDamage");
-			
+
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [0];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
+
 			if (health <= 0)
 			{
 				isDead = true;
@@ -123,6 +130,12 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
 				//animation Attack
 				anim.SetTrigger ("MDAttack");
+				if (sounds.Count > 0 && audio)
+				{
+					audio.clip = sounds [1];
+					audio.pitch = Random.Range (0.9f, 1.2f);
+					audio.Play ();
+				}
 				//list projectile ball
 				ownProjectiles.Add (tempo);
 				ListDeflectable (tempo);

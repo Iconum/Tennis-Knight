@@ -41,7 +41,7 @@ public class BombBehaviour : BallBehaviour {
 			if (!audio.isPlaying)
 			{
 				audio.clip = explosion;
-				audio.volume = 0.2f;
+				audio.volume = 1f;
 				audio.Play ();
 			}
 

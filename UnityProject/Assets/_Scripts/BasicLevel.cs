@@ -7,8 +7,11 @@ public class BasicLevel : LevelBehaviour {
 
 	public List<AudioClip> music = new List<AudioClip> ();
 
+	public GameObject oldMusic;
+
 	void Start()
 	{
+
 		if (!player)
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
@@ -26,6 +29,9 @@ public class BasicLevel : LevelBehaviour {
 			audio.clip = music [0];
 			audio.Play ();
 		}
+
+		oldMusic = GameObject.Find("MenuMusic");
+		Destroy (oldMusic);
 	}
 
 	public override void EnemyDied()
@@ -35,7 +41,7 @@ public class BasicLevel : LevelBehaviour {
 			if (enemySpawnPackages.Count == 0)
 			{
 				ClearDeflectables ();
-				ClearTheLevel();
+				ClearTheLevel(true);
 				if (!openEnd)
 				{
 					BGLoop.current.ToggleStop();

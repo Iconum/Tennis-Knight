@@ -19,10 +19,34 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 	protected bool motherSpawn = false;
 	protected bool isMotherSpawned = false;
 
+	public List<AudioClip> sounds = new List<AudioClip> ();
+	private int prevHealth;
+
+	void Start()
+	{
+		//base.Start ();
+		prevHealth = health;
+
+		if (audio)
+			audio.volume = Statics.soundVolume;
+	}
 
 	// Update is called once per frame
 	void Update () 
 	{
+		if (health < prevHealth)
+		{
+			anim.SetTrigger ("SDDamage");
+			prevHealth = health;
+			Debug.Log(prevHealth);
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [0];
+				audio.pitch = Random.Range (1.5f, 1.8f);
+				audio.Play ();
+			}
+		}
+
 		shootTimer += Time.deltaTime;
 
 		base.Update ();
@@ -33,7 +57,6 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 		if(shoot && !babyDeath) 
 		ShootBalls ();
 
-		bossPhaseSetter ();
 	
 	}
 
@@ -62,6 +85,15 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 				//list projectile ball
 				ownProjectiles.Add (tempo);
 				ListDeflectable (tempo);
+
+				anim.SetTrigger ("SDAttack");
+
+				if (sounds.Count > 0 && audio)
+				{
+					audio.clip = sounds [1];
+					audio.pitch = Random.Range (1.5f, 1.8f);
+					audio.Play ();
+				}
 			}
 		}
 	}
@@ -100,41 +132,4 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 			}
 		}
 	}
-
-	protected void bossPhaseSetter()
-	{
-		switch (health)
-		{
-		case 5:
-
-			break;
-		case 4:
-
-			break;
-		case 3:
-
-			break;
-		case 2:
-
-			break;
-		case 1:
-			motherSpawn = true;
-			babyDeath = true;
-			if(motherSpawn && !isMotherSpawned)
-			{
-				isMotherSpawned = true;
-			//	var mother = Instantiate(motherPrefab,new Vector3(0,4f),new Quaternion());
-			}
-
-			if(transform.position.x <= -5f)
-			transform.Translate(-Time.deltaTime*2,0,0);
-
-
-			break;
-		default:
-
-			break;
-		}
-	}
-
 }
