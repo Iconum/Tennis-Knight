@@ -239,7 +239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100006}
   isLeft: 0
-  swordParticlePrefab: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -277,6 +276,8 @@ MonoBehaviour:
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
+  swordTrailPrefab: {fileID: 19800000, guid: 929f5ed78e4231d48b90aefb66df990d, type: 2}
+  swordTrail: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,7 +291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100006}
   isLeft: 1
-  swordParticlePrefab: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
