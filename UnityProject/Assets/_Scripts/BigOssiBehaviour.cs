@@ -25,14 +25,14 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	protected GameObject bigOssiReference;
 	protected bool isOnLimitDistance = false;
 	protected float _shootTimer = 0f;
-
+	protected float _shakeTimer = 0f;
 	protected bool isBossDying = false;
 	protected float _dieTimer = 0f;
 	protected Vector3 tempPosition;
 
 	public ParticleSystem darkMatter;
 	public GameObject deathExplosionPrefab;
-
+	public GameObject explosionPrefab;
 	//public Sounds soundsstruct;
 	public List<AudioClip> sounds = new List<AudioClip> ();
 
@@ -303,6 +303,7 @@ public class BigOssiBehaviour : EnemyBehaviour {
 	{
 		anim.SetTrigger("BODamage");
 		_dieTimer += Time.deltaTime;
+		_shakeTimer += Time.deltaTime;
 		var randX = Random.Range(-0.1f,0.1f);
 		var randY = Random.Range(-0.1f,0.1f);
 
@@ -311,13 +312,12 @@ public class BigOssiBehaviour : EnemyBehaviour {
 		darkMatter.emissionRate = 11f + _dieTimer*20f;
 		darkMatter.startSize = 1f + _dieTimer;
 
-		if (audio)
+		if (_shakeTimer >= 0.15f)
 		{
-			audio.volume = Statics.soundVolume;
-			
-			audio.clip = sounds [1];
-			audio.pitch = Random.Range (0.9f, 1.2f);
-			audio.Play ();
+			var explosion = Instantiate(explosionPrefab,
+			                            new Vector2(transform.position.x + Random.Range (-1, 1), transform.position.y + Random.Range (-1, 1)),
+			                            transform.rotation);
+			_shakeTimer = 0;
 		}
 
 		if (_dieTimer >= 3f)

@@ -29,3 +29,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/FirstLevel.unity
   - enabled: 1
     path: Assets/_Scenes/Credits.unity
+  - enabled: 1
+    path: Assets/_Scenes/ThirdLevel.unity

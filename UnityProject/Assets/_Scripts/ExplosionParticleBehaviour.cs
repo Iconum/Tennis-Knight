@@ -10,7 +10,7 @@ public class ExplosionParticleBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 		if (gameObject.particleSystem.isStopped)
 		{
 			Destroy(gameObject);
