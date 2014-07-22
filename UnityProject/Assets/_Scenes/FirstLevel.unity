@@ -168,6 +168,9 @@ MonoBehaviour:
       delayTime: 0
   levelTest: 0
   openEnd: 0
+  music:
+  - {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+  - {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
 --- !u!82 &21437991
 AudioSource:
   m_ObjectHideFlags: 0
@@ -176,7 +179,7 @@ AudioSource:
   m_GameObject: {fileID: 21437988}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: .300000012
   m_Pitch: 1
@@ -474,6 +477,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: music.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -649,6 +656,14 @@ Prefab:
       propertyPath: miniWaitTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: music.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: music.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
   m_RootGameObject: {fileID: 21437988}
