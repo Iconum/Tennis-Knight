@@ -23,6 +23,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		{
 			audio.volume = Statics.soundVolume;
 		}
+		anim = GetComponent<Animator> ();
 	}
 
 	protected virtual void OnDestroy()

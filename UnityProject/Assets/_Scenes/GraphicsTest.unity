@@ -249,7 +249,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1143653018}
   isLeft: 0
-  swordParticlePrefab: {fileID: 0}
 --- !u!212 &402807319
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -923,6 +922,8 @@ MonoBehaviour:
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
+  swordTrailPrefab: {fileID: 19800000, guid: 929f5ed78e4231d48b90aefb66df990d, type: 2}
+  swordTrail: {fileID: 0}
   sounds:
   - {fileID: 8300000, guid: 209ef46a446e39a408977eb477c48052, type: 3}
   - {fileID: 8300000, guid: 840c103f52a97ec42a9565f417544d9b, type: 3}
@@ -1151,7 +1152,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.size
@@ -1192,11 +1193,11 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100004, guid: a9a0918ba9a460043bd95e76e22b6700, type: 2}
+      objectReference: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}
+      objectReference: {fileID: 100004, guid: a9a0918ba9a460043bd95e76e22b6700, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[2].prefabPositionCombo.Array.data[0].enemy
       value: 
@@ -1223,7 +1224,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].position.x
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].position.y
@@ -1678,11 +1679,17 @@ MonoBehaviour:
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
+    - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
+      position: {x: 0, y: 3.5, z: 0}
+      delayTime: 0
+  - prefabPositionCombo:
     - enemy: {fileID: 100004, guid: a9a0918ba9a460043bd95e76e22b6700, type: 2}
       position: {x: 0, y: 3.5, z: 0}
       delayTime: 0
   levelTest: 1
   openEnd: 0
+  music: []
+  oldMusic: {fileID: 0}
 --- !u!4 &1955091983
 Transform:
   m_ObjectHideFlags: 0
@@ -1787,7 +1794,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1143653018}
   isLeft: 1
-  swordParticlePrefab: {fileID: 0}
 --- !u!212 &2087534909
 SpriteRenderer:
   m_ObjectHideFlags: 0
