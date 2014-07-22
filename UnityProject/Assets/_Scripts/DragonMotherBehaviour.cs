@@ -23,11 +23,14 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 	protected float _shootTimer = 0f;
 	protected List<GameObject> ownProjectiles = new List<GameObject> ();
 
-
+	public List<AudioClip> sounds = new List<AudioClip> ();
 
 	void Start ()
 	{
 		anim = GetComponent<Animator> ();
+
+		if (audio)
+			audio.volume = Statics.soundVolume;
 	}
 	
 	// Update is called once per frame
