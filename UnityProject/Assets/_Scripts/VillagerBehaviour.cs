@@ -76,9 +76,7 @@ public class VillagerBehaviour : MonoBehaviour
 			(collision.gameObject.CompareTag ("Deflected") && isDead == false) ||
 			(collision.gameObject.CompareTag ("AllDamaging") && isDead == false))
 		{
-			handler.spawnPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
-			handler.spawnPositions.Add (handler.spawnPos);
-			isDead = true;
+			Die ();
 			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
 		}
 	}
@@ -88,10 +86,15 @@ public class VillagerBehaviour : MonoBehaviour
 		if ((other.CompareTag ("Deflectable") && isDead == false) ||
 			(other.CompareTag ("Deflected") && isDead == false))
 		{
-			handler.spawnPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
-			handler.spawnPositions.Add (handler.spawnPos);
-			isDead = true;
+			Die ();
 		}
+	}
+
+	public virtual void Die()
+	{
+		handler.spawnPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
+		handler.spawnPositions.Add (handler.spawnPos);
+		isDead = true;
 	}
 
 	//Death "animation"

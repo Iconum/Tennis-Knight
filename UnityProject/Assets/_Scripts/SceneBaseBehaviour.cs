@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SceneBaseBehaviour : MonoBehaviour {
 	public static SceneBaseBehaviour curSceneBase = null;
+	public static bool hasLoadedPrefs = false;
 	public string prevSceneName = "";
 	public AsyncOperation _asyncOp = null;
 	public bool loadPrefs = false;
@@ -10,9 +11,10 @@ public class SceneBaseBehaviour : MonoBehaviour {
 
 	void Start()
 	{
-		if (loadPrefs)
+		if (loadPrefs && !hasLoadedPrefs)
 		{
 			Statics.PrefLoading ();
+			hasLoadedPrefs = true;
 		}
 	}
 
