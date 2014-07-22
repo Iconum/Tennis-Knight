@@ -6,15 +6,15 @@ public class PlayerBehaviour : MonoBehaviour
 {
 	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null,visualRacket=null;
 	public bool paddleActive = false, isPaused = false;
-	public float strafeSpeed = 0.1f, heatLimit = 25.0f;
+	public float strafeSpeed = 0.1f, heatLimit = 25.0f, runawayRate = 1.0f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
 	public Vector3 targetPosition = new Vector3(0.0f, -2.5f);
 
 	protected List<GameObject> _collisionList = new List<GameObject> ();
-	protected float _currentSpeed, _lerpTime = 0.0f, _heat = 0.0f;
+	protected float _currentSpeed, _lerpTime = 0.0f, _heat = 0.0f, _runawaySpeed = 0.0f;
 	protected float _horizontalTouch = 0.0f, _touchTime = 0.0f;
 	protected ControlType _usedControls = ControlType.keyboard;
-	protected bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false;
+	protected bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false, _gameOver = false;
 	protected Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
 	protected Vector3 _playerPosition = Vector3.zero;
 
@@ -89,7 +89,11 @@ public class PlayerBehaviour : MonoBehaviour
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
 
 		//Absolutely massive else-if block with all the control methods and the level transition movement
-		if (isPaused)
+		if (_gameOver)
+		{
+			_runawaySpeed += Time.deltaTime / runawayRate;
+			transform.position += new Vector3 (0.0f, -_runawaySpeed);
+		} else if (isPaused)
 		{
 
 		} else if (_endLevel)
@@ -277,7 +281,7 @@ public class PlayerBehaviour : MonoBehaviour
 			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
-		if (!_endLevel && !_startLevel)
+		if (!_endLevel && !_startLevel && !_gameOver)
 		{
 			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 		}
@@ -344,11 +348,15 @@ public class PlayerBehaviour : MonoBehaviour
 		_touchPosition = new Vector3 (1.5f, transform.position.y);
 		StartCoroutine (WalkOff ());
 	}
-
 	IEnumerator WalkOff()
 	{
 		yield return new WaitForSeconds (1.5f);
 		_touchPosition = new Vector3 (1.5f, 8.0f);
+	}
+
+	public void GameOver()
+	{
+		_gameOver = true;
 	}
 
 	public void SetPause(bool paused)

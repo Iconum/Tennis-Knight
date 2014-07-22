@@ -14,16 +14,6 @@ public class OptionsFunctionality : MonoBehaviour {
 		onefourty = (140.0f / 640.0f) * Screen.height;
 		menuText = GetMenuText ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-		//Debug
-		if (Input.GetKeyDown (KeyCode.Insert))
-		{
-			Statics.villagers += 10;
-		}
-	}
 
 	void OnGUI()
 	{
