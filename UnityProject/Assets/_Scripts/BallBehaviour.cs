@@ -8,8 +8,10 @@ public class BallBehaviour : MonoBehaviour
 	public float constantSpeed = 2.0f, heatGeneration = 1.5f;
 	public AudioClip paddleHit;
 	public GameObject levelManager = null;
+	public GameObject particlePrefab = null;
 
 	protected List<GameObject> _enemies = new List<GameObject>();
+	protected Color particleColour = new Color (1f, 0.7f, 0f);
 
 	protected virtual void Start ()
 	{
@@ -43,6 +45,8 @@ public class BallBehaviour : MonoBehaviour
 					audio.clip = paddleHit;
 				}
 				Home();
+				particlePrefab.GetComponent<ParticleSystem>().startColor = particleColour;
+				var poof = Instantiate(particlePrefab, transform.position, transform.rotation);
 				audio.Play();
 			}
 		}
@@ -75,6 +79,7 @@ public class BallBehaviour : MonoBehaviour
 
 	public virtual void BallDestroy()
 	{
+		var poof = Instantiate(particlePrefab, transform.position, transform.rotation);
 		Destroy (gameObject);
 	}
 

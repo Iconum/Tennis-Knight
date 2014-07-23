@@ -131,6 +131,7 @@ MonoBehaviour:
   heatGeneration: 5
   paddleHit: {fileID: 8300000, guid: 126ade0d2da59f040820786c023d6883, type: 3}
   levelManager: {fileID: 0}
+  particlePrefab: {fileID: 100000, guid: 0c292da710918304fa8b820eeae82b1d, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

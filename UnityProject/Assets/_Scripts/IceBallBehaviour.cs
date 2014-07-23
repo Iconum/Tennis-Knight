@@ -16,6 +16,7 @@ public class IceBallBehaviour : BallBehaviour {
 	{
 		base.Start ();
 		rigidbody2D.AddTorque (rotationSpeed);
+		particleColour = new Color (0.0f, 0.5f, 1.0f);
 		
 	}
 
