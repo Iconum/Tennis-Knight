@@ -22,6 +22,7 @@ public class PauseButtonFunctionality : ButtonFunctionality {
 			pauseMenu.optionsMenu.gameObject.SetActive(true);
 			break;
 		case ButtonTypes.ReturnMenu:
+			Time.timeScale = 1.0f;
 			_asyncOp = Application.LoadLevelAsync ("LevelSelectMenu");
 			break;
 		}
