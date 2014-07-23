@@ -378,7 +378,7 @@ MonoBehaviour:
       position: {x: 0, y: 4, z: 0}
       delayTime: 0
   levelTest: 0
-  openEnd: 0
+  openEnd: 1
   music:
   - {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
   - {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
@@ -1098,6 +1098,10 @@ Prefab:
       propertyPath: music.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: openEnd
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
   m_RootGameObject: {fileID: 728026388}
