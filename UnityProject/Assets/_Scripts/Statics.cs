@@ -17,7 +17,7 @@ public static class Statics
 {
 	public static ControlType selectedControlMethod = ControlType.keyboard;
 	public static long valuables = 0;
-	public static int villagers = 20;
+	public static int villagers = 20, levelsComplete = 0;
 	public static GUIStyle menuButtonStyle, menuTextStyle, creditsTextStyle;
 	public static float globalVolume = 1.0f, soundVolume = 1.0f, musicVolume = 1.0f;
 
@@ -35,7 +35,7 @@ public static class Statics
 	{
 		if (PlayerPrefs.HasKey ("GlobalVolume"))
 		{
-			Statics.setVolume(PlayerPrefs.GetFloat("GlobalVolume"));
+			Statics.setVolume (PlayerPrefs.GetFloat ("GlobalVolume"));
 		}
 		if (PlayerPrefs.HasKey ("SoundVolume"))
 		{
@@ -58,6 +58,10 @@ public static class Statics
 			Statics.selectedControlMethod = ControlType.freedragging;
 			#endif
 		}
+		if (PlayerPrefs.HasKey ("LevelsComplete"))
+		{
+			levelsComplete = PlayerPrefs.GetInt ("LevelsComplete");
+		}
 	}
 
 	public static void PrefStoring()
@@ -66,6 +70,7 @@ public static class Statics
 		PlayerPrefs.SetFloat ("GlobalVolume", Statics.globalVolume);
 		PlayerPrefs.SetFloat ("SoundVolume", Statics.soundVolume);
 		PlayerPrefs.SetFloat ("MusicVolume", Statics.musicVolume);
+		PlayerPrefs.SetInt ("LevelsComplete", levelsComplete);
 		PlayerPrefs.Save ();
 	}
 
