@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class DividingBehaviour : BallBehaviour {
 	public GameObject selfPrefab = null;
 	public List<GameObject> shotProjectiles = null;
+	public float rotationspeed = 10f;
 
 	private int _deflectPhase = 1;
 
@@ -12,6 +13,13 @@ public class DividingBehaviour : BallBehaviour {
 	{
 		base.Start ();
 		transform.localScale = new Vector3 ((_deflectPhase + 1.0f) / 2.0f, (_deflectPhase + 1.0f) / 2.0f, (_deflectPhase + 1.0f) / 2.0f);
+		particleColour = new Color (1f, 1f, 0f);
+	}
+
+	void fixedUpdate()
+	{
+		base.FixedUpdate ();
+		rigidbody2D.AddTorque (rotationspeed);
 	}
 
 	protected override void OnCollisionExit2D(Collision2D collision)

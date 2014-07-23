@@ -146,9 +146,11 @@ MonoBehaviour:
   heatGeneration: 7
   paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
   levelManager: {fileID: 0}
+  particlePrefab: {fileID: 100000, guid: 0c292da710918304fa8b820eeae82b1d, type: 2}
   fuseLength: 5
   explosiveForce: 2
   explosion: {fileID: 8300000, guid: e2a3be34f2bd141498f04455a2f47171, type: 3}
+  rotationSpeed: 10
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
