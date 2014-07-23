@@ -50,7 +50,7 @@ public class VillagerBehaviour : MonoBehaviour
 	{
 		if (isPaused)
 		{
-
+			audio.volume = Statics.soundVolume;
 		}
 		//update for death movement
 		else if (isDead)

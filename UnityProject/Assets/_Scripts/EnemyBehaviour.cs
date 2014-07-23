@@ -94,6 +94,11 @@ public class EnemyBehaviour : MonoBehaviour {
 			}
 		}
 
+		if (isPaused)
+		{
+			audio.volume = Statics.soundVolume;
+		}
+
 		//Debug Controls
 		if (Input.GetKeyDown (KeyCode.End))
 		{
