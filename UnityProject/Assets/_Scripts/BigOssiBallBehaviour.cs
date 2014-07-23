@@ -38,7 +38,7 @@ public class BigOssiBallBehaviour : MonoBehaviour {
 		startPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
 		if (spinningRadius > 2f)
 		{
-			Debug.Log("Please don't use more than 2f");
+			//Debug.Log("Please don't use more than 2f");
 			spinningRadius = 2f;
 		}
 		realRadius = bigOssi.renderer.bounds.size.x/2 + spinningRadius;

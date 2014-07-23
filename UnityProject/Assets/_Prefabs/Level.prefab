@@ -544,6 +544,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 11400012}
   hasMiniView: 1
   isPaused: 0
+  switchingScene: 0
   loot: 500
   optimalVillagerAmount: 10
   levelNumber: 1

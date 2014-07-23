@@ -362,6 +362,7 @@ public class PlayerBehaviour : MonoBehaviour
 	public void SetPause(bool paused)
 	{
 		isPaused = paused;
+		_usedControls = Statics.selectedControlMethod;
 	}
 
 	protected virtual void OnCollisionEnter2D (Collision2D collision)
