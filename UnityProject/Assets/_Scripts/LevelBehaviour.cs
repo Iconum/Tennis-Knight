@@ -42,8 +42,7 @@ public class LevelBehaviour : MonoBehaviour {
 	public VillagerHandler villagerManager = null;
 	public CastleRaidHandler castleHandler = null;
 	public bool hasMiniView = true;
-	public int loot = 500;
-	public int optimalVillagerAmount = 10;
+	public int loot = 500, optimalVillagerAmount = 10, levelNumber = 1;
 	public float startFadeTime = 1.0f, endFadeTime = 2.0f, miniWaitTime = 3.0f, gameOverTime = 4.0f;
 	public Texture2D fadeTexture;
 	public List<EnemyPackage> enemySpawnPackages = new List<EnemyPackage> ();
@@ -144,13 +143,16 @@ public class LevelBehaviour : MonoBehaviour {
 	public virtual void ClearTheLevel(bool finished)
 	{
 		villagerManager.GetVillagers ();
-		float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
-		Statics.valuables += Mathf.FloorToInt (loot / ratio);
+		//float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
+		//Statics.valuables += Mathf.FloorToInt (loot / ratio); //Removed feature
 		_alpha = 0.0f;
 		_aOperation = Application.LoadLevelAsync ("LevelSelectMenu");
 		_aOperation.allowSceneActivation = false;
 		if (finished)
 		{
+			if (Statics.levelsComplete < levelNumber + 1)
+				Statics.levelsComplete = levelNumber + 1;
+
 			if (hasMiniView)
 				StartCoroutine (StartMiniView ());
 			else 

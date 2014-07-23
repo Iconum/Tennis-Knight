@@ -16,8 +16,7 @@ public enum ControlType
 public static class Statics
 {
 	public static ControlType selectedControlMethod = ControlType.keyboard;
-	public static long valuables = 0;
-	public static int villagers = 20, levelsComplete = 0;
+	public static int villagers = 20, levelsComplete = 1;
 	public static GUIStyle menuButtonStyle, menuTextStyle, creditsTextStyle;
 	public static float globalVolume = 1.0f, soundVolume = 1.0f, musicVolume = 1.0f;
 
