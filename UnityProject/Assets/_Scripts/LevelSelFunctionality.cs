@@ -12,7 +12,8 @@ public class LevelSelFunctionality : MonoBehaviour {
 	protected Vector3 _curPointPos;
 	protected Vector3 _nextPointPos;
 	protected Vector3 _tempPointPos;
-	protected List<GameObject> _levels = new List<GameObject>();
+	public List<GameObject> _levels = new List<GameObject>();
+	protected List<GameObject> _clouds = new List<GameObject>();
 	protected GameObject _level;
 	protected GameObject levelSelector;
 	protected bool isInPosition = true;
@@ -20,9 +21,12 @@ public class LevelSelFunctionality : MonoBehaviour {
 
 	protected float moveTime = 0f;
 
+	public GameObject lockedLevelCloud = null;
+
 	// Use this for initialization
 	void Start () 
 	{
+		levelsCleared = Statics.levelsComplete;
 		for (int i = 0; wayPointHandlerPrefab.transform.childCount > i; ++i)
 		{
 			_level = wayPointHandlerPrefab.transform.GetChild(i).gameObject;
@@ -31,7 +35,12 @@ public class LevelSelFunctionality : MonoBehaviour {
 		levelSelector = (GameObject)Instantiate ( levelSelectorPrefab,
 		                                         _levels[levelsCleared].transform.position,
 	                                          	  levelSelectorPrefab.transform.rotation);
-		setPoint (levelsCleared);
+		if(levelsCleared <= 0 || levelsCleared == 1)
+			setPoint (0);
+		else
+			setPoint(levelsCleared - 1);
+
+		addClouds ();
 
 	}
 	// Update is called once per frame
@@ -66,24 +75,35 @@ public class LevelSelFunctionality : MonoBehaviour {
 	{
 		return _nextPoint;
 	}
-	
+
+	void addClouds()
+	{
+		for (int i = 0; i < _levels.Count; ++i)
+		{
+			if(_levels[i].GetComponent<PointLevel>().levelID > levelsCleared)
+			{
+				_levels[i].GetComponent<PointLevel>().isLocked = true;
+				var cloud = (GameObject)Instantiate (lockedLevelCloud, _levels [i].transform.position, _levels [i].transform.rotation);
+				_clouds.Add (cloud);
+			}
+		}
+
+	}
+
+
 	protected void keyboardThings()
 	{
 		if (Input.GetKeyDown (KeyCode.Alpha1))
 		{
-			setPoint(0);
+			levelsCleared = 1;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha2))
 		{
-			setPoint(1);
+			levelsCleared = 2;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha3))
 		{
-			setPoint(2);
-		}
-		if (Input.GetKeyDown (KeyCode.Alpha4))
-		{
-			setPoint(3);
+			levelsCleared = 3;
 		}
 	}
 }

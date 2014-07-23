@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 728026390}
   - 114: {fileID: 728026389}
+  - 82: {fileID: 728026391}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -322,6 +323,7 @@ MonoBehaviour:
   hasMiniView: 1
   loot: 1500
   optimalVillagerAmount: 15
+  levelNumber: 1
   startFadeTime: 1
   endFadeTime: 1
   miniWaitTime: 3
@@ -377,7 +379,9 @@ MonoBehaviour:
       delayTime: 0
   levelTest: 0
   openEnd: 0
-  music: []
+  music:
+  - {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+  - {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
   oldMusic: {fileID: 0}
 --- !u!4 &728026390
 Transform:
@@ -396,6 +400,64 @@ Transform:
   - {fileID: 640056027}
   - {fileID: 723980137}
   m_Father: {fileID: 0}
+--- !u!82 &728026391
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 728026388}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1078435814
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,6 +823,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: music.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -1024,6 +1090,14 @@ Prefab:
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].delayTime
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: music.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: music.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
   m_RootGameObject: {fileID: 728026388}

@@ -721,8 +721,7 @@ MonoBehaviour:
   startLocation: {x: 0, y: -3, z: 0}
   endLocation: {x: 0, y: 0, z: 0}
   castleOffset: {x: 0, y: 0, z: 0}
-  villagerBundleAmount: 5
-  spawnDelay: .25
+  spawnDelay: .100000001
 --- !u!1001 &927280217
 Prefab:
   m_ObjectHideFlags: 0
@@ -761,6 +760,22 @@ Prefab:
     - target: {fileID: 400006, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .449433744
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .241858333
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: .835155308
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -.550014317
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
@@ -818,8 +833,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
   m_PrefabInternal: {fileID: 927280217}
   m_GameObject: {fileID: 1038937479}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.433060527, y: .309742689, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: .835155308, w: -.550014317}
+  m_LocalPosition: {x: .449433744, y: .241858333, z: 0}
   m_LocalScale: {x: .899999976, y: .899999976, z: 1}
   m_Children: []
   m_Father: {fileID: 1143653019}
@@ -918,6 +933,7 @@ MonoBehaviour:
   isPaused: 0
   strafeSpeed: 2
   heatLimit: 25
+  runawayRate: 30
   sixty: 60
   eighty: 80
   onefourty: 140
@@ -1193,7 +1209,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100000, guid: bbf1fd76531510e4294410d0e5c990fa, type: 2}
+      objectReference: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
       value: 
@@ -1673,13 +1689,15 @@ MonoBehaviour:
   hasMiniView: 1
   loot: 500
   optimalVillagerAmount: 10
+  levelNumber: 1
   startFadeTime: 1
   endFadeTime: 1
   miniWaitTime: 1
+  gameOverTime: 4
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: bbf1fd76531510e4294410d0e5c990fa, type: 2}
+    - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
       position: {x: 0, y: 3.5, z: 0}
       delayTime: 0
   - prefabPositionCombo:

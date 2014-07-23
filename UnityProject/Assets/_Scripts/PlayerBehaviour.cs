@@ -126,24 +126,13 @@ public class PlayerBehaviour : MonoBehaviour
 				PaddleActivate (leftPaddle);
 				anim.SetTrigger ("LeftSwing");
 
-				if (sounds.Count > 0 && audio)
-				{
-					audio.clip = sounds [2];
-					audio.pitch = Random.Range (0.9f, 1.2f);
-					audio.Play ();
-				}
 			}
 			if (Input.GetKeyDown (KeyCode.X))
 			{
 				PaddleActivate (rightPaddle);
 				anim.SetTrigger ("RightSwing");
 
-				if (sounds.Count > 0 && audio)
-				{
-					audio.clip = sounds [2];
-					audio.pitch = Random.Range (0.9f, 1.2f);
-					audio.Play ();
-				}
+
 			}
 			if (Input.GetKeyDown (KeyCode.Space))
 			{
@@ -162,9 +151,11 @@ public class PlayerBehaviour : MonoBehaviour
 					if (((Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f) < 0.0f)
 					{
 						PaddleActivate (leftPaddle);
+						anim.SetTrigger ("LeftSwing");
 					} else
 					{
 						PaddleActivate (rightPaddle);
+						anim.SetTrigger ("RightSwing");
 					}
 				}
 			} else
@@ -307,6 +298,12 @@ public class PlayerBehaviour : MonoBehaviour
 			paddle.GetComponent<PaddleBehaviour> ().PaddleHit ();
 			visualRacket.SetActive(false);
 			swordTrail = (ParticleSystem)Instantiate(swordTrailPrefab, paddle.transform.position, paddle.transform.rotation);
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [2];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 	}
 
@@ -320,16 +317,20 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				PaddleActivate (leftPaddle);
 				anim.SetTrigger ("LeftSwing");
+
 			} else
 			{
 				PaddleActivate (rightPaddle);
 				anim.SetTrigger ("RightSwing");
+
 			}
 		} else
 		{
 			PaddleActivate (rightPaddle);
-		}
+			anim.SetTrigger ("RightSwing");
 
+		}
+		
 	}
 	protected Vector2 IntersectionPoint (Vector2 pos, Vector2 vel)
 	{
