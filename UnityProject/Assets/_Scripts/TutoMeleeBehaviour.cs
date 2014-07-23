@@ -32,6 +32,13 @@ public class TutoMeleeBehaviour : MeleeBehaviour {
 				tutoKnight.currentState = TutorialState.Villagers;
 				tutoKnight.tutorialOn = true;
 			}
+			Instantiate (pow, transform.position, transform.rotation);
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 			InstantDeath ();
 		}
 	}

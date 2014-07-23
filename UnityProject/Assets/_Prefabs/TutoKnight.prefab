@@ -330,11 +330,12 @@ MonoBehaviour:
   isPaused: 0
   strafeSpeed: 2
   heatLimit: 25
+  runawayRate: 1
   sixty: 60
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
-  swordTrailPrefab: {fileID: 0}
+  swordTrailPrefab: {fileID: 19800000, guid: 929f5ed78e4231d48b90aefb66df990d, type: 2}
   swordTrail: {fileID: 0}
   sounds:
   - {fileID: 8300000, guid: 209ef46a446e39a408977eb477c48052, type: 3}

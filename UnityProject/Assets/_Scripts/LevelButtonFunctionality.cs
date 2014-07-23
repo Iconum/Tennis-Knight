@@ -91,7 +91,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 					break;
 					
 				case ButtonTypes.Third:
-
+					Application.LoadLevel("ThirdLevel");
 					break;
 				}
 			}

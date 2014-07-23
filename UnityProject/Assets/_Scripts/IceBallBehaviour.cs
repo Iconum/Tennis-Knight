@@ -5,6 +5,7 @@ public class IceBallBehaviour : BallBehaviour {
 	
 	public Vector3 bounceVelocity;
 	public float gravity = 2f;
+	public float rotationSpeed = 10f;
 
 	protected Vector3 _velocity;
 	protected int _bounceCount = 0;
@@ -14,6 +15,7 @@ public class IceBallBehaviour : BallBehaviour {
 	protected override void Start () 
 	{
 		base.Start ();
+		rigidbody2D.AddTorque (rotationSpeed);
 		
 	}
 
