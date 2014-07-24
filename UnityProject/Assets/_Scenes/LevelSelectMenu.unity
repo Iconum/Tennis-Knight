@@ -190,6 +190,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 1edb60bde0eec274d91772bc871969f1, type: 2}
+      propertyPath: _levels.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 1edb60bde0eec274d91772bc871969f1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -226,6 +230,22 @@ Prefab:
       propertyPath: lockedLevelCloud
       value: 
       objectReference: {fileID: 100000, guid: c1ab9ea5e5b85a845a02351c4e05df2a, type: 2}
+    - target: {fileID: 11400000, guid: 1edb60bde0eec274d91772bc871969f1, type: 2}
+      propertyPath: _levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 801513057}
+    - target: {fileID: 11400000, guid: 1edb60bde0eec274d91772bc871969f1, type: 2}
+      propertyPath: _levels.Array.data[1]
+      value: 
+      objectReference: {fileID: 41694001}
+    - target: {fileID: 11400000, guid: 1edb60bde0eec274d91772bc871969f1, type: 2}
+      propertyPath: _levels.Array.data[2]
+      value: 
+      objectReference: {fileID: 857180351}
+    - target: {fileID: 11400000, guid: 1edb60bde0eec274d91772bc871969f1, type: 2}
+      propertyPath: _levels.Array.data[3]
+      value: 
+      objectReference: {fileID: 362509529}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1edb60bde0eec274d91772bc871969f1, type: 2}
   m_RootGameObject: {fileID: 1194742706}
@@ -639,7 +659,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 6c3e1bfbc1153fb4289cd73ce0fadbb3, type: 2}
       propertyPath: prevSceneName
-      value: ModeSelect
+      value: Menu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c3e1bfbc1153fb4289cd73ce0fadbb3, type: 2}
@@ -804,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65033ebecd935c040b1f28b11c1d71a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prevSceneName: ModeSelect
+  prevSceneName: Menu
   loadPrefs: 0
   quit: 0
 --- !u!4 &924301737

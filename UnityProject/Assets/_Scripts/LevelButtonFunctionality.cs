@@ -36,7 +36,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 		switch (buttonType)
 		{
 		case ButtonTypes.Back:
-			Application.LoadLevel("ModeSelect");
+			Application.LoadLevel("Menu");
 			break;
 		case ButtonTypes.Tutorial:
 			if(swordPrefab.gameObject.GetComponent<MenuSwordScript> ().canClick)

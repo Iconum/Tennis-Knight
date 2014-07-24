@@ -42,6 +42,7 @@ public class LevelBehaviour : MonoBehaviour {
 	public VillagerHandler villagerManager = null;
 	public CastleRaidHandler castleHandler = null;
 	public PauseBehaviour pauseMenu = null;
+	public string prevLevelName = "LevelSelectMenu";
 	public bool hasMiniView = true, isPaused = false;
 	[System.NonSerialized]
 	public bool switchingScene = false;
@@ -74,7 +75,6 @@ public class LevelBehaviour : MonoBehaviour {
 			{
 				_fadeTimer = endFadeTime;
 				_aOperation.allowSceneActivation = true;
-				Debug.Log("Should switch scene now.");
 			}
 			_alpha = _fadeTimer / endFadeTime;
 		} else if (_startingLevel)
@@ -160,7 +160,7 @@ public class LevelBehaviour : MonoBehaviour {
 		//float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
 		//Statics.valuables += Mathf.FloorToInt (loot / ratio); //Removed feature
 		_alpha = 0.0f;
-		_aOperation = Application.LoadLevelAsync ("LevelSelectMenu");
+		_aOperation = Application.LoadLevelAsync (prevLevelName);
 		_aOperation.allowSceneActivation = false;
 		if (finished)
 		{
@@ -175,7 +175,8 @@ public class LevelBehaviour : MonoBehaviour {
 		} else
 		{
 			player.GetComponent<PlayerBehaviour> ().GameOver ();
-			BGLoop.current.ToggleStop ();
+			if (!BGLoop.current.stopped)
+				BGLoop.current.ToggleStop ();
 			StartCoroutine (GameOverTime ());
 		}
 	}
