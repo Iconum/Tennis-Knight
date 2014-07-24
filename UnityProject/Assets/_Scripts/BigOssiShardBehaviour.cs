@@ -17,6 +17,8 @@ public class BigOssiShardBehaviour : BallBehaviour
 
 	public GameObject explosionPrefab;
 	protected ParticleSystem explosion;
+
+	public List<AudioClip> sounds = new List<AudioClip> ();
 	
 	// Use this for initialization
 	void Start () 
@@ -27,14 +29,25 @@ public class BigOssiShardBehaviour : BallBehaviour
 		endPosition = new Vector3 (gameObject.transform.position.x, -10f);
 		
 		Instantiate (explosionPrefab, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
+
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+			
+			audio.clip = sounds [0];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected override void Update () 
 	{
+		base.Update ();
+
 		if (isSpawning)
 			spawnMovement ();
-		else 
+		else
 			targetingMovement ();
 	}
 
@@ -61,13 +74,26 @@ public class BigOssiShardBehaviour : BallBehaviour
 		if (timer >= 0.5f)
 			gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*(timer*4));
 		if (timer >= 2f)
+		{
 			isSpawning = false;
+			if (audio)
+			{
+				audio.clip = sounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
+		}
+
 	}
 
 	protected void targetingMovement()
 	{
+
+		Debug.Log ("targetingMovement");
 		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPosition, Time.deltaTime/2 );
 		gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*15);
+
+
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)

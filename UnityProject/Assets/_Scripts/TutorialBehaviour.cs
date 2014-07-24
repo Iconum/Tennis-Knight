@@ -34,7 +34,7 @@ public class TutorialTexts
 		Vector3 startvec = Camera.main.WorldToScreenPoint (new Vector3 (-2.5f, 4.0f)), endvec = Camera.main.WorldToScreenPoint(new Vector3(2.5f, -2.0f));
 		GUILayout.BeginArea (new Rect (startvec.x, Screen.height - startvec.y, endvec.x - startvec.x, Screen.height - endvec.y), Statics.menuTextStyle);
 		{
-			GUILayout.TextArea (tutorialText [currentText], Statics.menuTextStyle);
+			GUILayout.Box (tutorialText [currentText], Statics.menuTextStyle);
 		}
 		GUILayout.EndArea ();
 	}
@@ -77,12 +77,6 @@ public class TutorialBehaviour : PlayerBehaviour {
 		if (((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && _usedControls == ControlType.keyboard) || _usedControls != ControlType.keyboard)
 		{
 			_currentSpeed *= 2;
-		}
-
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			//TODO: Pause menu and game
-			Application.LoadLevel ("LevelSelectMenu");
 		}
 
 		if (_heat > 0.0f)
@@ -154,14 +148,15 @@ public class TutorialBehaviour : PlayerBehaviour {
 			{
 				if (!_tappedPaddle)
 				{
+					_tappedPaddle = true;
 					if (((Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f) < 0.0f)
 					{
-						_tappedPaddle = true;
 						PaddleActivate (leftPaddle);
+						anim.SetTrigger ("LeftSwing");
 					} else
 					{
-						_tappedPaddle = true;
 						PaddleActivate (rightPaddle);
+						anim.SetTrigger ("RightSwing");
 					}
 				}
 			} else
@@ -390,7 +385,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 				}
 			}
 		} else if (currentState == TutorialState.End || currentState == TutorialState.DragSwing || currentState == TutorialState.FreeSwing ||
-		           currentState == TutorialState.KeySwing || currentState == TutorialState.OppositeSwing)
+		           currentState == TutorialState.KeySwing || currentState == TutorialState.OppositeSwing || currentState == TutorialState.TiltSwing)
 		{
 			base.PaddleActivate (paddle);
 		}

@@ -4,6 +4,7 @@ using System.Collections;
 public class BombBehaviour : BallBehaviour {
 	public float fuseLength = 6.0f, explosiveForce = 1.0f;
 	public AudioClip explosion;
+	public float rotationSpeed = 10f;
 
 	private bool _exploding = false;
 
@@ -13,6 +14,7 @@ public class BombBehaviour : BallBehaviour {
 	{
 		StartCoroutine (LitFuse());
 		anim = GetComponent<Animator> ();
+		rigidbody2D.AddTorque (rotationSpeed);
 	}
 
 	IEnumerator LitFuse()
@@ -41,21 +43,23 @@ public class BombBehaviour : BallBehaviour {
 			if (!audio.isPlaying)
 			{
 				audio.clip = explosion;
-				audio.volume = 0.2f;
+				audio.volume = Statics.soundVolume;
 				audio.Play ();
 			}
 
 			StartCoroutine (StopExploding ());
-
-
-			Destroy (gameObject, 1.2f);
+			StartCoroutine (DelayDestroy());
 
 			//anim.GetComponent<Renderer>().transform
 
 			//GetComponent<CircleCollider2D>().transform.localScale=new Vector3(0.25f,0.25f,0);
 			//animation.Play();
 		}
-
+	}
+	IEnumerator DelayDestroy()
+	{
+		yield return new WaitForSeconds (1.2f);
+		Destroy (gameObject);
 	}
 
 	protected override void OnTriggerEnter2D (Collider2D other)

@@ -6,19 +6,24 @@ public class PlayerBehaviour : MonoBehaviour
 {
 	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null,visualRacket=null;
 	public bool paddleActive = false, isPaused = false;
-	public float strafeSpeed = 0.1f, heatLimit = 25.0f;
+	public float strafeSpeed = 0.1f, heatLimit = 25.0f, runawayRate = 1.0f, walkOffSpeed = 4.0f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
 	public Vector3 targetPosition = new Vector3(0.0f, -2.5f);
 
 	protected List<GameObject> _collisionList = new List<GameObject> ();
-	protected float _currentSpeed, _lerpTime = 0.0f, _heat = 0.0f;
+	protected float _currentSpeed, _lerpTime = 0.0f, _heat = 0.0f, _runawaySpeed = 0.0f;
 	protected float _horizontalTouch = 0.0f, _touchTime = 0.0f;
 	protected ControlType _usedControls = ControlType.keyboard;
-	protected bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false;
+	protected bool _tappedPaddle = false, _dragging = false, _startLevel = true, _endLevel = false, _gameOver = false;
 	protected Vector2 _touchPosition = Vector2.zero, _touchStartPosition = Vector2.zero;
 	protected Vector3 _playerPosition = Vector3.zero;
 
 	protected Animator anim;
+
+	public ParticleSystem swordTrailPrefab = null;
+	public ParticleSystem swordTrail = null;
+	public List<AudioClip> sounds = new List<AudioClip> ();
+
 
 	// Use this for initialization
 	protected virtual void Start ()
@@ -61,12 +66,6 @@ public class PlayerBehaviour : MonoBehaviour
 			_currentSpeed *= 2;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			//TODO: Pause menu and game
-			Application.LoadLevel ("LevelSelectMenu");
-		}
-
 		if (_heat > 0.0f)
 		{
 			_heat -= Time.deltaTime * 4.0f;
@@ -84,14 +83,18 @@ public class PlayerBehaviour : MonoBehaviour
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f - _heat/heatLimit,1f - _heat/heatLimit);
 
 		//Absolutely massive else-if block with all the control methods and the level transition movement
-		if (isPaused)
+		if (_gameOver)
+		{
+			_runawaySpeed += Time.deltaTime / runawayRate;
+			transform.position += new Vector3 (0.0f, -_runawaySpeed);
+		} else if (isPaused)
 		{
 
 		} else if (_endLevel)
 		{
 			_heat = 0.0f;
-			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -_currentSpeed, _currentSpeed),
-			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -_currentSpeed, _currentSpeed));
+			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -walkOffSpeed * Time.deltaTime, walkOffSpeed * Time.deltaTime),
+			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -walkOffSpeed * Time.deltaTime, walkOffSpeed * Time.deltaTime));
 		} else if (_startLevel)
 		{
 			_lerpTime += Time.deltaTime;
@@ -117,11 +120,14 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				PaddleActivate (leftPaddle);
 				anim.SetTrigger ("LeftSwing");
+
 			}
 			if (Input.GetKeyDown (KeyCode.X))
 			{
 				PaddleActivate (rightPaddle);
 				anim.SetTrigger ("RightSwing");
+
+
 			}
 			if (Input.GetKeyDown (KeyCode.Space))
 			{
@@ -140,9 +146,11 @@ public class PlayerBehaviour : MonoBehaviour
 					if (((Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f) < 0.0f)
 					{
 						PaddleActivate (leftPaddle);
+						anim.SetTrigger ("LeftSwing");
 					} else
 					{
 						PaddleActivate (rightPaddle);
+						anim.SetTrigger ("RightSwing");
 					}
 				}
 			} else
@@ -258,7 +266,7 @@ public class PlayerBehaviour : MonoBehaviour
 			deltaPosition = Mathf.Clamp (deltaPosition, -_currentSpeed, _currentSpeed);
 			transform.position += new Vector3 (deltaPosition, 0.0f);
 		}
-		if (!_endLevel && !_startLevel)
+		if (!_endLevel && !_startLevel && !_gameOver)
 		{
 			transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -2.7f, 2.7f), -2.5f);
 		}
@@ -284,6 +292,13 @@ public class PlayerBehaviour : MonoBehaviour
 			paddle.SetActive (true);
 			paddle.GetComponent<PaddleBehaviour> ().PaddleHit ();
 			visualRacket.SetActive(false);
+			swordTrail = (ParticleSystem)Instantiate(swordTrailPrefab, paddle.transform.position, paddle.transform.rotation);
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [2];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 	}
 
@@ -297,16 +312,20 @@ public class PlayerBehaviour : MonoBehaviour
 			{
 				PaddleActivate (leftPaddle);
 				anim.SetTrigger ("LeftSwing");
+
 			} else
 			{
 				PaddleActivate (rightPaddle);
 				anim.SetTrigger ("RightSwing");
+
 			}
 		} else
 		{
 			PaddleActivate (rightPaddle);
-		}
+			anim.SetTrigger ("RightSwing");
 
+		}
+		
 	}
 	protected Vector2 IntersectionPoint (Vector2 pos, Vector2 vel)
 	{
@@ -324,16 +343,21 @@ public class PlayerBehaviour : MonoBehaviour
 		_touchPosition = new Vector3 (1.5f, transform.position.y);
 		StartCoroutine (WalkOff ());
 	}
-
 	IEnumerator WalkOff()
 	{
 		yield return new WaitForSeconds (1.5f);
 		_touchPosition = new Vector3 (1.5f, 8.0f);
 	}
 
+	public void GameOver()
+	{
+		_gameOver = true;
+	}
+
 	public void SetPause(bool paused)
 	{
 		isPaused = paused;
+		_usedControls = Statics.selectedControlMethod;
 	}
 
 	protected virtual void OnCollisionEnter2D (Collision2D collision)
@@ -344,10 +368,22 @@ public class PlayerBehaviour : MonoBehaviour
 			if (_heat > heatLimit)
 				_heat = heatLimit;
 			collision.gameObject.GetComponent<BallBehaviour> ().BallDestroy ();
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [0];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 		if (collision.gameObject.CompareTag ("Enemy"))
 		{
 			_heat = heatLimit;
+			if (sounds.Count > 0 && audio)
+			{
+				audio.clip = sounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
 		}
 	}
 

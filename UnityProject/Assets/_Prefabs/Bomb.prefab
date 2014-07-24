@@ -66,7 +66,7 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: da6bfff5907306b4e94b8504526f97bc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .0900000036
   m_Pitch: 1
@@ -144,11 +144,14 @@ MonoBehaviour:
   startVelocity: {x: .100000001, y: -1}
   constantSpeed: 2
   heatGeneration: 7
-  paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
+  paddleHit: {fileID: 8300000, guid: da6bfff5907306b4e94b8504526f97bc, type: 3}
   levelManager: {fileID: 0}
+  isPaused: 0
+  particlePrefab: {fileID: 100000, guid: 0c292da710918304fa8b820eeae82b1d, type: 2}
   fuseLength: 5
   explosiveForce: 2
-  explosion: {fileID: 8300000, guid: 0ef0e0da6f6c8704cb6d46be9b59ce86, type: 3}
+  explosion: {fileID: 8300000, guid: e2a3be34f2bd141498f04455a2f47171, type: 3}
+  rotationSpeed: 10
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

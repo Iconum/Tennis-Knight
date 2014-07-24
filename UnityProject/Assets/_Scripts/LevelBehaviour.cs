@@ -39,16 +39,19 @@ public class EnemyPackage
 
 public class LevelBehaviour : MonoBehaviour {
 	public GameObject topBorder, player = null;
-	public VillagerHandler  villagerManager = null;
+	public VillagerHandler villagerManager = null;
 	public CastleRaidHandler castleHandler = null;
-	public bool hasMiniView = true;
-	public int loot = 500;
-	public int optimalVillagerAmount = 10;
-	public float startFadeTime = 1.0f, endFadeTime = 2.0f, miniWaitTime = 3.0f;
+	public PauseBehaviour pauseMenu = null;
+	public string prevLevelName = "LevelSelectMenu";
+	public bool hasMiniView = true, isPaused = false;
+	[System.NonSerialized]
+	public bool switchingScene = false;
+	public int loot = 500, optimalVillagerAmount = 10, levelNumber = 1;
+	public float startFadeTime = 1.0f, endFadeTime = 2.0f, miniWaitTime = 3.0f, gameOverTime = 4.0f;
 	public Texture2D fadeTexture;
 	public List<EnemyPackage> enemySpawnPackages = new List<EnemyPackage> ();
 
-	protected List<GameObject> deflectableList = new List<GameObject>();
+	protected List<GameObject> deflectableList = new List<GameObject>(), _currentEnemies = new List<GameObject>();
 	protected bool _loadingLevel = false, _startingLevel = true;
 	protected float _fadeTimer = 0.0f, _alpha = 1.0f;
 	protected AsyncOperation _aOperation = null;
@@ -83,6 +86,16 @@ public class LevelBehaviour : MonoBehaviour {
 				_startingLevel = false;
 			}
 			_alpha = (startFadeTime - _fadeTimer) / startFadeTime;
+		}
+
+		if (isPaused)
+		{
+			audio.volume = Statics.musicVolume;
+		}
+
+		if (Input.GetKeyDown (KeyCode.Escape))
+		{
+			SetPause (true);
 		}
 
 		//Debug
@@ -141,18 +154,31 @@ public class LevelBehaviour : MonoBehaviour {
 		deflectableList.Clear ();
 	}
 
-	public virtual void ClearTheLevel()
+	public virtual void ClearTheLevel(bool finished)
 	{
 		villagerManager.GetVillagers ();
-		float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
-		Statics.valuables += Mathf.FloorToInt (loot / ratio);
+		//float ratio = Mathf.Clamp (Statics.villagers / optimalVillagerAmount, 0.0f, 1.0f);
+		//Statics.valuables += Mathf.FloorToInt (loot / ratio); //Removed feature
 		_alpha = 0.0f;
-		_aOperation = Application.LoadLevelAsync ("LevelSelectMenu");
+		_aOperation = Application.LoadLevelAsync (prevLevelName);
 		_aOperation.allowSceneActivation = false;
-		if (hasMiniView)
-			StartCoroutine (StartMiniView ());
-		else 
-			BackToMenus ();
+		if (finished)
+		{
+			if (Statics.levelsComplete < levelNumber + 1)
+				Statics.levelsComplete = levelNumber + 1;
+
+			if (hasMiniView)
+				StartCoroutine (StartMiniView ());
+			else 
+				BackToMenus ();
+			switchingScene = true;
+		} else
+		{
+			player.GetComponent<PlayerBehaviour> ().GameOver ();
+			if (!BGLoop.current.stopped)
+				BGLoop.current.ToggleStop ();
+			StartCoroutine (GameOverTime ());
+		}
 	}
 	IEnumerator StartMiniView()
 	{
@@ -161,6 +187,11 @@ public class LevelBehaviour : MonoBehaviour {
 		player.renderer.enabled = false;
 		castleHandler.gameObject.SetActive (true);
 		castleHandler.Display ();
+	}
+	IEnumerator GameOverTime()
+	{
+		yield return new WaitForSeconds (gameOverTime);
+		BackToMenus ();
 	}
 
 	public virtual void BackToMenus()
@@ -192,6 +223,28 @@ public class LevelBehaviour : MonoBehaviour {
 			topBorder.tag = "Removal";
 			topBorder.collider2D.isTrigger = true;
 		}
+	}
+
+	public void SetPause(bool paused)
+	{
+		isPaused = paused;
+		villagerManager.SetPause (paused);
+		player.GetComponent<PlayerBehaviour> ().SetPause (paused);
+		for (int i = 0; i < _currentEnemies.Count; ++i)
+		{
+			if (_currentEnemies[i])
+				_currentEnemies [i].GetComponent<EnemyBehaviour> ().SetPause (paused);
+		}
+		for (int j = 0; j < deflectableList.Count; ++j)
+		{
+			if (deflectableList[j])
+				deflectableList[j].GetComponent<BallBehaviour> ().SetPause (paused);
+		}
+		if (paused)
+			Time.timeScale = 0.0f;
+		else
+			Time.timeScale = 1.0f;
+		pauseMenu.gameObject.SetActive (paused);
 	}
 
 	void OnGUI()

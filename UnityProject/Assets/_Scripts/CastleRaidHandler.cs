@@ -6,7 +6,6 @@ public class CastleRaidHandler : MonoBehaviour {
 	public LevelBehaviour level = null;
 	public GameObject terrainPrefab, castlePrefab, tinyVillagerPrefab;
 	public Vector3 startLocation, endLocation, castleOffset;
-	public int villagerBundleAmount = 5;
 	public float spawnDelay = 0.25f;
 
 	protected bool _displaying = false;
@@ -43,7 +42,7 @@ public class CastleRaidHandler : MonoBehaviour {
 
 	public void SpawnBundle()
 	{
-		if (villagerBundleAmount * _spawnedBundles < Statics.villagers)
+		if (_spawnedBundles < Statics.villagers)
 		{
 			++_spawnedBundles;
 			GameObject tempo = (GameObject)Instantiate (tinyVillagerPrefab, startLocation, Quaternion.Euler (Vector3.zero));

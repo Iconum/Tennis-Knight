@@ -12,6 +12,7 @@ public class KingBall : BallBehaviour
 	{
 		base.Start ();
 		_projectilesLayer = LayerMask.NameToLayer ("Projectiles");
+		GetComponent<SpriteRenderer>().color = new Color(1f,0.2f,0.2f);
 	}
 
 	protected override void OnDestroy ()
@@ -59,11 +60,13 @@ public class KingBall : BallBehaviour
 	{
 		if (CompareTag ("Deflectable"))
 		{
+			GetComponent<SpriteRenderer>().color = new Color(1f,0.2f,0.2f);
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, -Mathf.Abs(rigidbody2D.velocity.y));
 			rigidbody2D.velocity += new Vector2 ((player.transform.position - transform.position).normalized.x, (player.transform.position - transform.position).normalized.y) * 2;
 			gameObject.layer = _projectilesLayer;
 		} else if (CompareTag ("Deflected"))
 		{
+			GetComponent<SpriteRenderer>().color = new Color(0.2f,1f,0.2f);
 			rigidbody2D.velocity += new Vector2 ((theKing.transform.position - transform.position).normalized.x, (theKing.transform.position - transform.position).normalized.y) * 2;
 			rigidbody2D.velocity = new Vector2 (Mathf.Clamp (rigidbody2D.velocity.x, -0.7f, 0.7f), rigidbody2D.velocity.y);
 		}

@@ -16,10 +16,8 @@ public enum ControlType
 public static class Statics
 {
 	public static ControlType selectedControlMethod = ControlType.keyboard;
-	public static long valuables = 0;
-	public static int villagers = 20;
-	public static GUIStyle menuButtonStyle;
-	public static GUIStyle menuTextStyle;
+	public static int villagers = 20, levelsComplete = 1;
+	public static GUIStyle menuButtonStyle, menuTextStyle, creditsTextStyle;
 	public static float globalVolume = 1.0f, soundVolume = 1.0f, musicVolume = 1.0f;
 
 	public static void setVolume()
@@ -36,7 +34,7 @@ public static class Statics
 	{
 		if (PlayerPrefs.HasKey ("GlobalVolume"))
 		{
-			Statics.setVolume(PlayerPrefs.GetFloat("GlobalVolume"));
+			Statics.setVolume (PlayerPrefs.GetFloat ("GlobalVolume"));
 		}
 		if (PlayerPrefs.HasKey ("SoundVolume"))
 		{
@@ -59,6 +57,10 @@ public static class Statics
 			Statics.selectedControlMethod = ControlType.freedragging;
 			#endif
 		}
+		if (PlayerPrefs.HasKey ("LevelsComplete"))
+		{
+			levelsComplete = PlayerPrefs.GetInt ("LevelsComplete");
+		}
 	}
 
 	public static void PrefStoring()
@@ -67,16 +69,21 @@ public static class Statics
 		PlayerPrefs.SetFloat ("GlobalVolume", Statics.globalVolume);
 		PlayerPrefs.SetFloat ("SoundVolume", Statics.soundVolume);
 		PlayerPrefs.SetFloat ("MusicVolume", Statics.musicVolume);
+		PlayerPrefs.SetInt ("LevelsComplete", levelsComplete);
 		PlayerPrefs.Save ();
 	}
 
 	public static void StyleInitialization()
 	{
-		Statics.menuButtonStyle = new GUIStyle (GUI.skin.button);
-		Statics.menuButtonStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
+		menuButtonStyle = new GUIStyle (GUI.skin.button);
+		menuButtonStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
 		
-		Statics.menuTextStyle = new GUIStyle (GUI.skin.box);
-		Statics.menuTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 22;
-		Statics.menuTextStyle.wordWrap = true;
+		menuTextStyle = new GUIStyle (GUI.skin.box);
+		menuTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 22;
+		menuTextStyle.wordWrap = true;
+
+		creditsTextStyle = new GUIStyle (GUI.skin.label);
+		creditsTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
+		creditsTextStyle.normal.textColor = Color.black;
 	}
 }

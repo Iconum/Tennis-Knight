@@ -23,6 +23,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		{
 			audio.volume = Statics.soundVolume;
 		}
+		anim = GetComponent<Animator> ();
 	}
 
 	protected virtual void OnDestroy()
@@ -91,6 +92,11 @@ public class EnemyBehaviour : MonoBehaviour {
 				_flickerTimer = 0.0f;
 				Initialize ();
 			}
+		}
+
+		if (isPaused)
+		{
+			audio.volume = Statics.soundVolume;
 		}
 
 		//Debug Controls

@@ -65,7 +65,7 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: da6bfff5907306b4e94b8504526f97bc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -129,9 +129,13 @@ MonoBehaviour:
   startVelocity: {x: 0, y: -3}
   constantSpeed: 4
   heatGeneration: 4
-  paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
+  paddleHit: {fileID: 8300000, guid: da6bfff5907306b4e94b8504526f97bc, type: 3}
   levelManager: {fileID: 0}
+  isPaused: 0
+  particlePrefab: {fileID: 100000, guid: 0c292da710918304fa8b820eeae82b1d, type: 2}
   selfPrefab: {fileID: 100000}
+  shotProjectiles: []
+  rotationspeed: 10
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -150,10 +154,10 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 3
-  m_SortingOrder: 1
-  m_SortingLayerID: 1061239699
-  m_Sprite: {fileID: 21300000, guid: db9e9fff98368e14183c5ea82efb0ab6, type: 3}
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: be810a6685f46724eae56e98c14a678a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

@@ -64,6 +64,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 114: {fileID: 11400004}
   - 95: {fileID: 9500000}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Player
@@ -118,8 +119,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: 0, y: 0, z: .877564251, w: -.479459107}
-  m_LocalPosition: {x: .463072479, y: .176499352, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.433060527, y: .309742689, z: 0}
   m_LocalScale: {x: .899999976, y: .899999976, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
@@ -212,6 +213,64 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .899999976, y: .400000006}
   m_Center: {x: 0, y: 0}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -270,12 +329,21 @@ MonoBehaviour:
   visualRacket: {fileID: 100004}
   paddleActive: 0
   isPaused: 0
-  strafeSpeed: 2
+  strafeSpeed: 3
   heatLimit: 25
+  runawayRate: 30
+  walkOffSpeed: 2
   sixty: 60
   eighty: 80
   onefourty: 140
   targetPosition: {x: 0, y: -2.5, z: 0}
+  swordTrailPrefab: {fileID: 19800000, guid: 929f5ed78e4231d48b90aefb66df990d, type: 2}
+  swordTrail: {fileID: 0}
+  sounds:
+  - {fileID: 8300000, guid: 209ef46a446e39a408977eb477c48052, type: 3}
+  - {fileID: 8300000, guid: 840c103f52a97ec42a9565f417544d9b, type: 3}
+  - {fileID: 8300000, guid: ff1da506da99bc440a2ea95790793dbb, type: 3}
+  - {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -14,10 +14,14 @@ public class VillagerHandler : MonoBehaviour {
 	public Vector3 spawnPos;
 
 	protected int health = Statics.villagers, living = 0;
-	protected bool _looting = false;
+	protected bool _looting = false, _gameOver = false;
 	// Use this for initialization
 	void Start () {
 		//Spawn villagers on screen when game starts
+		if (!level)
+		{
+			level = GameObject.Find ("Level").GetComponent<LevelBehaviour> ();
+		}
 		for (int i = 0; i < respawnCount; i++)
 		{
 			//Spawn villagers at fitted positions (this can be tweaked later if there
@@ -30,8 +34,21 @@ public class VillagerHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (health == 0 && villagers.Count == 0 && !_gameOver && !level.switchingScene)
+		{
+			level.ClearTheLevel (false);
+			_gameOver = true;
+		}
 
-
+		//Debug
+		if (Input.GetKeyDown (KeyCode.Home))
+		{
+			health = 0;
+			for (int i = 0; i < villagers.Count; ++i)
+			{
+				villagers [i].GetComponent<VillagerBehaviour> ().Die ();
+			}
+		}
 	}
 	//Deletes villagers when fallen and respawns at that position where
 	//Last villager died.
@@ -103,6 +120,14 @@ public class VillagerHandler : MonoBehaviour {
 	public void GetVillagers()
 	{
 		Statics.villagers = living + health + villagers.Count;
+	}
+
+	public void SetPause(bool paused)
+	{
+		for (int i = 0; i < villagers.Count; ++i)
+		{
+			villagers [i].GetComponent<VillagerBehaviour> ().SetPause (paused);
+		}
 	}
 
 	public void HideVillagers()

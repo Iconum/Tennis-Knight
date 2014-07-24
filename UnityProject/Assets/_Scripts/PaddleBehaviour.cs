@@ -4,9 +4,8 @@ using System.Collections;
 public class PaddleBehaviour : MonoBehaviour {
 	public GameObject player;
 	public bool isLeft;
-	public ParticleSystem swordParticlePrefab = null;
 
-	protected ParticleSystem swordParticle;
+	protected ParticleSystem swordParticle = null;
 	private Vector3 _startPosition;
 	private Quaternion _startRotation;
 	private int _deflectedLayer;
@@ -21,7 +20,6 @@ public class PaddleBehaviour : MonoBehaviour {
 		_startRotation = transform.localRotation;
 		_deflectedLayer = LayerMask.NameToLayer ("OwnProjectiles");
 		Hitting (false);
-
 		//swordParticle = swordParticlePrefab.GetComponent<ParticleSystem> ();
 	}
 	
@@ -34,14 +32,17 @@ public class PaddleBehaviour : MonoBehaviour {
 			{
 				rigidbody2D.velocity = new Vector2 (7.0f, 9.0f);
 				rigidbody2D.angularVelocity = -640.0f;
+				moveTrail();
 			} else
 			{
 				rigidbody2D.velocity = new Vector2 (-7.0f, 9.0f);
 				rigidbody2D.angularVelocity = 640.0f;
+				moveTrail();
 			}
 			if (_hitTime > 0.3f)
 				PaddleDisable ();
 		}
+
 	}
 
 	public void PaddleHit()
@@ -66,6 +67,28 @@ public class PaddleBehaviour : MonoBehaviour {
 		_hitting = hit;
 		renderer.enabled = hit;
 		collider2D.enabled = hit;
+	}
+
+	void moveTrail()
+	{
+		if (player.GetComponent<PlayerBehaviour> ().swordTrail)
+		{
+			player.GetComponent<PlayerBehaviour>().swordTrail.renderer.sortingOrder = -3;
+			if(!isLeft)
+			{
+				player.GetComponent<PlayerBehaviour> ().swordTrail.transform.position = 
+					new Vector3 (rigidbody2D.transform.position.x + 0.5f,
+					             rigidbody2D.transform.position.y - 0.2f);
+			player.GetComponent<PlayerBehaviour> ().swordTrail.startRotation = -transform.rotation.z*2;
+			}
+			else
+			{
+				player.GetComponent<PlayerBehaviour> ().swordTrail.transform.position = 
+					new Vector3 (rigidbody2D.transform.position.x - 0.5f,
+					             rigidbody2D.transform.position.y - 0.2f);
+				player.GetComponent<PlayerBehaviour> ().swordTrail.startRotation = transform.rotation.z*2;
+			}
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)

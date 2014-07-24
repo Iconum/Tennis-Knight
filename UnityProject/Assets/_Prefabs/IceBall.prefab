@@ -29,8 +29,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0326094627, y: .887706518, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.41522026, y: 1.09019375, z: 0}
+  m_LocalScale: {x: .527641416, y: .527640581, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!50 &5000000
@@ -131,10 +131,12 @@ MonoBehaviour:
   startVelocity: {x: .100000001, y: -.100000001}
   constantSpeed: 3
   heatGeneration: 15
-  paddleHit: {fileID: 0}
+  paddleHit: {fileID: 8300000, guid: 4671331526c45894dabd8fe25ef501df, type: 3}
   levelManager: {fileID: 0}
+  particlePrefab: {fileID: 100000, guid: 0c292da710918304fa8b820eeae82b1d, type: 2}
   bounceVelocity: {x: 0, y: 0, z: 0}
   gravity: 10
+  rotationSpeed: 10
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1244,9 +1246,9 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: db9e9fff98368e14183c5ea82efb0ab6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d5e643996267a94f9c0bf2cd36dbf5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
