@@ -68,8 +68,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.Escape))
 		{
-			//TODO: Pause menu and game
-			Application.LoadLevel ("LevelSelectMenu");
+			levelManager.GetComponent<LevelBehaviour> ().SetPause (true);
 		}
 
 		if (_heat > 0.0f)

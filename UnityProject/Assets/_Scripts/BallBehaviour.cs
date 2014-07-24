@@ -8,6 +8,7 @@ public class BallBehaviour : MonoBehaviour
 	public float constantSpeed = 2.0f, heatGeneration = 1.5f;
 	public AudioClip paddleHit;
 	public GameObject levelManager = null;
+	public bool isPaused = false;
 	public GameObject particlePrefab = null;
 
 	protected List<GameObject> _enemies = new List<GameObject>();
@@ -18,6 +19,12 @@ public class BallBehaviour : MonoBehaviour
 		rigidbody2D.velocity = constantSpeed * startVelocity.normalized;
 		audio.clip = paddleHit;
 		audio.volume = Statics.soundVolume;
+	}
+
+	protected virtual void Update()
+	{
+		if (isPaused)
+			audio.volume = Statics.soundVolume;
 	}
 
 	protected virtual void FixedUpdate ()
@@ -75,6 +82,11 @@ public class BallBehaviour : MonoBehaviour
 			int ind = Random.Range (0, _enemies.Count);
 			rigidbody2D.velocity += new Vector2 ((_enemies [ind].transform.position - transform.position).normalized.x, (_enemies [ind].transform.position - transform.position).normalized.y);
 		}
+	}
+
+	public void SetPause(bool paused)
+	{
+		isPaused = paused;
 	}
 
 	public virtual void BallDestroy()

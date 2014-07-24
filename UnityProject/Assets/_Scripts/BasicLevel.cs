@@ -24,7 +24,7 @@ public class BasicLevel : LevelBehaviour {
 
 		if (audio)
 		{
-			audio.volume = 0.3f;
+			audio.volume = Statics.musicVolume;
 
 			audio.clip = music [0];
 			audio.Play ();
