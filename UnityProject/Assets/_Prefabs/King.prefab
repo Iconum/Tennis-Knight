@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 58: {fileID: 5800000}
   - 82: {fileID: 8200000}
+  - 50: {fileID: 5000000}
   m_Layer: 10
   m_Name: King
   m_TagString: Enemy
@@ -31,6 +32,21 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!50 &5000000
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
 --- !u!58 &5800000
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -136,7 +152,7 @@ MonoBehaviour:
   isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
-  destroyParticle: {fileID: 0}
+  destroyParticle: {fileID: 100000, guid: ec11e7fc63d66514ca8f1e4d6dd43a09, type: 2}
   deathSound: {fileID: 8300000, guid: 5627a5bb96b555942acaf0151e8f8be5, type: 3}
   deathColor: {r: .75686276, g: .666666687, b: .145098045, a: 1}
   player: {fileID: 0}

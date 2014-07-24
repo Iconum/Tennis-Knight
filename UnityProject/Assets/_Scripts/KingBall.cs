@@ -37,7 +37,7 @@ public class KingBall : BallBehaviour
 				{
 					audio.clip = paddleHit;
 				}
-				Home ();
+				StartCoroutine(PurkkaHome ());
 				audio.Play ();
 			}
 		}
@@ -54,18 +54,21 @@ public class KingBall : BallBehaviour
 		constantSpeed += speed;
 	}
 
-	protected override void Home()
+	IEnumerator PurkkaHome()
 	{
+		yield return new WaitForSeconds (0.01f);
 		if (CompareTag ("Deflectable"))
 		{
 			GetComponent<SpriteRenderer>().color = new Color(1f,0.2f,0.2f);
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, -Mathf.Abs(rigidbody2D.velocity.y));
 			rigidbody2D.velocity += new Vector2 ((player.transform.position - transform.position).normalized.x, (player.transform.position - transform.position).normalized.y) * 2;
+			Debug.Log("JEE");
 		} else if (CompareTag ("Deflected"))
 		{
 			GetComponent<SpriteRenderer>().color = new Color(0.2f,1f,0.2f);
 			rigidbody2D.velocity += new Vector2 ((theKing.transform.position - transform.position).normalized.x, (theKing.transform.position - transform.position).normalized.y) * 2;
 			rigidbody2D.velocity = new Vector2 (Mathf.Clamp (rigidbody2D.velocity.x, -0.7f, 0.7f), rigidbody2D.velocity.y);
+			Debug.Log("YAY");
 		}
 	}
 }
