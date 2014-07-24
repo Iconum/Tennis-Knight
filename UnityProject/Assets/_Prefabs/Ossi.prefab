@@ -136,6 +136,9 @@ MonoBehaviour:
   isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
+  destroyParticle: {fileID: 100000, guid: ec11e7fc63d66514ca8f1e4d6dd43a09, type: 2}
+  deathSound: {fileID: 8300000, guid: d31d2e7aa4803c94bbe5f7b8a1fceefb, type: 3}
+  deathColor: {r: .388235301, g: .278431386, b: .513725519, a: 1}
   shootTimerLimit: 3
   usesSinModifier: 0
   notShootingWalls: 1
@@ -145,7 +148,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d31d2e7aa4803c94bbe5f7b8a1fceefb, type: 3}
   - {fileID: 0}
   - {fileID: 8300000, guid: d31d2e7aa4803c94bbe5f7b8a1fceefb, type: 3}
-  deathSounds: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

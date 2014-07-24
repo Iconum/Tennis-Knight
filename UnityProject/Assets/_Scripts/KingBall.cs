@@ -5,13 +5,11 @@ public class KingBall : BallBehaviour
 {
 	public KingProto theKing;
 	public GameObject player;
-
-	private int _projectilesLayer = 0;
+	
 
 	protected override void Start ()
 	{
 		base.Start ();
-		_projectilesLayer = LayerMask.NameToLayer ("Projectiles");
 		GetComponent<SpriteRenderer>().color = new Color(1f,0.2f,0.2f);
 	}
 
@@ -63,7 +61,6 @@ public class KingBall : BallBehaviour
 			GetComponent<SpriteRenderer>().color = new Color(1f,0.2f,0.2f);
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, -Mathf.Abs(rigidbody2D.velocity.y));
 			rigidbody2D.velocity += new Vector2 ((player.transform.position - transform.position).normalized.x, (player.transform.position - transform.position).normalized.y) * 2;
-			gameObject.layer = _projectilesLayer;
 		} else if (CompareTag ("Deflected"))
 		{
 			GetComponent<SpriteRenderer>().color = new Color(0.2f,1f,0.2f);

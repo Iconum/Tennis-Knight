@@ -258,7 +258,7 @@ MonoBehaviour:
   strafeSpeed: 3
   heatLimit: 25
   runawayRate: 30
-  walkOffSpeed: 4
+  walkOffSpeed: 2
   sixty: 60
   eighty: 80
   onefourty: 140

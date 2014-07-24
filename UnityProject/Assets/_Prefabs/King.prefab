@@ -77,6 +77,9 @@ MonoBehaviour:
   isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
+  destroyParticle: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 5627a5bb96b555942acaf0151e8f8be5, type: 3}
+  deathColor: {r: .75686276, g: .666666687, b: .145098045, a: 1}
   player: {fileID: 0}
   maxDeflections: 8
 --- !u!212 &21200000

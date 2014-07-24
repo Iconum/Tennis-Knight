@@ -18,6 +18,7 @@ public class KingProto : EnemyBehaviour {
 		anim = GetComponent<Animator> ();
 		player = levelManager.GetComponent<LevelBehaviour> ().player;
 		deflections = maxDeflections - health;
+		_projectileLayer = LayerMask.NameToLayer ("Projectiles");
 		StartCoroutine (BallSpawning (spawnLerpLimit));
 	}
 	
@@ -70,6 +71,7 @@ public class KingProto : EnemyBehaviour {
 			Debug.Log("Herp Derp: " + deflections.ToString());
 			collision.gameObject.GetComponent<KingBall>().SpeedUp(0.4f);
 			collision.gameObject.tag = "Deflectable";
+			collision.gameObject.layer = _projectileLayer;
 			//ballUsed = false;
 
 			if (deflections>0)

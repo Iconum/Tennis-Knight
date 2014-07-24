@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: 96424374315fd824a83451f981756b29
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - projectilePrefab: {instanceID: 0}
+  - levelManager: {instanceID: 0}
+  - anim: {instanceID: 0}
+  - destroyParticle: {fileID: 100000, guid: ec11e7fc63d66514ca8f1e4d6dd43a09, type: 2}
+  - deathSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

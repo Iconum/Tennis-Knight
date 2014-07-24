@@ -152,6 +152,9 @@ MonoBehaviour:
   isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
+  destroyParticle: {fileID: 100000, guid: ec11e7fc63d66514ca8f1e4d6dd43a09, type: 2}
+  deathSound: {fileID: 8300000, guid: 3a15866fda0fa664b95dd18b1bff449b, type: 3}
+  deathColor: {r: .211764708, g: .211764708, b: .211764708, a: 1}
   meleeAttacking: 0
   usesProjectile: 0
   attackTime: 5

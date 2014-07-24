@@ -11,7 +11,7 @@ public class RangedBehaviour : EnemyBehaviour {
 	protected List<GameObject> _shotProjectiles = new List<GameObject>();
 
 	public List<AudioClip> sounds = new List<AudioClip> ();
-	public GameObject deathSounds = null;
+	//public GameObject deathSounds = null;
 	// Use this for initialization
 	protected override void Awake () {
 		base.Awake ();
