@@ -702,7 +702,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: music.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+      objectReference: {fileID: 8300000, guid: 8c73fed782711094b8c3f6483cf58258, type: 3}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: music.Array.data[1]
       value: 
@@ -1133,6 +1133,7 @@ MonoBehaviour:
   villagerManager: {fileID: 0}
   castleHandler: {fileID: 311074195}
   pauseMenu: {fileID: 613644732}
+  prevLevelName: LevelSelectMenu
   hasMiniView: 1
   isPaused: 0
   loot: 1500
@@ -1188,7 +1189,7 @@ MonoBehaviour:
   levelTest: 0
   openEnd: 0
   music:
-  - {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+  - {fileID: 8300000, guid: 8c73fed782711094b8c3f6483cf58258, type: 3}
   - {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
   oldMusic: {fileID: 0}
 --- !u!4 &922232684
