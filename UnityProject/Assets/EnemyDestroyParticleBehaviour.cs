@@ -4,28 +4,37 @@ using System.Collections;
 public class EnemyDestroyParticleBehaviour : MonoBehaviour {
 	
 	public AudioClip[] audioList;
+	protected bool isPlaying;
+	protected float timer = 0f;
 
 	// Use this for initialization
 	void Start () 
 	{
 		audio.volume = Statics.soundVolume;
+		particleSystem.renderer.sortingLayerName = "Overlay";
+		particleSystem.renderer.sortingOrder = 2;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if (gameObject.audio.isPlaying == false)
+		timer += Time.deltaTime;
+		if (timer > 3f)
 		{
 			Destroy(gameObject);
 		}
 	}
 
-	void playDeathSound(int ID, Color particleColor)
+	public void playDeathSound(AudioClip deathSound, Color particleColor)
 	{
-		audio.clip = audioList [ID];
-		audio.pitch = Random.Range (0.9f, 1.2f);
-		audio.Play ();
+		if (deathSound != null)
+		{
+			audio.clip = deathSound;
+			Debug.Log(audio.clip.name);
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
 
-		GetComponent<ParticleSystem> ().startColor = particleColor;
+		if(particleColor != null)
+			GetComponent<ParticleSystem> ().startColor = particleColor;
 	}
 }

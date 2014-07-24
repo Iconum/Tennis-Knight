@@ -94,6 +94,7 @@ public class BasicLevel : LevelBehaviour {
 		{
 			villagerManager.GetComponent<VillagerHandler> ().LootCastle ();
 			player.GetComponent<PlayerBehaviour> ().StartTheEnd ();
+			audio.Stop();
 		}
 	}
 }

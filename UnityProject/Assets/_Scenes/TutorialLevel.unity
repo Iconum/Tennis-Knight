@@ -322,9 +322,10 @@ MonoBehaviour:
   visualRacket: {fileID: 574503615}
   paddleActive: 0
   isPaused: 0
-  strafeSpeed: 2
+  strafeSpeed: 3
   heatLimit: 25
   runawayRate: 1
+  walkOffSpeed: 4
   sixty: 60
   eighty: 80
   onefourty: 140
@@ -613,7 +614,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: music.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+      objectReference: {fileID: 8300000, guid: 0a6f694689590c8488b82043830c303b, type: 3}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: levelNumber
       value: 0
@@ -1267,6 +1268,7 @@ MonoBehaviour:
   villagerManager: {fileID: 0}
   castleHandler: {fileID: 573790883}
   pauseMenu: {fileID: 1618129461}
+  prevLevelName: LevelSelectMenu
   hasMiniView: 0
   isPaused: 0
   loot: 0
@@ -1288,7 +1290,7 @@ MonoBehaviour:
   levelTest: 0
   openEnd: 1
   music:
-  - {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+  - {fileID: 8300000, guid: 0a6f694689590c8488b82043830c303b, type: 3}
   - {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
   oldMusic: {fileID: 0}
 --- !u!82 &1294459161

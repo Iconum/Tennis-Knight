@@ -165,6 +165,9 @@ MonoBehaviour:
   isPaused: 0
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
+  destroyParticle: {fileID: 100000, guid: ec11e7fc63d66514ca8f1e4d6dd43a09, type: 2}
+  deathSound: {fileID: 0}
+  deathColor: {r: .200000003, g: .117647059, b: .250980407, a: 1}
   shieldBallPrefab: {fileID: 100000, guid: 19a26e18e74702a46992632c0c18f0d6, type: 2}
   ballCount: 11
   shootingSpeed: 3
