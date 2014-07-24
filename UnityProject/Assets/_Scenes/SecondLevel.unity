@@ -450,7 +450,7 @@ MonoBehaviour:
   isPaused: 0
   loot: 1500
   optimalVillagerAmount: 15
-  levelNumber: 1
+  levelNumber: 2
   startFadeTime: 1
   endFadeTime: 1
   miniWaitTime: 3
@@ -827,7 +827,7 @@ MonoBehaviour:
   strafeSpeed: 3
   heatLimit: 25
   runawayRate: 30
-  walkOffSpeed: 4
+  walkOffSpeed: 2
   sixty: 60
   eighty: 80
   onefourty: 140
@@ -1343,6 +1343,10 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: openEnd
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: levelNumber
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}

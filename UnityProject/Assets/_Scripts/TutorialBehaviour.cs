@@ -385,7 +385,7 @@ public class TutorialBehaviour : PlayerBehaviour {
 				}
 			}
 		} else if (currentState == TutorialState.End || currentState == TutorialState.DragSwing || currentState == TutorialState.FreeSwing ||
-		           currentState == TutorialState.KeySwing || currentState == TutorialState.OppositeSwing)
+		           currentState == TutorialState.KeySwing || currentState == TutorialState.OppositeSwing || currentState == TutorialState.TiltSwing)
 		{
 			base.PaddleActivate (paddle);
 		}

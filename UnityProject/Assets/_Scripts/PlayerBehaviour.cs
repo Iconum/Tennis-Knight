@@ -93,8 +93,8 @@ public class PlayerBehaviour : MonoBehaviour
 		} else if (_endLevel)
 		{
 			_heat = 0.0f;
-			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -walkOffSpeed, walkOffSpeed),
-			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -walkOffSpeed, walkOffSpeed));
+			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -walkOffSpeed * Time.deltaTime, walkOffSpeed * Time.deltaTime),
+			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -walkOffSpeed * Time.deltaTime, walkOffSpeed * Time.deltaTime));
 		} else if (_startLevel)
 		{
 			_lerpTime += Time.deltaTime;
