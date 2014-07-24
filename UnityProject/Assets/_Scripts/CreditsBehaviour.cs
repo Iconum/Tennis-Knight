@@ -12,8 +12,8 @@ public class CreditsBehaviour : MonoBehaviour {
 
 	protected void Start ()
 	{
-		_scrollingActualSpeed = (scrollingRate / 640.0f) * Screen.height;
-		_creditSeperationActual = (creditSeperation / 640.0f) * Screen.height;
+		_scrollingActualSpeed = scrollingRate;
+		_creditSeperationActual = creditSeperation;
 		_scrollingStateActual = scrollingState;
 
 		oldMusic = GameObject.Find("MenuMusic");

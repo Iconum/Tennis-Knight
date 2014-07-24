@@ -393,12 +393,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 728026389}
-  terrainPrefab: {fileID: 100000, guid: 848895cc44808d44d982e3babbfbe079, type: 2}
-  castlePrefab: {fileID: 100000, guid: 51de250b61ce04b46ae0ddb7ad65ec85, type: 2}
+  terrainPrefab: {fileID: 100000, guid: 284cbbb104a270c4bbf29dfa91e80084, type: 2}
+  castlePrefab: {fileID: 100000, guid: e51139026659b744f99291dcaafdc23a, type: 2}
   tinyVillagerPrefab: {fileID: 100000, guid: 382fd6959b638644399a39c5f78fa32d, type: 2}
   startLocation: {x: 0, y: -3, z: 0}
   endLocation: {x: 0, y: 0, z: 0}
-  castleOffset: {x: 0, y: 0, z: 0}
+  castleOffset: {x: 0, y: 2, z: 0}
   spawnDelay: .100000001
 --- !u!4 &723980137
 Transform:
@@ -445,6 +445,7 @@ MonoBehaviour:
   villagerManager: {fileID: 0}
   castleHandler: {fileID: 723980136}
   pauseMenu: {fileID: 588974898}
+  prevLevelName: LevelSelectMenu
   hasMiniView: 1
   isPaused: 0
   loot: 1500
@@ -1287,6 +1288,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: levelNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: terrainPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 284cbbb104a270c4bbf29dfa91e80084, type: 2}
+    - target: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: castlePrefab
+      value: 
+      objectReference: {fileID: 100000, guid: e51139026659b744f99291dcaafdc23a, type: 2}
+    - target: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: startLocation.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: castleOffset.y
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
