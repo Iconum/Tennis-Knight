@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class KingProto : EnemyBehaviour {
 	public GameObject player = null;
@@ -11,6 +12,7 @@ public class KingProto : EnemyBehaviour {
 	private int deflections, _projectileLayer;
 	bool temp;
 
+	public List<AudioClip> sounds = new List<AudioClip> ();
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +21,15 @@ public class KingProto : EnemyBehaviour {
 		player = levelManager.GetComponent<LevelBehaviour> ().player;
 		deflections = maxDeflections - health;
 		StartCoroutine (BallSpawning (spawnLerpLimit));
+
+		if (audio)
+		{
+			audio.volume = Statics.soundVolume;
+
+			audio.clip = sounds [0];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
 	}
 	
 	// Update is called once per frame
@@ -32,33 +43,7 @@ public class KingProto : EnemyBehaviour {
 
 
 		}
-		//transform.position = new Vector3(Mathf.Sin(Time.time - _levelSinTime) * 2.5f, transform.position.y);
-		//knightPos = (player.GetComponent<KnightBossProto>().transform.position);
-		//Debug.Log (player.GetComponent<KnightBossProto> ().transform.position);
 
-		/*
-		GameObject asd;
-		if (ballUsed == false)
-		{
-			asd = (GameObject)Instantiate (projectilePrefab, transform.position+new Vector3(0,-1.2f,0), transform.rotation);
-			asd.GetComponent<KingBall> ().SetStartVelocity (new Vector2 (0.1f,-0.5f));
-			
-			//(Random.Range (-0.2f, 0.2f), -0.4f)
-			//asd.
-			ballUsed = true;
-			Debug.Log (ballUsed);
-			
-			//temp=asd.GetComponent<KingBall> ().King.GetComponent<KingProto>().ballUsed;
-			
-		}
-		//ballUsed = temp;
-		//kbipos = GameObject.Find("KingBall(Clone)").transform.position;
-		//Debug.Log (kbipos);
-
-		//temp = projectilePrefab.GetComponent<KingBall>().GetComponent<KingProto>().ballUsed;
-		//Debug.Log (temp);
-		//GameObject.
-		*/
 	}
 	
 	protected void OnCollisionEnter2D(Collision2D collision)
@@ -84,7 +69,13 @@ public class KingProto : EnemyBehaviour {
 				deflections = maxDeflections - health;
 				anim.SetTrigger("Damage");
 				_flickerActive = true;
-				//anim.SetTrigger("Damage");
+
+				if (audio)
+				{
+					audio.clip = sounds [1];
+					audio.pitch = Random.Range (0.9f, 1.2f);
+					audio.Play ();
+				}
 
 				if (health <= 0)
 				{
@@ -103,6 +94,13 @@ public class KingProto : EnemyBehaviour {
 		tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
 		tempo.GetComponent<KingBall> ().GetTheKingAndLink (this, player);
 		ListDeflectable (tempo);
+
+		if (audio)
+		{
+			audio.clip = sounds [0];
+			audio.pitch = Random.Range (0.9f, 1.2f);
+			audio.Play ();
+		}
 	}
 	IEnumerator BallSpawning(float t)
 	{
