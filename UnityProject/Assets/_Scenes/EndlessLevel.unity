@@ -1041,6 +1041,10 @@ Prefab:
       propertyPath: hasMiniView
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: a14439ce621c8404b8167d63d9b99770, type: 2}
+      propertyPath: prevLevelName
+      value: Menu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a14439ce621c8404b8167d63d9b99770, type: 2}
   m_RootGameObject: {fileID: 1441681786}
@@ -1157,6 +1161,7 @@ MonoBehaviour:
   villagerManager: {fileID: 396510799}
   castleHandler: {fileID: 556951456}
   pauseMenu: {fileID: 334302327}
+  prevLevelName: Menu
   hasMiniView: 0
   isPaused: 0
   loot: 500
@@ -1442,7 +1447,7 @@ MonoBehaviour:
   strafeSpeed: 3
   heatLimit: 25
   runawayRate: 30
-  walkOffSpeed: 4
+  walkOffSpeed: 2
   sixty: 60
   eighty: 80
   onefourty: 140
