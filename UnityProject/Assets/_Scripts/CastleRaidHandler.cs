@@ -13,6 +13,8 @@ public class CastleRaidHandler : MonoBehaviour {
 	protected List<GameObject> _villagers = new List<GameObject>();
 	protected int _spawnedBundles = 0;
 
+	public List<AudioClip> music = new List<AudioClip> ();
+
 	public void Update()
 	{
 		if (Input.GetKeyDown (KeyCode.Space) || Input.touchCount > 0)
