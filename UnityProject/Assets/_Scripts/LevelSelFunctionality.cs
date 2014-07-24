@@ -28,7 +28,7 @@ public class LevelSelFunctionality : MonoBehaviour
             _level = wayPointHandlerPrefab.transform.GetChild(i).gameObject;
             _levels.Add(_level);
         }
-        levelsCleared = 8; //Statics.levelsComplete;
+        levelsCleared = Statics.levelsComplete;
         if (levelsCleared > _levels.Count)
             levelsCleared = _levels.Count;
         levelSelector = (GameObject)Instantiate(levelSelectorPrefab,

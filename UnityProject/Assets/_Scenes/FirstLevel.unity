@@ -126,6 +126,7 @@ MonoBehaviour:
   villagerManager: {fileID: 0}
   castleHandler: {fileID: 1275044554}
   pauseMenu: {fileID: 1528357369}
+  prevLevelName: LevelSelectMenu
   hasMiniView: 1
   isPaused: 0
   loot: 500
@@ -174,7 +175,7 @@ MonoBehaviour:
   levelTest: 0
   openEnd: 0
   music:
-  - {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+  - {fileID: 8300000, guid: 0a6f694689590c8488b82043830c303b, type: 3}
   - {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
   oldMusic: {fileID: 0}
 --- !u!82 &21437991
@@ -1802,6 +1803,10 @@ Prefab:
       propertyPath: enemySpawnPackages.Array.data[3].prefabPositionCombo.Array.data[0].delayTime
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: music.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a6f694689590c8488b82043830c303b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
   m_RootGameObject: {fileID: 21437988}

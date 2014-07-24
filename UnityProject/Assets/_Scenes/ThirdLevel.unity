@@ -1133,6 +1133,7 @@ MonoBehaviour:
   villagerManager: {fileID: 0}
   castleHandler: {fileID: 311074195}
   pauseMenu: {fileID: 613644732}
+  prevLevelName: LevelSelectMenu
   hasMiniView: 1
   isPaused: 0
   loot: 1500
