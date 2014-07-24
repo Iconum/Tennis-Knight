@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 61: {fileID: 6100002}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: dragonClaw
   m_TagString: Removal
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 400002}
   - 212: {fileID: 21200002}
   - 61: {fileID: 6100000}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: dragonClaw
   m_TagString: Removal
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ MonoBehaviour:
   levelManager: {fileID: 100004, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
   flickerTimerLimit: .5
   spawnLerpLimit: 3
-  health: 2
+  health: 15
   projectileLimit: 2
   specialInvincibility: 0
   spawning: 1

@@ -122,6 +122,14 @@ public class VillagerHandler : MonoBehaviour {
 		Statics.villagers = living + health + villagers.Count;
 	}
 
+	public void SetPause(bool paused)
+	{
+		for (int i = 0; i < villagers.Count; ++i)
+		{
+			villagers [i].GetComponent<VillagerBehaviour> ().SetPause (paused);
+		}
+	}
+
 	public void HideVillagers()
 	{
 		health = 0;

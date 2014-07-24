@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OptionsFunctionality : MonoBehaviour {
+public class OptionsFunctionality : MonoBehaviour
+{
 	public float thirty, sixty, eighty, onefourty;
-
+	public string PrevScene = "";
+	public PauseBehaviour pauseMenu = null;
+	public Texture background = null;
+	//public
 	string menuText;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		thirty = (30.0f / 640.0f) * Screen.height;
 		sixty = (60.0f / 640.0f) * Screen.height;
 		eighty = (80.0f / 400.0f) * Screen.width;
@@ -15,23 +20,32 @@ public class OptionsFunctionality : MonoBehaviour {
 		menuText = GetMenuText ();
 	}
 
-	void OnGUI()
+	void OnGUI ()
 	{
 		Statics.StyleInitialization ();
-		GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f));
+		if (background)
+			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f), background);
+		else 
+			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f));
 		{
 			if (GUILayout.Button ("Back", Statics.menuButtonStyle))
 			{
-				Application.LoadLevel("Menu");
+				if (PrevScene != "")
+				{
+					Application.LoadLevel ("PrevScene");
+				} else if (pauseMenu != null)
+				{
+					gameObject.SetActive(false);
+				}
 			}
-			GUILayout.Space(thirty);
-			GUILayout.Label("Master Volume:", Statics.menuTextStyle);
-			Statics.setVolume(GUILayout.HorizontalSlider(Statics.globalVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle));
-			GUILayout.Label("Sound Volume:", Statics.menuTextStyle);
-			Statics.soundVolume = GUILayout.HorizontalSlider(Statics.soundVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle);
-			GUILayout.Label("Music Volume:", Statics.menuTextStyle);
-			Statics.musicVolume = GUILayout.HorizontalSlider(Statics.musicVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle);
-			GUILayout.Space(thirty);
+			GUILayout.Space (thirty);
+			GUILayout.Label ("Master Volume:", Statics.menuTextStyle);
+			Statics.setVolume (GUILayout.HorizontalSlider (Statics.globalVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle));
+			GUILayout.Label ("Sound Volume:", Statics.menuTextStyle);
+			Statics.soundVolume = GUILayout.HorizontalSlider (Statics.soundVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle);
+			GUILayout.Label ("Music Volume:", Statics.menuTextStyle);
+			Statics.musicVolume = GUILayout.HorizontalSlider (Statics.musicVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle);
+			GUILayout.Space (thirty);
 			#if UNITY_STANDALONE || UNITY_EDITOR
 			if (GUILayout.Button ("Keyboard Controls", Statics.menuButtonStyle))
 			{
@@ -76,7 +90,7 @@ public class OptionsFunctionality : MonoBehaviour {
 		GUILayout.EndArea ();
 	}
 
-	string GetMenuText()
+	string GetMenuText ()
 	{
 		if (Statics.selectedControlMethod == ControlType.keyboard)
 		{

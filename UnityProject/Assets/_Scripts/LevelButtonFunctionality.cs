@@ -22,7 +22,8 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 	public GameObject menuPrefab;
 	public GameObject swordPrefab;
 	public AsyncOperation _asyncOp = null;
-	
+	public GameObject wayPointHandler = null;
+
 	protected bool isSwordOn = false;
 	protected Vector3 startPos;
 
@@ -37,9 +38,6 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 		case ButtonTypes.Back:
 			Application.LoadLevel("ModeSelect");
 			break;
-		case ButtonTypes.Shop:
-			Debug.Log("click");
-			break;
 		case ButtonTypes.Tutorial:
 			if(swordPrefab.gameObject.GetComponent<MenuSwordScript> ().canClick)
 			{
@@ -49,7 +47,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 			}
 			break;
 		case ButtonTypes.First:
-			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick)
+			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick && !isLevellocked(1))
 			{
 				menuPrefab.GetComponent<LevelSelFunctionality>().setPoint(1);
 				activateSword();
@@ -57,7 +55,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 			}
 			break;
 		case ButtonTypes.Second:
-			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick)
+			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick && !isLevellocked(2))
 			{
 				menuPrefab.GetComponent<LevelSelFunctionality>().setPoint(2);
 				activateSword();
@@ -65,7 +63,7 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 			}
 			break;
 		case ButtonTypes.Third:
-			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick)
+			if(swordPrefab.GetComponent<MenuSwordScript> ().canClick && !isLevellocked(3))
 			{
 				menuPrefab.GetComponent<LevelSelFunctionality>().setPoint(3);
 				activateSword();
@@ -110,6 +108,17 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 		base.PressButton ();
 	}
 
+	bool isLevellocked(int ID)
+	{
+		bool isItLocked = false;
+		for (int i = 0; i < menuPrefab.GetComponent<LevelSelFunctionality>()._levels.Count; ++i)
+		{
+			if(menuPrefab.GetComponent<LevelSelFunctionality>()._levels[i].GetComponent<PointLevel>().levelID == ID)
+				isItLocked =  menuPrefab.GetComponent<LevelSelFunctionality>()._levels[i].GetComponent<PointLevel>().isLocked;
+		}
+		return isItLocked;
+	}
+
 	protected void deActivateSword()
 	{
 		swordPrefab.GetComponent<MenuSwordScript> ().swordDeActivate ();
@@ -118,5 +127,4 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 	{
 		swordPrefab.GetComponent<MenuSwordScript> ().swordActivate ();
 	}
-
 }

@@ -158,7 +158,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   flickerTimerLimit: 4
   spawnLerpLimit: 3
-  health: 1
+  health: 5
   projectileLimit: 1
   specialInvincibility: 0
   spawning: 0

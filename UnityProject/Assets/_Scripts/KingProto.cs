@@ -28,7 +28,9 @@ public class KingProto : EnemyBehaviour {
 		if (!isPaused)
 		{
 			_levelSinTime += Time.deltaTime;
-			transform.position = new Vector3 (Mathf.Cos (_levelSinTime * 4), transform.position.y);
+			transform.position = new Vector3 (Mathf.Cos (_levelSinTime ), transform.position.y);
+
+
 		}
 		//transform.position = new Vector3(Mathf.Sin(Time.time - _levelSinTime) * 2.5f, transform.position.y);
 		//knightPos = (player.GetComponent<KnightBossProto>().transform.position);
