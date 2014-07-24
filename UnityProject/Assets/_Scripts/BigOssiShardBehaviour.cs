@@ -74,11 +74,22 @@ public class BigOssiShardBehaviour : BallBehaviour
 		if (timer >= 0.5f)
 			gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*(timer*4));
 		if (timer >= 2f)
+		{
 			isSpawning = false;
+			if (audio)
+			{
+				audio.clip = sounds [1];
+				audio.pitch = Random.Range (0.9f, 1.2f);
+				audio.Play ();
+			}
+		}
+
 	}
 
 	protected void targetingMovement()
 	{
+
+		Debug.Log ("targetingMovement");
 		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPosition, Time.deltaTime/2 );
 		gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*15);
 

@@ -43,6 +43,8 @@ public class LevelBehaviour : MonoBehaviour {
 	public CastleRaidHandler castleHandler = null;
 	public PauseBehaviour pauseMenu = null;
 	public bool hasMiniView = true, isPaused = false;
+	[System.NonSerialized]
+	public bool switchingScene = false;
 	public int loot = 500, optimalVillagerAmount = 10, levelNumber = 1;
 	public float startFadeTime = 1.0f, endFadeTime = 2.0f, miniWaitTime = 3.0f, gameOverTime = 4.0f;
 	public Texture2D fadeTexture;
@@ -72,6 +74,7 @@ public class LevelBehaviour : MonoBehaviour {
 			{
 				_fadeTimer = endFadeTime;
 				_aOperation.allowSceneActivation = true;
+				Debug.Log("Should switch scene now.");
 			}
 			_alpha = _fadeTimer / endFadeTime;
 		} else if (_startingLevel)
@@ -88,6 +91,11 @@ public class LevelBehaviour : MonoBehaviour {
 		if (isPaused)
 		{
 			audio.volume = Statics.musicVolume;
+		}
+
+		if (Input.GetKeyDown (KeyCode.Escape))
+		{
+			SetPause (true);
 		}
 
 		//Debug
@@ -163,6 +171,7 @@ public class LevelBehaviour : MonoBehaviour {
 				StartCoroutine (StartMiniView ());
 			else 
 				BackToMenus ();
+			switchingScene = true;
 		} else
 		{
 			player.GetComponent<PlayerBehaviour> ().GameOver ();

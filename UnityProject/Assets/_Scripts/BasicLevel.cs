@@ -46,10 +46,9 @@ public class BasicLevel : LevelBehaviour {
 				{
 					BGLoop.current.ToggleStop();
 					ToggleWall ();
-
-					audio.clip = music [1];
-					audio.Play ();
 				}
+				audio.clip = music [1];
+				audio.Play ();
 				StartTheEnd ();
 			} else
 			{
@@ -68,10 +67,13 @@ public class BasicLevel : LevelBehaviour {
 			{
 				baddudes [i].GetComponent<EnemyBehaviour> ().levelManager = gameObject;
 			}
-			if (enemySpawnPackages.Count == 0 && !openEnd)
+			if (enemySpawnPackages.Count == 0)
 			{
-				BGLoop.current.ToggleStop();
-				ToggleWall ();
+				if (!openEnd)
+				{
+					BGLoop.current.ToggleStop();
+					ToggleWall ();
+				}
 				audio.clip = music [1];
 				audio.Play ();
 			}

@@ -32,7 +32,7 @@ public class OptionsFunctionality : MonoBehaviour
 			{
 				if (PrevScene != "")
 				{
-					Application.LoadLevel ("PrevScene");
+					Application.LoadLevel (PrevScene);
 				} else if (pauseMenu != null)
 				{
 					gameObject.SetActive(false);
