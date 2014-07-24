@@ -129,7 +129,7 @@ MonoBehaviour:
   startVelocity: {x: .100000001, y: -1}
   constantSpeed: 4
   heatGeneration: 15
-  paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
+  paddleHit: {fileID: 8300000, guid: da6bfff5907306b4e94b8504526f97bc, type: 3}
   levelManager: {fileID: 0}
   isPaused: 0
   particlePrefab: {fileID: 0}
