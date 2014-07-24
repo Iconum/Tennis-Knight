@@ -79,12 +79,6 @@ public class TutorialBehaviour : PlayerBehaviour {
 			_currentSpeed *= 2;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			//TODO: Pause menu and game
-			Application.LoadLevel ("LevelSelectMenu");
-		}
-
 		if (_heat > 0.0f)
 		{
 			_heat -= Time.deltaTime * 4.0f;
@@ -154,14 +148,15 @@ public class TutorialBehaviour : PlayerBehaviour {
 			{
 				if (!_tappedPaddle)
 				{
+					_tappedPaddle = true;
 					if (((Input.touches [0].position.x) / (Screen.width / 5.4f) - 2.7f) < 0.0f)
 					{
-						_tappedPaddle = true;
 						PaddleActivate (leftPaddle);
+						anim.SetTrigger ("LeftSwing");
 					} else
 					{
-						_tappedPaddle = true;
 						PaddleActivate (rightPaddle);
+						anim.SetTrigger ("RightSwing");
 					}
 				}
 			} else

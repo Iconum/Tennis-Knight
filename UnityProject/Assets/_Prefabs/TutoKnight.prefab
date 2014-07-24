@@ -328,9 +328,10 @@ MonoBehaviour:
   visualRacket: {fileID: 100008}
   paddleActive: 0
   isPaused: 0
-  strafeSpeed: 2
+  strafeSpeed: 3
   heatLimit: 25
   runawayRate: 1
+  walkOffSpeed: 4
   sixty: 60
   eighty: 80
   onefourty: 140

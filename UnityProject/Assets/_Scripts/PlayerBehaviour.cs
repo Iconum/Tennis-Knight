@@ -6,7 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
 	public GameObject leftPaddle = null, rightPaddle = null, levelManager = null,visualRacket=null;
 	public bool paddleActive = false, isPaused = false;
-	public float strafeSpeed = 0.1f, heatLimit = 25.0f, runawayRate = 1.0f;
+	public float strafeSpeed = 0.1f, heatLimit = 25.0f, runawayRate = 1.0f, walkOffSpeed = 4.0f;
 	public float sixty = 60.0f, eighty = 80.0f, onefourty = 140.0f;
 	public Vector3 targetPosition = new Vector3(0.0f, -2.5f);
 
@@ -66,11 +66,6 @@ public class PlayerBehaviour : MonoBehaviour
 			_currentSpeed *= 2;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			levelManager.GetComponent<LevelBehaviour> ().SetPause (true);
-		}
-
 		if (_heat > 0.0f)
 		{
 			_heat -= Time.deltaTime * 4.0f;
@@ -98,8 +93,8 @@ public class PlayerBehaviour : MonoBehaviour
 		} else if (_endLevel)
 		{
 			_heat = 0.0f;
-			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -_currentSpeed, _currentSpeed),
-			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -_currentSpeed, _currentSpeed));
+			transform.position += new Vector3 (Mathf.Clamp (_touchPosition.x - transform.position.x, -walkOffSpeed, walkOffSpeed),
+			                                   Mathf.Clamp (_touchPosition.y - transform.position.y, -walkOffSpeed, walkOffSpeed));
 		} else if (_startLevel)
 		{
 			_lerpTime += Time.deltaTime;
@@ -362,6 +357,7 @@ public class PlayerBehaviour : MonoBehaviour
 	public void SetPause(bool paused)
 	{
 		isPaused = paused;
+		_usedControls = Statics.selectedControlMethod;
 	}
 
 	protected virtual void OnCollisionEnter2D (Collision2D collision)

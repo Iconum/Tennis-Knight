@@ -34,7 +34,7 @@ public class VillagerHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (health == 0 && villagers.Count == 0 && !_gameOver)
+		if (health == 0 && villagers.Count == 0 && !_gameOver && !level.switchingScene)
 		{
 			level.ClearTheLevel (false);
 			_gameOver = true;
