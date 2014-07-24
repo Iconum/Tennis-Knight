@@ -1330,7 +1330,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.size
@@ -1375,7 +1375,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100000, guid: bbf1fd76531510e4294410d0e5c990fa, type: 2}
+      objectReference: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
       value: 
@@ -1941,11 +1941,7 @@ MonoBehaviour:
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: bbf1fd76531510e4294410d0e5c990fa, type: 2}
-      position: {x: 0, y: 3.5, z: 0}
-      delayTime: 0
-  - prefabPositionCombo:
-    - enemy: {fileID: 100004, guid: a9a0918ba9a460043bd95e76e22b6700, type: 2}
+    - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: 0, y: 3.5, z: 0}
       delayTime: 0
   levelTest: 0
