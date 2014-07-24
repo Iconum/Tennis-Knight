@@ -18,6 +18,7 @@ public class ModeButtonFunctionality : ButtonFunctionality {
 			_asyncOp = Application.LoadLevelAsync ("LevelSelectMenu");
 			break;
 		case ButtonTypes.Endless:
+			_asyncOp = Application.LoadLevelAsync ("EndlessLevel");
 			break;
 		case ButtonTypes.Back:
 			_asyncOp = Application.LoadLevelAsync ("Menu");

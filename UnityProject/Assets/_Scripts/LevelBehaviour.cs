@@ -93,6 +93,11 @@ public class LevelBehaviour : MonoBehaviour {
 			audio.volume = Statics.musicVolume;
 		}
 
+		if (Input.GetKeyDown (KeyCode.Escape))
+		{
+			SetPause (true);
+		}
+
 		//Debug
 		if (Input.GetKeyDown (KeyCode.PageDown))
 		{

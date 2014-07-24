@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 192081389}
   m_GameObject: {fileID: 44930753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .145397305, y: -2.53035927, z: 0}
+  m_LocalPosition: {x: .145397305, y: -7.32999992, z: 0}
   m_LocalScale: {x: 1.46259451, y: 1.46259451, z: 1}
   m_Children:
   - {fileID: 376370323}
@@ -255,9 +255,10 @@ MonoBehaviour:
   visualRacket: {fileID: 1778221372}
   paddleActive: 0
   isPaused: 0
-  strafeSpeed: 2
+  strafeSpeed: 3
   heatLimit: 25
   runawayRate: 30
+  walkOffSpeed: 4
   sixty: 60
   eighty: 80
   onefourty: 140
@@ -390,6 +391,10 @@ Prefab:
     - target: {fileID: 400004, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -7.32999992
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ac250ad6fb12f843908c5be261f2478, type: 2}

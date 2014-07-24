@@ -37,7 +37,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mass: 1
+  m_Mass: .180000007
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
@@ -131,6 +131,8 @@ MonoBehaviour:
   heatGeneration: 15
   paddleHit: {fileID: 8300000, guid: e2245e6323d498f4c8f8247b64d89fdb, type: 3}
   levelManager: {fileID: 0}
+  isPaused: 0
+  particlePrefab: {fileID: 0}
   theKing: {fileID: 0}
   player: {fileID: 0}
 --- !u!212 &21200000
