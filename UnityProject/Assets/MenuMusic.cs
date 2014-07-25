@@ -18,6 +18,11 @@ public class MenuMusic : MonoBehaviour {
 		}
 		DontDestroyOnLoad(this.gameObject);
 	}
+
+	void Update()
+	{
+		audio.volume = Statics.musicVolume;
+	}
 	
 	// any other methods you need
 }
