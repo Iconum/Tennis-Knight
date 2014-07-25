@@ -24,9 +24,9 @@ public class OptionsFunctionality : MonoBehaviour
 	{
 		Statics.StyleInitialization ();
 		if (background)
-			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f), background);
+			GUILayout.BeginArea (new Rect (20.0f, 100.0f, 1040.0f, 1720.0f), background);
 		else 
-			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f));
+			GUILayout.BeginArea (new Rect (20.0f, 100.0f, 1040.0f, 1720.0f));
 		{
 			if (GUILayout.Button ("Back", Statics.menuButtonStyle))
 			{

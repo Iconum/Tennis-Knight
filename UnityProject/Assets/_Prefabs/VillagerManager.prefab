@@ -39,10 +39,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   villagerPrefab: {fileID: 100000, guid: 19fa25882e55546449ffdf0fdb8149d4, type: 2}
+  level: {fileID: 0}
   respawnCount: 5
+  villagerSpawnRate: .5
   villagers: []
   spawnPositions: []
   spawnPos: {x: 0, y: 0, z: 0}
+  villagerSprite: {fileID: 2800000, guid: e832f0114c0521c4c9c966fad6eaed80, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

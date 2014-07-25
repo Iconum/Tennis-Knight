@@ -16,7 +16,7 @@ public enum ControlType
 public static class Statics
 {
 	public static ControlType selectedControlMethod = ControlType.keyboard;
-	public static int villagers = 20, levelsComplete = 1;
+	public static int villagers = 20, levelsComplete = 1, bestEndless = 0;
 	public static GUIStyle menuButtonStyle, menuTextStyle, creditsTextStyle;
 	public static float globalVolume = 1.0f, soundVolume = 1.0f, musicVolume = 1.0f;
 
@@ -61,6 +61,10 @@ public static class Statics
 		{
 			levelsComplete = PlayerPrefs.GetInt ("LevelsComplete");
 		}
+		if (PlayerPrefs.HasKey ("BestEndless"))
+		{
+			bestEndless = PlayerPrefs.GetInt ("BestEndless");
+		}
 	}
 
 	public static void PrefStoring()
@@ -70,20 +74,25 @@ public static class Statics
 		PlayerPrefs.SetFloat ("SoundVolume", Statics.soundVolume);
 		PlayerPrefs.SetFloat ("MusicVolume", Statics.musicVolume);
 		PlayerPrefs.SetInt ("LevelsComplete", levelsComplete);
+		PlayerPrefs.SetInt ("BestEndless", bestEndless);
 		PlayerPrefs.Save ();
 	}
 
 	public static void StyleInitialization()
 	{
+		Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(Vector3.zero), new Vector3(Screen.width / 1080f, Screen.height / 1920f, 1.0f));
+		GUI.matrix = matrix;
+
 		menuButtonStyle = new GUIStyle (GUI.skin.button);
-		menuButtonStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
+		menuButtonStyle.fontSize = 50;
 		
 		menuTextStyle = new GUIStyle (GUI.skin.box);
-		menuTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 22;
+		menuTextStyle.fontSize = 44;
 		menuTextStyle.wordWrap = true;
 
 		creditsTextStyle = new GUIStyle (GUI.skin.label);
-		creditsTextStyle.fontSize = (Mathf.FloorToInt(Screen.height) / 640) * 26;
-		creditsTextStyle.normal.textColor = Color.black;
+		creditsTextStyle.fontSize = 52;
+		creditsTextStyle.fontStyle = FontStyle.Bold;
+		creditsTextStyle.normal.textColor = Color.white;
 	}
 }
