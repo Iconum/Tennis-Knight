@@ -13,10 +13,7 @@ public class OptionsFunctionality : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		thirty = (30.0f / 640.0f) * Screen.height;
-		sixty = (60.0f / 640.0f) * Screen.height;
-		eighty = (80.0f / 400.0f) * Screen.width;
-		onefourty = (140.0f / 640.0f) * Screen.height;
+
 		menuText = GetMenuText ();
 	}
 
@@ -24,9 +21,9 @@ public class OptionsFunctionality : MonoBehaviour
 	{
 		Statics.StyleInitialization ();
 		if (background)
-			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width-40.0f, Screen.height-200.0f), background);
+			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Statics.resolution(true), Statics.resolution(false)), background);
 		else 
-			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width-40.0f, Screen.height-200.0f));
+			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Statics.resolution(true), Statics.resolution(false)));
 		{
 			if (GUILayout.Button ("Back", Statics.menuButtonStyle))
 			{

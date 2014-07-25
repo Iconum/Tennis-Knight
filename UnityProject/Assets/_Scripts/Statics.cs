@@ -80,7 +80,7 @@ public static class Statics
 
 	public static void StyleInitialization()
 	{
-		#if UNITY_ANDROID || UNITY_IPHONE || UNITY_WP8 || UNITY_WEBPLAYER || UNITY_EDITOR
+		#if UNITY_ANDROID || UNITY_IPHONE || UNITY_WP8 || UNITY_WEBPLAYER
 		Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(Vector3.zero), new Vector3(Screen.width / 1080f, Screen.height / 1920f, 1.0f));
 #else
 		Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(Vector3.zero), new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1.0f));
@@ -98,5 +98,20 @@ public static class Statics
 		creditsTextStyle.fontSize = 52;
 		creditsTextStyle.fontStyle = FontStyle.Bold;
 		creditsTextStyle.normal.textColor = Color.white;
+	}
+
+	public static float resolution(bool horizontal)
+	{
+		#if UNITY_ANDROID || UNITY_IPHONE || UNITY_WP8 || UNITY_WEBPLAYER
+		if (horizontal)
+			return 1040.0f;
+		else
+			return 1720.0f;
+		#else
+		if (horizontal)
+			return 1880.0f;
+		else
+			return 960.0f;
+		#endif
 	}
 }
