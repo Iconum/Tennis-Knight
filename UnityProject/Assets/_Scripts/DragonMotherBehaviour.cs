@@ -42,7 +42,11 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 		if(!spawning && !isDead)
 		ShootBalls ();
 		if (isDead)
+		{
 			deathAnim ();
+			anim.SetBool ("Die", true);
+			//anim.SetTrigger ("MDDamage");
+		}
 		
 	}
 
@@ -90,7 +94,7 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 
 	protected void deathAnim()
 	{
-		anim.SetTrigger ("MDDamage");
+		//anim.SetTrigger ("MDDamage");
 		deathTimer += Time.deltaTime;
 		explosiontimer += Time.deltaTime;
 		transform.Translate(0, Time.deltaTime/2,0);
@@ -102,7 +106,7 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 			explosiontimer = 0;
 		}
 		if (deathTimer >= 5f)
-			Destroy (gameObject);
+			InstantDeath();
 
 	}
 	
@@ -125,7 +129,7 @@ public class DragonMotherBehaviour : EnemyBehaviour {
 				_shootTimer = 0.0f;
 				//Shoot projectile
 				curProjectile = Projectiles[Random.Range(0, Projectiles.Length)];
-				GameObject tempo = (GameObject)Instantiate (curProjectile, transform.position, transform.rotation);
+				GameObject tempo = (GameObject)Instantiate (curProjectile, transform.position + new Vector3(0,-2f,0), transform.rotation);
 				//Set velocity to it
 				tempo.GetComponent<BallBehaviour> ().SetStartVelocity (new Vector2 (Random.Range (-0.2f, 0.2f), -0.4f));
 				//animation Attack
