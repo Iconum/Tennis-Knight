@@ -670,11 +670,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: loot
-      value: 1500
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: optimalVillagerAmount
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
@@ -1253,8 +1253,8 @@ MonoBehaviour:
   prevLevelName: LevelSelectMenu
   hasMiniView: 1
   isPaused: 0
-  loot: 1500
-  optimalVillagerAmount: 15
+  loot: 2500
+  optimalVillagerAmount: 20
   levelNumber: 3
   startFadeTime: 1
   endFadeTime: 1
