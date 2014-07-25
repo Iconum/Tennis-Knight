@@ -60,7 +60,7 @@ public class KingProto : EnemyBehaviour {
 		{
 			//Destroy(collision.gameObject);
 			deflections--;
-			Debug.Log("Herp Derp: " + deflections.ToString());
+			//Debug.Log("Herp Derp: " + deflections.ToString());
 			collision.gameObject.GetComponent<KingBall>().SpeedUp(0.4f);
 			collision.gameObject.tag = "Deflectable";
 			collision.gameObject.layer = _projectileLayer;

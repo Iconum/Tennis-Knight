@@ -215,6 +215,7 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 
 
 		//Debug näppäimet
+#if UNITY_EDITOR
 		if (Input.GetKeyDown (KeyCode.KeypadPlus))
 		{
 			Time.timeScale += 0.1f;
@@ -224,6 +225,7 @@ public class GraphicsPlayerBehaviour : MonoBehaviour
 			if (Time.timeScale > 0.1f)
 				Time.timeScale -= 0.1f;
 		}
+#endif
 	}
 
 	void PaddleActivate (GameObject paddle)

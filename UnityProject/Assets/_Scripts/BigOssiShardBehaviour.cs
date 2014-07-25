@@ -89,7 +89,7 @@ public class BigOssiShardBehaviour : BallBehaviour
 	protected void targetingMovement()
 	{
 
-		Debug.Log ("targetingMovement");
+		//Debug.Log ("targetingMovement");
 		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPosition, Time.deltaTime/2 );
 		gameObject.transform.RotateAround(new Vector3 (0,0, 1f),Time.deltaTime*15);
 

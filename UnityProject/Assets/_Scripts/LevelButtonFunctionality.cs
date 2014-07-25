@@ -77,19 +77,22 @@ public class LevelButtonFunctionality : ButtonFunctionality {
 				switch (lastButton)
 				{
 				case ButtonTypes.Tutorial:
-					Application.LoadLevel("TutorialLevel");
+					_asyncOp = Application.LoadLevelAsync("TutorialLevel");
 					break;
 					
 				case ButtonTypes.First:
-					Application.LoadLevel("FirstLevel");
+					_asyncOp = Application.LoadLevelAsync("FirstLevel");
 					break;
 					
 				case ButtonTypes.Second:
-					Application.LoadLevel("SecondLevel");
+					_asyncOp = Application.LoadLevelAsync("SecondLevel");
 					break;
 					
 				case ButtonTypes.Third:
-					Application.LoadLevel("ThirdLevel");
+					_asyncOp = Application.LoadLevelAsync("ThirdLevel");
+					break;
+				default:
+
 					break;
 				}
 			}

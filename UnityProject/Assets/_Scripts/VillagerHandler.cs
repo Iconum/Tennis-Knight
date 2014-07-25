@@ -42,6 +42,7 @@ public class VillagerHandler : MonoBehaviour {
 		}
 
 		//Debug
+#if UNITY_EDITOR
 		if (Input.GetKeyDown (KeyCode.Home))
 		{
 			health = 0;
@@ -50,6 +51,7 @@ public class VillagerHandler : MonoBehaviour {
 				villagers [i].GetComponent<VillagerBehaviour> ().Die ();
 			}
 		}
+#endif
 	}
 	//Deletes villagers when fallen and respawns at that position where
 	//Last villager died.

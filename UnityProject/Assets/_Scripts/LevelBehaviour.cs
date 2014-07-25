@@ -99,11 +99,13 @@ public class LevelBehaviour : MonoBehaviour {
 		}
 
 		//Debug
+#if UNITY_EDITOR
 		if (Input.GetKeyDown (KeyCode.PageDown))
 		{
 			if (enemySpawnPackages.Count != 0)
 				enemySpawnPackages.RemoveAt (0);
 		}
+#endif
 	}
 
 	public virtual void EnemyDied()
