@@ -57,7 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: .100000001, y: -1}
   constantSpeed: 2
-  heatGeneration: 1.5
+  heatGeneration: 8
   paddleHit: {fileID: 0}
   levelManager: {fileID: 0}
   isPaused: 0

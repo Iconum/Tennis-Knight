@@ -130,9 +130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startVelocity: {x: .100000001, y: -.100000001}
   constantSpeed: 3
-  heatGeneration: 15
+  heatGeneration: 20
   paddleHit: {fileID: 8300000, guid: 4671331526c45894dabd8fe25ef501df, type: 3}
   levelManager: {fileID: 0}
+  isPaused: 0
   particlePrefab: {fileID: 100000, guid: 0c292da710918304fa8b820eeae82b1d, type: 2}
   bounceVelocity: {x: 0, y: 0, z: 0}
   gravity: 10
