@@ -150,7 +150,7 @@ MonoBehaviour:
   particlePrefab: {fileID: 100000, guid: 0c292da710918304fa8b820eeae82b1d, type: 2}
   fuseLength: 5
   explosiveForce: 2
-  explosion: {fileID: 8300000, guid: e2a3be34f2bd141498f04455a2f47171, type: 3}
+  explosion: {fileID: 8300000, guid: d40b722f70d807340955a4bb6c614c14, type: 3}
   rotationSpeed: 10
 --- !u!212 &21200000
 SpriteRenderer:
