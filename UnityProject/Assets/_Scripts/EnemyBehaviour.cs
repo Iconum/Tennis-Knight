@@ -106,10 +106,12 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 
 		//Debug Controls
+#if UNITY_EDITOR
 		if (Input.GetKeyDown (KeyCode.End))
 		{
 			InstantDeath ();
 		}
+#endif
 	}
 
 	protected virtual void Flicker()

@@ -38,7 +38,7 @@ public class DragonBabyBehaviour : EnemyBehaviour {
 		{
 			anim.SetTrigger ("SDDamage");
 			prevHealth = health;
-			Debug.Log(prevHealth);
+			//Debug.Log(prevHealth);
 			if (sounds.Count > 0 && audio)
 			{
 				audio.clip = sounds [0];

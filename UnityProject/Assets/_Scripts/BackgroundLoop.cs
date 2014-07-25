@@ -31,8 +31,8 @@ public class BackgroundLoop : MonoBehaviour {
 		bg2bs = bg2.renderer.bounds.size;
 		//Debug.Log (Camera.main.pixelRect);
 		//Debug.Log (chmax);
-		Debug.Log (cheight);
-		Debug.Log (cwidth);
+		//Debug.Log (cheight);
+		//Debug.Log (cwidth);
 	}
 	
 	// Update is called once per frame

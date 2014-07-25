@@ -29,7 +29,7 @@ public class EnemyDestroyParticleBehaviour : MonoBehaviour {
 		if (deathSound != null)
 		{
 			audio.clip = deathSound;
-			Debug.Log(audio.clip.name);
+			//Debug.Log(audio.clip.name);
 			audio.pitch = Random.Range (0.9f, 1.2f);
 			audio.Play ();
 		}

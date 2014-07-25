@@ -35,7 +35,7 @@ public class BG3 : BGLoop {
 				{
 					Destroy (tempo);
 					//asd=true;
-					Debug.Log ("lol");
+					//Debug.Log ("lol");
 
 				}
 			}
