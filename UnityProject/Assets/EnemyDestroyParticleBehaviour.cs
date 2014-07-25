@@ -18,7 +18,7 @@ public class EnemyDestroyParticleBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
-		if (timer > 3f)
+		if (timer > 1.3f)
 		{
 			Destroy(gameObject);
 		}
