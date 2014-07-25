@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class DividingBehaviour : BallBehaviour {
 	public GameObject selfPrefab = null;
 	public List<GameObject> shotProjectiles = null;
-	public float rotationspeed = 10f;
+	public float rotationspeed = 3f;
+	private float rotTimer = 0f;
 
 	private int _deflectPhase = 1;
 
@@ -16,10 +17,12 @@ public class DividingBehaviour : BallBehaviour {
 		particleColour = new Color (1f, 1f, 0f);
 	}
 
-	void fixedUpdate()
+	protected void FixedUpdate()
 	{
 		base.FixedUpdate ();
-		rigidbody2D.AddTorque (rotationspeed);
+		rotTimer = Time.deltaTime + rotationspeed;
+		gameObject.renderer.transform.Rotate (new Vector3(0,0,rotTimer));// =  new Quaternion (0,0,1,rotTimer);
+		//gameObject.renderer.transform.rotation = Quaternion.FromToRotation(Vector3.down, new Vector3(rigidbody2D.velocity.x, rigidbody2D.velocity.y));
 	}
 
 	protected override void OnCollisionExit2D(Collision2D collision)

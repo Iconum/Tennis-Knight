@@ -44,6 +44,7 @@ public class VillagerBehaviour : MonoBehaviour
 
 		audio.volume = Statics.soundVolume;
 		anim = GetComponent<Animator> ();
+		anim.speed = Random.Range (1, 3);
 	}
 
 	void Update ()

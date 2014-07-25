@@ -135,7 +135,7 @@ MonoBehaviour:
   particlePrefab: {fileID: 100000, guid: 0c292da710918304fa8b820eeae82b1d, type: 2}
   selfPrefab: {fileID: 100000}
   shotProjectiles: []
-  rotationspeed: 10
+  rotationspeed: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

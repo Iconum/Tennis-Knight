@@ -792,6 +792,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 844391182}
   - 114: {fileID: 844391183}
+  - 82: {fileID: 844391184}
   m_Layer: 0
   m_Name: CastleRaidView
   m_TagString: Untagged
@@ -830,6 +831,66 @@ MonoBehaviour:
   endLocation: {x: 0, y: 0, z: 0}
   castleOffset: {x: 0, y: 0, z: 0}
   spawnDelay: .100000001
+  music: []
+--- !u!82 &844391184
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1318821597}
+  m_GameObject: {fileID: 844391181}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 13cd2e091f762c042a567d4f020172af, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &927280217
 Prefab:
   m_ObjectHideFlags: 0
@@ -1096,7 +1157,7 @@ MonoBehaviour:
   strafeSpeed: 3
   heatLimit: 25
   runawayRate: 30
-  walkOffSpeed: 4
+  walkOffSpeed: 2
   sixty: 60
   eighty: 80
   onefourty: 140
@@ -1311,6 +1372,7 @@ MonoBehaviour:
   villagers: []
   spawnPositions: []
   spawnPos: {x: 0, y: 0, z: 0}
+  villagerSprite: {fileID: 2800000, guid: e832f0114c0521c4c9c966fad6eaed80, type: 3}
 --- !u!4 &1316152051
 Transform:
   m_ObjectHideFlags: 0
@@ -1376,7 +1438,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[0].prefabPositionCombo.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 100000, guid: 3cb8c90bc17f570438dbc327f24b2cb2, type: 2}
+      objectReference: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
       value: 
@@ -1930,6 +1992,7 @@ MonoBehaviour:
   villagerManager: {fileID: 0}
   castleHandler: {fileID: 844391183}
   pauseMenu: {fileID: 1988759560}
+  prevLevelName: LevelSelectMenu
   hasMiniView: 1
   isPaused: 0
   loot: 500
@@ -1942,7 +2005,7 @@ MonoBehaviour:
   fadeTexture: {fileID: 2800000, guid: 9b1f47630bbe9484a9f2ef9f40ee5d26, type: 3}
   enemySpawnPackages:
   - prefabPositionCombo:
-    - enemy: {fileID: 100000, guid: 3cb8c90bc17f570438dbc327f24b2cb2, type: 2}
+    - enemy: {fileID: 100000, guid: 0e716beb38ce9d1418f60fbf786224ef, type: 2}
       position: {x: 0, y: 3.5, z: 0}
       delayTime: 0
   levelTest: 0
@@ -1950,6 +2013,7 @@ MonoBehaviour:
   music:
   - {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
   - {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
+  - {fileID: 8300000, guid: 13cd2e091f762c042a567d4f020172af, type: 3}
   oldMusic: {fileID: 0}
 --- !u!4 &1955091983
 Transform:
