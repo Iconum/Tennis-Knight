@@ -26,7 +26,7 @@ public class IceBallBehaviour : BallBehaviour {
 		if (rigidbody2D.velocity.magnitude > constantSpeed)
 			base.FixedUpdate ();
 
-		gravity += Time.deltaTime;
+		gravity += Time.deltaTime/2;
 	}
 
 	protected virtual void Bounce()
@@ -35,6 +35,10 @@ public class IceBallBehaviour : BallBehaviour {
 		{
 			gravity -= 3.0f;
 		}
+		if (gravity >= 5.0f)
+			gravity = 5f;
+
+		Debug.Log (gravity);
 		//if (gravity <= 1f)
 		//	gravity = 1f;
 	}
