@@ -24,9 +24,9 @@ public class OptionsFunctionality : MonoBehaviour
 	{
 		Statics.StyleInitialization ();
 		if (background)
-			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f), background);
+			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width-40.0f, Screen.height-200.0f), background);
 		else 
-			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width - 40.0f, Screen.height - 40.0f));
+			GUILayout.BeginArea (new Rect (20.0f, 100.0f, Screen.width-40.0f, Screen.height-200.0f));
 		{
 			if (GUILayout.Button ("Back", Statics.menuButtonStyle))
 			{
@@ -46,7 +46,7 @@ public class OptionsFunctionality : MonoBehaviour
 			GUILayout.Label ("Music Volume:", Statics.menuTextStyle);
 			Statics.musicVolume = GUILayout.HorizontalSlider (Statics.musicVolume, 0.0f, 1.0f, Statics.menuTextStyle, Statics.menuButtonStyle);
 			GUILayout.Space (thirty);
-			#if UNITY_STANDALONE || UNITY_EDITOR
+			#if UNITY_STANDALONE || UNITY_EDITOR || UNITY_WEBPLAYER
 			if (GUILayout.Button ("Keyboard Controls", Statics.menuButtonStyle))
 			{
 				Statics.selectedControlMethod = ControlType.keyboard;
@@ -84,8 +84,8 @@ public class OptionsFunctionality : MonoBehaviour
 				Statics.selectedControlMethod = ControlType.freedragging;
 				menuText = GetMenuText ();
 			}
-			GUILayout.Box(menuText, Statics.menuTextStyle);
 #endif
+			GUILayout.Box(menuText, Statics.menuTextStyle);
 		}
 		GUILayout.EndArea ();
 	}

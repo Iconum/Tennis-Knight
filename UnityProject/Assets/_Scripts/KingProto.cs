@@ -10,6 +10,11 @@ public class KingProto : EnemyBehaviour {
 	private Vector2 knightPos;
 	private Vector3 kbipos;
 	private int deflections, _projectileLayer;
+	private float deathTimer,explosiontimer;
+	public GameObject explosionPrefab;
+	private bool isDead = false;
+	private Vector3 tempPosition;
+
 	bool temp;
 
 	public List<AudioClip> sounds = new List<AudioClip> ();
@@ -20,6 +25,7 @@ public class KingProto : EnemyBehaviour {
 		anim = GetComponent<Animator> ();
 		player = levelManager.GetComponent<LevelBehaviour> ().player;
 		deflections = maxDeflections - health;
+		_projectileLayer = LayerMask.NameToLayer ("Projectiles");
 		StartCoroutine (BallSpawning (spawnLerpLimit));
 
 		if (audio)
@@ -36,14 +42,16 @@ public class KingProto : EnemyBehaviour {
 	void Update ()
 	{
 		base.Update ();
-		if (!isPaused)
+		if (!isPaused && !isDead)
 		{
-			_levelSinTime += Time.deltaTime;
-			transform.position = new Vector3 (Mathf.Cos (_levelSinTime ), transform.position.y);
-
-
+			_levelSinTime += Time.deltaTime*1.5f;
+			transform.position = new Vector3 (Mathf.Cos (_levelSinTime )*1.7f, transform.position.y);
 		}
-
+		if (!isPaused && isDead)
+		{
+			anim.SetBool("Dead",true);
+			deathAnim();
+		}
 	}
 	
 	protected void OnCollisionEnter2D(Collision2D collision)
@@ -55,6 +63,7 @@ public class KingProto : EnemyBehaviour {
 			Debug.Log("Herp Derp: " + deflections.ToString());
 			collision.gameObject.GetComponent<KingBall>().SpeedUp(0.4f);
 			collision.gameObject.tag = "Deflectable";
+			collision.gameObject.layer = _projectileLayer;
 			//ballUsed = false;
 
 			if (deflections>0)
@@ -79,13 +88,16 @@ public class KingProto : EnemyBehaviour {
 
 				if (health <= 0)
 				{
-					Destroy(gameObject);
+					//Destroy(gameObject);
+					tempPosition = transform.position;
+					isDead = true;
 				}
 			}
 		}
 	}
 	public void NoBall()
 	{
+		if(!isDead)
 		StartCoroutine (BallSpawning (4.0f));
 	}
 	void InstantBalls()
@@ -107,4 +119,26 @@ public class KingProto : EnemyBehaviour {
 		yield return new WaitForSeconds (t);
 		InstantBalls ();
 	}
+
+	protected void deathAnim()
+	{
+		//anim.SetTrigger ("MDDamage");
+		deathTimer += Time.deltaTime;
+		explosiontimer += Time.deltaTime;
+		var randX = Random.Range(-0.1f,0.1f);
+		var randY = Random.Range(-0.1f,0.1f);
+		gameObject.transform.position = new Vector3(transform.position.x + randX , tempPosition.y + randY);
+
+		if (explosiontimer >= 0.15f)
+		{
+			var explosion = Instantiate(explosionPrefab,
+			                            new Vector2(transform.position.x + Random.Range (-1, 1), transform.position.y + Random.Range (-1, 1)),
+			                            transform.rotation);
+			explosiontimer = 0;
+		}
+		if (deathTimer >= 5f)
+			InstantDeath();
+		
+	}
+
 }

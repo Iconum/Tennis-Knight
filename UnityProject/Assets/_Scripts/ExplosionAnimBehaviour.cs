@@ -12,6 +12,8 @@ public class ExplosionAnimBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		
+		audio.volume = Statics.soundVolume;
 		anim = gameObject.GetComponent<Animator> ();
 		
 		//audio.volume = Statics.soundVolume;

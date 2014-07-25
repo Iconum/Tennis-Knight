@@ -12,6 +12,7 @@ public class VillagerHandler : MonoBehaviour {
 	public List<GameObject> villagers = new List<GameObject>();
 	public List<Vector3> spawnPositions = new List<Vector3> ();
 	public Vector3 spawnPos;
+	public Texture villagerSprite;
 
 	protected int health = Statics.villagers, living = 0;
 	protected bool _looting = false, _gameOver = false;
@@ -115,6 +116,13 @@ public class VillagerHandler : MonoBehaviour {
 	public void attackMelee(Vector3 attackPosition)
 	{
 
+	}
+
+	void OnGUI()
+	{
+		Statics.StyleInitialization ();
+		GUI.Box (new Rect (0.0f, 0.0f, 128.0f, 128.0f), villagerSprite, Statics.creditsTextStyle);
+		GUI.Label (new Rect (128.0f, 0.0f, 128.0f, 128.0f), "x " + (health + villagers.Count).ToString (), Statics.creditsTextStyle);
 	}
 
 	public void GetVillagers()

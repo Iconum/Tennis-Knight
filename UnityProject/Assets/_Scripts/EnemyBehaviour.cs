@@ -10,7 +10,10 @@ public class EnemyBehaviour : MonoBehaviour {
 	public bool specialInvincibility = false, spawning = true, isPaused = false;
 	public Vector3 targetLocation;
 	public Animator anim = null;
-	
+	public GameObject destroyParticle = null;
+	public AudioClip deathSound = null;
+	public Color deathColor = new Color (1f, 1f, 1f);
+
 	protected float _flickerTimer = 0.0f;
 	protected bool _flickerActive = false, _delayedActivation = false;
 	protected Vector3 _startLocation;
@@ -28,6 +31,9 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	protected virtual void OnDestroy()
 	{
+		//var poof = Instantiate (destroyParticle, transform.position, transform.rotation);
+		//destroyParticle.GetComponent<EnemyDestroyParticleBehaviour> ().playDeathSound (deathSound, deathColor);
+
 		if (_otherEnemies.Count > 0)
 		{
 			if (_otherEnemies.TrueForAll (x => x == null))
@@ -168,13 +174,14 @@ public class EnemyBehaviour : MonoBehaviour {
 
 			if (health <= 0)
 			{
-
-				Destroy (gameObject);
+				InstantDeath();
 			}
 		}
 	}
 	protected virtual void InstantDeath()
 	{
+		var poof = (GameObject)Instantiate (destroyParticle, transform.position + new Vector3(0,0,-1), transform.rotation);
+		poof.GetComponent<EnemyDestroyParticleBehaviour> ().playDeathSound (deathSound, deathColor);
 		Destroy (gameObject);
 	}
 }

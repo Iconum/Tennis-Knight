@@ -306,6 +306,46 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: a4994b726014ac14cbd8d300cd22d8ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1001 &120433919
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
+  m_RootGameObject: {fileID: 1681727054}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &123474807
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +450,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 311074196}
   - 114: {fileID: 311074195}
+  - 82: {fileID: 311074197}
   m_Layer: 0
   m_Name: CastleRaidView
   m_TagString: Untagged
@@ -430,13 +471,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 922232683}
-  terrainPrefab: {fileID: 100000, guid: 848895cc44808d44d982e3babbfbe079, type: 2}
-  castlePrefab: {fileID: 100000, guid: 51de250b61ce04b46ae0ddb7ad65ec85, type: 2}
+  terrainPrefab: {fileID: 100000, guid: 29b7c263cf4a70f4e8125e679cc1bcd8, type: 2}
+  castlePrefab: {fileID: 100000, guid: f1a68ff5e5f35b641bdfebb61492218a, type: 2}
   tinyVillagerPrefab: {fileID: 100000, guid: 382fd6959b638644399a39c5f78fa32d, type: 2}
   startLocation: {x: 0, y: -3, z: 0}
-  endLocation: {x: 0, y: 0, z: 0}
-  castleOffset: {x: 0, y: 0, z: 0}
+  endLocation: {x: 0, y: -.5, z: 0}
+  castleOffset: {x: 0, y: 2, z: 0}
   spawnDelay: .100000001
+  music: []
 --- !u!4 &311074196
 Transform:
   m_ObjectHideFlags: 0
@@ -448,6 +490,65 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 922232684}
+--- !u!82 &311074197
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0,
+    type: 2}
+  m_PrefabInternal: {fileID: 332005820}
+  m_GameObject: {fileID: 311074194}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 13cd2e091f762c042a567d4f020172af, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &332005820
 Prefab:
   m_ObjectHideFlags: 0
@@ -569,11 +670,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: loot
-      value: 1500
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: optimalVillagerAmount
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[1].prefabPositionCombo.Array.data[0].enemy
@@ -710,6 +811,22 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: levelNumber
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: terrainPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 29b7c263cf4a70f4e8125e679cc1bcd8, type: 2}
+    - target: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: castlePrefab
+      value: 
+      objectReference: {fileID: 100000, guid: f1a68ff5e5f35b641bdfebb61492218a, type: 2}
+    - target: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: castleOffset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
+      propertyPath: endLocation.y
+      value: -.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
@@ -1136,8 +1253,8 @@ MonoBehaviour:
   prevLevelName: LevelSelectMenu
   hasMiniView: 1
   isPaused: 0
-  loot: 1500
-  optimalVillagerAmount: 15
+  loot: 2500
+  optimalVillagerAmount: 20
   levelNumber: 3
   startFadeTime: 1
   endFadeTime: 1
@@ -1678,7 +1795,7 @@ Camera:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-  m_PrefabInternal: {fileID: 1862775298}
+  m_PrefabInternal: {fileID: 120433919}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1681727056}
@@ -1695,7 +1812,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: 49a508674c10d5548b519d0220c65aca,
     type: 2}
-  m_PrefabInternal: {fileID: 1862775298}
+  m_PrefabInternal: {fileID: 120433919}
   m_GameObject: {fileID: 1681727054}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1709,11 +1826,12 @@ MonoBehaviour:
   villagers: []
   spawnPositions: []
   spawnPos: {x: 0, y: 0, z: 0}
+  villagerSprite: {fileID: 2800000, guid: e832f0114c0521c4c9c966fad6eaed80, type: 3}
 --- !u!4 &1681727056
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-  m_PrefabInternal: {fileID: 1862775298}
+  m_PrefabInternal: {fileID: 120433919}
   m_GameObject: {fileID: 1681727054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1883,46 +2001,6 @@ Transform:
   m_LocalScale: {x: .899999976, y: .899999976, z: 1}
   m_Children: []
   m_Father: {fileID: 44930754}
---- !u!1001 &1862775298
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 49a508674c10d5548b519d0220c65aca, type: 2}
-  m_RootGameObject: {fileID: 1681727054}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &1889781601
 GameObject:
   m_ObjectHideFlags: 0

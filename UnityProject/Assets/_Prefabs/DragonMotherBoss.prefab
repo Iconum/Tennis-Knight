@@ -214,8 +214,11 @@ MonoBehaviour:
   specialInvincibility: 0
   spawning: 1
   isPaused: 0
-  targetLocation: {x: 0, y: 3.51530004, z: 0}
+  targetLocation: {x: 0, y: 3.4000001, z: 0}
   anim: {fileID: 0}
+  destroyParticle: {fileID: 100000, guid: ec11e7fc63d66514ca8f1e4d6dd43a09, type: 2}
+  deathSound: {fileID: 8300000, guid: 7e35be1f699991349874bcaa56a289b9, type: 3}
+  deathColor: {r: .670588255, g: .270588249, b: .254901975, a: 1}
   Projectiles:
   - {fileID: 100000, guid: 2d54f54301daaa54f87d170742c9cdd2, type: 2}
   - {fileID: 100000, guid: 03d3e8ddf7250ab49a56e3b765cb0fcf, type: 2}
