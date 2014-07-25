@@ -137,10 +137,11 @@ MonoBehaviour:
   targetLocation: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   destroyParticle: {fileID: 100000, guid: ec11e7fc63d66514ca8f1e4d6dd43a09, type: 2}
-  deathSound: {fileID: 8300000, guid: 5627a5bb96b555942acaf0151e8f8be5, type: 3}
+  deathSound: {fileID: 8300000, guid: 7e35be1f699991349874bcaa56a289b9, type: 3}
   deathColor: {r: .75686276, g: .666666687, b: .145098045, a: 1}
   player: {fileID: 0}
   maxDeflections: 8
+  explosionPrefab: {fileID: 100000, guid: 92f7fbdcdad95654d8320ba53d3f4bb9, type: 2}
   sounds:
   - {fileID: 8300000, guid: 2cfb8325b9933b24ca1f3f6f2a513767, type: 3}
   - {fileID: 8300000, guid: 5627a5bb96b555942acaf0151e8f8be5, type: 3}
