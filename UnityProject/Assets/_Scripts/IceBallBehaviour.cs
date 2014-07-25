@@ -25,16 +25,18 @@ public class IceBallBehaviour : BallBehaviour {
 		rigidbody2D.velocity -= new Vector2(0, gravity * Time.fixedDeltaTime);
 		if (rigidbody2D.velocity.magnitude > constantSpeed)
 			base.FixedUpdate ();
+
+		gravity += Time.deltaTime;
 	}
 
 	protected virtual void Bounce()
 	{
-		if (gravity >= 2.0f)
+		if (gravity >= 1.5f)
 		{
-			gravity -= 2.0f;
+			gravity -= 3.0f;
 		}
-		if (gravity <= 1f)
-			gravity = 1f;
+		//if (gravity <= 1f)
+		//	gravity = 1f;
 	}
 
 	protected void OnCollisionEnter2D(Collision2D collision)

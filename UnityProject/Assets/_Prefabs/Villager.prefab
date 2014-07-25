@@ -131,11 +131,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 61b96326f2b205940b6fddc59b710c71, type: 3}
   - {fileID: 8300000, guid: 8586a24512cf245409040360ad819715, type: 3}
   flyingHeight: -4
-  deathTime: 2
+  deathTime: .5
   rotationSpeed: 60
   flyingSpeed: 5
   movementSpeed: 2
   isDead: 0
+  isPaused: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
