@@ -663,9 +663,6 @@ MonoBehaviour:
     - enemy: {fileID: 100000, guid: 018119bda3141414690c0a2bf8c3ec37, type: 2}
       position: {x: 0, y: 3.5, z: 0}
       delayTime: 11
-    - enemy: {fileID: 100000, guid: 3f1a61754c6accc40b8319b42e3ffb0b, type: 2}
-      position: {x: -1, y: 3.4000001, z: 0}
-      delayTime: 15
   - prefabPositionCombo:
     - enemy: {fileID: 100000, guid: 4b0f1b35aa643144bbcc3d058995ca13, type: 2}
       position: {x: 1, y: 3, z: 0}
@@ -817,7 +814,7 @@ Transform:
   m_PrefabInternal: {fileID: 71751999}
   m_GameObject: {fileID: 868498362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.85831308, y: -.0537257195, z: 0}
+  m_LocalPosition: {x: -6.86000013, y: -.0537257195, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 743698156}
@@ -868,7 +865,7 @@ Transform:
   m_PrefabInternal: {fileID: 71751999}
   m_GameObject: {fileID: 960380368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8570261, y: .0286250114, z: 0}
+  m_LocalPosition: {x: 6.86000013, y: .0286250114, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 743698156}
@@ -1337,7 +1334,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[4].prefabPositionCombo.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: enemySpawnPackages.Array.data[3].prefabPositionCombo.Array.size
