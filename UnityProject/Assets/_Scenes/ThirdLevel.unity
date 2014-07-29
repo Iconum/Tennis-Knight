@@ -528,7 +528,7 @@ Transform:
   m_PrefabInternal: {fileID: 84560622}
   m_GameObject: {fileID: 301135356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.85831308, y: -.0537257195, z: 0}
+  m_LocalPosition: {x: -6.86000013, y: -.0537257195, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1537618598}
@@ -902,7 +902,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: music.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+      objectReference: {fileID: 8300000, guid: 3eee897395447bb45a319c6b14988dd3, type: 3}
     - target: {fileID: 11400000, guid: ae3936f0ffb214a4a8edc7bc8006ebb0, type: 2}
       propertyPath: music.Array.data[1]
       value: 
@@ -1396,7 +1396,7 @@ Transform:
   m_PrefabInternal: {fileID: 84560622}
   m_GameObject: {fileID: 812265820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8570261, y: .0286250114, z: 0}
+  m_LocalPosition: {x: 6.86000013, y: .0286250114, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1537618598}
@@ -1585,7 +1585,7 @@ MonoBehaviour:
   levelTest: 0
   openEnd: 0
   music:
-  - {fileID: 8300000, guid: 83c7d256024353f4895fd959b906781d, type: 3}
+  - {fileID: 8300000, guid: 3eee897395447bb45a319c6b14988dd3, type: 3}
   - {fileID: 8300000, guid: 13d87a7dce9b50e47b7a87db7db0003e, type: 3}
   oldMusic: {fileID: 0}
 --- !u!4 &922232684
